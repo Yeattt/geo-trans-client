@@ -1,9 +1,11 @@
-import { HomePage } from './pages/';
+import { Dashboard, HomePage, VehiclesCreate } from './pages/';
+
+import { AppRouter } from './routes'
 
 export default function App() {
    return (
       <>
-        <HomePage />
+         <AppRouter />
       </>
    );
 }
