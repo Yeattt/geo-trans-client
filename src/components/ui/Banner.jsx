@@ -25,7 +25,7 @@ export const Banner = () => {
             <div>
                <img
                   src="assets/banner.png"
-                  className="w-[250px] h-[250px] md:w-[620px] md:h-[450px] object-cover xl:-mt-28"
+                  className="w-[250px] h-[250px] md:w-[620px] md:h-[450px] object-contain xl:-mt-28"
                />
             </div>
             
