@@ -3,12 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from "../../../components/layouts";
 
-export const VehiclesHome = () => {
-   const vehicles = [
-      { id: 1, make: 'Lamborghini', model: 'Aventador', year: 2020, color: 'Greem' },
-      { id: 2, make: 'Ferrari', model: 'F8', year: 2019, color: 'Red' },
-      { id: 3, make: 'Bugatti', model: 'Chiron', year: 2022, color: 'Black' },
-      { id: 3, make: 'Bugatti', model: 'Chiron', year: 2022, color: 'Black' },
+export const ClientsHome = () => {
+   const clients = [
+      { id: 1, document: 103, name: 'Camilo Mejia', Business_name: 'CamiloMejiaexamplecom', phone: 301587 },
+      { id: 2, document: 105, name: 'Carlos Cadavid', Business_name: 'Calichepmexamplecom', phone: 301587 },
+      { id: 3, document: 104, name: 'Falio', Business_name: 'michaeljohnsonexamplecom', phone: 301587 },
+      // Agrega más usuarios si  necesario
    ];
 
    // TODO: make the HTTP request to get all the information
@@ -16,39 +16,40 @@ export const VehiclesHome = () => {
    return (
       <AdminLayout>
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl text-white font-bold my-4">Vehículos</h2>
+            <h2 className="text-2xl text-white font-bold my-4">Clientes</h2>
             <div className="overflow-hidden shadow-sm sm:rounded-lg">
                <div className="p-6">
-                  {vehicles.length > 0 ? (
+                  {clients.length > 0 ? (
                      <div className="grid grid-cols-1 gap-4">
-                        {vehicles.map((vehicle) => (
+                        {clients.map((client) => (
                            <div
-                              key={vehicle.id}
+                              key={client.id}
                               className="flex items-center justify-between bg-gray-700 p-4 rounded-md"
                            >
                               <div className="flex-1">
                                  <div className="text-white font-bold">ID:</div>
-                                 <div className="text-white">{vehicle.id}</div>
+                                 <div className="text-white">{client.id}</div>
                               </div>
                               <div className="flex-1">
-                                 <div className="text-white font-bold">Marca:</div>
-                                 <div className="text-white">{vehicle.make}</div>
+                                 <div className="text-white font-bold">Documento:</div>
+                                 <div className="text-white">{client.document}</div>
                               </div>
                               <div className="flex-1">
-                                 <div className="text-white font-bold">Modelo:</div>
-                                 <div className="text-white">{vehicle.model}</div>
+                                 <div className="text-white font-bold">Nombre:</div>
+                                 <div className="text-white">{client.name}</div>
                               </div>
                               <div className="flex-1">
-                                 <div className="text-white font-bold">Año:</div>
-                                 <div className="text-white">{vehicle.year}</div>
+                                 <div className="text-white font-bold">Razon social:</div>
+                                 <div className="text-white">{client.Business_name}</div>
                               </div>
                               <div className="flex-1">
-                                 <div className="text-white font-bold">Color:</div>
-                                 <div className="text-white">{vehicle.color}</div>
+                                 <div className="text-white font-bold">phone:</div>
+                                 <div className="text-white">{client.phone}</div>
                               </div>
+
                               <div>
                                  {/* Agrega aquí los botones de editar, eliminar y ver */}
-                                 <Link to={`/admin/vehicles/update/${vehicle.id}`}>
+                                 <Link to={`/admin/clients/update/${client.id}`}>
                                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
                                        Editar
                                     </button>
@@ -58,7 +59,7 @@ export const VehiclesHome = () => {
                                     Eliminar
                                  </button>
 
-                                 <Link to={`/admin/vehicles/${vehicle.id}`}>
+                                 <Link to={`/admin/clients/${client.id}`}>
                                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                        Ver
                                     </button>
@@ -73,7 +74,7 @@ export const VehiclesHome = () => {
 
                   <br />
 
-                  <Link to="/admin/vehicles/create">
+                  <Link to="/admin/clients/create">
                      <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                         Añadir Nuevo
                      </button>
