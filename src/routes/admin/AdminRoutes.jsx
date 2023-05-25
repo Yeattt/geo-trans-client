@@ -7,6 +7,7 @@ export const AdminRoutes = () => {
       <Routes>
          <Route path="/clients/*" element={<ClientsRoutes />} />
          <Route path="/vehicles/*" element={<VehiclesRoutes />} />
+         <Route path="/vehicles/*" element={<TripsRoutes />} />
       </Routes>
    );
 }

@@ -1,4 +1,4 @@
-import { Dashboard, HomePage, VehiclesCreate } from './pages/';
+import { Dashboard, HomePage, VehiclesCreate, TripsCreate } from './pages/';
 
 import { AppRouter } from './routes'
 
