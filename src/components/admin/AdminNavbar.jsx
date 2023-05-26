@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 export const AdimnNavbar = () => {
    return (
       <nav className="bg-gray-900">
@@ -13,7 +14,11 @@ export const AdimnNavbar = () => {
                      <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Clientes</a>
                      <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Compañías</a>
                      <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Permisos</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Precios</a>
+                     <Link to="/admin/prices">
+                           <li className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                              Precios
+                           </li>
+                        </Link>
                      <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Roles</a>
                      <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Viajes</a>
                      <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Vehículos</a>
