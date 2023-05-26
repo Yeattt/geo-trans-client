@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { TripsCreate, TripsHome, TripsInfo, TripsUpdate } from '../../pages/admin'
+import { TripsCreate, TripsHome, TripsInfo, TripsUpdate } from '../../pages/admin/'
 
 export const TripsRoutes = () => {
    return (
