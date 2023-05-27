@@ -1,1 +1,1 @@
-export * from './vehicles/VehiclesCard';
+export * from './admin/vehicles';
