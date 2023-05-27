@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { ClientsRoutes, PermissionsRoutes, UsersRoutes, VehiclesRoutes } from './';
+import { ClientsRoutes, PermissionsRoutes, UsersRoutes, VehiclesRoutes, TripsRoutes } from './';
 
 export const AdminRoutes = () => {
    return (
@@ -9,6 +9,7 @@ export const AdminRoutes = () => {
          <Route path="/vehicles/*" element={<VehiclesRoutes />} />
          <Route path="/users/*" element={<UsersRoutes />} />
          <Route path="/permissions/*" element={<PermissionsRoutes />} />
+         <Route path="/trips/*" element={<TripsRoutes />} />
       </Routes>
    );
 }
