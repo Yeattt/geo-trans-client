@@ -1,1 +1,1 @@
-export * as geoTransApi from './geoTransApi';
+export { default as geoTransApi } from './geoTransApi';
