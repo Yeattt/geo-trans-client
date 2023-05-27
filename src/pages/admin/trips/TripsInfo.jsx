@@ -4,7 +4,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { AdminLayout } from '../../../components/layouts';
 
 export const TripsInfo = () => {
-   const vehicles = [
+   const trips = [
     {id: 1, cantidad:'', codigoProducto:'',destino:'',empaque: '',naturaleza:'',
     numeroRemesa:'',origen:'',productoTransportar:'',saldoPagar:'',unidadMedida:'',valorPagar: '',},
    ];
@@ -14,7 +14,7 @@ export const TripsInfo = () => {
    const navigate = useNavigate();
 
    useEffect(() => {
-      const trips = trips.find((vehicle) => trips.id === parseInt(id));
+      const trips = trips.find((trips) => trips.id === parseInt(id));
 
       if (!trips) {
          <Navigate to="/admin/trips" />

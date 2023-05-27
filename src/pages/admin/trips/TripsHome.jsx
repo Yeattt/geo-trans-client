@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AdminLayout } from "../../../components/layouts";
 
 export const TripsHome = () => {
-const vehicles = [
+const trips = [
     {id: 1, cantidad:'', codigoProducto:'',destino:'',empaque: '',naturaleza:'',
     numeroRemesa:'',origen:'',productoTransportar:'',saldoPagar:'',unidadMedida:'',valorPagar: '',},
 ];
@@ -17,11 +17,11 @@ const vehicles = [
             <h2 className="text-2xl text-white font-bold my-4">Trips</h2>
             <div className="overflow-hidden shadow-sm sm:rounded-lg">
                <div className="p-6">
-                  {vehicles.length > 0 ? (
+                  {trips.length > 0 ? (
                      <div className="grid grid-cols-1 gap-4">
-                        {vehicles.map((vehicle) => (
+                        {trips.map((trips) => (
                            <div
-                              key={vehicle.id}
+                              key={trips.id}
                               className="flex items-center justify-between bg-gray-700 p-4 rounded-md"
                            >
                               <div className="flex-1">
@@ -84,7 +84,7 @@ const vehicles = [
                                     Eliminar
                                  </button>
 
-                                 <Link to={`/admin/trips/${vehicle.id}`}>
+                                 <Link to={`/admin/trips/${trips.id}`}>
                                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                        Ver
                                     </button>

@@ -30,7 +30,7 @@ export const TripsUpdate = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      // TODO: Make the HTTP request to update the vehicle
+      // TODO: Make the HTTP request to update the trips
 
       console.log(tripsData);
    };
@@ -80,7 +80,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="destino"
                            name="destino"
-                           value={tripsData.year}
+                           value={tripsData.destino}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
@@ -106,7 +106,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="naturaleza"
                            name="naturaleza"
-                           value={tripsData.color}
+                           value={tripsData.naturaleza}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
@@ -119,7 +119,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="numeroRemesa"
                            name="numeroRemesa"
-                           value={tripsData.color}
+                           value={tripsData.numeroRemesa}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
@@ -132,7 +132,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="origen"
                            name="origen"
-                           value={tripsData.color}
+                           value={tripsData.origen}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
@@ -145,7 +145,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="productoTransportar"
                            name="productoTransportar"
-                           value={tripsData.color}
+                           value={tripsData.productoTransportar}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
@@ -158,7 +158,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="saldoPagar"
                            name="saldoPagar"
-                           value={tripsData.color}
+                           value={tripsData.saldoPagar}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
@@ -171,7 +171,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="unidadMedida"
                            name="unidadMedida"
-                           value={tripsData.color}
+                           value={tripsData.unidadMedida}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
@@ -184,7 +184,7 @@ export const TripsUpdate = () => {
                            type="text"
                            id="valorPagar"
                            name="valorPagar"
-                           value={tripsData.color}
+                           value={tripsData.valorPagar}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
