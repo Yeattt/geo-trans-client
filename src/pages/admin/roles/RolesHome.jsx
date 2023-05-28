@@ -5,7 +5,7 @@ import { AdminLayout } from '../../../components/layouts';
 import { RolesCard } from '../../../components/admin';
 import { useGetApiData } from '../../../hooks';
 
-export const rolesHome = () => {
+export const RolesHome = () => {
    const { isLoading, data } = useGetApiData('/roles');
    const [roles, setRoles] = useState([]);
 

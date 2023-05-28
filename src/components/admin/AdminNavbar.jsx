@@ -13,8 +13,8 @@ export const AdimnNavbar = () => {
                      <ul>
                         <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                         <Link to="/admin/users">
-                        <li className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Usuarios
-                        </li>
+                           <li className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Usuarios
+                           </li>
                         </Link>
 
                         <Link to="/admin/clients/">

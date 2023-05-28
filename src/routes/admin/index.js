@@ -4,3 +4,5 @@ export * from './VehiclesRoutes';
 export * from './UsersRoutes';
 export * from './PermissionsRoutes';
 export * from './TripsRoutes';
+export * from './PricesRoutes';
+export * from './RolesRoutes';
