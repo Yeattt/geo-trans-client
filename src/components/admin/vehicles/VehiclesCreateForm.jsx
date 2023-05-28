@@ -25,7 +25,7 @@ export const VehiclesCreateForm = () => {
       tarjetaPropiedad: '',
       tecnomecanica: '',
       soat: ''
-   });
+   }, 'vehicles');
 
    return (
       <Formik
