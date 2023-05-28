@@ -20,7 +20,7 @@ export const VehiclesCreate = () => {
                <div className="p-6">
                   <VehiclesCreateForm />
 
-                  <br />
+                  <br/>
 
                   <Link to="/admin/vehicles/create">
                      <button
