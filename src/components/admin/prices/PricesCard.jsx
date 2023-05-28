@@ -9,27 +9,27 @@ export const PricesCard = ({ price }) => {
             <div className="text-white font-bold">ID:</div>
             <div className="text-white">{price.id}</div>
          </div>
-         {/* <div className="flex-1">
+         <div className="flex-1">
             <div className="text-white font-bold">Codigo Cotizacion:</div>
             <div className="text-white">{price.codigoCotizacion}</div>
          </div>
          <div className="flex-1">
             <div className="text-white font-bold">Cantidad:</div>
             <div className="text-white">{price.cantidad}</div>
-         </div> */}
+         </div>
          <div className="flex-1">
             <div className="text-white font-bold">Codigo Producto:</div>
             <div className="text-white">{price.codigoProducto}</div>
          </div>
-         {/* <div className="flex-1">
+         <div className="flex-1">
             <div className="text-white font-bold">Destino:</div>
             <div className="text-white">{price.destino}</div>
-         </div> */}
+         </div>
          <div className="flex-1">
             <div className="text-white font-bold">Empaque:</div>
             <div className="text-white">{price.empaque}</div>
          </div>
-         {/* <div className="flex-1">
+         <div className="flex-1">
             <div className="text-white font-bold">Naturaleza:</div>
             <div className="text-white">{price.naturaleza}</div>
          </div>
@@ -60,7 +60,7 @@ export const PricesCard = ({ price }) => {
          <div className="flex-1">
             <div className="text-white font-bold">Id. Usuario:</div>
             <div className="text-white">{price.userId}</div>
-         </div> */}
+         </div>
          <div>
             <Link to={`/admin/prices/update/${price.id}`}>
                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">

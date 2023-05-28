@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
-
+import { useGetApiData } from '../../../hooks';
 import { AdminLayout } from '../../../components/layouts';
-import { PricesCard } from '../../../components/prices/PricesCard';
+import { PricesCard } from '../../../components/admin/prices';
 
 export const PricesHome = () => {
-   const prices = [
-      { id: 1, codigoProducto: 'John Do', empaque: 'johndoe@example.com' },
-      { id: 2, codigoProducto: 'Jane Smith', empaque: 'janesmith@example.com' },
-      { id: 3, codigoProducto: 'Michael Johnson', empaque: 'michaeljohnson@example.com' },
-   ];
+   const { isLoading, data } = useGetApiData('/prices');
+   const [prices, setVehicles] = useState([]);
+
+   useEffect(() => {
+      if (!isLoading) {
+         setVehicles(data.prices);
+      }
+   }, [isLoading, data]);
 
    // TODO: make the HTTP request to get all the information
 
