@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export const AdimnNavbar = () => {
    return (
       <nav className="bg-gray-900">
@@ -8,15 +10,31 @@ export const AdimnNavbar = () => {
                </div>
                <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6">
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Usuarios</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Clientes</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Compañías</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Permisos</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Precios</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Roles</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Viajes</a>
-                     <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Vehículos</a>
+                     <ul>
+                        <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                        <Link to="/admin/users">
+                        <li className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Usuarios
+                        </li>
+                        </Link>
+
+                        <Link to="/admin/clients/">
+                           <li className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                              Clientes
+                           </li>
+                        </Link>
+
+                        <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Compañías</a>
+                        <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Permisos</a>
+                        <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Precios</a>
+                        <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Roles</a>
+                        <a href="#" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Viajes</a>
+
+                        <Link to="/admin/vehicles">
+                           <li className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                              Vehículos
+                           </li>
+                        </Link>
+                     </ul>
                   </div>
                </div>
             </div>
