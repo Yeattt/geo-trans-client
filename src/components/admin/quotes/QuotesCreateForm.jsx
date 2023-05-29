@@ -1,12 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { Link } from 'react-router-dom';
-
 import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
+   codigoCotizacion: Yup.string().required('Campo requerido'),
    cantidad: Yup.string().required('Campo requerido'),
    codigoProducto: Yup.string().required('Campo requerido'),
    destino: Yup.string().required('Campo requerido'),
@@ -18,10 +17,12 @@ const validationSchema = Yup.object().shape({
    saldoPagar: Yup.string().required('Campo requerido'),
    unidadMedida: Yup.string().required('Campo requerido'),
    valorPagar: Yup.string().required('Campo requerido'),
+   userId: Yup.string().required('Campo requerido'),
 });
 
-export const TripsCreateForm = () => {
+export const QuotesCreateForm = () => {
    const { initialValues, onSubmitForm } = useCreateForm({
+      codigoCotizacion: '',
       cantidad: '',
       codigoProducto: '',
       destino: '',
@@ -33,7 +34,8 @@ export const TripsCreateForm = () => {
       saldoPagar: '',
       unidadMedida: '',
       valorPagar: '',
-   }, 'trips');
+      userId: '',
+   }, 'quotes');
 
    return (
       <Formik
@@ -42,6 +44,19 @@ export const TripsCreateForm = () => {
          onSubmit={onSubmitForm}
       >
          <Form>
+            <div className="mb-4">
+               <label htmlFor="codigoCotizacion" className="text-white block mb-2">
+                  Cod. Cotizacion:
+               </label>
+               <Field
+                  type="text"
+                  id="codigoCotizacion"
+                  name="codigoCotizacion"
+                  className="w-full px-3 py-2 rounded"
+               />
+               <ErrorMessage name="codigoCotizacion" component="div" className="text-red-500" />
+            </div>
+
             <div className="mb-4">
                <label htmlFor="cantidad" className="text-white block mb-2">
                   Cantidad:
@@ -54,9 +69,10 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="cantidad" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="codigoProducto" className="text-white block mb-2">
-                  codigoProducto:
+                  Cod. Producto:
                </label>
                <Field
                   type="text"
@@ -66,6 +82,7 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="destino" className="text-white block mb-2">
                   Destino:
@@ -78,6 +95,7 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="destino" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="empaque" className="text-white block mb-2">
                   Empaque:
@@ -90,6 +108,7 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="empaque" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="naturaleza" className="text-white block mb-2">
                   Naturaleza:
@@ -102,9 +121,10 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="naturaleza" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="numeroRemesa" className="text-white block mb-2">
-                  numeroRemesa:
+                  nro. Remesa:
                </label>
                <Field
                   type="text"
@@ -114,6 +134,7 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="numeroRemesa" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="origen" className="text-white block mb-2">
                   Origen:
@@ -126,9 +147,10 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="origen" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="productoTransportar" className="text-white block mb-2">
-                  productoTransportar:
+                  pdto. Transportar:
                </label>
                <Field
                   type="text"
@@ -138,9 +160,10 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="productoTransportar" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="saldoPagar" className="text-white block mb-2">
-                  saldoPagar:
+                  sdo. Pagar:
                </label>
                <Field
                   type="text"
@@ -150,9 +173,10 @@ export const TripsCreateForm = () => {
                />
                <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="unidadMedida" className="text-white block mb-2">
-                  unidadMedida:
+                  und. Medida:
                </label>
                <Field
                   type="text"
@@ -160,11 +184,12 @@ export const TripsCreateForm = () => {
                   name="unidadMedida"
                   className="w-full px-3 py-2 rounded"
                />
-               <ErrorMessage name="unidadMedia" component="div" className="text-red-500" />
+               <ErrorMessage name="unidadMedida" component="div" className="text-red-500" />
             </div>
+
             <div className="mb-4">
                <label htmlFor="valorPagar" className="text-white block mb-2">
-                  valorPagar:
+                  vlr. Pagar:
                </label>
                <Field
                   type="text"
@@ -173,6 +198,19 @@ export const TripsCreateForm = () => {
                   className="w-full px-3 py-2 rounded"
                />
                <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
+            </div>
+
+            <div className="mb-4">
+               <label htmlFor="userId" className="text-white block mb-2">
+                  UserId:
+               </label>
+               <Field
+                  type="text"
+                  id="userId"
+                  name="userId"
+                  className="w-full px-3 py-2 rounded"
+               />
+               <ErrorMessage name="userId" component="div" className="text-red-500" />
             </div>
 
             <div className="flex justify-between">

@@ -4,14 +4,14 @@ import * as Yup from 'yup';
 import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
-const validationSchema = Yup.object().shape({    
-    name: Yup.string().required('Campo requerido')
+const validationSchema = Yup.object().shape({
+   nombre: Yup.string().required('Campo requerido')
 });
 
 export const PermissionsCreateForm = () => {
    const { initialValues, onSubmitForm } = useCreateForm({
-    name:''
-   });
+      nombre: ''
+   }, 'permissions');
 
    return (
       <Formik
@@ -19,19 +19,19 @@ export const PermissionsCreateForm = () => {
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
-         <Form>           
+         <Form>
             <div className="mb-4">
-               <label htmlFor="name" className="text-white block mb-2">
+               <label htmlFor="nombre" className="text-white block mb-2">
                   Nombre:
                </label>
                <Field
                   type="text"
-                  id="name"
-                  name="name"
+                  id="nombre"
+                  name="nombre"
                   className="w-full px-3 py-2 rounded"
                />
-               <ErrorMessage name="name" component="div" className="text-red-500" />
-            </div>                   
+               <ErrorMessage name="nombre" component="div" className="text-red-500" />
+            </div>
             <div className="flex justify-between">
                <button
                   type="submit"

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AdminLayout } from '../../../components/layouts';
 
-export const PricesUpdate = () => {
+export const QuotesUpdate = () => {
    const [priceData, setPriceData] = useState({
       codigoProducto: '',
       empaque: '',

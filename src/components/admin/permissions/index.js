@@ -1,2 +1,2 @@
 export * from './PermissionsCard';
-export * from './permissionsCreateForm';
+export * from './PermissionsCreateForm';

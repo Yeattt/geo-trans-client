@@ -5,19 +5,21 @@ import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   documento: Yup.number().required('Campo requerido'),
-   nombre: Yup.string().required('Campo requerido'),
+   nit: Yup.number().required('Campo requerido'),
    razonSocial: Yup.string().required('Campo requerido'),
-   telefono: Yup.number().required('Campo requerido')
+   nombreEmpresa: Yup.string().required('Campo requerido'),
+   telefono: Yup.number().required('Campo requerido'),
+   duenoPoliza: Yup.string().required('Campo requerido'),
 });
 
-export const ClientsCreateForm = () => {
+export const CompaniesCreateForm = () => {
    const { initialValues, onSubmitForm } = useCreateForm({
-      documento: '',
-      nombre: '',
+      nit: '',
       razonSocial: '',
-      telefono: ''
-   }, 'clients');
+      nombreEmpresa: '',
+      telefono: '',
+      duenoPoliza: ''
+   }, 'companies');
 
    return (
       <Formik
@@ -27,34 +29,21 @@ export const ClientsCreateForm = () => {
       >
          <Form>
             <div className="mb-4">
-               <label htmlFor="documento" className="text-white block mb-2">
-                  Documento:
+               <label htmlFor="nit" className="text-white block mb-2">
+                  Nit:
                </label>
                <Field
                   type="text"
-                  id="documento"
-                  name="documento"
+                  id="nit"
+                  name="nit"
                   className="w-full px-3 py-2 rounded"
                />
-               <ErrorMessage name="documento" component="div" className="text-red-500" />
-            </div>
-
-            <div className="mb-4">
-               <label htmlFor="nombre" className="text-white block mb-2">
-                  Nombre:
-               </label>
-               <Field
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="nombre" component="div" className="text-red-500" />
+               <ErrorMessage name="nit" component="div" className="text-red-500" />
             </div>
 
             <div className="mb-4">
                <label htmlFor="razonSocial" className="text-white block mb-2">
-                  Razon Social:
+                  Razon social:
                </label>
                <Field
                   type="text"
@@ -63,6 +52,19 @@ export const ClientsCreateForm = () => {
                   className="w-full px-3 py-2 rounded"
                />
                <ErrorMessage name="razonSocial" component="div" className="text-red-500" />
+            </div>
+
+            <div className="mb-4">
+               <label htmlFor="nombreEmpresa" className="text-white block mb-2">
+                  Nombre empresa:
+               </label>
+               <Field
+                  type="text"
+                  id="nombreEmpresa"
+                  name="nombreEmpresa"
+                  className="w-full px-3 py-2 rounded"
+               />
+               <ErrorMessage name="nombreEmpresa" component="div" className="text-red-500" />
             </div>
 
             <div className="mb-4">
@@ -77,7 +79,20 @@ export const ClientsCreateForm = () => {
                />
                <ErrorMessage name="telefono" component="div" className="text-red-500" />
             </div>
-            
+
+            <div className="mb-4">
+               <label htmlFor="duenoPoliza" className="text-white block mb-2">
+                  Dueño poliza:
+               </label>
+               <Field
+                  type="text"
+                  id="duenoPoliza"
+                  name="duenoPoliza"
+                  className="w-full px-3 py-2 rounded"
+               />
+               <ErrorMessage name="duenoPoliza" component="div" className="text-red-500" />
+            </div>
+
             <div className="flex justify-between">
                <button
                   type="submit"

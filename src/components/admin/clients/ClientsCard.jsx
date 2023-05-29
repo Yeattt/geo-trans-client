@@ -11,19 +11,19 @@ export const ClientsCard = ({ client }) => {
     </div>
     <div className="flex-1">
        <div className="text-white font-bold">Documento:</div>
-       <div className="text-white">{client.document}</div>
+       <div className="text-white">{client.documento}</div>
     </div>
     <div className="flex-1">
        <div className="text-white font-bold">Nombre:</div>
-       <div className="text-white">{client.name}</div>
+       <div className="text-white">{client.nombre}</div>
     </div>
     <div className="flex-1">
        <div className="text-white font-bold">Razon social:</div>
-       <div className="text-white">{client.Business_name}</div>
+       <div className="text-white">{client.razonSocial}</div>
     </div>
     <div className="flex-1">
        <div className="text-white font-bold">phone:</div>
-       <div className="text-white">{client.phone}</div>
+       <div className="text-white">{client.telefono}</div>
     </div>
 
     <div>

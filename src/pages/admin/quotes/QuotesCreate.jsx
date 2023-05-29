@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
-
 import { AdminLayout } from '../../../components/layouts';
-import { VehiclesCreateForm } from '../../../components';
+import { QuotesCreateForm } from '../../../components';
 
-export const VehiclesCreate = () => {
+
+export const QuotesCreate = () => {
    const navigate = useNavigate();
 
    const onNavigateBack = () => {
@@ -15,14 +15,14 @@ export const VehiclesCreate = () => {
    return (
       <AdminLayout>
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl text-white font-bold my-4">Registrar Vehículo</h2>
+            <h2 className="text-2xl text-white font-bold my-4">Registrar cotización</h2>
             <div className="overflow-hidden shadow-sm sm:rounded-lg">
                <div className="p-6">
-                  <VehiclesCreateForm />
+                  <QuotesCreateForm />
 
-                  <br/>
+                  <br />
 
-                  <Link to="/admin/vehicles/create">
+                  <Link to="/admin/prices/create">
                      <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                         onClick={onNavigateBack}
