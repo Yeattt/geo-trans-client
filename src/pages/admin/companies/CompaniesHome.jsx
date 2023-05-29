@@ -20,7 +20,7 @@ export const CompaniesHome = () => {
 
    return (
       <AdminLayout>
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl text-white font-bold my-4">Compañias</h2>
             <div className="overflow-hidden shadow-sm sm:rounded-lg">
                   <Link to="/admin/companies/create">
