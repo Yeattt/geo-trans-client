@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom';
 
+import { FaMoneyCheckAlt, FaTruckMoving, FaUsersCog, FaUserCog  } from 'react-icons/fa';
+import { BsBuildingFillGear, BsClipboard2CheckFill } from 'react-icons/bs';
+import { RiUserStarFill } from 'react-icons/ri';
+import { IoSubway } from 'react-icons/io5';
+
 export const AdminSideMenu = () => {
    return (
-      <div className="flex h-screen bg-gray-800">
-         <div className="w-64 bg-gray-900">
-            {/* Logo */}
+      <div className="flex h-screen">
+         <div className="w-64 bg-purplePz">
             <div className="flex items-center justify-center h-16">
                <span className="text-white text-lg font-semibold">Admin</span>
             </div>
 
-            {/* Opciones del menú */}
             <nav className="mt-8">
                <div className="space-y-1">
-                  <Link>
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  {/* <Link>
+                     <li className="cursor-pointer flex items-center px-4 py-2 text-white hover:text-white hover:bg-gray-700">
+                        <svg className="w-5 h-5 mr-2">
                            <path
                               fillRule="evenodd"
                               d="M2 6h16a1 1 0 010 2H2a1 1 0 010-2zm0 5h16a1 1 0 010 2H2a1 1 0 010-2zm0 5h16a1 1 0 010 2H2a1 1 0 010-2z"
@@ -23,108 +26,76 @@ export const AdminSideMenu = () => {
                         </svg>
                         Dashboard
                      </li>
-                  </Link>
+                  </Link> */}
 
                   <Link to="/admin/users">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaUsersCog />
+                        </span>
                         Usuarios
                      </li>
                   </Link>
 
                   <Link to="/admin/clients">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <RiUserStarFill />
+                        </span>
                         Clientes
                      </li>
                   </Link>
 
                   <Link to="/admin/companies">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <BsBuildingFillGear />
+                        </span>
                         Compañías
                      </li>
                   </Link>
 
                   <Link to="/admin/permissions">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <BsClipboard2CheckFill />
+                        </span>
                         Permisos
                      </li>
                   </Link>
 
                   <Link to="/admin/quotes">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaMoneyCheckAlt />
+                        </span>
                         Cotizaciones
                      </li>
                   </Link>
 
                   <Link to="/admin/roles">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaUserCog />
+                        </span>
                         Roles
                      </li>
                   </Link>
 
                   <Link to="/admin/trips">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <IoSubway />
+                        </span>
                         Viajes
                      </li>
                   </Link>
 
                   <Link to="/admin/vehicles">
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                           <path
-                              fillRule="evenodd"
-                              d="M4 6h12V4H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm0 4h12v-2H4v2zm-2-2H2v2h16v-2H2zm0-4h16v-2H2v2zm0-4h16V6H2v2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaTruckMoving />
+                        </span>
                         Vehículos
                      </li>
                   </Link>
