@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { FaTruckMoving } from 'react-icons/fa';
+import { BsBuildingFillGear } from 'react-icons/bs';
 import { MdExitToApp } from 'react-icons/md';
 import { BiSearchAlt } from 'react-icons/bi';
 
@@ -59,7 +59,7 @@ export const CompaniesHome = () => {
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <FaTruckMoving className="text-3xl text-secondary" />
+                           <BsBuildingFillGear className="text-3xl text-secondary" />
                         </span>
 
                         <div className="flex flex-col justify-center">
@@ -74,7 +74,7 @@ export const CompaniesHome = () => {
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <FaTruckMoving className="text-3xl text-orangePz" />
+                           <BsBuildingFillGear className="text-3xl text-orangePz" />
                         </span>
 
                         <div className="flex flex-col justify-center">
@@ -89,7 +89,7 @@ export const CompaniesHome = () => {
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <FaTruckMoving className="text-3xl text-purplePz" />
+                           <BsBuildingFillGear className="text-3xl text-purplePz" />
                         </span>
 
                         <div className="flex flex-col justify-center">

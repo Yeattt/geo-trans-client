@@ -5,18 +5,20 @@ import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   nit: Yup.number('Solo se accepta numeros')
-   .required('Campo requerido'),
-   razonSocial: Yup.string('Solo se accepta letras')
-   .required('Campo requerido'),
+   nit:           Yup.number('Solo se accepta numeros')
+                     .typeError('El telefono debe ser un número')
+                     .required('Campo requerido')
+                     .test('len', 'Debe tener 9 dígitos', val => val && val.toString().length === 9),
+   razonSocial:   Yup.string('Solo se accepta letras')
+                     .required('Campo requerido'),
    nombreEmpresa: Yup.string('Solo se accepta letras')
-   .required('Campo requerido'),
-   telefono: Yup.number('Solo se accepta numeros')
-   .required('Campo requerido')
-   .min(10, 'Minimo 10 caracteres')
-   .max(10, 'Máximo 10 caracteres'),
-   duenoPoliza: Yup.string('Solo se accepta letras')
-   .required('Campo requerido'),
+                     .required('Campo requerido'),
+   telefono:      Yup.number('Solo se accepta numeros')
+                     .typeError('El telefono debe ser un número')
+                     .required('Campo requerido')
+                     .test('len', 'Debe tener 9 dígitos', val => val && val.toString().length === 9),
+   duenoPoliza:   Yup.string('Solo se accepta letras')
+                     .required('Campo requerido'),
 });
 
 export const CompaniesCreateForm = () => {
@@ -108,7 +110,7 @@ export const CompaniesCreateForm = () => {
                </div>
 
             </div>
-            
+
             <div className="text-center mt-2">
                <button
                   type="submit"
