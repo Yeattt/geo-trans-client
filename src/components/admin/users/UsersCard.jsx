@@ -1,59 +1,34 @@
 import { Link } from 'react-router-dom';
 
+import { MdDeleteForever } from 'react-icons/md';
+import { FaEdit } from 'react-icons/fa';
+import { TbInfoHexagon } from 'react-icons/tb';
+
 export const UsersCard = ({ user }) => {
    return (
-      <div
-         className="flex items-center justify-between bg-gray-700 p-4 rounded-md w-auto"
-      >
-         <div className="flex-1">
-            <div className="text-white font-bold text-center">ID:</div>
-            <div className="text-white text-center">{user.id}</div>
-         </div>
-         <div className="flex-1">
-            <div className="text-white font-bold text-center">DNI:</div>
-            <div className="text-white text-center">{user.dni}</div>
-         </div>
-         <div className="flex-1 p-4">
-            <div className="text-white font-bold text-center p">Edad:</div>
-            <div className="text-white text-center">{user.edad}</div>
-         </div>
-         <div className="flex-1 p-4">
-            <div className="text-white font-bold text-center p">Email:</div>
-            <div className="text-white text-center">{user.email}</div>
-         </div>
-         <div className="flex-1 p-4">
-            <div className="text-white font-bold text-center p">Contrasena:</div>
-            <div className="text-white text-center">{user.contrasena}</div>
-         </div>
-         <div className="flex-1 p-4">
-            <div className="text-white font-bold text-center p">Rol:</div>
-            <div className="text-white text-center">{user.roleId}</div>
-         </div>
-         <div className="flex-1 p-4">
-            <div className="text-white font-bold text-center p">Compañia:</div>
-            <div className="text-white text-center">{user.companyId}</div>
-         </div>
-         <div className="flex-1 p-4">
-            <div className="text-white font-bold text-center p">Vehículo:</div>
-            <div className="text-white text-center">{user.vehicleId}</div>
-         </div>
-         <div>
-            <Link to={`/admin/users/update/${user.id}`}>
-               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                  Editar
-               </button>
-            </Link>
+      <tr className="hover:bg-gray-200">
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{user.id}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.dni}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.edad}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.email}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.contrasena}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.roleId}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.companyId}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.vehicleId}</td>
 
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
-               Eliminar
-            </button>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+               <TbInfoHexagon />
+            </span>
 
-            <Link to={`/admin/users/${user.id}`}>
-               <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                  Ver
-               </button>
-            </Link>
-         </div>
-      </div>
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+               <FaEdit />
+            </span>
+
+            <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
+               <MdDeleteForever />
+            </span>
+         </td>
+      </tr>
    );
 }
