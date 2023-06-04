@@ -1,52 +1,32 @@
 import { Link } from 'react-router-dom';
 
+import { MdDeleteForever } from 'react-icons/md';
+import { FaEdit } from 'react-icons/fa';
+import { TbInfoHexagon } from 'react-icons/tb';
+
 export const CompaniesCard = ({ company }) => {
-   return (
-        <div
-        className="flex items-center justify-between bg-gray-700 p-4 rounded-md"
-    >
-        <div className="flex-1">
-        <div className="text-white font-bold">ID:</div>
-        <div className="text-white">{company.id}</div>
-        </div>
-        <div className="flex-1">
-        <div className="text-white font-bold">Nit:</div>
-        <div className="text-white">{company.nit}</div>
-        </div>
-        <div className="flex-1">
-        <div className="text-white font-bold">Razon social:</div>
-        <div className="text-white">{company.razonSocial}</div>
-        </div>
-        <div className="flex-1">
-        <div className="text-white font-bold">Nombre empresa:</div>
-        <div className="text-white">{company.nombreEmpresa}</div>
-        </div>
-        <div className="flex-1">
-        <div className="text-white font-bold">Telefono:</div>
-        <div className="text-white">{company.telefono}</div>
-        </div>
-        <div className="flex-1">
-        <div className="text-white font-bold">Dueño poliza:</div>
-        <div className="text-white">{company.duenoPoliza}</div>
-        </div>
-        <div>
-        {/* Agrega aquí los botones de editar, eliminar y ver */}
-        <Link to={`/admin/companies/update/${company.id}`}>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                Editar
-            </button>
-        </Link>
-
-        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
-            Eliminar
-        </button>
-
-        <Link to={`/admin/companies/${company.id}`}>
-            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                Ver
-            </button>
-        </Link>
-        </div>
-    </div>
-   );
+    return (
+        <tr className="hover:bg-gray-200">
+           <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{company.id}</td>
+           <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nit}</td>
+           <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.razonSocial}</td>
+           <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nombreEmpresa}</td>
+           <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.telefono}</td>
+           <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.duenoPoliza}</td>
+  
+           <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
+              <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+                 <TbInfoHexagon />
+              </span>
+  
+              <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+                 <FaEdit />
+              </span>
+  
+              <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
+                 <MdDeleteForever />
+              </span>
+           </td>
+        </tr>
+     );
 }
