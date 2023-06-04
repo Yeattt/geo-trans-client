@@ -5,26 +5,39 @@ import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   tipoCamion: Yup.string().required('Campo requerido'),
-   modelo: Yup.string().required('Campo requerido'),
-   marca: Yup.string().required('Campo requerido'),
-   placa: Yup.string().required('Campo requerido'),
-   placaSemirremolque: Yup.string().required('Campo requerido'),
-   tarjetaPropiedad: Yup.string().required('Campo requerido'),
-   tecnomecanica: Yup.string().required('Campo requerido'),
-   soat: Yup.string().required('Campo requerido'),
+   tipoCamion:             Yup.string()
+                              .max(15, 'Máximo 15 caracteres')
+                              .required('Campo requerido'),
+   modelo:                 Yup.number('Este campo solo debe contener números')
+                              .max(6, 'Máximo 6 caracteres')
+                              .required('Campo requerido'),
+   marca:                  Yup.string()
+                              .max(15, 'Máximo 15 caracteres')
+                              .required('Campo requerido'),
+   placa:                 Yup.string()
+                              .max(6, 'Máximo 6 caracteres')
+                              .required('Campo requerido'),
+   placaSemirremolque:     Yup.string()
+                              .max(6, 'Máximo 6 caracteres')
+                              .required('Campo requerido'),
+   tarjetaPropiedad:       Yup.string()
+                              .required('Campo requerido'),
+   tecnomecanica:          Yup.string()
+                              .required('Campo requerido'),
+   soat:                   Yup.string()
+                              .required('Campo requerido'),
 });
 
 export const VehiclesCreateForm = () => {
    const { initialValues, onSubmitForm } = useCreateForm({
-      tipoCamion: '',
-      modelo: '',
-      marca: '',
-      placa: '',
+      tipoCamion        : '',
+      modelo            : '',
+      marca             : '',
+      placa             : '',
       placaSemirremolque: '',
-      tarjetaPropiedad: '',
-      tecnomecanica: '',
-      soat: ''
+      tarjetaPropiedad  : '',
+      tecnomecanica     : '',
+      soat              : ''
    }, 'vehicles');
 
    return (
