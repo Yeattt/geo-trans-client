@@ -11,7 +11,7 @@ export const PermissionsCard = ({ permission }) => {
     </div>
     <div className="flex-1">
        <div className="text-white font-bold">Nombre:</div>
-       <div className="text-white">{permission.name}</div>
+       <div className="text-white">{permission.nombre}</div>
     </div>                              
     <div>
        {/* Agrega aquí los botones de editar, eliminar y ver */}

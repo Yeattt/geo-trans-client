@@ -7,14 +7,13 @@ import { ClientsCard } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 
 export const ClientsHome = () => {
-
    const { isLoading, data } = useGetApiData('/clients');
-   const [clients, setVehicles] = useState([]);
+   const [clients, setClients] = useState([]);
 
 
    useEffect(() => {
       if (!isLoading) {
-         setVehicles(data.clients);
+         setClients(data.clients);
       }
    }, [isLoading, data]);
 

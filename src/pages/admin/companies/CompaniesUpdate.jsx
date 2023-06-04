@@ -3,22 +3,20 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AdminLayout } from '../../../components/layouts';
 
-export const UsersCreate = () => {
-   const [usersData, setusersData] = useState({
-    dni:'',
-    edad:'',
-    email:'',
-    contrasena:'',
-    roleId:'',
-    companyId:'',
-    vehicleId:''
+export const CompaniesUpdate = () => {
+   const [companyData, setCompanyData] = useState({
+      nit: '',
+      businessname: '',
+      companyname: '',
+      phone: '',
+      ownerpolicy: '',
    });
 
    const navigate = useNavigate();
 
    const handleInputChange = (e) => {
-    setusersData({
-         ...usersData,
+      setCompanyData({
+         ...companyData,
          [e.target.name]: e.target.value,
       });
    };
@@ -26,9 +24,9 @@ export const UsersCreate = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      // TODO: Make the HTTP POST request to the server
+      // TODO: Make the HTTP request to update the vehicle
 
-      console.log(usersData);
+      console.log(companyData);
    };
 
    const onNavigateBack = () => {
@@ -38,91 +36,79 @@ export const UsersCreate = () => {
    return (
       <AdminLayout>
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl text-white font-bold my-4">Registrar usuarios</h2>
+            <h2 className="text-2xl text-white font-bold my-4">Editar Compañia</h2>
             <div className="overflow-hidden shadow-sm sm:rounded-lg">
                <div className="p-6">
                   <form onSubmit={handleSubmit}>
                      <div className="mb-4">
                         <label htmlFor="make" className="text-white block mb-2">
-                           Dni:
+                           Nit:
                         </label>
                         <input
                            type="text"
                            id="make"
                            name="make"
-                           value={usersData.dni}
+                           value={companyData.nit}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="model" className="text-white block mb-2">
-                           Edad:
+                           Razon social:
                         </label>
                         <input
                            type="text"
                            id="model"
                            name="model"
-                           value={usersData.edad}
+                           value={companyData.businessname}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="year" className="text-white block mb-2">
-                           Email:
+                           Nombre empresa:
                         </label>
                         <input
                            type="text"
                            id="year"
                            name="year"
-                           value={usersData.email}
+                           value={companyData.companyname}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="color" className="text-white block mb-2">
-                           Rol:
+                           Telefono:
                         </label>
                         <input
                            type="text"
                            id="color"
                            name="color"
-                           value={usersData.roleId}
+                           value={companyData.phone}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="color" className="text-white block mb-2">
-                           Compañia:
+                           Dueño poliza:
                         </label>
                         <input
                            type="text"
                            id="color"
                            name="color"
-                           value={usersData.companyId}
-                           onChange={handleInputChange}
-                           className="w-full px-3 py-2 rounded"
-                        />
-                     </div> <div className="mb-4">
-                        <label htmlFor="color" className="text-white block mb-2">
-                           Vehiculo:
-                        </label>
-                        <input
-                           type="text"
-                           id="color"
-                           name="color"
-                           value={usersData.vehicleId}
+                           value={companyData.ownerpolicy}
                            onChange={handleInputChange}
                            className="w-full px-3 py-2 rounded"
                         />
                      </div>
 
                      <div className="flex justify-between">
-                        <Link to="/admin/users/create">
-                           <button 
+                        <Link to="/admin/companies/create">
+                           <button
                               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                               onClick={onNavigateBack}
                            >

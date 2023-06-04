@@ -25,7 +25,7 @@ export const VehiclesCreateForm = () => {
       tarjetaPropiedad: '',
       tecnomecanica: '',
       soat: ''
-   });
+   }, 'vehicles');
 
    return (
       <Formik
@@ -34,119 +34,131 @@ export const VehiclesCreateForm = () => {
          onSubmit={onSubmitForm}
       >
          <Form>
-            <div className="mb-4">
-               <label htmlFor="tipoCamion" className="text-white block mb-2">
-                  Tipo Camion:
-               </label>
-               <Field
-                  type="text"
-                  id="tipoCamion"
-                  name="tipoCamion"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
-            </div>
+            <div className="grid grid-cols-2 gap-4">
+               <div className="mb-4">
+                  <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
+                     Tipo Camion:
+                  </label>
+                  <Field
+                     type="text"
+                     id="tipoCamion"
+                     name="tipoCamion"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Tipo Camión..."
+                  />
+                  <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
+               </div>
 
-            <div className="mb-4">
-               <label htmlFor="modelo" className="text-white block mb-2">
-                  Modelo:
-               </label>
-               <Field
-                  type="text"
-                  id="modelo"
-                  name="modelo"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="modelo" component="div" className="text-red-500" />
-            </div>
+               <div className="mb-4">
+                  <label htmlFor="modelo" className="text-black font-semibold block mb-2">
+                     Modelo:
+                  </label>
+                  <Field
+                     type="text"
+                     id="modelo"
+                     name="modelo"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Modelo..."
+                  />
+                  <ErrorMessage name="modelo" component="div" className="text-red-500" />
+               </div>
 
-            <div className="mb-4">
-               <label htmlFor="marca" className="text-white block mb-2">
-                  Marca:
-               </label>
-               <Field
-                  type="text"
-                  id="marca"
-                  name="marca"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="marca" component="div" className="text-red-500" />
-            </div>
 
-            <div className="mb-4">
-               <label htmlFor="placa" className="text-white block mb-2">
-                  Placa:
-               </label>
-               <Field
-                  type="text"
-                  id="placa"
-                  name="placa"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="placa" component="div" className="text-red-500" />
-            </div>
+               <div className="mb-4">
+                  <label htmlFor="marca" className="text-black font-semibold block mb-2">
+                     Marca:
+                  </label>
+                  <Field
+                     type="text"
+                     id="marca"
+                     name="marca"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Marca..."
+                  />
+                  <ErrorMessage name="marca" component="div" className="text-red-500" />
+               </div>
 
-            <div className="mb-4">
-               <label htmlFor="placaSemirremolque" className="text-white block mb-2">
-                  Placa Semirremolque:
-               </label>
-               <Field
-                  type="text"
-                  id="placaSemirremolque"
-                  name="placaSemirremolque"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="placaSemirremolque" component="div" className="text-red-500" />
-            </div>
+               <div className="mb-4">
+                  <label htmlFor="placa" className="text-black font-semibold block mb-2">
+                     Placa:
+                  </label>
+                  <Field
+                     type="text"
+                     id="placa"
+                     name="placa"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Placa..."
+                  />
+                  <ErrorMessage name="placa" component="div" className="text-red-500" />
+               </div>
 
-            <div className="mb-4">
-               <label htmlFor="tarjetaPropiedad" className="text-white block mb-2">
-                  Tarjeta Propiedad:
-               </label>
-               <Field
-                  type="text"
-                  id="tarjetaPropiedad"
-                  name="tarjetaPropiedad"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red-500" />
-            </div>
+               <div className="mb-4">
+                  <label htmlFor="placaSemirremolque" className="text-black font-semibold block mb-2">
+                     Placa Semirremolque:
+                  </label>
+                  <Field
+                     type="text"
+                     id="placaSemirremolque"
+                     name="placaSemirremolque"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Placa Semirremolque..."
+                  />
+                  <ErrorMessage name="placaSemirremolque" component="div" className="text-red-500" />
+               </div>
 
-            <div className="mb-4">
-               <label htmlFor="tecnomecanica" className="text-white block mb-2">
-                  Tecnomecanica:
-               </label>
-               <Field
-                  type="text"
-                  id="tecnomecanica"
-                  name="tecnomecanica"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="tecnomecanica" component="div" className="text-red-500" />
-            </div>
+               <div className="mb-4">
+                  <label htmlFor="tarjetaPropiedad" className="text-black font-semibold block mb-2">
+                     Tarjeta Propiedad:
+                  </label>
+                  <Field
+                     type="text"
+                     id="tarjetaPropiedad"
+                     name="tarjetaPropiedad"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Tarjeta Propiedad..."
+                  />
+                  <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red-500" />
+               </div>
 
-            <div className="mb-4">
-               <label htmlFor="soat" className="text-white block mb-2">
-                  Soat:
-               </label>
-               <Field
-                  type="text"
-                  id="soat"
-                  name="soat"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="soat" component="div" className="text-red-500" />
-            </div>
+               <div className="mb-4">
+                  <label htmlFor="tecnomecanica" className="text-black font-semibold block mb-2">
+                     Tecnomecanica:
+                  </label>
+                  <Field
+                     type="text"
+                     id="tecnomecanica"
+                     name="tecnomecanica"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Tecnomecanica..."
+                  />
+                  <ErrorMessage name="tecnomecanica" component="div" className="text-red-500" />
+               </div>
 
-            <div className="flex justify-between">
+               <div className="mb-4">
+                  <label htmlFor="soat" className="text-black font-semibold block mb-2">
+                     Soat:
+                  </label>
+                  <Field
+                     type="text"
+                     id="soat"
+                     name="soat"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Soat..."
+                  />
+                  <ErrorMessage name="soat" component="div" className="text-red-500" />
+               </div>
+            </div>
+            
+            <div className="text-center mt-2">
                <button
                   type="submit"
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
                >
                   Registrar
                </button>
             </div>
          </Form>
       </Formik>
+
    );
 }

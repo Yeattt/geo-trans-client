@@ -5,19 +5,19 @@ import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-    document: Yup.number().required('Campo requerido'),
-    name: Yup.string().required('Campo requerido'),
-    Business_name: Yup.string().required('Campo requerido'),
-    phone: Yup.number().required('Campo requerido')
+   documento: Yup.number().required('Campo requerido'),
+   nombre: Yup.string().required('Campo requerido'),
+   razonSocial: Yup.string().required('Campo requerido'),
+   telefono: Yup.number().required('Campo requerido')
 });
 
 export const ClientsCreateForm = () => {
    const { initialValues, onSubmitForm } = useCreateForm({
-    document:'',
-    name:'',
-    Business_name:'',
-    phone:''
-   });
+      documento: '',
+      nombre: '',
+      razonSocial: '',
+      telefono: ''
+   }, 'clients');
 
    return (
       <Formik
@@ -27,56 +27,57 @@ export const ClientsCreateForm = () => {
       >
          <Form>
             <div className="mb-4">
-               <label htmlFor="document" className="text-white block mb-2">
-               Documento:
+               <label htmlFor="documento" className="text-white block mb-2">
+                  Documento:
                </label>
                <Field
                   type="text"
-                  id="document"
-                  name="document"
+                  id="documento"
+                  name="documento"
                   className="w-full px-3 py-2 rounded"
                />
-               <ErrorMessage name="document" component="div" className="text-red-500" />
+               <ErrorMessage name="documento" component="div" className="text-red-500" />
             </div>
 
             <div className="mb-4">
-               <label htmlFor="name" className="text-white block mb-2">
+               <label htmlFor="nombre" className="text-white block mb-2">
                   Nombre:
                </label>
                <Field
                   type="text"
-                  id="name"
-                  name="name"
+                  id="nombre"
+                  name="nombre"
                   className="w-full px-3 py-2 rounded"
                />
-               <ErrorMessage name="name" component="div" className="text-red-500" />
+               <ErrorMessage name="nombre" component="div" className="text-red-500" />
             </div>
 
             <div className="mb-4">
-               <label htmlFor="Business_name" className="text-white block mb-2">
+               <label htmlFor="razonSocial" className="text-white block mb-2">
                   Razon Social:
                </label>
                <Field
                   type="text"
-                  id="Business_name"
-                  name="Business_name"
+                  id="razonSocial"
+                  name="razonSocial"
                   className="w-full px-3 py-2 rounded"
                />
-               <ErrorMessage name="Business_name" component="div" className="text-red-500" />
+               <ErrorMessage name="razonSocial" component="div" className="text-red-500" />
             </div>
 
             <div className="mb-4">
-               <label htmlFor="phone" className="text-white block mb-2">
+               <label htmlFor="telefono" className="text-white block mb-2">
                   Telefono:
                </label>
                <Field
                   type="text"
-                  id="phone"
-                  name="phone"
+                  id="telefono"
+                  name="telefono"
                   className="w-full px-3 py-2 rounded"
                />
-               <ErrorMessage name="phone" component="div" className="text-red-500" />
-            </div>           
+               <ErrorMessage name="telefono" component="div" className="text-red-500" />
+            </div>
+            
             <div className="flex justify-between">
                <button
                   type="submit"
