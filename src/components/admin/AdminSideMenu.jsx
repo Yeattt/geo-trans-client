@@ -15,19 +15,6 @@ export const AdminSideMenu = () => {
 
             <nav className="mt-8">
                <div className="space-y-1">
-                  {/* <Link>
-                     <li className="cursor-pointer flex items-center px-4 py-2 text-white hover:text-white hover:bg-gray-700">
-                        <svg className="w-5 h-5 mr-2">
-                           <path
-                              fillRule="evenodd"
-                              d="M2 6h16a1 1 0 010 2H2a1 1 0 010-2zm0 5h16a1 1 0 010 2H2a1 1 0 010-2zm0 5h16a1 1 0 010 2H2a1 1 0 010-2z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
-                        Dashboard
-                     </li>
-                  </Link> */}
-
                   <Link to="/admin/users">
                      <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
                         <span className="w-5 h-5 mr-2 text-white text-xl">
