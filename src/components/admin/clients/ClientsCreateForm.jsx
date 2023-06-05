@@ -8,7 +8,7 @@ const validationSchema = Yup.object().shape({
    documento:     Yup.number()
                      .typeError('El documento debe ser un número')
                      .required('Campo requerido')
-                     .test('len', 'Debe tener 11 dígitos', val => val && val.toString().length === 11),
+                     .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length == 10),
    nombre:        Yup.string()
                      .required('Campo requerido'),
    razonSocial:   Yup.string()
@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
    telefono:      Yup.number()
                      .typeError('El telefono debe ser un número')
                      .required('Campo requerido')
-                     .test('len', 'Debe tener 9 dígitos', val => val && val.toString().length === 9),
+                     .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length === 10 ),
 });
 
 export const ClientsCreateForm = () => {
