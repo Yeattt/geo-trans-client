@@ -13,6 +13,8 @@ module.exports = {
             secondaryHover: "#5fcc56",
             purplePz: "#4942E4",
             purplePzHover: "#807af5",
+            pinkPz: "#a92ef0",
+            pinkPzHover: "#eac7ff",
             orangePz: "#f04929",
             orangePzHover: "#f77d65"
          },
