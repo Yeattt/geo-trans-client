@@ -106,7 +106,7 @@ export const CompaniesHome = () => {
             <div className="flex items-center justify-center">
                <div className="bg-white rounded-sm w-[96.5%] flex flex-row items-center justify-between px-2 py-2">
                   <div>
-                     Camilo
+                     
                   </div>
 
                   <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
@@ -166,7 +166,7 @@ export const CompaniesHome = () => {
                   </table>
 
                   <div className="flex items-center justify-center mt-5">
-                     Milo
+                     
                   </div>
                </div>
             </div>

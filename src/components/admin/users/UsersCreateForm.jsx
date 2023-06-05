@@ -5,10 +5,14 @@ import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   dni: Yup.string().required('Campo requerido'),
-   edad: Yup.string().required('Campo requerido'),
+   dni: Yup.number('Este campo solo debe contener números')
+            .test('len','El campo debe ser 10 caracteres',val=>val && val.toString().length==10 )
+            .required('Campo requerido'),
+   edad: Yup.number('Este campo solo debe contener números')
+            .test('len','Máximo 2 caracteres',val=>val && val.toString().length==2)
+            .required('Campo requerido'),
    email: Yup.string().required('Campo requerido'),
-   contrasena: Yup.string().required('Campo requerido'),
+   contrasena: Yup.string().min(3, 'Mínimo 3 caracteres').required('Campo requerido'),
    roleId: Yup.string().required('Campo requerido'),
    companyId: Yup.string().required('Campo requerido'),
    vehicleId: Yup.string().required('Campo requerido'),

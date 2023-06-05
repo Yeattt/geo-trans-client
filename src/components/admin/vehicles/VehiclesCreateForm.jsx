@@ -8,14 +8,15 @@ const validationSchema = Yup.object().shape({
    tipoCamion:             Yup.string()
                               .max(15, 'Máximo 15 caracteres')
                               .required('Campo requerido'),
-   modelo:                 Yup.number('Este campo solo debe contener números')
-                              .max(6, 'Máximo 6 caracteres')
-                              .required('Campo requerido'),
+   modelo:                 Yup.number()
+                              .typeError('El modelo debe ser un número')
+                              .required('Campo requerido')
+                              .test('len', 'Debe tener 4 dígitos', val => val && val.toString().length === 4),
    marca:                  Yup.string()
                               .max(15, 'Máximo 15 caracteres')
                               .required('Campo requerido'),
    placa:                 Yup.string()
-                              .max(6, 'Máximo 6 caracteres')
+                              .max(6, 'Máximo 4 caracteres')
                               .required('Campo requerido'),
    placaSemirremolque:     Yup.string()
                               .max(6, 'Máximo 6 caracteres')
