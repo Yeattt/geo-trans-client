@@ -10,7 +10,9 @@ const validationSchema = Yup.object().shape({
 
 export const RolesCreateForm = () => {
    const { initialValues, onSubmitForm } = useCreateForm({
-      nombre: '',
+      nombre: Yup.string()
+                  .max(15, 'Máximo 15 caracteres')
+                  .required('Campo requerido')
    }, 'roles');
 
    return (
@@ -20,23 +22,26 @@ export const RolesCreateForm = () => {
          onSubmit={onSubmitForm}
       >
          <Form>
-            <div className="mb-4">
-               <label htmlFor="nombre" className="text-white block mb-2">
-                  Nombre:
-               </label>
-               <Field
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  className="w-full px-3 py-2 rounded"
-               />
-               <ErrorMessage name="nombre" component="div" className="text-red-500" />
+            <div className="grid grid-cols-2 gap-4">
+               <div className="mb-4">
+                  <label htmlFor="nombre" className="text-black font-semibold block mb-2">
+                     Nombre:
+                  </label>
+                  <Field
+                     type="text"
+                     id="nombre"
+                     name="nombre"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Nombre..."
+                  />
+                  <ErrorMessage name="nombre" component="div" className="text-red-500" />
+               </div>
             </div>
 
-            <div className="flex justify-between">
+            <div className="text-center mt-2">
                <button
                   type="submit"
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
                >
                   Registrar
                </button>

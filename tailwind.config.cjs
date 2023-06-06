@@ -8,7 +8,13 @@ module.exports = {
       extend: {
          colors: {
             primary: "#0293a3",
-            primaryHover: "#085f69"
+            primaryHover: "#085f69",
+            secondary: "#19b80b",
+            secondaryHover: "#5fcc56",
+            purplePz: "#4942E4",
+            purplePzHover: "#807af5",
+            orangePz: "#f04929",
+            orangePzHover: "#f77d65"
          },
       },
    },

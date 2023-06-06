@@ -1,3 +1,2 @@
-export * from './admin/vehicles';
-export * from './admin/roles';
-export * from './admin/prices';
+export * from './admin';
+export * from './modals';

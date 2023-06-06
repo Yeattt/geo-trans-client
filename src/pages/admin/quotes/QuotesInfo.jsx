@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { AdminLayout } from '../../../components/layouts';
 
-export const PricesInfo = () => {
+export const QuotesInfo = () => {
    const prices = [
       { id: 1, codigoProducto: 'John Do', empaque: 'johndoe@example.com' },
       { id: 2, codigoProducto: 'Jane Smith', empaque: 'janesmith@example.com' },

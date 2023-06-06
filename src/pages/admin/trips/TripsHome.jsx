@@ -1,109 +1,176 @@
-import React from 'react';
-
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AdminLayout } from "../../../components/layouts";
+import { IoSubway } from 'react-icons/io5';
+import { MdExitToApp } from 'react-icons/md';
+import { BiSearchAlt } from 'react-icons/bi';
+import { AdminLayout } from '../../../components/layouts';
+import { TripsCard } from '../../../components/admin';
+import { useGetApiData } from '../../../hooks';
+import { CreateFormModal } from '../../../components';
 
 export const TripsHome = () => {
-const vehicles = [
-    {id: 1, cantidad:'', codigoProducto:'',destino:'',empaque: '',naturaleza:'',
-    numeroRemesa:'',origen:'',productoTransportar:'',saldoPagar:'',unidadMedida:'',valorPagar: '',},
-];
+   const { isLoading, data } = useGetApiData('/trips');
+   const [trips, setTrips] = useState([]);
+   const [isCreateModalActive, setIsCreateModalActive] = useState(false);
 
-   // TODO: make the HTTP request to get all the information
+   useEffect(() => {
+      if (!isLoading) {
+         setTrips(data.trips);
+      }
+   }, [isLoading, data]);
+
+   const handleIsCreateModalActive = (status) => {
+      setIsCreateModalActive(status);
+   }
 
    return (
       <AdminLayout>
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl text-white font-bold my-4">Trips</h2>
-            <div className="overflow-hidden shadow-sm sm:rounded-lg">
-               <div className="p-6">
-                  {vehicles.length > 0 ? (
-                     <div className="grid grid-cols-1 gap-4">
-                        {vehicles.map((vehicle) => (
-                           <div
-                              key={vehicle.id}
-                              className="flex items-center justify-between bg-gray-700 p-4 rounded-md"
-                           >
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">ID:</div>
-                                 <div className="text-white">{trips.id}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">Cantidad:</div>
-                                 <div className="text-white">{trips.cantidad}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">codigoProducto:</div>
-                                 <div className="text-white">{trips.codigoProducto}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">Destino:</div>
-                                 <div className="text-white">{trips.destino}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">Empaque:</div>
-                                 <div className="text-white">{trips.empaque}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">Naturaleza:</div>
-                                 <div className="text-white">{trips.naturaleza}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">numeroRemesa:</div>
-                                 <div className="text-white">{trips.numeroRemesa}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">origen:</div>
-                                 <div className="text-white">{trips.origen}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">productoTransportar:</div>
-                                 <div className="text-white">{trips.productoTransportar}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">saldoPagar:</div>
-                                 <div className="text-white">{trips.saldoPagar}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">unidadMedida:</div>
-                                 <div className="text-white">{trips.unidadMedida}</div>
-                              </div>
-                              <div className="flex-1">
-                                 <div className="text-white font-bold">valorPagar:</div>
-                                 <div className="text-white">{trips.valorPagar}</div>
-                              </div>
-                              <div>
-                                 {/* Agrega aquí los botones de editar, eliminar y ver */}
-                                 <Link to={`/admin/trips/update/${trips.id}`}>
-                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                                       Editar
-                                    </button>
-                                 </Link>
+         <div className="min-w-full bg-gray-200">
+            <div className="bg-white min-w-full flex items-center justify-between px-6 py-1">
+               <div className="flex flex-col justify-between px-6 py-1">
+                  <span className="text-2xl text-purplePz font-bold">Trips</span>
 
-                                 <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
-                                    Eliminar
-                                 </button>
+                  <span className="text-xs font-bold">{`Admin > Trips`}</span>
+               </div>
 
-                                 <Link to={`/admin/trips/${vehicle.id}`}>
-                                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                       Ver
-                                    </button>
-                                 </Link>
-                              </div>
-                           </div>
-                        ))}
+               <div className="flex items-center justify-center">
+                  <span className="font-bold cursor-pointer">Manuela</span>
+
+                  <div className="bg-purplePz w-12 h-12 flex items-center justify-center rounded-full cursor-pointer ml-3">
+                     <img
+                        className="object-cover w-[95%] h-[95%] rounded-full"
+                        src="https://i1.sndcdn.com/artworks-pfkZ3eJZ5aIGjxDP-lvIbog-t500x500.jpg"
+                     />
+                  </div>
+
+                  <span className="ml-3 text-2xl text-red-600 font-bold cursor-pointer">
+                     <MdExitToApp />
+                  </span>
+               </div>
+            </div>
+
+            <br />
+
+            <div className="flex items-center justify-around">
+               <div className="bg-gradient-to-r from-secondary to-secondaryHover rounded-md h-32 w-[20%] flex flex-col items-center justify-center px-6 py-4">
+                  <div className="flex flex-row justify-center items-center">
+                     <div className="text-xl flex items-center justify-center">
+                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
+                           <IoSubway className="text-3xl text-secondary" />
+                        </span>
+
+                        <div className="flex flex-col justify-center">
+                           <span className="font-bold text-white">{trips.length}</span>
+                           <span className="text-sm text-white font-bold">Viajes registrados</span>
+                        </div>
                      </div>
-                  ) : (
-                     <p className="text-gray-500">No hay viajes disponibles.</p>
-                  )}
+                  </div>
+               </div>
 
-                  <br />
+               <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 w-[50%] flex flex-col items-center justify-center px-6 py-4">
+                  <div className="flex flex-row justify-center items-center">
+                     <div className="text-xl flex items-center justify-center">
+                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
+                           <IoSubway className="text-3xl text-orangePz" />
+                        </span>
 
-                  <Link to="/admin/trips/create">
-                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                        Añadir Nuevo
+                        <div className="flex flex-col justify-center">
+                           <span className="font-bold text-white">{trips.length}</span>
+                           <span className="text-sm text-white font-bold">Viajes registrados</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div className="bg-gradient-to-r from-purplePz to-purplePzHover rounded-md h-32 w-[20%] flex flex-col items-center justify-center px-6 py-4">
+                  <div className="flex flex-row justify-center items-center">
+                     <div className="text-xl flex items-center justify-center">
+                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
+                           <IoSubway className="text-3xl text-purplePz" />
+                        </span>
+
+                        <div className="flex flex-col justify-center">
+                           <span className="font-bold text-white">{trips.length}</span>
+                           <span className="text-sm text-white font-bold">Viajes registrados</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <br />
+
+            <div className="flex items-center justify-center">
+               <div className="bg-white rounded-sm w-[96.5%] flex flex-row items-center justify-between px-2 py-2">
+                  <div>
+                     
+                  </div>
+
+                  <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
+                     <input
+                        className="bg-transparent w-[87%] h-full px-2 pl-2 py-2 pb-3 text-base"
+                        type="text"
+                        placeholder="Buscar viaje..."
+                     />
+
+                     <div className="bg-purplePz w-[13%] h-full border-l flex items-center justify-center cursor-pointer">
+                        <BiSearchAlt className="text-xl text-white" />
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* // * IMPORTANTE: Prueba del modal para crear */}
+            {
+               isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Trips" />
+            }
+ 
+
+            <br />
+
+            <div className="flex items-center justify-center">
+               <div className="bg-white rounded-sm w-[96.5%] flex flex-col justify-between px-2 py-2">
+                  <div className="h-14 w-full flex items-center justify-between px-3 py-10 mb-7 border-b">
+                     <span className="text-lg font-bold text-purplePz">Lista de viajes</span>
+
+                     <button 
+                        className="bg-purplePz w-32 py-2 rounded-md font-bold text-white"
+                        onClick={() => handleIsCreateModalActive(true)}
+                     >
+                        Añadir
                      </button>
-                  </Link>
+                  </div>
+
+                  <table className="text-sm">
+                     <thead>
+                        <tr>
+                           <th className="px-6 py-2 text-purplePz">ID</th>
+                           <th className="px-6 py-2 text-purplePz">Cantidad</th>
+                           <th className="px-6 py-2 text-purplePz">Codigo producto</th>
+                           <th className="px-6 py-2 text-purplePz">Destino</th>
+                           <th className="px-6 py-2 text-purplePz">Empaque</th>
+                           <th className="px-6 py-2 text-purplePz">Naturaleza</th>
+                           <th className="px-6 py-2 text-purplePz">Numero remesa</th>
+                           <th className="px-6 py-2 text-purplePz">Origen</th>
+                           <th className="px-6 py-2 text-purplePz">Producto transportar</th>
+                           <th className="px-6 py-2 text-purplePz">Saldo a pagar</th>
+                           <th className="px-6 py-2 text-purplePz">Unidad de medida</th>
+                           <th className="px-6 py-2 text-purplePz">Valor a pagar</th>
+                           <th className="px-6 py-2 text-purplePz">Acciones</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {
+                           trips.map(trip => (
+                              <TripsCard key={trip.id} trip={trip} />
+                           ))
+                        }
+                     </tbody>
+                  </table>
+
+                  <div className="flex items-center justify-center mt-5">
+                     
+                  </div>
                </div>
             </div>
          </div>
