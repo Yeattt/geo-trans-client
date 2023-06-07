@@ -11,8 +11,8 @@ export const CompaniesCard = ({ company }) => {
            <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nit}</td>
            <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.razonSocial}</td>
            <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nombreEmpresa}</td>
-           <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.telefono}</td>
-           <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.duenoPoliza}</td>
+           <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.telefono}</td>
+           <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.duenoPoliza}</td>
   
            <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
               <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">

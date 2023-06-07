@@ -1,24 +1,39 @@
+import { useState, useEffect } from 'react';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { useCreateForm } from '../../../hooks';
+import { useCreateForm, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
    dni: Yup.number('Este campo solo debe contener números')
-            .test('len','El campo debe ser 10 caracteres',val=>val && val.toString().length==10 )
-            .required('Campo requerido'),
+      .test('len', 'El campo debe ser 10 caracteres', val => val && val.toString().length == 10)
+      .required('Campo requerido'),
    edad: Yup.number('Este campo solo debe contener números')
-            .test('len','Máximo 2 caracteres',val=>val && val.toString().length==2)
-            .required('Campo requerido'),
-   email: Yup.string().required('Campo requerido'),
-   contrasena: Yup.string().min(3, 'Mínimo 3 caracteres').required('Campo requerido'),
-   roleId: Yup.string().required('Campo requerido'),
-   companyId: Yup.string().required('Campo requerido'),
-   vehicleId: Yup.string().required('Campo requerido'),
+      .test('len', 'Máximo 2 caracteres', val => val && val.toString().length == 2)
+      .required('Campo requerido'),
+   email: Yup.string()
+      .required('Campo requerido'),
+   contrasena: Yup.string()
+      .min(3, 'Mínimo 3 caracteres').required('Campo requerido'),
+   roleId: Yup.string()
+      .required('Campo requerido'),
+   companyId: Yup.string()
+      .required('Campo requerido'),
+   vehicleId: Yup.string()
+      .required('Campo requerido'),
 });
 
 export const UsersCreateForm = () => {
+   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
+   const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
+   const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
+
+   const [vehiclesList, setVehiclesList] = useState([]);
+   const [companiesList, setCompaniesList] = useState([]);
+   const [rolesList, setRolesList] = useState([]);
+
    const { initialValues, onSubmitForm } = useCreateForm({
       dni: '',
       edad: '',
@@ -28,6 +43,14 @@ export const UsersCreateForm = () => {
       companyId: '',
       vehicleId: '',
    }, 'users');
+
+   useEffect(() => {
+      if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {
+         setVehiclesList(vehicles.vehicles);
+         setCompaniesList(companies.companies);
+         setRolesList(roles.roles);
+      }
+   }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
 
    return (
       <Formik
@@ -98,12 +121,18 @@ export const UsersCreateForm = () => {
                      Rol:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="roleId"
                      name="roleId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Rol..."
-                  />
+                  >
+                     {
+                        rolesList.map(role => (
+                           <option value={role.id} key={role.id}>{role.nombre}</option>
+                        ))
+                     }
+                  </Field>
                   <ErrorMessage name="roleId" component="div" className="text-red-500" />
                </div>
 
@@ -112,12 +141,18 @@ export const UsersCreateForm = () => {
                      Compañia:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="companyId"
                      name="companyId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Compañía..."
-                  />
+                  >
+                     {
+                        companiesList.map(company => (
+                           <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
+                        ))
+                     }
+                  </Field>
                   <ErrorMessage name="companyId" component="div" className="text-red-500" />
                </div>
 
@@ -125,13 +160,21 @@ export const UsersCreateForm = () => {
                   <label htmlFor="vehicleId" className="text-black font-semibold block mb-2">
                      Vehiculo:
                   </label>
+
                   <Field
-                     type="text"
+                     as="select"
                      id="vehicleId"
                      name="vehicleId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Vehículo..."
-                  />
+                  >
+                     {
+                        vehiclesList.map(vehicle => (
+                           <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
+                        ))
+                     }
+                  </Field>
+
                   <ErrorMessage name="vehicleId" component="div" className="text-red-500" />
                </div>
             </div>
