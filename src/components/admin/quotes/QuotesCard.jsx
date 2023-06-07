@@ -11,16 +11,16 @@ export const QuotesCard = ({ quote }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.codigoCotizacion}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.cantidad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.codigoProducto}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.destino}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.empaque}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.naturaleza}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.numeroRemesa}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.origen}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.productoTransportar}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.saldoPagar}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.unidadMedida}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorPagar}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.userId}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.destino}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.empaque}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.naturaleza}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.numeroRemesa}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.origen}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.productoTransportar}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.saldoPagar}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.unidadMedida}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorPagar}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.userId}</td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
