@@ -8,6 +8,12 @@ import { TbInfoHexagon } from 'react-icons/tb';
 import { InfoModal } from '../../modals';
 
 export const VehiclesCard = ({ vehicle }) => {
+   const [isInfoModalActive, setIsInfoModalActive] = useState(false);
+
+   const handleIsInfoModalActive = (status) => {
+      setIsInfoModalActive(status);
+   }
+
    return (
       <tr className="hover:bg-gray-200">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{vehicle.id}</td>
@@ -21,9 +27,17 @@ export const VehiclesCard = ({ vehicle }) => {
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.soat}</td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+            <span
+               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
+               onClick={() => handleIsInfoModalActive(true)}
+            >
                <TbInfoHexagon />
             </span>
+
+            {/* // * IMPORTANTE: Prueba del modal para ver información */}
+            {
+               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={vehicle} />
+            }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
                <FaEdit />

@@ -1,30 +1,6 @@
 import { AiOutlineClose } from 'react-icons/ai';
 
-import {
-   ClientsCard,
-   CompaniesCard,
-   PermissionsCard,
-   QuotesCard,
-   RolesCard,
-   TripsCard,
-   UsersCard,
-   VehiclesCard
-} from '../admin';
-
 export const InfoModal = ({ handleIsInfoModalActive, module }) => {
-   const components = {
-      Clients: ClientsCard,
-      Companies: CompaniesCard,
-      Permissions: PermissionsCard,
-      Quotes: QuotesCard,
-      Roles: RolesCard,
-      Trips: TripsCard,
-      Users: UsersCard,
-      Vehicles: VehiclesCard
-   };
-
-   const ComponentToRender = components[module];
-
    return (
       <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden">
          <div className="w-2/3 h-auto bg-purplePz rounded-md">
@@ -40,7 +16,15 @@ export const InfoModal = ({ handleIsInfoModalActive, module }) => {
             </div>
 
             <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
-               {ComponentToRender && <ComponentToRender />}
+               <div className="grid grid-cols-3 gap-4">
+                  {
+                     Object.entries(module).map(([key, value]) => (
+                        <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold text-black">
+                           {`${key}: ${value}`}
+                        </td>
+                     ))
+                  }
+               </div>
             </div>
          </div>
       </div>

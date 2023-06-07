@@ -149,7 +149,8 @@ export const ClientsHome = () => {
                            <th className="px-6 py-2 text-purplePz">Documento</th>
                            <th className="px-6 py-2 text-purplePz">Nombre</th>
                            <th className="px-6 py-2 text-purplePz">Razon Social</th>
-                           <th className="px-6 py-2 text-purplePz">Telefono</th>                        
+                           <th className="px-6 py-2 text-purplePz">Telefono</th>                     
+                           <th className="px-6 py-2 text-purplePz">Acciones</th>                     
                         </tr>
                      </thead>
                      <tbody>

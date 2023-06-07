@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
-import { InfoModal} from '../../modals';
+
+import { InfoModal } from '../../modals';
 
 export const TripsCard = ({ trip }) => {
-   const [isOpen, setIsOpen] = useState(false)
-   const [isOpenUpdate, setisOpenUpdate] = useState(false)
+   const [isInfoModalActive, setIsInfoModalActive] = useState(false);
 
-   const handleViewDetails = () => {
-      setIsOpen(!isOpen)
+   const handleIsInfoModalActive = (status) => {
+      setIsInfoModalActive(status);
    }
 
    return (
@@ -34,10 +34,17 @@ export const TripsCard = ({ trip }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cliente}</td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5" onClick={handleViewDetails}>
+            <span
+               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
+               onClick={() => handleIsInfoModalActive(true)}
+            >
                <TbInfoHexagon />
-               <InfoModal isOpen={isOpen} model={client} />
             </span>
+
+            {/* // * IMPORTANTE: Prueba del modal para ver información */}
+            {
+               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={trip} />
+            }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
                <FaEdit />
