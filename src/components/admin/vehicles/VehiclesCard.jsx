@@ -10,10 +10,10 @@ import { InfoModal } from '../../modals';
 export const VehiclesCard = ({ vehicle }) => {
    return (
       <tr className="hover:bg-gray-200">
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-black">#{vehicle.id}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.tipoCamion}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.modelo}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.marca}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{vehicle.id}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.tipoCamion}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.modelo}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.marca}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.placa}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.placaSemirremolque}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.tarjetaPropiedad}</td>
