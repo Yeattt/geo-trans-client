@@ -59,6 +59,9 @@ export const TripsCreateForm = () => {
       saldoPagar: '',
       unidadMedida: '',
       valorPagar: '',
+      tipoViaje: '',
+      fechaViaje: '',
+      cliente:'',
    }, 'trips');
 
    return (
@@ -69,6 +72,37 @@ export const TripsCreateForm = () => {
       >
          <Form>
             <div className="grid grid-cols-2 gap-4">
+               <div className="mb-4">
+                  <label htmlFor="tipoViaje" className="text-black font-semibold block mb-2">
+                     Tipo de Viaje:
+                  </label>
+
+                  <Field
+                     as="select"
+                     name="tipoViaje"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                  >
+                     <option value="interno">Interno</option>
+                     <option value="externo">A terceros</option>
+                  </Field>
+
+                  <ErrorMessage name="tipoViaje" component="div" className="text-red-500" />
+               </div>
+               
+               <div className="mb-4">
+                  <label htmlFor="cliente" className="text-black font-semibold block mb-2">
+                     Cliente:
+                  </label>
+                  <Field
+                     type="text"
+                     id="cliente"
+                     name="cliente"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Cliente..."
+                  />
+                  <ErrorMessage name="cliente" component="div" className="text-red-500" />
+               </div>
+
                <div className="mb-4">
                   <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
                      Numero remesa:
@@ -87,16 +121,20 @@ export const TripsCreateForm = () => {
                   <label htmlFor="unidadMedida" className="text-black font-semibold block mb-2">
                      Unidad de medida:
                   </label>
+
                   <Field
-                     type="text"
-                     id="unidadMedida"
+                     as="select"
                      name="unidadMedida"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Unidad de medida..."
-                  />
+                  >
+                     <option value="tonelada">Tonelada</option>
+                     <option value="kilogramo">Kilogramo</option>
+                     <option value="gramo">Gramo</option>
+                     <option value="miligramo">Miligramo</option>
+                  </Field>
+
                   <ErrorMessage name="unidadMedida" component="div" className="text-red-500" />
                </div>
-
 
                <div className="mb-4">
                   <label htmlFor="cantidad" className="text-black font-semibold block mb-2">
@@ -145,12 +183,12 @@ export const TripsCreateForm = () => {
                      Codigo producto:
                   </label>
                   <Field
-                     type="text"
-                     id="codigoProducto"
-                     name="codigoProducto"
+                     as="select"
+                     name="unidadMedida"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Codigo producto..."
-                  />
+                  >
+                     <option value="codigo">05001</option>
+                  </Field>
                   <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
                </div>
 

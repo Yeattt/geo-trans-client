@@ -124,7 +124,6 @@ export const TripsHome = () => {
             {
                isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Trips" />
             }
- 
 
             <br />
 
@@ -133,7 +132,7 @@ export const TripsHome = () => {
                   <div className="h-14 w-full flex items-center justify-between px-3 py-10 mb-7 border-b">
                      <span className="text-lg font-bold text-purplePz">Lista de viajes</span>
 
-                     <button 
+                     <button
                         className="bg-purplePz w-32 py-2 rounded-md font-bold text-white"
                         onClick={() => handleIsCreateModalActive(true)}
                      >
@@ -150,13 +149,16 @@ export const TripsHome = () => {
                            <th className="px-6 py-2 text-purplePz">Destino</th>
                            <th className="px-6 py-2 text-purplePz">Empaque</th>
                            <th className="px-6 py-2 text-purplePz">Naturaleza</th>
-                           <th className="px-6 py-2 text-purplePz">Numero remesa</th>
-                           <th className="px-6 py-2 text-purplePz">Origen</th>
-                           <th className="px-6 py-2 text-purplePz">Producto transportar</th>
-                           <th className="px-6 py-2 text-purplePz">Saldo a pagar</th>
-                           <th className="px-6 py-2 text-purplePz">Unidad de medida</th>
-                           <th className="px-6 py-2 text-purplePz">Valor a pagar</th>
-                           <th className="px-6 py-2 text-purplePz">Acciones</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Numero remesa</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Origen</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Producto transportar</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Saldo a pagar</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Unidad de medida</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Valor a pagar</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Acciones</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Tipo Viaje</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Fecha Viaje</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Cliente</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -169,7 +171,7 @@ export const TripsHome = () => {
                   </table>
 
                   <div className="flex items-center justify-center mt-5">
-                     
+
                   </div>
                </div>
             </div>
