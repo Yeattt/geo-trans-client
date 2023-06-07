@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { useCreateForm } from '../../../hooks';
+import { useCreateForm, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -50,6 +52,9 @@ const validationSchema = Yup.object().shape({
 });
 
 export const QuotesCreateForm = () => {
+   const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
+   const [usersList, setUsersList] = useState([]);
+
    const { initialValues, onSubmitForm } = useCreateForm({
       codigoCotizacion: '',
       cantidad: '',
@@ -65,6 +70,12 @@ export const QuotesCreateForm = () => {
       valorPagar: '',
       userId: '',
    }, 'quotes');
+
+   useEffect(() => {
+      if (!usersIsLoading) {
+         setUsersList(users.users);
+      }
+   }, [usersIsLoading])
 
    return (
       <Formik
@@ -248,12 +259,18 @@ export const QuotesCreateForm = () => {
                      User Id:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="userId"
                      name="userId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="User Id..."
-                  />
+                  >
+                     {
+                        usersList.map(user => (
+                           <option value={user.id} key={user.id}>{user.dni}</option>
+                        ))
+                     }
+                  </Field>
                   <ErrorMessage name="userId" component="div" className="text-red-500" />
                </div>
             </div>
