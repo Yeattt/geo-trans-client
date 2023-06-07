@@ -68,7 +68,7 @@ export const TripsCreateForm = () => {
       valorPagar: '',
       tipoViaje: '',
       fechaViaje: '',
-      cliente:'',
+      cliente: '',
    }, 'trips');
 
 
@@ -79,7 +79,7 @@ export const TripsCreateForm = () => {
          onSubmit={onSubmitForm}
       >
          <Form>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-4 gap-4">
                <div className="mb-4">
                   <label htmlFor="tipoViaje" className="text-black font-semibold block mb-2">
                      Tipo de Viaje:
@@ -192,7 +192,9 @@ export const TripsCreateForm = () => {
                   </label>
                   <Field
                      as="select"
+                     id="unidadMedida"
                      name="unidadMedida"
+                     placeholder="Unidad medida..."
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                   >
                      <option value="codigo">05001</option>
@@ -227,50 +229,67 @@ export const TripsCreateForm = () => {
                   />
                   <ErrorMessage name="origen" component="div" className="text-red-500" />
                </div>
-            </div>
-
-            <div className="mb-4">
-               <label htmlFor="destino" className="text-black font-semibold block mb-2">
-                  Destino:
-               </label>
-               <Field
-                  type="text"
-                  id="destino"
-                  name="destino"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Destino..."
-               />
-               <ErrorMessage name="destino" component="div" className="text-red-500" />
-            </div>
 
 
-            <div className="mb-4">
-               <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
-                  Saldo a pagar:
-               </label>
-               <Field
-                  type="text"
-                  id="saldoPagar"
-                  name="saldoPagar"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Saldo a pagar..."
-               />
-               <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
+               <div className="mb-4">
+                  <label htmlFor="destino" className="text-black font-semibold block mb-2">
+                     Destino:
+                  </label>
+
+                  <Field
+                     type="text"
+                     id="destino"
+                     name="destino"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Destino..."
+                  />
+                  <ErrorMessage name="destino" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="fechaViaje" className="text-black font-semibold block mb-2">
+                     Fecha del viaje:
+                  </label>
+                  <Field
+                     type="date"
+                     id="fechaViaje"
+                     name="fechaViaje"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Fecha del viaje..."
+                  />
+                  <ErrorMessage name="fechaViaje" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
+                     Saldo a pagar:
+                  </label>
+                  <Field
+                     type="text"
+                     id="saldoPagar"
+                     name="saldoPagar"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Saldo a pagar..."
+                  />
+                  <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
+                     Valor a pagar:
+                  </label>
+                  <Field
+                     type="text"
+                     id="valorPagar"
+                     name="valorPagar"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Valor a pagar..."
+                  />
+                  <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
+               </div>
+
             </div>
 
-            <div className="mb-4">
-               <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
-                  Valor a pagar:
-               </label>
-               <Field
-                  type="text"
-                  id="valorPagar"
-                  name="valorPagar"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Valor a pagar..."
-               />
-               <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
-            </div>
             <div className="text-center mt-2">
                <button
                   type="submit"
