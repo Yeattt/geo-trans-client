@@ -53,8 +53,8 @@ export const UsersHome = () => {
 
             <br />
 
-            <div className="flex items-center justify-around">
-               <div className="bg-gradient-to-r from-secondary to-secondaryHover rounded-md h-32 w-[20%] flex flex-col items-center justify-center px-6 py-4">
+            <div className="flex flex-col md:flex-row items-center justify-around">
+               <div className="bg-gradient-to-r from-secondary to-secondaryHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -69,7 +69,7 @@ export const UsersHome = () => {
                   </div>
                </div>
 
-               <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 w-[50%] flex flex-col items-center justify-center px-6 py-4">
+               <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -84,7 +84,7 @@ export const UsersHome = () => {
                   </div>
                </div>
 
-               <div className="bg-gradient-to-r from-purplePz to-purplePzHover rounded-md h-32 w-[20%] flex flex-col items-center justify-center px-6 py-4">
+               <div className="bg-gradient-to-r from-purplePz to-purplePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -150,10 +150,10 @@ export const UsersHome = () => {
                            <th className="px-6 py-2 text-purplePz">DNI</th>
                            <th className="px-6 py-2 text-purplePz">Edad</th>
                            <th className="px-6 py-2 text-purplePz">Email</th>
-                           <th className="px-6 py-2 text-purplePz">Contraseña</th>
-                           <th className="px-6 py-2 text-purplePz">Rol</th>
-                           <th className="px-6 py-2 text-purplePz">Compañía</th>
-                           <th className="px-6 py-2 text-purplePz">Vehículo</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Contraseña</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Rol</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Compañía</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Vehículo</th>
                            <th className="px-6 py-2 text-purplePz">Acciones</th>
                         </tr>
                      </thead>

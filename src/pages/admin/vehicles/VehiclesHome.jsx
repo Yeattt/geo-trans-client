@@ -28,6 +28,7 @@ export const VehiclesHome = () => {
             <div className="bg-white min-w-full flex items-center justify-between px-6 py-1">
                <div className="flex flex-col justify-between px-6 py-1">
                   <span className="text-2xl text-purplePz font-bold">Vehiculos</span>
+                  
                   <span className="text-xs font-bold">{`Admin > Vehiculos`}</span>
                </div>
 
