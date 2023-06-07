@@ -8,7 +8,7 @@ import { IoSubway } from 'react-icons/io5';
 export const AdminSideMenu = () => {
    return (
       <div className="flex h-screen">
-         <div className="w-64 bg-purplePz">
+         <div className="hidden lg:block lg:w-64 bg-purplePz">
             <div className="flex items-center justify-center h-16">
                <span className="text-white text-lg font-semibold">Admin</span>
             </div>
