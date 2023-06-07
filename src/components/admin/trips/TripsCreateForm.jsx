@@ -44,6 +44,13 @@ const validationSchema = Yup.object().shape({
       .typeError('El documento debe ser un número')
       .test('len', 'Máximo 80 caracteres', val => val && val.toString().length <= 80)
       .required('Campo requerido'),
+   cliente: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
+   tipoViaje: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
+
 });
 
 export const TripsCreateForm = () => {
@@ -63,6 +70,7 @@ export const TripsCreateForm = () => {
       fechaViaje: '',
       cliente:'',
    }, 'trips');
+
 
    return (
       <Formik
@@ -88,7 +96,7 @@ export const TripsCreateForm = () => {
 
                   <ErrorMessage name="tipoViaje" component="div" className="text-red-500" />
                </div>
-               
+
                <div className="mb-4">
                   <label htmlFor="cliente" className="text-black font-semibold block mb-2">
                      Cliente:
