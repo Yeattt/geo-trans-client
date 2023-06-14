@@ -44,6 +44,13 @@ const validationSchema = Yup.object().shape({
       .typeError('El documento debe ser un número')
       .test('len', 'Máximo 80 caracteres', val => val && val.toString().length <= 80)
       .required('Campo requerido'),
+   cliente: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
+   tipoViaje: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
+
 });
 
 export const TripsCreateForm = () => {
@@ -59,7 +66,11 @@ export const TripsCreateForm = () => {
       saldoPagar: '',
       unidadMedida: '',
       valorPagar: '',
+      tipoViaje: '',
+      fechaViaje: '',
+      cliente: '',
    }, 'trips');
+
 
    return (
       <Formik
@@ -68,7 +79,38 @@ export const TripsCreateForm = () => {
          onSubmit={onSubmitForm}
       >
          <Form>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-4 gap-4">
+               <div className="mb-4">
+                  <label htmlFor="tipoViaje" className="text-black font-semibold block mb-2">
+                     Tipo de Viaje:
+                  </label>
+
+                  <Field
+                     as="select"
+                     name="tipoViaje"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                  >
+                     <option value="interno">Interno</option>
+                     <option value="externo">A terceros</option>
+                  </Field>
+
+                  <ErrorMessage name="tipoViaje" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="cliente" className="text-black font-semibold block mb-2">
+                     Cliente:
+                  </label>
+                  <Field
+                     type="text"
+                     id="cliente"
+                     name="cliente"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Cliente..."
+                  />
+                  <ErrorMessage name="cliente" component="div" className="text-red-500" />
+               </div>
+
                <div className="mb-4">
                   <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
                      Numero remesa:
@@ -87,16 +129,20 @@ export const TripsCreateForm = () => {
                   <label htmlFor="unidadMedida" className="text-black font-semibold block mb-2">
                      Unidad de medida:
                   </label>
+
                   <Field
-                     type="text"
-                     id="unidadMedida"
+                     as="select"
                      name="unidadMedida"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Unidad de medida..."
-                  />
+                  >
+                     <option value="tonelada">Tonelada</option>
+                     <option value="kilogramo">Kilogramo</option>
+                     <option value="gramo">Gramo</option>
+                     <option value="miligramo">Miligramo</option>
+                  </Field>
+
                   <ErrorMessage name="unidadMedida" component="div" className="text-red-500" />
                </div>
-
 
                <div className="mb-4">
                   <label htmlFor="cantidad" className="text-black font-semibold block mb-2">
@@ -145,12 +191,15 @@ export const TripsCreateForm = () => {
                      Codigo producto:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="codigoProducto"
                      name="codigoProducto"
+                     placeholder="Cod. Producto..."
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Codigo producto..."
-                  />
+                  >
+                     <option value="05001">05001</option>
+                     <option value="05002">05002</option>
+                  </Field>
                   <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
                </div>
 
@@ -181,50 +230,67 @@ export const TripsCreateForm = () => {
                   />
                   <ErrorMessage name="origen" component="div" className="text-red-500" />
                </div>
-            </div>
-
-            <div className="mb-4">
-               <label htmlFor="destino" className="text-black font-semibold block mb-2">
-                  Destino:
-               </label>
-               <Field
-                  type="text"
-                  id="destino"
-                  name="destino"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Destino..."
-               />
-               <ErrorMessage name="destino" component="div" className="text-red-500" />
-            </div>
 
 
-            <div className="mb-4">
-               <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
-                  Saldo a pagar:
-               </label>
-               <Field
-                  type="text"
-                  id="saldoPagar"
-                  name="saldoPagar"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Saldo a pagar..."
-               />
-               <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
+               <div className="mb-4">
+                  <label htmlFor="destino" className="text-black font-semibold block mb-2">
+                     Destino:
+                  </label>
+
+                  <Field
+                     type="text"
+                     id="destino"
+                     name="destino"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Destino..."
+                  />
+                  <ErrorMessage name="destino" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="fechaViaje" className="text-black font-semibold block mb-2">
+                     Fecha del viaje:
+                  </label>
+                  <Field
+                     type="date"
+                     id="fechaViaje"
+                     name="fechaViaje"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Fecha del viaje..."
+                  />
+                  <ErrorMessage name="fechaViaje" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
+                     Saldo a pagar:
+                  </label>
+                  <Field
+                     type="text"
+                     id="saldoPagar"
+                     name="saldoPagar"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Saldo a pagar..."
+                  />
+                  <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
+                     Valor a pagar:
+                  </label>
+                  <Field
+                     type="text"
+                     id="valorPagar"
+                     name="valorPagar"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Valor a pagar..."
+                  />
+                  <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
+               </div>
+
             </div>
 
-            <div className="mb-4">
-               <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
-                  Valor a pagar:
-               </label>
-               <Field
-                  type="text"
-                  id="valorPagar"
-                  name="valorPagar"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Valor a pagar..."
-               />
-               <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
-            </div>
             <div className="text-center mt-2">
                <button
                   type="submit"

@@ -1,55 +1,60 @@
+import { useState, useEffect } from 'react';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { useCreateForm } from '../../../hooks';
+import { useCreateForm, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
    codigoCotizacion: Yup.number()
-   .typeError('El codigo debe ser un numero')
-   .required('Campo requerido'),
+      .typeError('El codigo debe ser un numero')
+      .required('Campo requerido'),
 
    cantidad: Yup.number()
-   .typeError('Solo se reciben valores numericos')
-   .required('Campo requerido'),
+      .typeError('Solo se reciben valores numericos')
+      .required('Campo requerido'),
 
    codigoProducto: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 
    destino: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 
    empaque: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 
    naturaleza: Yup.string().
-   required('Campo requerido'),
+      required('Campo requerido'),
 
    numeroRemesa: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 
    origen: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 
    productoTransportar: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 
    saldoPagar: Yup.number()
-   .typeError('Solo valores numericos')
-   .required('Campo requerido'),
+      .typeError('Solo valores numericos')
+      .required('Campo requerido'),
 
    unidadMedida: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 
    valorPagar: Yup.number()
-   .typeError('Solo valores numericos')
-   .required('Campo requerido'),
+      .typeError('Solo valores numericos')
+      .required('Campo requerido'),
 
    userId: Yup.string()
-   .required('Campo requerido'),
+      .required('Campo requerido'),
 });
 
 export const QuotesCreateForm = () => {
+   const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
+   const [usersList, setUsersList] = useState([]);
+
    const { initialValues, onSubmitForm } = useCreateForm({
       codigoCotizacion: '',
       cantidad: '',
@@ -66,14 +71,20 @@ export const QuotesCreateForm = () => {
       userId: '',
    }, 'quotes');
 
-    return (
+   useEffect(() => {
+      if (!usersIsLoading) {
+         setUsersList(users.users);
+      }
+   }, [usersIsLoading])
+
+   return (
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
          <Form>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-4 gap-3">
                <div className="mb-4">
                   <label htmlFor="codigoCotizacion" className="text-black font-semibold block mb-2">
                      Cod. Cotizacion:
@@ -248,17 +259,23 @@ export const QuotesCreateForm = () => {
                      User Id:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="userId"
                      name="userId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="User Id..."
-                  />
+                  >
+                     {
+                        usersList.map(user => (
+                           <option value={user.id} key={user.id}>{user.dni}</option>
+                        ))
+                     }
+                  </Field>
                   <ErrorMessage name="userId" component="div" className="text-red-500" />
                </div>
             </div>
-            
-            
+
+
             <div className="text-center mt-2">
                <button
                   type="submit"
@@ -272,5 +289,3 @@ export const QuotesCreateForm = () => {
 
    );
 }
-
-   

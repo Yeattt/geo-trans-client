@@ -44,7 +44,7 @@ export const ClientsCreateForm = () => {
                      id="documento"
                      name="documento"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Vehículo..."
+                     placeholder="Documento..."
                   />
                   <ErrorMessage name="documento" component="div" className="text-red-500" />
                </div>
@@ -58,7 +58,7 @@ export const ClientsCreateForm = () => {
                      id="nombre"
                      name="nombre"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Vehículo..."
+                     placeholder="Nombre..."
                   />
                   <ErrorMessage name="nombre" component="div" className="text-red-500" />
                </div>
@@ -72,7 +72,7 @@ export const ClientsCreateForm = () => {
                      id="razonSocial"
                      name="razonSocial"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Vehículo..."
+                     placeholder="Razón social..."
                   />
                   <ErrorMessage name="razonSocial" component="div" className="text-red-500" />
                </div>
@@ -86,7 +86,7 @@ export const ClientsCreateForm = () => {
                      id="telefono"
                      name="telefono"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Vehículo..."
+                     placeholder="Teléfono..."
                   />
                   <ErrorMessage name="telefono" component="div" className="text-red-500" />
                </div>

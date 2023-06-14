@@ -54,8 +54,8 @@ export const CompaniesHome = () => {
 
             <br />
 
-            <div className="flex items-center justify-around">
-               <div className="bg-gradient-to-r from-secondary to-secondaryHover rounded-md h-32 w-[20%] flex flex-col items-center justify-center px-6 py-4">
+            <div className="flex flex-col md:flex-row items-center justify-around">
+               <div className="bg-gradient-to-r from-secondary to-secondaryHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -70,7 +70,7 @@ export const CompaniesHome = () => {
                   </div>
                </div>
 
-               <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 w-[50%] flex flex-col items-center justify-center px-6 py-4">
+               <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -85,7 +85,7 @@ export const CompaniesHome = () => {
                   </div>
                </div>
 
-               <div className="bg-gradient-to-r from-purplePz to-purplePzHover rounded-md h-32 w-[20%] flex flex-col items-center justify-center px-6 py-4">
+               <div className="bg-gradient-to-r from-purplePz to-purplePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
                   <div className="flex flex-row justify-center items-center">
                      <div className="text-xl flex items-center justify-center">
                         <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -151,8 +151,9 @@ export const CompaniesHome = () => {
                            <th className="px-6 py-2 text-purplePz">Nit</th>
                            <th className="px-6 py-2 text-purplePz">Razon Social</th>
                            <th className="px-6 py-2 text-purplePz">Nombre Empresa</th>
-                           <th className="px-6 py-2 text-purplePz">Telefono</th>
-                           <th className="px-6 py-2 text-purplePz">Dueño Poliza</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Telefono</th>
+                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Dueño Poliza</th>
+                           <th className="px-6 py-2 text-purplePz">Estado</th>
                            <th className="px-6 py-2 text-purplePz">Acciones</th>
                         </tr>
                      </thead>
