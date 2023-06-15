@@ -6,10 +6,20 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal, DeleteModal } from '../../modals';
+import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
 
 export const ClientsCard = ({ client }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
+   const [isOpen, setIsOpen] = useState(false)
+   const [isOpenUpdate, setisOpenUpdate] = useState(false)
+
+   const handleViewDetails = () => {
+      setIsOpen(!isOpen)
+   }
+   const handleUpdateClick = () =>{
+      setisOpenUpdate(!isOpenUpdate)
+   }
+
 
    const handleIsInfoModalActive = (status) => {
       setIsInfoModalActive(status);
@@ -53,7 +63,8 @@ export const ClientsCard = ({ client }) => {
             }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
-               <FaEdit />
+               <FaEdit onClick={handleUpdateClick}/>
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Clients" moduleInfo={client} />
             </span>
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
