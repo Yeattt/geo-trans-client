@@ -7,13 +7,15 @@ import { MdExitToApp } from 'react-icons/md';
 import { BiSearchAlt } from 'react-icons/bi';
 
 import { AdminLayout } from '../../../components/layouts';
-import { RolesCard, CreateFormModal } from '../../../components';
+import { RolesCard, CreateFormModal, SearchModal } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 
 export const RolesHome = () => {
    const { isLoading, data } = useGetApiData('/roles');
    const [roles, setRoles] = useState([]);
+   const [query, setQuery] = useState('');
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+   const [isSearchModalActive, setIsSearchModalActive] = useState(false);
 
    useEffect(() => {
       if (!isLoading) {
@@ -23,6 +25,16 @@ export const RolesHome = () => {
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
+   }
+
+   const handleOnSearchSubmit = (e) => {
+      e.preventDefault();
+
+      setIsSearchModalActive(!isSearchModalActive);
+   }
+
+   const handleOnSearchInputChange = (e) => {
+      setQuery(e.target.value);
    }
 
    return (
@@ -105,28 +117,33 @@ export const RolesHome = () => {
             <div className="flex items-center justify-center">
                <div className="bg-white rounded-sm w-[96.5%] flex flex-row items-center justify-between px-2 py-2">
                   <div>
-                     
+
                   </div>
 
-                  <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
-                     <input
-                        className="bg-transparent w-[87%] h-full px-2 pl-2 py-2 pb-3 text-base"
-                        type="text"
-                        placeholder="Buscar rol..."
-                     />
+                  <form onSubmit={handleOnSearchSubmit}>
+                     <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
+                        <input
+                           className="bg-transparent w-[87%] h-full px-2 pl-2 py-2 pb-3 text-base"
+                           type="text"
+                           placeholder="Buscar rol por nombre..."
+                           value={query}
+                           onChange={handleOnSearchInputChange}
+                        />
 
-                     <div className="bg-purplePz w-[13%] h-full border-l flex items-center justify-center cursor-pointer">
-                        <BiSearchAlt className="text-xl text-white" />
+                        <div className="bg-purplePz w-[13%] h-full border-l flex items-center justify-center cursor-pointer">
+                           <BiSearchAlt
+                              className="text-xl text-white"
+                              onClick={handleOnSearchSubmit}
+                           />
+                        </div>
                      </div>
-                  </div>
+                  </form>
                </div>
             </div>
 
             {/* // * IMPORTANTE: Prueba del modal para crear */}
-            {
-               isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Roles" />
-            }
-
+            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Roles" />}
+            {isSearchModalActive && <SearchModal setIsSearchModalActive={setIsSearchModalActive} isSearchModalActive={isSearchModalActive} module="Roles" query={query} />}
 
             <br />
 
@@ -162,7 +179,7 @@ export const RolesHome = () => {
                   </table>
 
                   <div className="flex items-center justify-center mt-5">
-                     
+
                   </div>
                </div>
             </div>
