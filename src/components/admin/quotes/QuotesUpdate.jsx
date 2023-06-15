@@ -25,7 +25,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
         userId: Yup.string()           
      });
 
-     const { initialValues, onSubmitForm } = useCreateForm({
+     const { initialValues, onSubmitForm } = useUpdateForm({
         codigoCotizacion: moduleInfo.codigoCotizacion,
         cantidad: moduleInfo.cantidad,
         codigoProducto: moduleInfo.codigoProducto,

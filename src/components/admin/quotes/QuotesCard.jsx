@@ -6,7 +6,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal, DeleteModal } from '../../modals';
+import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
 
 export const QuotesCard = ({ quote }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
@@ -69,7 +69,6 @@ export const QuotesCard = ({ quote }) => {
             {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={quote} />
             }
-
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} />

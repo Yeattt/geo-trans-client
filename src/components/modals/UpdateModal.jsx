@@ -5,10 +5,10 @@ import {
     CompaniesUpdate,
     PermissionsUpdate,
     QuotesUpdate,
-    // RolesUpdate,
+    RolesUpdate,
     // TripsUpdate,
     // UsersUpdate,
-    // VehiclesUpdate
+    VehiclesUpdate
 } from '../admin';
 
 export const UpdateModal = ({ isOpenUpdate, module, moduleInfo }) => {
@@ -17,10 +17,10 @@ export const UpdateModal = ({ isOpenUpdate, module, moduleInfo }) => {
         Companies: CompaniesUpdate,
         Permissions: PermissionsUpdate,
         Quotes: QuotesUpdate,
-        // Roles: RolesUpdate,
+        Roles: RolesUpdate,
         // Trips: TripsUpdate,
         // Users: UsersUpdate,
-        // Vehicles: VehiclesUpdate
+        Vehicles: VehiclesUpdate
     };
 
     const ComponentToRender = components[module];
@@ -35,9 +35,10 @@ export const UpdateModal = ({ isOpenUpdate, module, moduleInfo }) => {
 
                             <span
                                 className="w-8 h-8 text-lg text-white bg-red-600 hover:bg-red-700 transition-all cursor-pointer rounded-full flex items-center justify-center"
-                            >
+                            >                                
                                 <AiOutlineClose />
-                            </span>
+
+                            </span>                            
                         </div>
 
                         <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
