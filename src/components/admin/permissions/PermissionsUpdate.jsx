@@ -4,15 +4,8 @@ import { useUpdateForm } from '../../../hooks';
 
 
 export const PermissionsUpdate = ({ moduleInfo }) => {
-    const validationSchema = Yup.object().shape({
-        documento: Yup.number()
-            .typeError('El documento debe ser un número')
-            .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length == 10),
-        nombre: Yup.string(),
-        razonSocial: Yup.string(),
-        telefono: Yup.number()
-            .typeError('El telefono debe ser un número')
-            .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length === 10),
+    const validationSchema = Yup.object().shape({        
+        nombre: Yup.string(),        
     });
 
     const { initialValues, onSubmitForm } = useUpdateForm({

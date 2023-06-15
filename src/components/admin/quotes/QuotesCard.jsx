@@ -10,6 +10,15 @@ import { InfoModal, DeleteModal } from '../../modals';
 
 export const QuotesCard = ({ quote }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
+   const [isOpen, setIsOpen] = useState(false)
+   const [isOpenUpdate, setisOpenUpdate] = useState(false)
+
+   const handleViewDetails = () => {
+      setIsOpen(!isOpen)
+   }
+   const handleUpdateClick = () =>{
+      setisOpenUpdate(!isOpenUpdate)
+   }
 
    const handleIsInfoModalActive = (status) => {
       setIsInfoModalActive(status);
@@ -62,7 +71,8 @@ export const QuotesCard = ({ quote }) => {
             }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
-               <FaEdit />
+               <FaEdit onClick={handleUpdateClick}/>
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} />
             </span>
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
