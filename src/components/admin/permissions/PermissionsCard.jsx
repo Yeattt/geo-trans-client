@@ -37,11 +37,13 @@ export const PermissionsCard = ({ permission }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{permission.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{permission.nombre}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         <button  onClick={() => handleIsDeleteModalActive(true)}>
          {
-            permission.estado ? "Activo" : "Inactivo"
+            permission.estado
+            ?
+            <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+            :
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
          }
-         </button>
          {
             isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={permission} value={'permissions'} />
          }

@@ -39,11 +39,13 @@ export const ClientsCard = ({ client }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{client.razonSocial}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{client.telefono}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         <button  onClick={() => handleIsDeleteModalActive(true)}>
          {
-            client.estado ? "Activo" : "Inactivo"
+            client.estado
+            ?
+            <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+            :
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
          }
-         </button>
          {
             isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={client} value={'clients'} />
          }
