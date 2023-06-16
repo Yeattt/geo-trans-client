@@ -2,8 +2,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import { Link } from 'react-router-dom';
-
-import { useCreateForm } from '../../../hooks';
+import { useCreateForm, useGetApiData } from '../../../hooks';
+import { useState , useEffect} from 'react';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -50,10 +50,22 @@ const validationSchema = Yup.object().shape({
    tipoViaje: Yup.string()
       .max(30, 'Máximo 30 caracteres')
       .required('Campo requerido'),
-
+   vehiculo: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
+   conductor: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
 });
 
 export const TripsCreateForm = () => {
+
+   const {data:vehicles, isLoading: isVehiclesLoading}=useGetApiData('/vehicles');
+   const {data:users, isLoading: isUsersLoading}=useGetApiData('/users');
+
+   const [vehiclesList, setVehiclesList]= useState([]);
+   const [usersList, setUsersList]= useState([]);
+
    const { initialValues, onSubmitForm } = useCreateForm({
       cantidad: '',
       codigoProducto: '',
@@ -69,8 +81,16 @@ export const TripsCreateForm = () => {
       tipoViaje: '',
       fechaViaje: '',
       cliente: '',
+      conductor:'',
    }, 'trips');
 
+   useEffect(()=>{
+      if (!isVehiclesLoading && !isUsersLoading) {
+         setVehiclesList(vehicles.vehicles);
+         setUsersList(users.users);
+      }
+         },
+         [isVehiclesLoading,isUsersLoading]);
 
    return (
       <Formik
@@ -135,10 +155,9 @@ export const TripsCreateForm = () => {
                      name="unidadMedida"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                   >
-                     <option value="tonelada">Tonelada</option>
-                     <option value="kilogramo">Kilogramo</option>
-                     <option value="gramo">Gramo</option>
-                     <option value="miligramo">Miligramo</option>
+                     <option value="galon">GALONES</option>
+                     <option value="unidad">UNIDADES</option>
+                     <option value="tonelada">TONELADAS</option>
                   </Field>
 
                   <ErrorMessage name="unidadMedida" component="div" className="text-red-500" />
@@ -177,27 +196,60 @@ export const TripsCreateForm = () => {
                      Empaque:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="empaque"
                      name="empaque"
+                     placeholder="Codigo..."
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Empaque..."
-                  />
-                  <ErrorMessage name="Empaque" component="div" className="text-red-500" />
+                  >
+                     <option value="016">BIDON O ENVASE PLASTICO</option>
+                     <option value="018">CAJA DE CARTON</option>
+                     <option value="017">CAJA DE MADERA NATURAL</option>
+                     <option value="019">CAJA DE PLASTICO</option>
+                     <option value="010">CARGA ESTIBADA</option>
+                     <option value="011">CILINDROS</option>
+                     <option value="015">CONTENEDOR 45 PIES</option>
+                     <option value="008">DOS CONTENEDORES DE 20 PIES</option>
+                     <option value="004">GENERAL FRACCIONADA</option>
+                     <option value="006">GRANEL LIQUIDO</option>
+                     <option value="014">GRANEL SOLIDO</option>
+                     <option value="000">PAQUETES</option>
+                     <option value="020">SACO O TALEGO POLIETI/PROLIP</option>
+                     <option value="021">SACO TALEGA YUTE FIQUE CABUYA</option>
+                     <option value="007">UN CONTENEDOR DE 20 PIES</option>
+                     <option value="009">UN CONTENEDOR DE 40 PIES</option>
+                     <option value="013">UNIDAD SIN EMPAQUES</option>
+                     <option value="012">VARIOS</option>
+                  </Field>
+                  <ErrorMessage name="empaque" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="codigoProducto" className="text-black font-semibold block mb-2">
+                  <label htmlFor="empaque" className="text-black font-semibold block mb-2">
                      Codigo producto:
                   </label>
                   <Field
                      as="select"
-                     id="unidadMedida"
-                     name="unidadMedida"
-                     placeholder="Unidad medida..."
+                     id="empaque"
+                     name="empaque"
+                     placeholder="empaque..."
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                   >
-                     <option value="codigo">05001</option>
+                     <option value="0001">ACERO</option>
+                     <option value="0002">CONCENTRADO</option>
+                     <option value="0003">CERDOS</option>
+                     <option value="0004">ANIMALES VIVOS</option>
+                     <option value="0005">CABALLOS</option>
+                     <option value="0006">VACAS</option>
+                     <option value="0007">FRUTAS</option>
+                     <option value="0008">QUIMICOS VARIOS</option>
+                     <option value="0009">MADERA</option>
+                     <option value="00010">PRODUCTOS VARIOS</option>
+                     <option value="00011">TRASTEOS</option>
+                     <option value="00012">POLVORA</option>
+                     <option value="00013">SONIDO</option>
+                     <option value="00014">GRASAS</option>
+                     <option value="00015">GASEOSAS</option>
                   </Field>
                   <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
                </div>
@@ -288,6 +340,24 @@ export const TripsCreateForm = () => {
                   <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
                </div>
 
+               <div className="mb-4">
+                  <label htmlFor="conductor" className="text-black font-semibold block mb-2">
+                     Conductor:
+                  </label>
+                  <Field
+                     as="select"
+                     name="conductor"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Conductor..."
+                  >
+                     {
+                        usersList.map(user=> (
+                           <option value={user.id} key={user.id}>{user.nombre}</option>
+                        ))
+                     }
+                  </Field>
+                  <ErrorMessage name="conductor" component="div" className="text-red-500" />
+               </div>
             </div>
 
             <div className="text-center mt-2">

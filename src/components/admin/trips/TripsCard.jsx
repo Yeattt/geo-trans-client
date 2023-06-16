@@ -11,15 +11,24 @@ import { InfoModal } from '../../modals';
 export const TripsCard = ({ trip }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
 
+   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
+   const [vehiclesList, setVehiclesList] = useState({});
+
    const handleIsInfoModalActive = (status) => {
       setIsInfoModalActive(status);
    }
+
+   useEffect(() => {
+      if (!isVehiclesLoading) {
+         setVehiclesList(vehicles.vehicles);
+      }
+   }, [isVehiclesLoading]);
 
    return (
       <tr className="hover:bg-gray-200">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{trip.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cantidad}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.codigoProudcto}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.codigoProducto}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.destino}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.empaque}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.naturaleza}</td>
@@ -32,6 +41,9 @@ export const TripsCard = ({ trip }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.fechaViaje}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.tipoViaje}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cliente}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.vehiculo}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.conductor}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehiclesList.placa}</td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <span

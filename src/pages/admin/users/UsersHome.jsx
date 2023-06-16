@@ -150,10 +150,10 @@ export const UsersHome = () => {
                            <th className="px-6 py-2 text-purplePz">DNI</th>
                            <th className="px-6 py-2 text-purplePz">Edad</th>
                            <th className="px-6 py-2 text-purplePz">Email</th>
-                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Contraseña</th>
-                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Rol</th>
-                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Compañía</th>
-                           <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Vehículo</th>
+                           <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Contraseña</th>
+                           <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Rol</th>
+                           <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Compañía</th>
+                           <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Vehículo</th>
                            <th className="px-6 py-2 text-purplePz">Acciones</th>
                         </tr>
                      </thead>

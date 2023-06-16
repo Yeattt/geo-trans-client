@@ -267,7 +267,7 @@ export const QuotesCreateForm = () => {
                   >
                      {
                         usersList.map(user => (
-                           <option value={user.id} key={user.id}>{user.dni}</option>
+                           <option value={user.id} key={user.id}>{user.nombre}</option>
                         ))
                      }
                   </Field>

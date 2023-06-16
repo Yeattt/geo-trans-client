@@ -158,6 +158,8 @@ export const TripsHome = () => {
                            <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Tipo Viaje</th>
                            <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Fecha Viaje</th>
                            <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Cliente</th>
+                           <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Vehiculo</th>
+                           <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Conductor</th>
                            <th className="px-6 py-2 text-purplePz">Acciones</th>
                         </tr>
                      </thead>
