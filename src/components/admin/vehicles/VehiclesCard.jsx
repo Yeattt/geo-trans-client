@@ -42,11 +42,13 @@ export const VehiclesCard = ({ vehicle }) => {
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.tecnomecanica}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.soat}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         <button  onClick={() => handleIsDeleteModalActive(true)}>
          {
-            vehicle.estado ? "Activo" : "Inactivo"
+            vehicle.estado
+            ?
+            <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+            :
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
          }
-         </button>
          {
             isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={vehicle} value={'vehicles'} />
          }

@@ -35,11 +35,13 @@ export const RolesCard = ({ role }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{role.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{role.nombre}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         <button  onClick={() => handleIsDeleteModalActive(true)}>
          {
-            role.estado ? "Activo" : "Inactivo"
+            role.estado
+            ?
+            <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+            :
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
          }
-         </button>
          {
             isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={role} value={'roles'} />
          }
