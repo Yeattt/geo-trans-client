@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
+
 import { IoSubway } from 'react-icons/io5';
 import { MdExitToApp } from 'react-icons/md';
 import { BiSearchAlt } from 'react-icons/bi';
-import { AdminLayout } from '../../../components/layouts';
-import { TripsCard } from '../../../components/admin';
+
+import { AdminLayout, TripsCard, CreateFormModal, SearchModal } from '../../../components';
 import { useGetApiData } from '../../../hooks';
-import { CreateFormModal } from '../../../components';
 
 export const TripsHome = () => {
    const { isLoading, data } = useGetApiData('/trips');
+   const [query, setQuery] = useState('');
    const [trips, setTrips] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+   const [isSearchModalActive, setIsSearchModalActive] = useState(false);
 
    useEffect(() => {
       if (!isLoading) {
@@ -21,6 +24,16 @@ export const TripsHome = () => {
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
+   }
+
+   const handleOnSearchSubmit = (e) => {
+      e.preventDefault();
+
+      setIsSearchModalActive(!isSearchModalActive);
+   }
+
+   const handleOnSearchInputChange = (e) => {
+      setQuery(e.target.value);
    }
 
    return (
@@ -103,27 +116,33 @@ export const TripsHome = () => {
             <div className="flex items-center justify-center">
                <div className="bg-white rounded-sm w-[96.5%] flex flex-row items-center justify-between px-2 py-2">
                   <div>
-                     
+
                   </div>
 
-                  <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
-                     <input
-                        className="bg-transparent w-[87%] h-full px-2 pl-2 py-2 pb-3 text-base"
-                        type="text"
-                        placeholder="Buscar viaje..."
-                     />
+                  <form onSubmit={handleOnSearchSubmit}>
+                     <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
+                        <input
+                           className="bg-transparent w-[87%] h-full px-2 pl-2 py-2 pb-3 text-base"
+                           type="text"
+                           placeholder="Buscar viaje por código producto..."
+                           value={query}
+                           onChange={handleOnSearchInputChange}
+                        />
 
-                     <div className="bg-purplePz w-[13%] h-full border-l flex items-center justify-center cursor-pointer">
-                        <BiSearchAlt className="text-xl text-white" />
+                        <div className="bg-purplePz w-[13%] h-full border-l flex items-center justify-center cursor-pointer">
+                           <BiSearchAlt
+                              className="text-xl text-white"
+                              onClick={handleOnSearchSubmit}
+                           />
+                        </div>
                      </div>
-                  </div>
+                  </form>
                </div>
             </div>
 
             {/* // * IMPORTANTE: Prueba del modal para crear */}
-            {
-               isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Trips" />
-            }
+            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Trips" />}
+            {isSearchModalActive && <SearchModal setIsSearchModalActive={setIsSearchModalActive} isSearchModalActive={isSearchModalActive} module="Trips" query={query} />}
 
             <br />
 
