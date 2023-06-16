@@ -6,14 +6,20 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal } from '../../modals';
+import { InfoModal, DeleteModal } from '../../modals';
 
 export const TripsCard = ({ trip }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
 
    const handleIsInfoModalActive = (status) => {
       setIsInfoModalActive(status);
-   }
+   };
+
+   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
+
+   const handleIsDeleteModalActive = (status) => {
+      setIsDeleteModalActive(status);
+   };
 
    return (
       <tr className="hover:bg-gray-200">
@@ -32,6 +38,16 @@ export const TripsCard = ({ trip }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.fechaViaje}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.tipoViaje}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cliente}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
+         <button  onClick={() => handleIsDeleteModalActive(true)}>
+         {
+            trip.estado ? "Activo" : "Inactivo"
+         }
+         </button>
+         {
+            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={trip} value={'trips'} />
+         }
+         </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <span
@@ -50,9 +66,9 @@ export const TripsCard = ({ trip }) => {
                <FaEdit />
             </span>
 
-            <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
+            {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
                <MdDeleteForever />
-            </span>
+            </span> */}
          </td>
       </tr>
    );

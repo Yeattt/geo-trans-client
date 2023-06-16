@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { FaTruckMoving } from 'react-icons/fa';
 import { MdExitToApp } from 'react-icons/md';
 import { BiSearchAlt } from 'react-icons/bi';
+
 import { AdminLayout } from '../../../components/layouts';
-import { VehiclesCard, CreateFormModal } from '../../../components';
+import { VehiclesCard, CreateFormModal, SearchModal } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 
 export const VehiclesHome = () => {
    const { isLoading, data } = useGetApiData('/vehicles');
+   const [query, setQuery] = useState('');
    const [vehicles, setVehicles] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+   const [isSearchModalActive, setIsSearchModalActive] = useState(false);
 
    useEffect(() => {
       if (!isLoading) {
@@ -22,13 +26,23 @@ export const VehiclesHome = () => {
       setIsCreateModalActive(status);
    };
 
+   const handleOnSearchSubmit = (e) => {
+      e.preventDefault();
+
+      setIsSearchModalActive(!isSearchModalActive);
+   }
+
+   const handleOnSearchInputChange = (e) => {
+      setQuery(e.target.value);
+   }
+
    return (
       <AdminLayout>
          <div className="w-full bg-gray-200">
             <div className="bg-white min-w-full flex items-center justify-between px-6 py-1">
                <div className="flex flex-col justify-between px-6 py-1">
                   <span className="text-2xl text-purplePz font-bold">Vehiculos</span>
-                  
+
                   <span className="text-xs font-bold">{`Admin > Vehiculos`}</span>
                </div>
 
@@ -102,22 +116,31 @@ export const VehiclesHome = () => {
             <div className="flex items-center justify-center">
                <div className="bg-white rounded-sm w-[96.5%] flex flex-row items-center justify-between px-2 py-2">
                   <div></div>
-                  <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
-                     <input
-                        className="bg-transparent w-[87%] h-full px-2 pl-2 py-2 pb-3 text-base"
-                        type="text"
-                        placeholder="Buscar vehículo..."
-                     />
-                     <div className="bg-purplePz w-[13%] h-full border-l flex items-center justify-center cursor-pointer">
-                        <BiSearchAlt className="text-xl text-white" />
+                  <form onSubmit={handleOnSearchSubmit}>
+                     <div className="bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition w-72 h-9 flex items-center overflow-hidden">
+                        <input
+                           className="bg-transparent w-[87%] h-full px-2 pl-2 py-2 pb-3 text-base"
+                           type="text"
+                           placeholder="Buscar vehículo por placa..."
+                           value={query}
+                           onChange={handleOnSearchInputChange}
+                        />
+
+                        <div className="bg-purplePz w-[13%] h-full border-l flex items-center justify-center cursor-pointer">
+                           <BiSearchAlt
+                              className="text-xl text-white"
+                              onClick={handleOnSearchSubmit}
+                           />
+                        </div>
                      </div>
-                  </div>
+                  </form>
                </div>
             </div>
 
             {/* // * IMPORTANTE: Prueba del modal para crear */}
 
             {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Vehicles" />}
+            {isSearchModalActive && <SearchModal setIsSearchModalActive={setIsSearchModalActive} isSearchModalActive={isSearchModalActive} module="Vehicles" query={query} />}
 
             <br />
 
@@ -146,6 +169,7 @@ export const VehiclesHome = () => {
                            <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">T. Propiedad</th>
                            <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Tecnomecanica</th>
                            <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Soat</th>
+                           <th className="px-6 py-2 text-purplePz">Estado</th>
                            <th className="px-6 py-2 text-purplePz">Acciones</th>
                         </tr>
                      </thead>
