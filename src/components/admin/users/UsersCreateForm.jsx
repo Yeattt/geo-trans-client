@@ -17,16 +17,13 @@ const validationSchema = Yup.object().shape({
       .required('Campo requerido'),
    contrasena: Yup.string()
       .min(3, 'Mínimo 3 caracteres').required('Campo requerido'),
-   roleId: Yup.string()
-      .required('Campo requerido'),
-   companyId: Yup.string()
-      .required('Campo requerido'),
+   roleId: Yup.string(),
+   companyId: Yup.string(),
    vehicleId: Yup.string()
-      .required('Campo requerido'),
 });
 
 export const UsersCreateForm = () => {
-   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
+      const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
 
@@ -36,6 +33,7 @@ export const UsersCreateForm = () => {
 
    const { initialValues, onSubmitForm } = useCreateForm({
       dni: '',
+      nombre: '',
       edad: '',
       email: '',
       contrasena: '',
@@ -72,6 +70,20 @@ export const UsersCreateForm = () => {
                      placeholder="DNI..."
                   />
                   <ErrorMessage name="dni" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="nombre" className="text-black font-semibold block mb-2">
+                     Nombre:
+                  </label>
+                  <Field
+                     type="text"
+                     id="nombre"
+                     name="nombre"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Nombre..."
+                  />
+                  <ErrorMessage name="nombre" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
