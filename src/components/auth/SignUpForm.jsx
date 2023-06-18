@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks';
+import { useAuthStore } from '../../hooks';
 import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -19,11 +19,11 @@ const validationSchema = Yup.object().shape({
 })
 
 export const SignUpForm = () => {
-   const { initialValues, onSubmitForm } = useAuth({
+   const initialValues = {
       email: '',
-      contrasena: ''
-   }, 'signup');
-
+      password: ''
+   }
+   
    return (
       <Formik
          initialValues={initialValues}

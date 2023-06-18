@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
+
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks';
+import { useAuthStore } from '../../hooks';
 import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -14,10 +17,22 @@ const validationSchema = Yup.object().shape({
 })
 
 export const SignInForm = () => {
-   const { initialValues, onSubmitForm } = useAuth({
+   const { startLogin, errorMessage } = useAuthStore();
+
+   const initialValues = {
       email: '',
-      contrasena: ''
-   }, 'signin');
+      password: ''
+   }
+
+   const onSubmitForm = (values) => {
+      startLogin(values);
+   }
+
+   useEffect(() => {
+      if (errorMessage !== undefined) {
+         Swal.fire('Error al iniciar sesión', errorMessage, 'error');
+      }
+   }, [errorMessage]);
 
    return (
       <Formik
