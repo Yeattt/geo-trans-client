@@ -230,15 +230,6 @@ export const TripsCreateForm = () => {
                   </label>
                   <Field
                      as="select"
-<<<<<<< HEAD
-                     id="codigoProducto"
-                     name="codigoProducto"
-                     placeholder="Cod. Producto..."
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  >
-                     <option value="05001">05001</option>
-                     <option value="05002">05002</option>
-=======
                      id="empaque"
                      name="empaque"
                      placeholder="empaque..."
@@ -259,7 +250,6 @@ export const TripsCreateForm = () => {
                      <option value="00013">SONIDO</option>
                      <option value="00014">GRASAS</option>
                      <option value="00015">GASEOSAS</option>
->>>>>>> b02ccf9fb0c4ac346536f1dd1ab56d138bfed566
                   </Field>
                   <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
                </div>
