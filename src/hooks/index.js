@@ -1,5 +1,5 @@
 export * from './useCreateForm';
 export * from './useGetApiData';
-export * from './useAuth';
+export * from './useAuthStore';
 export * from './useDelete';
 export * from './useUpdateForm';
