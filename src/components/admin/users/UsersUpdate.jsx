@@ -1,29 +1,11 @@
-import { useState, useEffect } from 'react';
-
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useUpdateForm, useGetApiData} from '../../../hooks';
+import { useState, useEffect } from 'react';
 
-import { useCreateForm, useGetApiData } from '../../../hooks';
 
-// * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
-const validationSchema = Yup.object().shape({
-   dni: Yup.number('Este campo solo debe contener números')
-      .test('len', 'El campo debe ser 10 caracteres', val => val && val.toString().length == 10)
-      .required('Campo requerido'),
-   edad: Yup.number('Este campo solo debe contener números')
-      .test('len', 'Máximo 2 caracteres', val => val && val.toString().length == 2)
-      .required('Campo requerido'),
-   email: Yup.string()
-      .required('Campo requerido'),
-   contrasena: Yup.string()
-      .min(3, 'Mínimo 3 caracteres').required('Campo requerido'),
-   roleId: Yup.string(),
-   companyId: Yup.string(),
-   vehicleId: Yup.string()
-});
-
-export const UsersCreateForm = () => {
-      const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
+export const UsersUpdate = ({moduleInfo}) => {
+   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
 
@@ -31,32 +13,46 @@ export const UsersCreateForm = () => {
    const [companiesList, setCompaniesList] = useState([]);
    const [rolesList, setRolesList] = useState([]);
 
-   const { initialValues, onSubmitForm } = useCreateForm({
-      dni: '',
-      nombre: '',
-      edad: '',
-      email: '',
-      contrasena: '',
-      roleId: '',
-      companyId: '',
-      vehicleId: '',
-   }, 'users');
+    const validationSchema = Yup.object().shape({
+   dni: Yup.number('Este campo solo debe contener números')
+      .test('len', 'El campo debe ser 10 caracteres', val => val && val.toString().length == 10),
+   edad: Yup.number('Este campo solo debe contener números')
+      .test('len', 'Máximo 2 caracteres', val => val && val.toString().length == 2),
+   email: Yup.string(),
+   contrasena: Yup.string()
+      .min(3, 'Mínimo 3 caracteres'),
+   roleId: Yup.string(),
+   companyId: Yup.string(),
+   vehicleId: Yup.string(),
+    });
 
-   useEffect(() => {
-      if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {
-         setVehiclesList(vehicles.vehicles);
-         setCompaniesList(companies.companies);
-         setRolesList(roles.roles);
-      }
-   }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
 
-   return (
-      <Formik
-         initialValues={initialValues}
-         validationSchema={validationSchema}
-         onSubmit={onSubmitForm}
-      >
-         <Form>
+    const { initialValues, onSubmitForm } = useUpdateForm({
+        id: moduleInfo.id,
+        dni: moduleInfo.dni,
+        edad: moduleInfo.edad,
+        email: moduleInfo.email,
+        contrasena: moduleInfo.contrasena,
+        roleId: moduleInfo.roleId,
+        companyId: moduleInfo.companyId,
+        vehicleId: moduleInfo.vehicleId,
+    }, 'users');
+
+    useEffect(() => {
+        if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {
+           setVehiclesList(vehicles.vehicles);
+           setCompaniesList(companies.companies);
+           setRolesList(roles.roles);
+        }
+     }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
+
+    return (
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values) => onSubmitForm(values)}
+        >
+            <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="dni" className="text-black font-semibold block mb-2">
@@ -70,20 +66,6 @@ export const UsersCreateForm = () => {
                      placeholder="DNI..."
                   />
                   <ErrorMessage name="dni" component="div" className="text-red-500" />
-               </div>
-
-               <div className="mb-4">
-                  <label htmlFor="nombre" className="text-black font-semibold block mb-2">
-                     Nombre:
-                  </label>
-                  <Field
-                     type="text"
-                     id="nombre"
-                     name="nombre"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Nombre..."
-                  />
-                  <ErrorMessage name="nombre" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
@@ -191,15 +173,16 @@ export const UsersCreateForm = () => {
                </div>
             </div>
 
-            <div className="text-center mt-2">
-               <button
-                  type="submit"
-                  className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
-               >
-                  Registrar
-               </button>
-            </div>
-         </Form>
-      </Formik>
-   );
-}
+                <div className="text-center mt-2">
+                    <button
+                        type="submit"
+                        className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
+                        onClick={() => console.log(initialValues)}
+                    >
+                        Editar
+                    </button>
+                </div>
+            </Form>
+        </Formik>
+    );
+}     
