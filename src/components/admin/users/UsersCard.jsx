@@ -36,7 +36,6 @@ export const UsersCard = ({ user }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.dni}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.edad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.email}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.contrasena}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.roleId}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.companyId}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.vehicleId}</td>

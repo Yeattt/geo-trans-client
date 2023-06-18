@@ -7,7 +7,7 @@ import { BiSearchAlt } from 'react-icons/bi';
 
 import { AdminLayout } from '../../../components/layouts';
 import { VehiclesCard, CreateFormModal, SearchModal } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useAuthStore, useGetApiData } from '../../../hooks';
 
 export const VehiclesHome = () => {
    const { isLoading, data } = useGetApiData('/vehicles');
@@ -15,10 +15,12 @@ export const VehiclesHome = () => {
    const [vehicles, setVehicles] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
    const [isSearchModalActive, setIsSearchModalActive] = useState(false);
+   const { startLogout, user } = useAuthStore();
 
    useEffect(() => {
       if (!isLoading) {
          setVehicles(data.vehicles);
+         console.log(user)
       }
    }, [isLoading, data]);
 
@@ -47,7 +49,7 @@ export const VehiclesHome = () => {
                </div>
 
                <div className="flex items-center justify-center">
-                  <span className="font-bold cursor-pointer">Jefferson</span>
+                  <span className="font-bold cursor-pointer">{user.name}</span>
 
                   <div className="bg-purplePz w-12 h-12 flex items-center justify-center rounded-full cursor-pointer ml-3">
                      <img
@@ -57,7 +59,9 @@ export const VehiclesHome = () => {
                   </div>
 
                   <span className="ml-3 text-2xl text-red-600 font-bold cursor-pointer">
-                     <MdExitToApp />
+                     <MdExitToApp
+                        onClick={startLogout}
+                     />
                   </span>
                </div>
             </div>
