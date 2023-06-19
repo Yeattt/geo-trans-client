@@ -8,7 +8,8 @@ import {
    RolesCreateForm,
    TripsCreateForm,
    UsersCreateForm,
-   VehiclesCreateForm
+   VehiclesCreateForm,
+   VehiclesTypeCreateForm
 } from '../admin';
 
 export const CreateFormModal = ({ handleIsCreateModalActive, module }) => {
@@ -20,7 +21,8 @@ export const CreateFormModal = ({ handleIsCreateModalActive, module }) => {
       Roles: RolesCreateForm,
       Trips: TripsCreateForm,
       Users: UsersCreateForm,
-      Vehicles: VehiclesCreateForm
+      Vehicles: VehiclesCreateForm,
+      VehiclesType: VehiclesTypeCreateForm
    };
 
    const ComponentToRender = components[module];
