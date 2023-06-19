@@ -350,6 +350,10 @@ export const TripsCreateForm = () => {
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Conductor..."
                   >
+                     <option value="" disabled defaultValue>
+                        Conductor...
+                     </option>
+
                      {
                         usersList.map(user=> (
                            <option value={user.id} key={user.id}>{user.nombre}</option>
