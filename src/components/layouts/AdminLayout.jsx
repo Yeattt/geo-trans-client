@@ -1,10 +1,8 @@
-import { AdimnNavbar, AdminSideMenu } from '../admin/';
+import { AdminSideMenu } from '../admin/';
 
 export const AdminLayout = ({ children }) => {
    return (
       <div className="flex flex-col h-screen">
-         {/* <AdimnNavbar /> */}
-
          <div className="flex flex-1">
             <AdminSideMenu />
 
