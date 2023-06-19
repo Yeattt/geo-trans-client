@@ -7,3 +7,4 @@ export * from './roles';
 export * from './trips';
 export * from './users';
 export * from './vehicles';
+export * from './vehiclesType';
