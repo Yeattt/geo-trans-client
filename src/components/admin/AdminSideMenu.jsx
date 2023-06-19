@@ -86,6 +86,15 @@ export const AdminSideMenu = () => {
                         Vehículos
                      </li>
                   </Link>
+
+                  <Link to="/admin/trucks/types">
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaTruckMoving />
+                        </span>
+                        Tipo Vehículos
+                     </li>
+                  </Link>
                </div>
             </nav>
          </div>
