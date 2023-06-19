@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FaTruckMoving } from 'react-icons/fa';
-import { MdExitToApp } from 'react-icons/md';
 import { BiSearchAlt } from 'react-icons/bi';
 
-import { AdminLayout } from '../../../components/layouts';
-import { VehiclesCard, CreateFormModal, SearchModal } from '../../../components';
-import { useAuthStore, useGetApiData } from '../../../hooks';
+import { AdminLayout, AdminNavbar, VehiclesCard, CreateFormModal, SearchModal } from '../../../components';
+import { useGetApiData } from '../../../hooks';
 
 export const VehiclesHome = () => {
    const { isLoading, data } = useGetApiData('/vehicles');
@@ -15,12 +13,10 @@ export const VehiclesHome = () => {
    const [vehicles, setVehicles] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
    const [isSearchModalActive, setIsSearchModalActive] = useState(false);
-   const { startLogout, user } = useAuthStore();
 
    useEffect(() => {
       if (!isLoading) {
          setVehicles(data.vehicles);
-         console.log(user)
       }
    }, [isLoading, data]);
 
@@ -41,30 +37,7 @@ export const VehiclesHome = () => {
    return (
       <AdminLayout>
          <div className="w-full bg-gray-200">
-            <div className="bg-white min-w-full flex items-center justify-between px-6 py-1">
-               <div className="flex flex-col justify-between px-6 py-1">
-                  <span className="text-2xl text-purplePz font-bold">Vehiculos</span>
-
-                  <span className="text-xs font-bold">{`Admin > Vehiculos`}</span>
-               </div>
-
-               <div className="flex items-center justify-center">
-                  <span className="font-bold cursor-pointer">{user.name}</span>
-
-                  <div className="bg-purplePz w-12 h-12 flex items-center justify-center rounded-full cursor-pointer ml-3">
-                     <img
-                        className="object-cover w-[95%] h-[95%] rounded-full"
-                        src="https://i1.sndcdn.com/artworks-pfkZ3eJZ5aIGjxDP-lvIbog-t500x500.jpg"
-                     />
-                  </div>
-
-                  <span className="ml-3 text-2xl text-red-600 font-bold cursor-pointer">
-                     <MdExitToApp
-                        onClick={startLogout}
-                     />
-                  </span>
-               </div>
-            </div>
+            <AdminNavbar module="Vehículos" />
 
             <br />
 

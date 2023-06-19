@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { BsClipboard2CheckFill } from 'react-icons/bs';
-import { MdExitToApp } from 'react-icons/md';
 import { BiSearchAlt } from 'react-icons/bi';
 
-import { AdminLayout } from '../../../components/layouts';
-import { PermissionsCard, CreateFormModal } from '../../../components';
+import { AdminLayout, AdminNavbar, PermissionsCard, CreateFormModal } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 
 export const PermissionsHome = () => {
@@ -40,28 +38,7 @@ export const PermissionsHome = () => {
    return (
       <AdminLayout>
          <div className="min-w-full bg-gray-200">
-            <div className="bg-white min-w-full flex items-center justify-between px-6 py-1">
-               <div className="flex flex-col justify-between px-6 py-1">
-                  <span className="text-2xl text-purplePz font-bold">Permisos</span>
-
-                  <span className="text-xs font-bold">{`Admin > Permisos`}</span>
-               </div>
-
-               <div className="flex items-center justify-center">
-                  <span className="font-bold cursor-pointer">Jefferson</span>
-
-                  <div className="bg-purplePz w-12 h-12 flex items-center justify-center rounded-full cursor-pointer ml-3">
-                     <img
-                        className="object-cover w-[95%] h-[95%] rounded-full"
-                        src="https://i1.sndcdn.com/artworks-pfkZ3eJZ5aIGjxDP-lvIbog-t500x500.jpg"
-                     />
-                  </div>
-
-                  <span className="ml-3 text-2xl text-red-600 font-bold cursor-pointer">
-                     <MdExitToApp />
-                  </span>
-               </div>
-            </div>
+            <AdminNavbar module="Permisos" />
 
             <br />
 
