@@ -1,29 +1,35 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { useAuthStore } from '../../hooks';
+import { useAuthStore, useSignUp } from '../../hooks';
 import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
    email: Yup.string()
       .email('Formato de email inválido')
       .required('Este campo es obligatorio'),
-   nombre: Yup.string()
+   edad: Yup.number()
+      .typeError('La edad es un campo numérico')
       .required('Este campo es obligatorio'),
-   documento: Yup.number()
+   dni: Yup.number()
       .typeError('El documento es un campo numérico')
       .required('Este campo es obligatorio'),
    contrasena: Yup.string()
       .min(3, 'La contraseña debe ser mínimo de 3 caracteres')
       .required('Este campo es obligatorio'),
-})
+});
 
 export const SignUpForm = () => {
-   const initialValues = {
+   const { initialValues, onSubmitForm } = useSignUp({
       email: '',
-      password: ''
-   }
-   
+      edad: '',
+      dni: '',
+      contrasena: '',
+      roleId: 1,
+      companyId: 1,
+      vehicleId: 1
+   });
+
    return (
       <Formik
          initialValues={initialValues}
@@ -43,10 +49,26 @@ export const SignUpForm = () => {
                   className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                   placeholder="Email..."
                />
+               
                <ErrorMessage name="email" component="div" className="text-red-500" />
             </div>
 
             <div className="mb-4">
+               <label htmlFor="edad" className="text-purplePz font-semibold block mb-2">
+                  Edad:
+               </label>
+
+               <Field
+                  type="text"
+                  id="edad"
+                  name="edad"
+                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                  placeholder="Edad..."
+               />
+               <ErrorMessage name="edad" component="div" className="text-red-500" />
+            </div>
+
+            {/* <div className="mb-4">
                <label htmlFor="nombre" className="text-purplePz font-semibold block mb-2">
                   Nombre:
                </label>
@@ -59,7 +81,7 @@ export const SignUpForm = () => {
                   placeholder="Nombre..."
                />
                <ErrorMessage name="nombre" component="div" className="text-red-500" />
-            </div>
+            </div> */}
 
             <div className="mb-4">
                <label htmlFor="documento" className="text-purplePz font-semibold block mb-2">
@@ -68,12 +90,12 @@ export const SignUpForm = () => {
 
                <Field
                   type="text"
-                  id="documento"
-                  name="documento"
+                  id="dni"
+                  name="dni"
                   className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                   placeholder="Documento..."
                />
-               <ErrorMessage name="documento" component="div" className="text-red-500" />
+               <ErrorMessage name="dni" component="div" className="text-red-500" />
             </div>
 
             <div className="mb-4">
