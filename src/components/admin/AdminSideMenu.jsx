@@ -23,6 +23,14 @@ export const AdminSideMenu = () => {
                         Usuarios
                      </li>
                   </Link>
+                  <Link to="/admin/users/allow">
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaUsersCog />
+                        </span>
+                        Usuarios Pendientes
+                     </li>
+                  </Link>
 
                   <Link to="/admin/clients">
                      <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">

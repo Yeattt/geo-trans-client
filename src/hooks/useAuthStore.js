@@ -26,17 +26,6 @@ export const useAuthStore = () => {
       }
    }
 
-   // TODO: Termnar el módulo de registro y añadir el revalidador del JWT
-   // const startRegister = async ({}) => {
-   //    try {
-   //       const { data } = await geoTransApi.post('/auth/signup', {});
-   //    } catch (error) {
-   //       dispatch(onLogout('Registro incorrecto'));
-
-
-   //    }
-   // }
-
    const checkAuthToken = async () => {
       const token = localStorage.getItem('token');
 
