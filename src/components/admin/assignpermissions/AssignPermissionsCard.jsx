@@ -8,7 +8,7 @@ import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
 
-export const CompaniesCard = ({ company }) => {
+export const AssignPermissionsCard = ({ assignpermissions }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
@@ -31,22 +31,19 @@ export const CompaniesCard = ({ company }) => {
 
    return (
       <tr className="hover:bg-gray-200">
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{company.id}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nit}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.razonSocial}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nombreEmpresa}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.telefono}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.duenoPoliza}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{assignpermissions.id}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{assignpermissions.roles}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{assignpermissions.permissions}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
          {
-            company.estado
+            assignpermissions.estado
             ?
-            <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+            <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
             :
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
          }
          {
-            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={company} value={'companies'} />
+            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={assignpermissions} value={'assignpermissions'} />
          }
          </td>
 
@@ -60,12 +57,12 @@ export const CompaniesCard = ({ company }) => {
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
             {
-               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={company} />
+               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={assignpermissions} />
             }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
                <FaEdit onClick={handleUpdateClick}/>
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Companies" moduleInfo={company} />
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="AssignPermissions" moduleInfo={assignpermissions} />
             </span>
 
             {/* <span

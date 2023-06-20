@@ -6,31 +6,26 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
+import { InfoModal, PendingModal } from '../../modals';
 
-export const UsersCard = ({ user }) => {
+export const PendingCard = ({ user }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
-   const handleViewDetails = () => {
-      setIsOpen(!isOpen)
-   }
-
-   const handleUpdateClick = () =>{
-      setisOpenUpdate(!isOpenUpdate)
-   }
+   
 
    const handleIsInfoModalActive = (status) => {
       setIsInfoModalActive(status);
    };
 
-   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
+   const [isPendingModalActive, setIsPendingModalActive] = useState(false);
 
-   const handleIsDeleteModalActive = (status) => {
-      setIsDeleteModalActive(status);
+   const handleIsPendingModalActive = (status) => {
+      setIsPendingModalActive(status);
    };
-
+   
    return (
+        
       <tr className="hover:bg-gray-200">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{user.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.dni}</td>
@@ -41,14 +36,14 @@ export const UsersCard = ({ user }) => {
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.vehicleId}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
          {
-            user.estado
+            !user.registroPendiente
             ?
-            <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+            <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsPendingModalActive(true)}>Registrado</button>
             :
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsPendingModalActive(true)}>Sin Registrar</button>
          }
          {
-            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={user} value={'users'} />
+            isPendingModalActive && <PendingModal handleIsPendingModalActive={handleIsPendingModalActive} module={user} value={'users'} />
          }
          </td>
 
@@ -65,10 +60,6 @@ export const UsersCard = ({ user }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={user} />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
-               <FaEdit onClick={handleUpdateClick}/>
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Users" moduleInfo={user} />
-            </span>
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
                <MdDeleteForever />

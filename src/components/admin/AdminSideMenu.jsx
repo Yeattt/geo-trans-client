@@ -23,6 +23,14 @@ export const AdminSideMenu = () => {
                         Usuarios
                      </li>
                   </Link>
+                  <Link to="/admin/users/allow">
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaUsersCog />
+                        </span>
+                        Usuarios Pendientes
+                     </li>
+                  </Link>
 
                   <Link to="/admin/clients">
                      <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
@@ -51,6 +59,15 @@ export const AdminSideMenu = () => {
                      </li>
                   </Link>
 
+                  <Link to="/admin/assignpermissions">
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <BsClipboard2CheckFill />
+                        </span>
+                        Asignar Permisos a Roles
+                     </li>
+                  </Link>
+
                   <Link to="/admin/quotes">
                      <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
                         <span className="w-5 h-5 mr-2 text-white text-xl">
@@ -69,6 +86,15 @@ export const AdminSideMenu = () => {
                      </li>
                   </Link>
 
+                  <Link to="/admin/assignpermissions">
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaUserCog />
+                        </span>
+                        Roles y Permisos
+                     </li>
+                  </Link>
+
                   <Link to="/admin/trips">
                      <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
                         <span className="w-5 h-5 mr-2 text-white text-xl">
@@ -84,6 +110,15 @@ export const AdminSideMenu = () => {
                            <FaTruckMoving />
                         </span>
                         Vehículos
+                     </li>
+                  </Link>
+
+                  <Link to="/admin/trucks/types">
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaTruckMoving />
+                        </span>
+                        Tipo Vehículos
                      </li>
                   </Link>
                </div>

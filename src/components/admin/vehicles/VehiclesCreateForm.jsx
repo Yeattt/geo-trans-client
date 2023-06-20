@@ -1,45 +1,56 @@
+import { useEffect, useState } from 'react';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { useCreateForm } from '../../../hooks';
+import { useCreateForm, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   tipoCamion:             Yup.string()
-                              .max(15, 'Máximo 15 caracteres')
-                              .required('Campo requerido'),
-   modelo:                 Yup.number()
-                              .typeError('El modelo debe ser un número')
-                              .required('Campo requerido')
-                              .test('len', 'Debe tener 4 dígitos', val => val && val.toString().length === 4),
-   marca:                  Yup.string()
-                              .max(15, 'Máximo 15 caracteres')
-                              .required('Campo requerido'),
-   placa:                 Yup.string()
-                              .max(6, 'Máximo 4 caracteres')
-                              .required('Campo requerido'),
-   placaSemirremolque:     Yup.string()
-                              .max(6, 'Máximo 6 caracteres')
-                              .required('Campo requerido'),
-   tarjetaPropiedad:       Yup.string()
-                              .required('Campo requerido'),
-   tecnomecanica:          Yup.string()
-                              .required('Campo requerido'),
-   soat:                   Yup.string()
-                              .required('Campo requerido'),
+   tipoCamion: Yup.string()
+      .max(15, 'Máximo 15 caracteres')
+      .required('Campo requerido'),
+   modelo: Yup.number()
+      .typeError('El modelo debe ser un número')
+      .required('Campo requerido')
+      .test('len', 'Debe tener 4 dígitos', val => val && val.toString().length === 4),
+   marca: Yup.string()
+      .max(15, 'Máximo 15 caracteres')
+      .required('Campo requerido'),
+   placa: Yup.string()
+      .max(6, 'Máximo 4 caracteres')
+      .required('Campo requerido'),
+   placaSemirremolque: Yup.string()
+      .max(6, 'Máximo 6 caracteres')
+      .required('Campo requerido'),
+   tarjetaPropiedad: Yup.string()
+      .required('Campo requerido'),
+   tecnomecanica: Yup.string()
+      .required('Campo requerido'),
+   soat: Yup.string()
+      .required('Campo requerido'),
 });
 
 export const VehiclesCreateForm = () => {
+   const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
+   const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
+
    const { initialValues, onSubmitForm } = useCreateForm({
-      tipoCamion        : '',
-      modelo            : '',
-      marca             : '',
-      placa             : '',
+      tipoCamion: vehiclesTypeList.length > 0 ? vehiclesTypeList[0].id : '',
+      modelo: '',
+      marca: '',
+      placa: '',
       placaSemirremolque: '',
-      tarjetaPropiedad  : '',
-      tecnomecanica     : '',
-      soat              : ''
+      tarjetaPropiedad: '',
+      tecnomecanica: '',
+      soat: ''
    }, 'vehicles');
+
+   useEffect(() => {
+      if (!isVehiclesTypeLoading) {
+         setVehiclesTypeList(vehiclesType.vehiclesType);
+      }
+   }, [isVehiclesTypeLoading]);
 
    return (
       <Formik
@@ -53,13 +64,24 @@ export const VehiclesCreateForm = () => {
                   <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
                      Tipo Camion:
                   </label>
+
                   <Field
-                     type="text"
+                     as="select"
                      id="tipoCamion"
                      name="tipoCamion"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Tipo Camión..."
-                  />
+                  >
+                     <option value="" disabled defaultValue>
+                        Tipo Camión...
+                     </option>
+                     
+                     {vehiclesTypeList.map(vehicleType => (
+                        <option value={vehicleType.id} key={vehicleType.id}>
+                           {vehicleType.nombre}
+                        </option>
+                     ))}
+                  </Field>
+
                   <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
                </div>
 
@@ -162,7 +184,7 @@ export const VehiclesCreateForm = () => {
                   <ErrorMessage name="soat" component="div" className="text-red-500" />
                </div>
             </div>
-            
+
             <div className="text-center mt-2">
                <button
                   type="submit"

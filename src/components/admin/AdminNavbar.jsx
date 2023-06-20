@@ -1,19 +1,34 @@
 import { Link } from 'react-router-dom';
 
-export const AdimnNavbar = () => {
+import { MdExitToApp } from 'react-icons/md';
+
+import { useAuthStore } from '../../hooks';
+
+export const AdminNavbar = ({ module = '' }) => {
+   const { user, startLogout } = useAuthStore();
+
    return (
-      <nav className="bg-gray-900">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-               <div className="flex-shrink-0">
-                  <a href="#" className="text-white text-lg font-semibold">Geotransporte</a>
-               </div>
-               <div className="hidden md:block">
-                  <div className="ml-4 flex items-center md:ml-6">
-                  </div>
-               </div>
-            </div>
+      <div className="bg-white min-w-full flex items-center justify-between px-6 py-1">
+         <div className="flex flex-col justify-between px-6 py-1">
+            <span className="text-2xl text-purplePz font-bold">{ module }</span>
+
+            <span className="text-xs font-bold">{`Admin > ${module}`}</span>
          </div>
-      </nav>
+
+         <div className="flex items-center justify-center">
+            <span className="font-bold cursor-pointer">{ user.name }</span>
+
+            <div className="bg-purplePz w-12 h-12 flex items-center justify-center rounded-full cursor-pointer ml-3">
+               <img
+                  className="object-cover w-[95%] h-[95%] rounded-full"
+                  src="https://i1.sndcdn.com/artworks-pfkZ3eJZ5aIGjxDP-lvIbog-t500x500.jpg"
+               />
+            </div>
+
+            <span className="ml-3 text-2xl text-red-600 font-bold cursor-pointer">
+               <MdExitToApp onClick={startLogout} />
+            </span>
+         </div>
+      </div>
    );
 }

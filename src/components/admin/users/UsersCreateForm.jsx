@@ -23,7 +23,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const UsersCreateForm = () => {
-      const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
+   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
 
@@ -139,6 +139,10 @@ export const UsersCreateForm = () => {
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Rol..."
                   >
+                     <option value="" disabled defaultValue>
+                        Rol...
+                     </option>
+
                      {
                         rolesList.map(role => (
                            <option value={role.id} key={role.id}>{role.nombre}</option>
@@ -159,6 +163,10 @@ export const UsersCreateForm = () => {
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Compañía..."
                   >
+                     <option value="" disabled defaultValue>
+                        Compañía...
+                     </option>
+
                      {
                         companiesList.map(company => (
                            <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
@@ -180,6 +188,10 @@ export const UsersCreateForm = () => {
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Vehículo..."
                   >
+                     <option value="" disabled defaultValue>
+                        Vehículo...
+                     </option>
+
                      {
                         vehiclesList.map(vehicle => (
                            <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>

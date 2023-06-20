@@ -265,6 +265,10 @@ export const QuotesCreateForm = () => {
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="User Id..."
                   >
+                     <option value="" disabled defaultValue>
+                        Usuario...
+                     </option>
+
                      {
                         usersList.map(user => (
                            <option value={user.id} key={user.id}>{user.nombre}</option>
