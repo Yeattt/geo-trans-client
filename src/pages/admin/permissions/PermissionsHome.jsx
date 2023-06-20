@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
-import { BsClipboard2CheckFill } from 'react-icons/bs';
 import { BiSearchAlt } from 'react-icons/bi';
 
-import { AdminLayout, AdminNavbar, PermissionsCard, CreateFormModal } from '../../../components';
+import { AdminLayout, AdminNavbar, PermissionsCard, CreateFormModal, AdminElementsCard } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 
 export const PermissionsHome = () => {
@@ -42,52 +39,7 @@ export const PermissionsHome = () => {
 
             <br />
 
-            <div className="flex flex-col md:flex-row items-center justify-around">
-               <div className="bg-gradient-to-r from-secondary to-secondaryHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
-                  <div className="flex flex-row justify-center items-center">
-                     <div className="text-xl flex items-center justify-center">
-                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <BsClipboard2CheckFill className="text-3xl text-secondary" />
-                        </span>
-
-                        <div className="flex flex-col justify-center">
-                           <span className="font-bold text-white">{permissions.length}</span>
-                           <span className="text-sm text-white font-bold">permisos registrados</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
-                  <div className="flex flex-row justify-center items-center">
-                     <div className="text-xl flex items-center justify-center">
-                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <BsClipboard2CheckFill className="text-3xl text-orangePz" />
-                        </span>
-
-                        <div className="flex flex-col justify-center">
-                           <span className="font-bold text-white">{permissions.length}</span>
-                           <span className="text-sm text-white font-bold">permisos registrados</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="bg-gradient-to-r from-purplePz to-purplePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
-                  <div className="flex flex-row justify-center items-center">
-                     <div className="text-xl flex items-center justify-center">
-                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <BsClipboard2CheckFill className="text-3xl text-purplePz" />
-                        </span>
-
-                        <div className="flex flex-col justify-center">
-                           <span className="font-bold text-white">{permissions.length}</span>
-                           <span className="text-sm text-white font-bold">permisos registrados</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <AdminElementsCard module="Permissions" data={permissions} />
 
             <br />
 

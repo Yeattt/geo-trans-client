@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
-import { FaUsersCog } from 'react-icons/fa';
-import { MdExitToApp } from 'react-icons/md';
 import { BiSearchAlt } from 'react-icons/bi';
 
-import { AdminLayout, AdminNavbar, PendingCard, SearchModal } from '../../../components';
+import { AdminElementsCard, AdminLayout, AdminNavbar, PendingCard, SearchModal } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 
 export const UsersPending = () => {
@@ -38,52 +34,7 @@ export const UsersPending = () => {
 
             <br />
 
-            <div className="flex flex-col md:flex-row items-center justify-around">
-               <div className="bg-gradient-to-r from-secondary to-secondaryHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
-                  <div className="flex flex-row justify-center items-center">
-                     <div className="text-xl flex items-center justify-center">
-                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <FaUsersCog className="text-3xl text-secondary" />
-                        </span>
-
-                        <div className="flex flex-col justify-center">
-                           <span className="font-bold text-white">{users.length}</span>
-                           <span className="text-sm text-white font-bold">Usuarios por confirmar</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
-                  <div className="flex flex-row justify-center items-center">
-                     <div className="text-xl flex items-center justify-center">
-                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <FaUsersCog className="text-3xl text-orangePz" />
-                        </span>
-
-                        <div className="flex flex-col justify-center">
-                           <span className="font-bold text-white">{users.length}</span>
-                           <span className="text-sm text-white font-bold">Usuarios por confirmar</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="bg-gradient-to-r from-purplePz to-purplePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
-                  <div className="flex flex-row justify-center items-center">
-                     <div className="text-xl flex items-center justify-center">
-                        <span className="border border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                           <FaUsersCog className="text-3xl text-purplePz" />
-                        </span>
-
-                        <div className="flex flex-col justify-center">
-                           <span className="font-bold text-white">{users.length}</span>
-                           <span className="text-sm text-white font-bold">Usuarios por confirmar</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <AdminElementsCard module="Users" data={users} />
 
             <br />
 
