@@ -69,6 +69,15 @@ export const AdminSideMenu = () => {
                      </li>
                   </Link>
 
+                  <Link to="/admin/assignpermissions">
+                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
+                        <span className="w-5 h-5 mr-2 text-white text-xl">
+                           <FaUserCog />
+                        </span>
+                        Roles y Permisos
+                     </li>
+                  </Link>
+
                   <Link to="/admin/trips">
                      <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
                         <span className="w-5 h-5 mr-2 text-white text-xl">

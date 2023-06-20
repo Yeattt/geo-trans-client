@@ -8,3 +8,4 @@ export * from './TripsRoutes';
 export * from './UsersRoutes';
 export * from './VehiclesRoutes';
 export * from './VehiclesTypeRoutes';
+export * from './AssignPermissionsRoutes';

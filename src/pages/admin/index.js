@@ -8,3 +8,4 @@ export * from './trips';
 export * from './users';
 export * from './vehicles';
 export * from './vehiclesType';
+export * from './assignpermissions';

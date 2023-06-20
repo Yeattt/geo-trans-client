@@ -9,7 +9,8 @@ import {
     TripsUpdate,
     UsersUpdate,
     VehiclesUpdate,
-    VehiclesTypeUpdate
+    VehiclesTypeUpdate,
+    AssignPermissionsUpdate
 } from '../admin';
 
 export const UpdateModal = ({ isOpenUpdate, module, moduleInfo }) => {
@@ -22,7 +23,8 @@ export const UpdateModal = ({ isOpenUpdate, module, moduleInfo }) => {
         Trips: TripsUpdate,
         Users: UsersUpdate,
         Vehicles: VehiclesUpdate,
-        VehiclesType: VehiclesTypeUpdate
+        VehiclesType: VehiclesTypeUpdate,
+        AssignPermissions: AssignPermissionsUpdate
     };
 
     const ComponentToRender = components[module];
