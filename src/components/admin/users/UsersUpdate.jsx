@@ -1,10 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useUpdateForm, useGetApiData} from '../../../hooks';
+import { useUpdateForm, useGetApiData } from '../../../hooks';
 import { useState, useEffect } from 'react';
 
 
-export const UsersUpdate = ({moduleInfo}) => {
+export const UsersUpdate = ({ moduleInfo }) => {
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
@@ -13,46 +13,46 @@ export const UsersUpdate = ({moduleInfo}) => {
    const [companiesList, setCompaniesList] = useState([]);
    const [rolesList, setRolesList] = useState([]);
 
-    const validationSchema = Yup.object().shape({
-   dni: Yup.number('Este campo solo debe contener números')
-      .test('len', 'El campo debe ser 10 caracteres', val => val && val.toString().length == 10),
-   edad: Yup.number('Este campo solo debe contener números')
-      .test('len', 'Máximo 2 caracteres', val => val && val.toString().length == 2),
-   email: Yup.string(),
-   contrasena: Yup.string()
-      .min(3, 'Mínimo 3 caracteres'),
-   roleId: Yup.string(),
-   companyId: Yup.string(),
-   vehicleId: Yup.string(),
-    });
+   const validationSchema = Yup.object().shape({
+      documento: Yup.number('Este campo solo debe contener números')
+         .test('len', 'El campo debe ser 10 caracteres', val => val && val.toString().length == 10),
+      edad: Yup.number('Este campo solo debe contener números')
+         .test('len', 'Máximo 2 caracteres', val => val && val.toString().length == 2),
+      email: Yup.string(),
+      contrasena: Yup.string()
+         .min(3, 'Mínimo 3 caracteres'),
+      roleId: Yup.string(),
+      companyId: Yup.string(),
+      vehicleId: Yup.string(),
+   });
 
 
-    const { initialValues, onSubmitForm } = useUpdateForm({
-        id: moduleInfo.id,
-        dni: moduleInfo.dni,
-        edad: moduleInfo.edad,
-        email: moduleInfo.email,
-        contrasena: moduleInfo.contrasena,
-        roleId: moduleInfo.roleId,
-        companyId: moduleInfo.companyId,
-        vehicleId: moduleInfo.vehicleId,
-    }, 'users');
+   const { initialValues, onSubmitForm } = useUpdateForm({
+      id: moduleInfo.id,
+      documento: moduleInfo.documento,
+      edad: moduleInfo.edad,
+      email: moduleInfo.email,
+      contrasena: moduleInfo.contrasena,
+      roleId: moduleInfo.roleId,
+      companyId: moduleInfo.companyId,
+      vehicleId: moduleInfo.vehicleId,
+   }, 'users');
 
-    useEffect(() => {
-        if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {
-           setVehiclesList(vehicles.vehicles);
-           setCompaniesList(companies.companies);
-           setRolesList(roles.roles);
-        }
-     }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
+   useEffect(() => {
+      if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {
+         setVehiclesList(vehicles.vehicles);
+         setCompaniesList(companies.companies);
+         setRolesList(roles.roles);
+      }
+   }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
 
-    return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={(values) => onSubmitForm(values)}
-        >
-            <Form>
+   return (
+      <Formik
+         initialValues={initialValues}
+         validationSchema={validationSchema}
+         onSubmit={(values) => onSubmitForm(values)}
+      >
+         <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="dni" className="text-black font-semibold block mb-2">
@@ -173,16 +173,16 @@ export const UsersUpdate = ({moduleInfo}) => {
                </div>
             </div>
 
-                <div className="text-center mt-2">
-                    <button
-                        type="submit"
-                        className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
-                        onClick={() => console.log(initialValues)}
-                    >
-                        Editar
-                    </button>
-                </div>
-            </Form>
-        </Formik>
-    );
+            <div className="text-center mt-2">
+               <button
+                  type="submit"
+                  className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
+                  onClick={() => console.log(initialValues)}
+               >
+                  Editar
+               </button>
+            </div>
+         </Form>
+      </Formik>
+   );
 }     

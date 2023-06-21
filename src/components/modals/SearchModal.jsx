@@ -11,10 +11,9 @@ export const SearchModal = ({ setIsSearchModalActive, isSearchModalActive, modul
    useEffect(() => {
       if (!isLoading) {
          const moduleToLowerCase = module.toLowerCase();
+         const moduleInSingular = moduleToLowerCase.slice(0, -1);
 
-         setQueryResults(data[moduleToLowerCase][0]);
-
-         console.log(queryResults);
+         setQueryResults(data[moduleInSingular]);
       }
    });
 

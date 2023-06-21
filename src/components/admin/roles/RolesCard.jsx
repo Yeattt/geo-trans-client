@@ -31,7 +31,7 @@ export const RolesCard = ({ role }) => {
    };
 
    return (
-      <tr className="hover:bg-gray-200">
+      <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{role.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{role.nombre}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
@@ -60,7 +60,7 @@ export const RolesCard = ({ role }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={role} />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Roles" moduleInfo={role} />
             </span>

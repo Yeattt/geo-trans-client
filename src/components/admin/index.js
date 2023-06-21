@@ -13,5 +13,7 @@ export * from './vehicles';
 export * from './vehiclesType';
 export * from './assignpermissions';
 
+export * from './AdminElementsCard';
+export * from './AdminSearcher';
 export * from './AdminSideMenu';
 export * from './AdminNavbar';

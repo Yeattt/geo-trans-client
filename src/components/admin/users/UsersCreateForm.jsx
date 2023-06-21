@@ -7,7 +7,7 @@ import { useCreateForm, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   dni: Yup.number('Este campo solo debe contener números')
+   documento: Yup.number('Este campo solo debe contener números')
       .test('len', 'El campo debe ser 10 caracteres', val => val && val.toString().length == 10)
       .required('Campo requerido'),
    edad: Yup.number('Este campo solo debe contener números')
@@ -32,7 +32,7 @@ export const UsersCreateForm = () => {
    const [rolesList, setRolesList] = useState([]);
 
    const { initialValues, onSubmitForm } = useCreateForm({
-      dni: '',
+      documento: '',
       nombre: '',
       edad: '',
       email: '',
@@ -59,17 +59,17 @@ export const UsersCreateForm = () => {
          <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
-                  <label htmlFor="dni" className="text-black font-semibold block mb-2">
-                     Dni:
+                  <label htmlFor="documento" className="text-black font-semibold block mb-2">
+                     Documento:
                   </label>
                   <Field
                      type="text"
-                     id="dni"
-                     name="dni"
+                     id="documento"
+                     name="documento"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="DNI..."
+                     placeholder="Documento..."
                   />
-                  <ErrorMessage name="dni" component="div" className="text-red-500" />
+                  <ErrorMessage name="documento" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">

@@ -33,7 +33,7 @@ export const PermissionsCard = ({ permission }) => {
    
 
    return (
-      <tr className="hover:bg-gray-200">
+      <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{permission.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{permission.nombre}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
@@ -62,7 +62,7 @@ export const PermissionsCard = ({ permission }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={permission}  />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Permissions" moduleInfo={permission} />
             </span>

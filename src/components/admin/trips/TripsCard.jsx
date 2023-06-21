@@ -40,7 +40,7 @@ export const TripsCard = ({ trip }) => {
    }, [isVehiclesLoading]);
 
    return (
-      <tr className="hover:bg-gray-200">
+      <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{trip.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cantidad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.codigoProducto}</td>
@@ -73,7 +73,7 @@ export const TripsCard = ({ trip }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={trip} />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Trips" moduleInfo={trip} />
             </span>
