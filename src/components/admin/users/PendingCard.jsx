@@ -26,9 +26,9 @@ export const PendingCard = ({ user }) => {
    
    return (
         
-      <tr className="hover:bg-gray-200">
+      <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{user.id}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.dni}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.documento}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.edad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.email}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.roleId}</td>
@@ -49,7 +49,7 @@ export const PendingCard = ({ user }) => {
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
+               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer"
                onClick={() => handleIsInfoModalActive(true)}
             >
                <TbInfoHexagon />

@@ -1,8 +1,5 @@
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
-import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
@@ -10,13 +7,14 @@ import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
 
 export const UsersCard = ({ user }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
-   const [isOpen, setIsOpen] = useState(false)
-   const [isOpenUpdate, setisOpenUpdate] = useState(false)
+   const [isOpen, setIsOpen] = useState(false);
+   const [isOpenUpdate, setisOpenUpdate] = useState(false);
+
    const handleViewDetails = () => {
       setIsOpen(!isOpen)
    }
 
-   const handleUpdateClick = () =>{
+   const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
    }
 
@@ -31,25 +29,25 @@ export const UsersCard = ({ user }) => {
    };
 
    return (
-      <tr className="hover:bg-gray-200">
+      <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{user.id}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.dni}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.documento}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.edad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.email}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.roleId}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.companyId}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.vehicleId}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         {
-            user.estado
-            ?
-            <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
-            :
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
-         }
-         {
-            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={user} value={'users'} />
-         }
+            {
+               user.estado
+                  ?
+                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  :
+                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+            }
+            {
+               isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={user} value={'users'} />
+            }
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
@@ -65,8 +63,8 @@ export const UsersCard = ({ user }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={user} />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
-               <FaEdit onClick={handleUpdateClick}/>
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
+               <FaEdit onClick={handleUpdateClick} />
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Users" moduleInfo={user} />
             </span>
 

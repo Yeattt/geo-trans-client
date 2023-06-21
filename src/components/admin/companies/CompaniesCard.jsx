@@ -30,7 +30,7 @@ export const CompaniesCard = ({ company }) => {
    };
 
    return (
-      <tr className="hover:bg-gray-200">
+      <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{company.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nit}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.razonSocial}</td>
@@ -63,7 +63,7 @@ export const CompaniesCard = ({ company }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={company} />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Companies" moduleInfo={company} />
             </span>

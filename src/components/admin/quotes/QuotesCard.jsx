@@ -31,7 +31,7 @@ export const QuotesCard = ({ quote }) => {
    };
 
    return (
-      <tr className="hover:bg-gray-200">
+      <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{quote.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.codigoCotizacion}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.cantidad}</td>
@@ -71,7 +71,7 @@ export const QuotesCard = ({ quote }) => {
             {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={quote} />
             }
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} />
             </span>
