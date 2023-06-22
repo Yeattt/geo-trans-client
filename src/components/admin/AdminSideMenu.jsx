@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { FaMoneyCheckAlt, FaTruck, FaTruckLoading, FaUsersCog, FaUserCog } from 'react-icons/fa';
 import { BsBuildingFillGear, BsClipboard2CheckFill } from 'react-icons/bs';
@@ -32,142 +32,167 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                </span>
             </div>
 
-            <nav className="mt-8">
-               <div className="space-y-1">
-                  <Link to="/admin/users">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <FaUsersCog />
-                        </span>
+            <nav className="mt-8 flex justify-end">
+               <div className="space-y-1 w-[95%]">
+                  <NavLink to="/admin/users" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <FaUsersCog />
+                     </span>
 
-                        <span className="text-[15px]">
-                           Usuarios
-                        </span>
-                     </li>
-                  </Link>
-                  <Link to="/admin/users/allow">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <FaUsersCog />
-                        </span>
+                     <span className="text-[15px]">
+                        Usuarios
+                     </span>
+                  </NavLink>
 
-                        <span className="text-[15px]">
-                           Usuarios Pendientes
-                        </span>
-                     </li>
-                  </Link>
+                  <NavLink to="/admin/users/allow" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <FaUsersCog />
+                     </span>
 
-                  <Link to="/admin/clients">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <RiUserStarFill />
-                        </span>
+                     <span className="text-[15px]">
+                        Usuarios Pendientes
+                     </span>
+                  </NavLink>
 
-                        <span className="text-[15px]">
-                           Clientes
-                        </span>
-                     </li>
-                  </Link>
+                  <NavLink to="/admin/clients" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200': 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <RiUserStarFill />
+                     </span>
 
-                  <Link to="/admin/companies">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <BsBuildingFillGear />
-                        </span>
+                     <span className="text-[15px]">
+                        Clientes
+                     </span>
+                  </NavLink>
 
-                        <span className="text-[15px]">
-                           Compañías
-                        </span>
-                     </li>
-                  </Link>
+                  <NavLink to="/admin/companies" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <BsBuildingFillGear />
+                     </span>
 
-                  <Link to="/admin/permissions">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <BsClipboard2CheckFill />
-                        </span>
+                     <span className="text-[15px]">
+                        Compañías
+                     </span>
+                  </NavLink>
 
-                        <span className="text-[15px]">
-                           Permisos
-                        </span>
-                     </li>
-                  </Link>
+                  <NavLink to="/admin/permissions" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <BsClipboard2CheckFill />
+                     </span>
 
-                  <Link to="/admin/assignpermissions">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <MdAssignmentAdd />
-                        </span>
+                     <span className="text-[15px]">
+                        Permisos
+                     </span>
+                  </NavLink>
 
+                  <NavLink to="/admin/assignpermissions" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <MdAssignmentAdd />
+                     </span>
+
+                     <span className="text-[15px]">
                         Asignar Permisos
-                     </li>
-                  </Link>
+                     </span>
+                  </NavLink>
 
-                  <Link to="/admin/quotes">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <FaMoneyCheckAlt />
-                        </span>
+                  <NavLink to="/admin/quotes" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <FaMoneyCheckAlt />
+                     </span>
 
-                        <span className="text-[15px]">
-                           Cotizaciones
-                        </span>
-                     </li>
-                  </Link>
+                     <span className="text-[15px]">
+                        Cotizaciones
+                     </span>
+                  </NavLink>
 
-                  <Link to="/admin/roles">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <FaUserCog />
-                        </span>
+                  <NavLink to="/admin/roles" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <FaUserCog />
+                     </span>
 
-                        <span className="text-[15px]">
-                           Roles
-                        </span>
-                     </li>
-                  </Link>
+                     <span className="text-[15px]">
+                        Roles
+                     </span>
+                  </NavLink>
 
-                  <Link to="/admin/trips">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <IoSubway />
-                        </span>
+                  <NavLink to="/admin/trips" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <IoSubway />
+                     </span>
 
-                        <span className="text-[15px]">
-                           Viajes
-                        </span>
-                     </li>
-                  </Link>
+                     <span className="text-[15px]">
+                        Viajes
+                     </span>
+                  </NavLink>
 
-                  <Link to="/admin/vehicles">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <div className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <FaTruck />
-                        </div>
+                  <NavLink to="/admin/vehicles" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <FaTruck />
+                     </span>
 
-                        <span className="text-[15px]">
-                           Vehículos
-                        </span>
-                     </li>
-                  </Link>
+                     <span className="text-[15px]">
+                        Vehículos
+                     </span>
+                  </NavLink>
 
-                  <Link to="/admin/trucks/types">
-                     <li className="cursor-pointer flex items-center px-4 py-2 font-bold text-white hover:text-white hover:bg-purplePzHover">
-                        <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
-                           <FaTruckLoading />
-                        </span>
+                  <NavLink to="/admin/trucks/types" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                        <FaTruckLoading />
+                     </span>
 
-                        <span className="text-[15px]">
-                           Tipos Vehículos
-                        </span>
-                     </li>
-                  </Link>
+                     <span className="text-[15px]">
+                        Tipos Vehículos
+                     </span>
+                  </NavLink>
                </div>
             </nav>
-         </div>
+         </div >
          <div className="flex flex-col flex-1 overflow-hidden">
             {/* Contenido principal */}
          </div>
-      </div>
+      </div >
    );
 }
