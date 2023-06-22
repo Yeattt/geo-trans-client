@@ -31,8 +31,7 @@ export const UsersUpdate = ({ moduleInfo }) => {
       id: moduleInfo.id,
       documento: moduleInfo.documento,
       edad: moduleInfo.edad,
-      email: moduleInfo.email,
-      contrasena: moduleInfo.contrasena,
+      email: moduleInfo.email,      
       roleId: moduleInfo.roleId,
       companyId: moduleInfo.companyId,
       vehicleId: moduleInfo.vehicleId,
@@ -55,17 +54,17 @@ export const UsersUpdate = ({ moduleInfo }) => {
          <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
-                  <label htmlFor="dni" className="text-black font-semibold block mb-2">
-                     Dni:
+                  <label htmlFor="documento" className="text-black font-semibold block mb-2">
+                     Documento:
                   </label>
                   <Field
                      type="text"
-                     id="dni"
-                     name="dni"
+                     id="documento"
+                     name="documento"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="DNI..."
+                     placeholder="Documento..."
                   />
-                  <ErrorMessage name="dni" component="div" className="text-red-500" />
+                  <ErrorMessage name="documento" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
@@ -95,21 +94,7 @@ export const UsersUpdate = ({ moduleInfo }) => {
                   />
                   <ErrorMessage name="email" component="div" className="text-red-500" />
                </div>
-
-               <div className="mb-4">
-                  <label htmlFor="contrasena" className="text-black font-semibold block mb-2">
-                     Contrasena:
-                  </label>
-                  <Field
-                     type="text"
-                     id="contrasena"
-                     name="contrasena"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Contraseña..."
-                  />
-                  <ErrorMessage name="contrasena" component="div" className="text-red-500" />
-               </div>
-
+                           
                <div className="mb-4">
                   <label htmlFor="roleId" className="text-black font-semibold block mb-2">
                      Rol:
