@@ -10,9 +10,7 @@ const validationSchema = Yup.object().shape({
 
 export const RolesCreateForm = () => {
    const { initialValues, onSubmitForm } = useCreateForm({
-      nombre: Yup.string()
-                  .max(15, 'Máximo 15 caracteres')
-                  .required('Campo requerido')
+      nombre: ''
    }, 'roles');
 
    return (
