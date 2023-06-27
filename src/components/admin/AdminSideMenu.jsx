@@ -13,7 +13,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
    const isSideMenuOpen = useSelector((state) => state.sideMenu);
 
    return (
-      <div className={`flex w-64 h-screen ${isSideMenuOpen ? 'fixed' : 'hidden lg:block'}`}>
+      <div className={`flex w-64 h-screen z-10 ${isSideMenuOpen ? 'fixed' : 'hidden lg:block'}`}>
          <div className={`h-full w-full bg-primary`}>
             <div className="flex items-center justify-center h-16">
                <span className="block lg:hidden text-red-600 transition hover:text-red-800 text-2xl mr-2 cursor-pointer">
