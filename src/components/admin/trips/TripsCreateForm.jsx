@@ -1,9 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { Link } from 'react-router-dom';
 import { useCreateForm, useGetApiData } from '../../../hooks';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -23,9 +22,6 @@ const validationSchema = Yup.object().shape({
       .required('Campo requerido'),
    empaque: Yup.string('Este campo solo debe contener letras')
       .max(20, 'Máximo 20 caracteres')
-      .required('Campo requerido'),
-   codigoProducto: Yup.number('Este campo solo debe contener números')
-      .test('len', 'Máximo 10 caracteres', val => val && val.toString().length <= 10)
       .required('Campo requerido'),
    productoTransportar: Yup.string('Este campo solo debe contener letras')
       .max(25, 'Máximo 25 caracteres')
@@ -50,21 +46,15 @@ const validationSchema = Yup.object().shape({
    tipoViaje: Yup.string()
       .max(30, 'Máximo 30 caracteres')
       .required('Campo requerido'),
-   vehiculo: Yup.string()
-      .max(30, 'Máximo 30 caracteres')
-      .required('Campo requerido'),
-   conductor: Yup.string()
-      .max(30, 'Máximo 30 caracteres')
-      .required('Campo requerido'),
 });
 
 export const TripsCreateForm = () => {
 
-   const {data:vehicles, isLoading: isVehiclesLoading}=useGetApiData('/vehicles');
-   const {data:users, isLoading: isUsersLoading}=useGetApiData('/users');
+   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
+   const { data: users, isLoading: isUsersLoading } = useGetApiData('/users');
 
-   const [vehiclesList, setVehiclesList]= useState([]);
-   const [usersList, setUsersList]= useState([]);
+   const [vehiclesList, setVehiclesList] = useState([]);
+   const [usersList, setUsersList] = useState([]);
 
    const { initialValues, onSubmitForm } = useCreateForm({
       cantidad: '',
@@ -81,16 +71,17 @@ export const TripsCreateForm = () => {
       tipoViaje: '',
       fechaViaje: '',
       cliente: '',
-      conductor:'',
+      conductorId: '',
+      vehiculoId: ''
    }, 'trips');
 
-   useEffect(()=>{
+   useEffect(() => {
       if (!isVehiclesLoading && !isUsersLoading) {
+
          setVehiclesList(vehicles.vehicles);
          setUsersList(users.users);
       }
-         },
-         [isVehiclesLoading,isUsersLoading]);
+   }, [isVehiclesLoading, isUsersLoading]);
 
    return (
       <Formik
@@ -226,13 +217,13 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="empaque" className="text-black font-semibold block mb-2">
-                     Codigo producto:
+                     Código producto:
                   </label>
                   <Field
                      as="select"
-                     id="empaque"
-                     name="empaque"
-                     placeholder="empaque..."
+                     id="codigoProducto"
+                     name="codigoProducto"
+                     placeholder="Código producto..."
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                   >
                      <option value="0001">ACERO</option>
@@ -341,12 +332,12 @@ export const TripsCreateForm = () => {
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="conductor" className="text-black font-semibold block mb-2">
+                  <label htmlFor="conductorId" className="text-black font-semibold block mb-2">
                      Conductor:
                   </label>
                   <Field
                      as="select"
-                     name="conductor"
+                     name="conductorId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="Conductor..."
                   >
@@ -355,12 +346,35 @@ export const TripsCreateForm = () => {
                      </option>
 
                      {
-                        usersList.map(user=> (
-                           <option value={user.id} key={user.id}>{user.nombre}</option>
+                        usersList.map(user => (
+                           <option value={user.id} key={user.id}>{user.email}</option>
                         ))
                      }
                   </Field>
-                  <ErrorMessage name="conductor" component="div" className="text-red-500" />
+                  <ErrorMessage name="conductorId" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="vehiculoId" className="text-black font-semibold block mb-2">
+                     Vehículo:
+                  </label>
+                  <Field
+                     as="select"
+                     name="vehiculoId"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Conductor..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Vehículo...
+                     </option>
+
+                     {
+                        vehiclesList.map(vehicle => (
+                           <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
+                        ))
+                     }
+                  </Field>
+                  <ErrorMessage name="vehiculoId" component="div" className="text-red-500" />
                </div>
             </div>
 

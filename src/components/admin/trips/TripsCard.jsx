@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
+import { useGetApiData } from '../../../hooks';
 
 export const TripsCard = ({ trip }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
@@ -75,7 +76,7 @@ export const TripsCard = ({ trip }) => {
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Trips" moduleInfo={trip} />
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Trips" moduleInfo={trip}  handleUpdateClick={handleUpdateClick} />
             </span>
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">

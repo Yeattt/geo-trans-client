@@ -19,7 +19,7 @@ export const AdminNavbar = ({ module = '' }) => {
 
    return (
       <div className="bg-white min-w-full flex items-center justify-between px-6 py-1">
-         <span className="block lg:hidden">
+         <span className="block lg:hidden cursor-pointer">
             <HiMenu onClick={handleToggleMenu} />
          </span>
 

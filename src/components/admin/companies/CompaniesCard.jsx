@@ -65,7 +65,7 @@ export const CompaniesCard = ({ company }) => {
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Companies" moduleInfo={company} />
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Companies" moduleInfo={company}  handleUpdateClick={handleUpdateClick} />
             </span>
 
             {/* <span

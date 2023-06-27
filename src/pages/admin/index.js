@@ -1,4 +1,3 @@
-export * from './Dashboard';
 export * from './clients';
 export * from './companies'
 export * from './permissions';
@@ -9,3 +8,6 @@ export * from './users';
 export * from './vehicles';
 export * from './vehiclesType';
 export * from './assignpermissions';
+
+export * from './Dashboard';
+export * from './CalendarPage';

@@ -10,16 +10,13 @@ export const useDelete = (endpoint) => {
     const onDelete = (id) => {
         geoTransApi.delete(`/${endpoint}/delete/${id}`)
             .then(res => {
-                console.log(res)
                 Swal.fire('Cambio de estado satisfactorio', res.data.message, 'success');
-                return;
+                navigate(0);
             })
             .catch(err => {
                 Swal.fire('Error al cambiar de estado', err.response.data.message, 'error');
                 return;
             })
-
-
     };
 
     return {

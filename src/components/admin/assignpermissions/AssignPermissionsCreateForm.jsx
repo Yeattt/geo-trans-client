@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData } from '../../../hooks';
+import { useAssignPermissions, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   rol:           Yup.string('Solo se acepta letras')
-                     .required('Campo requerido'),
-   permisos:   Yup.string('Solo se acepta letras')
-                     .required('Campo requerido'),
+   rol: Yup.string('Solo se acepta letras')
+      .required('Campo requerido'),
+   permisos: Yup.string('Solo se acepta letras')
+      .required('Campo requerido'),
 });
 
 export const AssignPermissionsCreateForm = () => {
@@ -20,10 +20,7 @@ export const AssignPermissionsCreateForm = () => {
    const [rolesList, setRolesList] = useState([]);
    const [permissionsList, setPermissionsList] = useState([]);
 
-   const { initialValues, onSubmitForm } = useCreateForm({
-      rol: '',
-      permisos: ''
-   }, 'assignpermissions');
+   
 
    useEffect(() => {
       if (!isRolesLoading && !isPermissionsLoading) {
@@ -31,6 +28,10 @@ export const AssignPermissionsCreateForm = () => {
          setPermissionsList(permissions.permissions);
       }
    }, [isRolesLoading, isPermissionsLoading]);
+
+
+
+   
 
    return (
       <Formik
@@ -68,14 +69,29 @@ export const AssignPermissionsCreateForm = () => {
                   <label htmlFor="permisos" className="text-black font-semibold block mb-2">
                      Permisos:
                   </label>
-                  <Field
-                     type="text"
-                     id="permisos"
-                     name="permisos"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Permisos..."
-                  />
-                  <ErrorMessage name="permisos" component="div" className="text-red-500" />
+                  {
+                     permissionsList.map(({ nombre, id }) => {
+                        return (
+                              <div className="toppings-list-item">
+                                    <Field
+                                       type="checkbox"
+                                       id={nombre}
+                                       name={nombre}
+                                       value={nombre}
+                                       className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
+                                       checked={checkedState[id]}
+                                       onChange={() => handleOnChange(id)}
+                                    />
+                                    <label htmlFor={nombre}>{nombre}</label>
+                              </div>
+                        );
+                     }
+                     )
+                        
+                     
+                  }
+
+                  <ErrorMessage name="permissions" component="div" className="text-red-500" />
                </div>
 
             </div>

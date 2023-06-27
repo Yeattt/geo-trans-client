@@ -13,7 +13,7 @@ import {
     AssignPermissionsUpdate
 } from '../admin';
 
-export const UpdateModal = ({ isOpenUpdate, module, moduleInfo }) => {
+export const UpdateModal = ({ isOpenUpdate, module, moduleInfo, handleUpdateClick }) => {
     const components = {
         Clients: ClientsUpdate,
         Companies: CompaniesUpdate,
@@ -39,6 +39,7 @@ export const UpdateModal = ({ isOpenUpdate, module, moduleInfo }) => {
 
                             <span
                                 className="w-8 h-8 text-lg text-white bg-red-600 hover:bg-red-700 transition-all cursor-pointer rounded-full flex items-center justify-center"
+                                onClick={() => handleUpdateClick(false)}
                             >
                                 <AiOutlineClose />
 

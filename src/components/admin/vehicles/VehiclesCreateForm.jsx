@@ -3,6 +3,13 @@ import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+import { GiTowTruck } from 'react-icons/gi';
+import { HiOutlineCreditCard } from 'react-icons/hi';
+import { TbFiretruck } from 'react-icons/tb';
+import { BsFillPersonVcardFill, BsCardHeading } from 'react-icons/bs';
+import { CgToolbox } from 'react-icons/cg';
+import { FaTruckLoading } from 'react-icons/fa';
+
 import { useCreateForm, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
@@ -61,6 +68,38 @@ export const VehiclesCreateForm = () => {
          <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
+                  <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
+                     Tipo Camión:
+                  </label>
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <FaTruckLoading />
+                     </div>
+
+                     <Field
+                        as="select"
+                        id="tipoCamion"
+                        name="tipoCamion"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Tipo Camión..."
+                     >
+                        <option value="" disabled defaultValue>
+                           Tipo Camión...
+                        </option>
+
+                        {vehiclesTypeList.map(vehicleType => (
+                           <option value={vehicleType.id} key={vehicleType.id}>
+                              {vehicleType.nombre}
+                           </option>
+                        ))}
+                     </Field>
+                  </div>
+
+                  <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
+               </div>
+
+               {/* <div className="mb-4">
                   <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
                      Tipo Camion:
                   </label>
@@ -74,7 +113,7 @@ export const VehiclesCreateForm = () => {
                      <option value="" disabled defaultValue>
                         Tipo Camión...
                      </option>
-                     
+
                      {vehiclesTypeList.map(vehicleType => (
                         <option value={vehicleType.id} key={vehicleType.id}>
                            {vehicleType.nombre}
@@ -83,104 +122,160 @@ export const VehiclesCreateForm = () => {
                   </Field>
 
                   <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
-               </div>
+               </div> */}
 
                <div className="mb-4">
-                  <label htmlFor="modelo" className="text-black font-semibold block mb-2">
+                  <label htmlFor="modelo" className="text-purplePz font-semibold block mb-2">
                      Modelo:
                   </label>
-                  <Field
-                     type="text"
-                     id="modelo"
-                     name="modelo"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Modelo..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <GiTowTruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="modelo"
+                        name="modelo"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Modelo..."
+                     />
+                  </div>
+
                   <ErrorMessage name="modelo" component="div" className="text-red-500" />
                </div>
 
 
                <div className="mb-4">
-                  <label htmlFor="marca" className="text-black font-semibold block mb-2">
+                  <label htmlFor="marca" className="text-purplePz font-semibold block mb-2">
                      Marca:
                   </label>
-                  <Field
-                     type="text"
-                     id="marca"
-                     name="marca"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Marca..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <TbFiretruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="marca"
+                        name="marca"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Marca..."
+                     />
+                  </div>
+
                   <ErrorMessage name="marca" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="placa" className="text-black font-semibold block mb-2">
+                  <label htmlFor="placa" className="text-purplePz font-semibold block mb-2">
                      Placa:
                   </label>
-                  <Field
-                     type="text"
-                     id="placa"
-                     name="placa"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Placa..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <HiOutlineCreditCard />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="placa"
+                        name="placa"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Placa..."
+                     />
+                  </div>
+
                   <ErrorMessage name="placa" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="placaSemirremolque" className="text-black font-semibold block mb-2">
-                     Placa Semirremolque:
+                  <label htmlFor="placaSemirremolque" className="text-purplePz font-semibold block mb-2">
+                     Placa semirremolque:
                   </label>
-                  <Field
-                     type="text"
-                     id="placaSemirremolque"
-                     name="placaSemirremolque"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Placa Semirremolque..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <HiOutlineCreditCard />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="placaSemirremolque"
+                        name="placaSemirremolque"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Placa semirremolque..."
+                     />
+                  </div>
+
                   <ErrorMessage name="placaSemirremolque" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="tarjetaPropiedad" className="text-black font-semibold block mb-2">
-                     Tarjeta Propiedad:
+                  <label htmlFor="tarjetaPropiedad" className="text-purplePz font-semibold block mb-2">
+                     Tarjeta propiedad:
                   </label>
-                  <Field
-                     type="text"
-                     id="tarjetaPropiedad"
-                     name="tarjetaPropiedad"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Tarjeta Propiedad..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <BsFillPersonVcardFill />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="tarjetaPropiedad"
+                        name="tarjetaPropiedad"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Tarjeta propiedad..."
+                     />
+                  </div>
+
                   <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="tecnomecanica" className="text-black font-semibold block mb-2">
+                  <label htmlFor="tecnomecanica" className="text-purplePz font-semibold block mb-2">
                      Tecnomecanica:
                   </label>
-                  <Field
-                     type="text"
-                     id="tecnomecanica"
-                     name="tecnomecanica"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Tecnomecanica..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <CgToolbox />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="tecnomecanica"
+                        name="tecnomecanica"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Tecnomecanica..."
+                     />
+                  </div>
+
                   <ErrorMessage name="tecnomecanica" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="soat" className="text-black font-semibold block mb-2">
+                  <label htmlFor="soat" className="text-purplePz font-semibold block mb-2">
                      Soat:
                   </label>
-                  <Field
-                     type="text"
-                     id="soat"
-                     name="soat"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Soat..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <BsCardHeading />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="soat"
+                        name="soat"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Soat..."
+                     />
+                  </div>
+
                   <ErrorMessage name="soat" component="div" className="text-red-500" />
                </div>
             </div>

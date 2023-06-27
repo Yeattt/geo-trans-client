@@ -1,4 +1,5 @@
 export * from './AdminRoutes';
+export * from './CalendarRoutes';
 export * from './ClientsRoutes';
 export * from './CompaniesRoutes';
 export * from './PermissionsRoutes';
