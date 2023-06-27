@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
+import { useGetApiData } from '../../../hooks';
 
 export const TripsCard = ({ trip }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);

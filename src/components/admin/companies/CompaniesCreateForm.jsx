@@ -1,24 +1,26 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+import { GiTowTruck } from 'react-icons/gi';
+
 import { useCreateForm } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   nit:           Yup.number('Solo se accepta numeros')
-                     .typeError('El telefono debe ser un número')
-                     .required('Campo requerido')
-                     .test('len', 'Debe tener 9 dígitos', val => val && val.toString().length <= 9),
-   razonSocial:   Yup.string('Solo se accepta letras')
-                     .required('Campo requerido'),
+   nit: Yup.number('Solo se accepta numeros')
+      .typeError('El telefono debe ser un número')
+      .required('Campo requerido')
+      .test('len', 'Debe tener 9 dígitos', val => val && val.toString().length <= 9),
+   razonSocial: Yup.string('Solo se accepta letras')
+      .required('Campo requerido'),
    nombreEmpresa: Yup.string('Solo se accepta letras')
-                     .required('Campo requerido'),
-   telefono:      Yup.number('Solo se accepta numeros')
-                     .typeError('El telefono debe ser un número')
-                     .required('Campo requerido')
-                     .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length <= 10),
-   duenoPoliza:   Yup.string('Solo se accepta letras')
-                     .required('Campo requerido'),
+      .required('Campo requerido'),
+   telefono: Yup.number('Solo se accepta numeros')
+      .typeError('El telefono debe ser un número')
+      .required('Campo requerido')
+      .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length <= 10),
+   duenoPoliza: Yup.string('Solo se accepta letras')
+      .required('Campo requerido'),
 });
 
 export const CompaniesCreateForm = () => {
@@ -39,73 +41,113 @@ export const CompaniesCreateForm = () => {
          <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
-                  <label htmlFor="nit" className="text-black font-semibold block mb-2">
+                  <label htmlFor="nit" className="text-purplePz font-semibold block mb-2">
                      Nit:
                   </label>
-                  <Field
-                     type="text"
-                     id="nit"
-                     name="nit"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Nit..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <GiTowTruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="nit"
+                        name="nit"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Nit..."
+                     />
+                  </div>
+
                   <ErrorMessage name="nit" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="razonSocial" className="text-black font-semibold block mb-2">
-                     Razon Social:
+                  <label htmlFor="razonSocial" className="text-purplePz font-semibold block mb-2">
+                     Razón social:
                   </label>
-                  <Field
-                     type="text"
-                     id="razonSocial"
-                     name="razonSocial"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Razon Social..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <GiTowTruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="razonSocial"
+                        name="razonSocial"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Razón social..."
+                     />
+                  </div>
+
                   <ErrorMessage name="razonSocial" component="div" className="text-red-500" />
                </div>
 
 
                <div className="mb-4">
-                  <label htmlFor="nombreEmpresa" className="text-black font-semibold block mb-2">
-                     Nombre Empresa:
+                  <label htmlFor="nombreEmpresa" className="text-purplePz font-semibold block mb-2">
+                     Nombre empresa:
                   </label>
-                  <Field
-                     type="text"
-                     id="nombreEmpresa"
-                     name="nombreEmpresa"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Nombre Empresa..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <GiTowTruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="nombreEmpresa"
+                        name="nombreEmpresa"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Nombre empresa..."
+                     />
+                  </div>
+
                   <ErrorMessage name="nombreEmpresa" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="telefono" className="text-black font-semibold block mb-2">
-                     Telefono:
+                  <label htmlFor="telefono" className="text-purplePz font-semibold block mb-2">
+                     Teléfono:
                   </label>
-                  <Field
-                     type="text"
-                     id="telefono"
-                     name="telefono"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Telefono..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <GiTowTruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="telefono"
+                        name="telefono"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Teléfono..."
+                     />
+                  </div>
+
                   <ErrorMessage name="telefono" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="duenoPoliza" className="text-black font-semibold block mb-2">
-                     Dueño Poliza:
+                  <label htmlFor="duenoPoliza" className="text-purplePz font-semibold block mb-2">
+                     Dueño poliza:
                   </label>
-                  <Field
-                     type="text"
-                     id="duenoPoliza"
-                     name="duenoPoliza"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Dueño Poliza..."
-                  />
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <GiTowTruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="duenoPoliza"
+                        name="duenoPoliza"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Dueño poliza..."
+                     />
+                  </div>
+
                   <ErrorMessage name="duenoPoliza" component="div" className="text-red-500" />
                </div>
 
