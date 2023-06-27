@@ -2,7 +2,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 export const InfoModal = ({ handleIsInfoModalActive, module }) => {
    return (
-      <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden">
+      <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden z-10">
          <div className="w-2/3 h-auto bg-purplePz rounded-md">
             <div className="w-full h-[55px] rounded-md flex items-center justify-between px-2">
                <h2 className="text-xl text-white font-semibold">Detalles</h2>
