@@ -73,7 +73,7 @@ export const QuotesCard = ({ quote }) => {
             }
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} />
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote}  handleUpdateClick={handleUpdateClick}/>
             </span>
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
