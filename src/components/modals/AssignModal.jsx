@@ -1,5 +1,15 @@
 import { AiOutlineClose } from 'react-icons/ai';
-import { useAssignPermissions} from '../../hooks/useAssignPermissions'
+import { useAssignPermissions,useGetApiData} from '../../hooks'
+import { useState, useEffect } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+   rol: Yup.string('Solo se acepta letras')
+      .required('Campo requerido'),
+   permisos: Yup.string('Solo se acepta letras')
+      .required('Campo requerido'),
+});
 
 export const AssignModal = ({ handleIsAssignModalActive, id }) => {
     const { data: permissions, isLoading: isPermissionsLoading } = useGetApiData('/permissions');
@@ -9,9 +19,11 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
         new Array(permissions.length).fill(false)
     );
 
-    const { initialValues, onSubmitForm } = useAssignPermissions(id, {
+    
+    const { initialValues, onSubmitForm } = useAssignPermissions(id,{
         permisos: ''
-    });
+     }, 'roles');
+  
 
 
     useEffect(() => {
@@ -57,11 +69,11 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
                 </div>
 
                 <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
-                    <Formik
-                        initialValues={initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={onSubmitForm}
-                    >
+                <Formik
+         initialValues={initialValues}
+         validationSchema={validationSchema}
+         onSubmit={onSubmitForm}
+      >
                         <Form>
                             <div className="mb-4">
                                 <label htmlFor="permisos" className="text-black font-semibold block mb-2">
@@ -104,3 +116,65 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
         </div >
     );
 }
+
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import * as Yup from 'yup';
+
+// import { useAssignPermissions, useCreateForm } from '../../hooks';
+
+// // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
+// const validationSchema = Yup.object().shape({
+//    nombre: Yup.string().required('Campo requerido'),
+// });
+
+// export const AssignModal = () => {
+//    const { initialValues, onSubmitForm } = useAssignPermissions({
+//       permisos: Yup.string()
+//                   .required('Campo requerido')
+//    }, 'roles');
+
+//    return (
+//       <Formik
+//          initialValues={initialValues}
+//          validationSchema={validationSchema}
+//          onSubmit={onSubmitForm}
+//       >
+//          <Form>
+//                             <div className="mb-4">
+//                                 <label htmlFor="permisos" className="text-black font-semibold block mb-2">
+//                                     Permisos:
+//                                 </label>
+//                                 {
+//                                     permissionsList.map(({ nombre, id }) => {
+//                                         return (
+//                                             <div className="toppings-list-item">
+//                                                 <Field
+//                                                     type="checkbox"
+//                                                     id={nombre}
+//                                                     name={nombre}
+//                                                     value={nombre}
+//                                                     className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
+//                                                     checked={checkedState[id]}
+//                                                     onChange={() => handleOnChange(id)}
+//                                                 />
+//                                                 <label htmlFor={nombre}>{nombre}</label>
+//                                             </div>
+//                                         );
+//                                     }
+//                                     )
+//                                 }
+//                                 <ErrorMessage name="permissions" component="div" className="text-red-500" />
+//                             </div>
+
+//                             <div className="text-center mt-2">
+//                <button
+//                   type="submit"
+//                   className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
+//                >
+//                   Registrar
+//                </button>
+//             </div>
+//          </Form>
+//       </Formik>
+//    );
+// }

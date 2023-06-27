@@ -45,7 +45,7 @@ export const RolesCard = ({ role }) => {
                   <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
             }
             {isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={role} value={'roles'} />}
-            {isAssignModalActive && <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} />}
+            {/* {isAssignModalActive && <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} />} */}
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
@@ -55,18 +55,25 @@ export const RolesCard = ({ role }) => {
             >
                <TbInfoHexagon />
             </span>
+            <span
+               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
+               onClick={() => handleIsAssignModalActive(true)}
+            >
+               <TbInfoHexagon />
+            </span>
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
             {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={role} />
             }
+            {isAssignModalActive && <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} />}
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick} />
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Roles" moduleInfo={role}  handleUpdateClick={handleUpdateClick} />
             </span>
 
-            <p onClick={setisAssignModalActive(true)}>Asignar</p>
+            {/* <p onClick={setisAssignModalActive(true)}>Asignar</p> */}
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
                <MdDeleteForever />

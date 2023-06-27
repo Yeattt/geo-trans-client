@@ -18,15 +18,7 @@ export const DeleteModal = ({ handleIsDeleteModalActive, module, value }) => {
             </div>
 
             <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
-               {/* <div className="grid grid-cols-1 gap-4">
-                 <h3>¿Desea cambiar el estado de {module.id}?</h3>
-                 <button onClick={() => onDelete(module.id)}>
-                    Si
-                 </button>
-                 <button onClick={() => handleIsDeleteModalActive(false)}>
-                    No
-                 </button>
-               </div> */}
+               
                <div class="p-6 text-center">
                 <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Seguro que deseas cambiar de estado?</h3>
