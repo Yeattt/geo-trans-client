@@ -40,13 +40,13 @@ export const CalendarPage = () => {
       const tripToShow = data.trips.find(trip => trip.id === event.tripId);
 
       console.log(tripToShow);
-      
+
       setIsInfoModalActive(!isInfoModalActive);
       setCurrentTripToShow(tripToShow);
    }
 
    const onViewChange = () => {
-      
+
    }
 
    useEffect(() => {
@@ -75,17 +75,21 @@ export const CalendarPage = () => {
             isInfoModalActive && <InfoModal handleIsInfoModalActive={onSelect} module={currentTripToShow} />
          }
 
-         <Calendar
-            culture='es'
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 'calc(100vh - 70px)' }}
-            messages={getMessagesES()}
-            eventPropGetter={eventStyleGetter}
-            onSelectEvent={onSelect}
-         />
+         <div className="flex items-center justify-center">
+            <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2 h-[70vh] mt-12">
+               <Calendar
+                  culture='es'
+                  localizer={localizer}
+                  events={events}
+                  startAccessor="start"
+                  endAccessor="end"
+                  style={{ height: '100%', width: '100%' }}
+                  messages={getMessagesES()}
+                  eventPropGetter={eventStyleGetter}
+                  onSelectEvent={onSelect}
+               />
+            </div>
+         </div>
       </AdminLayout>
    );
 }

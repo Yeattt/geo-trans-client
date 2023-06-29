@@ -24,9 +24,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
             </div>
 
             <div className="flex items-center justify-center border-b-2 border-white">
-               <span className="w-36 h-36 border-4 border-primaryHover rounded-full overflow-hidden bg-white mb-10 cursor-pointer">
+               <span className="w-36 h-36 border-4 border-gray-300 rounded-full overflow-hidden bg-white mb-10 cursor-pointer">
                   <Link to="/admin/vehicles" className="w-full h-full flex items-center justify-center">
-                     <span className="text-8xl text-primary rounded-full">
+                     <span className="text-8xl text-secondary rounded-full">
                         <MdAdminPanelSettings />
                      </span>
                   </Link>
@@ -38,9 +38,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/users" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <FaUsersCog />
                      </span>
 
@@ -52,9 +52,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/users/allow" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <FaUsersCog />
                      </span>
 
@@ -66,9 +66,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/clients" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200': 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200': 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <RiUserStarFill />
                      </span>
 
@@ -80,9 +80,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/companies" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <BsBuildingFillGear />
                      </span>
 
@@ -94,9 +94,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/permissions" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <BsClipboard2CheckFill />
                      </span>
 
@@ -108,9 +108,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/assignpermissions" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <MdAssignmentAdd />
                      </span>
 
@@ -122,9 +122,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/quotes" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <FaMoneyCheckAlt />
                      </span>
 
@@ -136,9 +136,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/roles" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <FaUserCog />
                      </span>
 
@@ -150,9 +150,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/trips" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <IoSubway />
                      </span>
 
@@ -164,9 +164,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/vehicles" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <FaTruck />
                      </span>
 
@@ -178,9 +178,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/trucks/types" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <FaTruckLoading />
                      </span>
 
@@ -192,9 +192,9 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/calendar" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-purplePzHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
-                     <span className="w-7 h-7 mr-3 bg-primaryHover text-white text-xl flex items-center justify-center">
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <TbCalendarStats />
                      </span>
 

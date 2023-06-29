@@ -3,8 +3,9 @@ import { toggleMenu } from '../../store';
 
 import { Link } from 'react-router-dom';
 
+import { HiOutlineLogout } from 'react-icons/hi';
 import { HiMenu } from 'react-icons/hi';
-import { MdExitToApp, MdEmail } from 'react-icons/md';
+import { MdEmail } from 'react-icons/md';
 import { IoNotifications } from 'react-icons/io5';
 
 import { useAuthStore } from '../../hooks';
@@ -24,17 +25,17 @@ export const AdminNavbar = ({ module = '' }) => {
          </span>
 
          <div className="flex flex-col justify-between px-6 py-1">
-            <span className="text-2xl text-primary font-bold">{module}</span>
+            <span className="text-2xl text-secondary font-bold">{module}</span>
 
             <span className="text-xs font-bold">{`Admin > ${module}`}</span>
          </div>
 
          <div className="flex items-center justify-center">
-            <span className="text-xl mr-3 text-primary cursor-pointer transition hover:text-primaryHover">
+            <span className="text-xl mr-3 text-secondary cursor-pointer transition hover:text-secondaryHover">
                <IoNotifications />
             </span>
             
-            <span className="text-xl mr-3 text-primary cursor-pointer transition hover:text-primaryHover">
+            <span className="text-xl mr-3 text-secondary cursor-pointer transition hover:text-secondaryHover">
                <MdEmail />
             </span>
 
@@ -47,8 +48,8 @@ export const AdminNavbar = ({ module = '' }) => {
 
             <span className="font-bold text-gray-600 text-[15px] cursor-pointer">{user.name}</span>
 
-            <span className="ml-3 text-2xl text-red-600 font-bold cursor-pointer">
-               <MdExitToApp onClick={startLogout} />
+            <span className="ml-3 text-2xl text-red-600 hover:text-red-800 font-bold cursor-pointer">
+               <HiOutlineLogout onClick={startLogout} />
             </span>
          </div>
       </div>
