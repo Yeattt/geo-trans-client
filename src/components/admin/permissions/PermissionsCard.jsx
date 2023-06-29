@@ -35,8 +35,8 @@ export const PermissionsCard = ({ permission }) => {
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{permission.id}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{permission.nombre}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
+         <td className="px-7 py-5 text-center cursor-pointer font-semibold text-gray-500">{permission.nombre}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-semibold text-gray-500">
          {
             permission.estado
             ?
@@ -51,7 +51,7 @@ export const PermissionsCard = ({ permission }) => {
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
+               className="text-2xl text-secondary hover:text-secondaryHover cursor-pointer mr-5"
                onClick={() => handleIsInfoModalActive(true)}
             >
                <TbInfoHexagon />
@@ -62,7 +62,7 @@ export const PermissionsCard = ({ permission }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={permission}  />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
+            <span className="text-2xl text-secondary hover:text-secondaryHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Permissions" moduleInfo={permission}  handleUpdateClick={handleUpdateClick}/>
             </span>

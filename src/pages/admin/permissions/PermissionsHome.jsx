@@ -53,10 +53,10 @@ export const PermissionsHome = () => {
                      <table className="w-full text-sm">
                         <thead>
                            <tr>
-                              <th className="px-6 py-2 text-purplePz">ID</th>
-                              <th className="px-6 py-2 text-purplePz">Nombre</th>
-                              <th className="px-6 py-2 text-purplePz">Estado</th>
-                              <th className="px-6 py-2 text-purplePz">Acciones</th>
+                              <th className="px-6 py-2 text-secondary">ID</th>
+                              <th className="px-6 py-2 text-secondary">Nombre</th>
+                              <th className="px-6 py-2 text-secondary">Estado</th>
+                              <th className="px-6 py-2 text-secondary">Acciones</th>
                            </tr>
                         </thead>
                         <tbody>

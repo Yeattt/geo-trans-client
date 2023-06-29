@@ -261,7 +261,7 @@ export const UsersCreateForm = () => {
 
                         {
                            vehiclesList.map(vehicle => (
-                              <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
+                              !vehicle.enUso && <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
                            ))
                         }
                      </Field>

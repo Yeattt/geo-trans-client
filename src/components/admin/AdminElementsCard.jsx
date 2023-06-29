@@ -70,41 +70,41 @@ export const AdminElementsCard = ({ module = '', data }) => {
    return (
       <>
          <div className="flex flex-col md:flex-row items-center justify-around">
-            <div className="bg-purplePz rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
+            <div className="bg-primary rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                <div className="flex flex-row justify-center items-center">
                   <div className="text-xl flex items-center justify-center">
-                     <span className="border-[2.5px] border-green-600 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                        <IconModule className="text-3xl text-green-600" />
+                     <span className="border-[2.5px] border-secondary bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
+                        <IconModule className="text-3xl text-secondary" />
                      </span>
 
                      <div className="flex flex-col justify-center">
-                        <span className="font-bold text-green-300">{activeData.length}</span>
+                        <span className="font-bold text-greenPz">{activeData.length}</span>
                         <span className="text-sm text-white font-bold">{ moduleInfo.translation } activos</span>
                      </div>
                   </div>
                </div>
             </div>
 
-            <div className="bg-purplePz rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
+            <div className="bg-primary rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                <div className="flex flex-row justify-center items-center">
                   <div className="text-xl flex items-center justify-center">
-                     <span className="border-[2.5px] border-red-600 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                        <IconModule className="text-3xl text-red-600" />
+                     <span className="border-[2.5px] border-secondary bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
+                        <IconModule className="text-3xl text-secondary" />
                      </span>
 
                      <div className="flex flex-col justify-center">
-                        <span className="font-bold text-red-300">{inactiveData.length}</span>
+                        <span className="font-bold text-redPz">{inactiveData.length}</span>
                         <span className="text-sm text-white font-bold">{ moduleInfo.translation } inactivos</span>
                      </div>
                   </div>
                </div>
             </div>
 
-            <div className="bg-purplePz rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
+            <div className="bg-primary rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
                <div className="flex flex-row justify-center items-center">
                   <div className="text-xl flex items-center justify-center">
-                     <span className="border-[2.5px] border-primaryHover bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
-                        <IconModule className="text-3xl text-primaryHover" />
+                     <span className="border-[2.5px] border-secondary bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
+                        <IconModule className="text-3xl text-secondary" />
                      </span>
 
                      <div className="flex flex-col justify-center">
