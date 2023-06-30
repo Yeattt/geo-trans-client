@@ -57,18 +57,22 @@ export const QuotesHome = () => {
                         <thead>
                            <tr>
                               <th className="px-6 py-2 text-purplePz">ID</th>
-                              <th className="px-6 py-2 text-purplePz">Cod. Cotizacion</th>
-                              <th className="px-6 py-2 text-purplePz">Cantidad</th>
-                              <th className="px-6 py-2 text-purplePz">Cod. Producto</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Destino</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Empaque</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Naturaleza</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Nro. Remesa</th>
+                              <th className="px-6 py-2 text-purplePz">Fecha solicitud</th>
+                              <th className="px-6 py-2 text-purplePz">Hora Cargue</th>
+                              <th className="px-6 py-2 text-purplePz">Destino</th>
                               <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Origen</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Pdto. Transportar</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Sdo. Pagar</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Und. Medida</th>
-                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Vlr. Pagar</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Direccion</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Contacto</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Nom. Origen</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Fecha Servicio</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Nom. Destino</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Tipo Camion</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Peso</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Vlr. Mercancia</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Contenido</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Vlr. Transporte</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Observaciones</th>
+                              <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">Company Id</th>
                               <th className="hidden 3xl:table-cell px-6 py-2 text-purplePz">User Id</th>
                               <th className="px-6 py-2 text-purplePz">Estado</th>
                               <th className="px-6 py-2 text-purplePz">Acciones</th>

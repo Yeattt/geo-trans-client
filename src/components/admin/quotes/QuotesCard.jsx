@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -7,11 +7,16 @@ import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
+import { useGetApiData } from '../../../hooks';
 
 export const QuotesCard = ({ quote }) => {
+   const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
+
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
+   const [companiesList, setCompaniesList] = useState([]);
+
 
    const handleViewDetails = () => {
       setIsOpen(!isOpen)
@@ -28,23 +33,33 @@ export const QuotesCard = ({ quote }) => {
 
    const handleIsDeleteModalActive = (status) => {
       setIsDeleteModalActive(status);
+
+      useEffect(() => {
+         if (!isCompaniesLoading ) {
+            setCompaniesList(companies.companies);
+         }
+      }, [isCompaniesLoading]);
    };
 
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{quote.id}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.codigoCotizacion}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.cantidad}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.codigoProducto}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.destino}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.empaque}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.naturaleza}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.numeroRemesa}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.origen}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.productoTransportar}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.saldoPagar}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.unidadMedida}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorPagar}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.fechaSolicitud}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.horaCargue}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.ciudadDestino}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.ciudadOrigen}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.direccion}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.contacto}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.nombreOrigen}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.fechaServicio}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.nombreDestino}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.tipoCamion}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.pesoAproximado}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorMercancia}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.contenido}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorTransporte}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.observaciones}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.companyId}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.userId}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
          {

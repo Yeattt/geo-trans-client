@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { FaTruckLoading } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -7,75 +7,104 @@ import { useCreateForm, useGetApiData } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
-   codigoCotizacion: Yup.number()
-      .typeError('El codigo debe ser un numero')
+   nombreOrigen: Yup.string()
       .required('Campo requerido'),
 
-   cantidad: Yup.number()
+   nombreDestino: Yup.string()
+      .required('Campo requerido'),
+   
+   ciudadOrigen: Yup.string()
+      .required('Campo requerido'),
+
+   ciudadDestino: Yup.string()
+      .required('Campo requerido'),
+         
+   direccion: Yup.string()
+      .required('Campo requerido'),
+
+   contacto: Yup.number()
       .typeError('Solo se reciben valores numericos')
       .required('Campo requerido'),
 
-   codigoProducto: Yup.string()
+   fechaSolicitud: Yup.string()
       .required('Campo requerido'),
 
-   destino: Yup.string()
+   fechaServicio: Yup.string()
+      .required('Campo requerido'),
+   
+   horaCargue: Yup.string()
+      .required('Campo requerido'),
+      
+   tipoCamion: Yup.string()
       .required('Campo requerido'),
 
-   empaque: Yup.string()
+   pesoAproximado: Yup.number()
+      .typeError('Solo se reciben valores numericos')
       .required('Campo requerido'),
 
-   naturaleza: Yup.string().
-      required('Campo requerido'),
-
-   numeroRemesa: Yup.string()
+   valorMercancia: Yup.number()
+      .typeError('Solo se reciben valores numericos')
+      .required('Campo requerido'),
+   
+   contenido: Yup.string()
       .required('Campo requerido'),
 
-   origen: Yup.string()
-      .required('Campo requerido'),
-
-   productoTransportar: Yup.string()
-      .required('Campo requerido'),
-
-   saldoPagar: Yup.number()
-      .typeError('Solo valores numericos')
-      .required('Campo requerido'),
-
-   unidadMedida: Yup.string()
-      .required('Campo requerido'),
-
-   valorPagar: Yup.number()
-      .typeError('Solo valores numericos')
+   valorTransporte: Yup.number()
+      .typeError('Solo se reciben valores numericos')
       .required('Campo requerido'),
 
    userId: Yup.string()
+      .required('Campo requerido'),
+   
+   companyId: Yup.string()
       .required('Campo requerido'),
 });
 
 export const QuotesCreateForm = () => {
    const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
    const [usersList, setUsersList] = useState([]);
+   const { data: companies, isLoading: companiesIsLoading } = useGetApiData('/companies');
+   const [companiesList, setCompaniesList] = useState([]);
+   const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
+   const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
 
    const { initialValues, onSubmitForm } = useCreateForm({
-      codigoCotizacion: '',
-      cantidad: '',
-      codigoProducto: '',
-      destino: '',
-      empaque: '',
-      naturaleza: '',
-      numeroRemesa: '',
-      origen: '',
-      productoTransportar: '',
-      saldoPagar: '',
-      unidadMedida: '',
-      valorPagar: '',
+      nombreOrigen: '',
+      nombreDestino: '',
+      ciudadOrigen: '',
+      ciudadDestino: '',
+      direccion: '',
+      contacto: '',
+      fechaSolicitud: '',
+      fechaServicio: '',
+      horaCargue: '',
+      tipoCamion: '',
+      pesoAproximado: '',
+      valorMercancia: '',
+      contenido: '',
+      valorTransporte: '',
+      observaciones: '',
       userId: '',
+      companyId: '',
    }, 'quotes');
 
    useEffect(() => {
       if (!usersIsLoading) {
          setUsersList(users.users);
       }
-   }, [usersIsLoading])
+   }, [usersIsLoading]);
+
+   useEffect(() => {
+      if (!companiesIsLoading) {
+         setCompaniesList(companies.companies);
+      }
+   }, [companiesIsLoading]);
+
+   useEffect(() => {
+      if (!isVehiclesTypeLoading) {
+         setVehiclesTypeList(vehiclesType.vehiclesType);
+      }
+   }, [isVehiclesTypeLoading]);
 
    return (
       <Formik
@@ -86,172 +115,219 @@ export const QuotesCreateForm = () => {
          <Form>
             <div className="grid grid-cols-4 gap-3">
                <div className="mb-4">
-                  <label htmlFor="codigoCotizacion" className="text-black font-semibold block mb-2">
-                     Cod. Cotizacion:
+                  <label htmlFor="nombreOrigen" className="text-black font-semibold block mb-2">
+                     Nombre de Origen:
                   </label>
                   <Field
                      type="text"
-                     id="codigoCotizacion"
-                     name="codigoCotizacion"
+                     id="nombreOrigen"
+                     name="nombreOrigen"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Cod. Cotizacion..."
+                     placeholder="Nombre Origen..."
                   />
-                  <ErrorMessage name="codigoCotizacion" component="div" className="text-red-500" />
+                  <ErrorMessage name="nombreOrigen" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="cantidad" className="text-black font-semibold block mb-2">
-                     Cantidad:
+                  <label htmlFor="nombreDestino" className="text-black font-semibold block mb-2">
+                     Nombre de Destino:
                   </label>
                   <Field
                      type="text"
-                     id="cantidad"
-                     name="cantidad"
+                     id="nombreDestino"
+                     name="nombreDestino"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Cantidad..."
+                     placeholder="Nombre de Destino..."
                   />
-                  <ErrorMessage name="cantidad" component="div" className="text-red-500" />
+                  <ErrorMessage name="nombreDestino" component="div" className="text-red-500" />
                </div>
 
 
                <div className="mb-4">
-                  <label htmlFor="codigoProducto" className="text-black font-semibold block mb-2">
-                     Cod. Producto:
+                  <label htmlFor="ciudadOrigen" className="text-black font-semibold block mb-2">
+                     Ciudad de origen:
                   </label>
                   <Field
                      type="text"
-                     id="codigoProducto"
-                     name="codigoProducto"
+                     id="ciudadOrigen"
+                     name="ciudadOrigen"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Cod. Producto..."
+                     placeholder="Ciudad de origen..."
                   />
-                  <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
+                  <ErrorMessage name="ciudadOrigen" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="destino" className="text-black font-semibold block mb-2">
-                     Destino:
+                  <label htmlFor="ciudadDestino" className="text-black font-semibold block mb-2">
+                     Ciudad de Destino:
                   </label>
                   <Field
                      type="text"
-                     id="destino"
-                     name="destino"
+                     id="ciudadDestino"
+                     name="ciudadDestino"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Destino..."
+                     placeholder="Ciudad de Destino..."
                   />
-                  <ErrorMessage name="destino" component="div" className="text-red-500" />
+                  <ErrorMessage name="ciudadDestino" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="empaque" className="text-black font-semibold block mb-2">
-                     Empaque:
+                  <label htmlFor="direccion" className="text-black font-semibold block mb-2">
+                     Direccion:
                   </label>
                   <Field
                      type="text"
-                     id="empaque"
-                     name="empaque"
+                     id="direccion"
+                     name="direccion"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Empaque..."
+                     placeholder="Direccion..."
                   />
-                  <ErrorMessage name="empaque" component="div" className="text-red-500" />
+                  <ErrorMessage name="direccion" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="naturaleza" className="text-black font-semibold block mb-2">
-                     Naturaleza:
+                  <label htmlFor="contacto" className="text-black font-semibold block mb-2">
+                     Contacto:
                   </label>
                   <Field
                      type="text"
-                     id="naturaleza"
-                     name="naturaleza"
+                     id="contacto"
+                     name="contacto"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Naturaleza..."
+                     placeholder="Contacto..."
                   />
-                  <ErrorMessage name="naturaleza" component="div" className="text-red-500" />
+                  <ErrorMessage name="contacto" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="numeroRemesa" className="text-black font-semibold block mb-2">
-                     Nro. Remesa:
+                  <label htmlFor="fechaSolicitud" className="text-black font-semibold block mb-2">
+                     Fecha de solicitud:
                   </label>
                   <Field
-                     type="text"
-                     id="numeroRemesa"
-                     name="numeroRemesa"
+                     type="date"
+                     id="fechaSolicitud"
+                     name="fechaSolicitud"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Nro. Remesa..."
+                     placeholder="Fecha de solicitud..."
                   />
-                  <ErrorMessage name="numeroRemesa" component="div" className="text-red-500" />
+                  <ErrorMessage name="fechaSolicitud" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="origen" className="text-black font-semibold block mb-2">
-                     Origen:
+                  <label htmlFor="fechaServicio" className="text-black font-semibold block mb-2">
+                     Fecha de servicio:
                   </label>
                   <Field
-                     type="text"
-                     id="origen"
-                     name="origen"
+                     type="date"
+                     id="fechaServicio"
+                     name="fechaServicio"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Origen..."
+                     placeholder="Fecha de servicio..."
                   />
-                  <ErrorMessage name="origen" component="div" className="text-red-500" />
+                  <ErrorMessage name="fechaServicio" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="productoTransportar" className="text-black font-semibold block mb-2">
-                     Pdto. Transportar:
+                  <label htmlFor="horaCargue" className="text-black font-semibold block mb-2">
+                     Hora de cargue:
                   </label>
                   <Field
-                     type="text"
-                     id="productoTransportar"
-                     name="productoTransportar"
+                     type="time"
+                     id="horaCargue"
+                     name="horaCargue"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Pdto. Transportar..."
+                     placeholder="Hora de cargue..."
                   />
-                  <ErrorMessage name="productoTransportar" component="div" className="text-red-500" />
+                  <ErrorMessage name="horaCargue" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
-                     Sdo. Pagar:
+                  <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
+                     Tipo Camión:
+                  </label>
+
+                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                        <FaTruckLoading />
+                     </div>
+
+                     <Field
+                        as="select"
+                        id="tipoCamion"
+                        name="tipoCamion"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        placeholder="Tipo Camión..."
+                     >
+                        <option value="" disabled defaultValue>
+                           Tipo Camión...
+                        </option>
+
+                        {vehiclesTypeList.map(vehicleType => (
+                           <option value={vehicleType.id} key={vehicleType.id}>
+                              {vehicleType.nombre}
+                           </option>
+                        ))}
+                     </Field>
+                  </div>
+
+                  <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
+               </div>
+
+
+               <div className="mb-4">
+                  <label htmlFor="pesoAproximado" className="text-black font-semibold block mb-2">
+                     Peso Aproximado:
                   </label>
                   <Field
                      type="text"
-                     id="saldoPagar"
-                     name="saldoPagar"
+                     id="pesoAproximado"
+                     name="pesoAproximado"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Sdo. Pagar..."
+                     placeholder="Peso Aproximado..."
                   />
-                  <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
+                  <ErrorMessage name="pesoAproximado" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="unidadMedida" className="text-black font-semibold block mb-2">
-                     Und. Medida:
+                  <label htmlFor="valorMercancia" className="text-black font-semibold block mb-2">
+                     Vlr. Mercancia:
                   </label>
                   <Field
                      type="text"
-                     id="unidadMedida"
-                     name="unidadMedida"
+                     id="valorMercancia"
+                     name="valorMercancia"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Und. Medida..."
+                     placeholder="Vlr. Mercancia..."
                   />
-                  <ErrorMessage name="unidadMedida" component="div" className="text-red-500" />
+                  <ErrorMessage name="valorMercancia" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
-                     Vlr. Pagar:
+                  <label htmlFor="contenido" className="text-black font-semibold block mb-2">
+                     Contenido:
                   </label>
                   <Field
                      type="text"
-                     id="valorPagar"
-                     name="valorPagar"
+                     id="contenido"
+                     name="contenido"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Vlr. Pagar..."
+                     placeholder="Contenido..."
                   />
-                  <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
+                  <ErrorMessage name="contenido" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="valorTransporte" className="text-black font-semibold block mb-2">
+                     Vlr. Transporte:
+                  </label>
+                  <Field
+                     type="text"
+                     id="valorTransporte"
+                     name="valorTransporte"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Vlr. Transporte..."
+                  />
+                  <ErrorMessage name="valorTransporte" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
@@ -271,14 +347,51 @@ export const QuotesCreateForm = () => {
 
                      {
                         usersList.map(user => (
-                           <option value={user.id} key={user.id}>{user.nombre}</option>
+                           <option value={user.id} key={user.id}>{user.email}</option>
                         ))
                      }
                   </Field>
                   <ErrorMessage name="userId" component="div" className="text-red-500" />
                </div>
+
+               <div className="mb-4">
+                  <label htmlFor="companyId" className="text-black font-semibold block mb-2">
+                     Company Id:
+                  </label>
+                  <Field
+                     as="select"
+                     id="companyId"
+                     name="companyId"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Company Id..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Compañia...
+                     </option>
+
+                     {
+                        companiesList.map(company => (
+                           <option value={company.id} key={company.id}>{company.razonSocial}</option>
+                        ))
+                     }
+                  </Field>
+                  <ErrorMessage name="companyId" component="div" className="text-red-500" />
+               </div>
             </div>
 
+            <div className="mb-4">
+                  <label htmlFor="observaciones" className="text-black font-semibold block mb-2">
+                     Observaciones:
+                  </label>
+                  <Field
+                     type="textarea"
+                     id="observaciones"
+                     name="observaciones"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Observaciones..."
+                  />
+                  <ErrorMessage name="observaciones" component="div" className="text-red-500" />
+               </div>
 
             <div className="text-center mt-2">
                <button

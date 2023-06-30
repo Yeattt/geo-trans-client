@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
-import { InfoModal } from '../../modals/InfoModal';
-import { UpdateModal  } from '../../modals/UpdateModal';
-import { useState } from 'react';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../modals';
 
@@ -60,7 +57,6 @@ export const ClientsCard = ({ client }) => {
                onClick={() => handleIsInfoModalActive(true)}
             >
                <TbInfoHexagon />
-               <InfoModal isOpen={isOpen} model={client}/>
             </span>
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
