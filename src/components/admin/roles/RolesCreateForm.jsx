@@ -1,19 +1,29 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { useCreateForm } from '../../../hooks';
+import { useAssignPermissions, useCreateForm, useGetApiData } from '../../../hooks';
+import { useState, useEffect } from 'react';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
    nombre: Yup.string().required('Campo requerido'),
+
 });
 
 export const RolesCreateForm = () => {
-   const { initialValues, onSubmitForm } = useCreateForm({
-      nombre: Yup.string()
-                  .max(15, 'Máximo 15 caracteres')
-                  .required('Campo requerido')
-   }, 'roles');
+   const { data: permissions, isLoading: isPermissionsLoading } = useGetApiData('/permissions');
+   const [permissionsList, setPermissionsList] = useState([]);
+   const { initialValues, onSubmitForm } = useAssignPermissions({
+      nombre: '',
+      permissionsId: []
+   });
+
+   useEffect(() => {
+      if (!isPermissionsLoading) {
+         setPermissionsList(permissions.permissions);
+      }
+   }, [isPermissionsLoading]);
+
 
    return (
       <Formik
@@ -36,6 +46,28 @@ export const RolesCreateForm = () => {
                   />
                   <ErrorMessage name="nombre" component="div" className="text-red-500" />
                </div>
+            </div>
+            <div className="mb-4">
+               <label htmlFor="permisos" className="text-black font-semibold block mb-2">
+                  Permisos:
+               </label>
+               {
+                  permissionsList.map(({ nombre, id }) => {
+                     return (
+                        <div className="toppings-list-item">
+                           <Field
+                              type="checkbox"
+                              name="permissionsId"
+                              value={id}
+                              className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
+                           />
+                           <label htmlFor={nombre}>{nombre}</label>
+                        </div>
+                     );
+                  }
+                  )
+               }
+               <ErrorMessage name="permissions" component="div" className="text-red-500" />
             </div>
 
             <div className="text-center mt-2">

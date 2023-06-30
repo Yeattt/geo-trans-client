@@ -10,7 +10,7 @@ const geoTransApi = axios.create({
 geoTransApi.interceptors.request.use(config => {
    config.headers = {
       ...config.headers,
-      // 'x-token': // Todo: Acá se añade el token cuando se consuma el api, o sea, lo sacamos de las cookies o localStorage
+      'x-token': localStorage.getItem('token') 
    }
 
    return config;

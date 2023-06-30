@@ -1,9 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { Link } from 'react-router-dom';
-
-import { useCreateForm } from '../../../hooks';
+import { useCreateForm, useGetApiData } from '../../../hooks';
+import { useState, useEffect } from 'react';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -24,9 +23,6 @@ const validationSchema = Yup.object().shape({
    empaque: Yup.string('Este campo solo debe contener letras')
       .max(20, 'Máximo 20 caracteres')
       .required('Campo requerido'),
-   codigoProducto: Yup.number('Este campo solo debe contener números')
-      .test('len', 'Máximo 10 caracteres', val => val && val.toString().length <= 10)
-      .required('Campo requerido'),
    productoTransportar: Yup.string('Este campo solo debe contener letras')
       .max(25, 'Máximo 25 caracteres')
       .required('Campo requerido'),
@@ -44,9 +40,22 @@ const validationSchema = Yup.object().shape({
       .typeError('El documento debe ser un número')
       .test('len', 'Máximo 80 caracteres', val => val && val.toString().length <= 80)
       .required('Campo requerido'),
+   cliente: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
+   tipoViaje: Yup.string()
+      .max(30, 'Máximo 30 caracteres')
+      .required('Campo requerido'),
 });
 
 export const TripsCreateForm = () => {
+
+   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
+   const { data: users, isLoading: isUsersLoading } = useGetApiData('/users');
+
+   const [vehiclesList, setVehiclesList] = useState([]);
+   const [usersList, setUsersList] = useState([]);
+
    const { initialValues, onSubmitForm } = useCreateForm({
       cantidad: '',
       codigoProducto: '',
@@ -59,7 +68,20 @@ export const TripsCreateForm = () => {
       saldoPagar: '',
       unidadMedida: '',
       valorPagar: '',
+      tipoViaje: '',
+      fechaViaje: '',
+      cliente: '',
+      conductorId: '',
+      vehiculoId: ''
    }, 'trips');
+
+   useEffect(() => {
+      if (!isVehiclesLoading && !isUsersLoading) {
+
+         setVehiclesList(vehicles.vehicles);
+         setUsersList(users.users);
+      }
+   }, [isVehiclesLoading, isUsersLoading]);
 
    return (
       <Formik
@@ -68,7 +90,38 @@ export const TripsCreateForm = () => {
          onSubmit={onSubmitForm}
       >
          <Form>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-4 gap-4">
+               <div className="mb-4">
+                  <label htmlFor="tipoViaje" className="text-black font-semibold block mb-2">
+                     Tipo de Viaje:
+                  </label>
+
+                  <Field
+                     as="select"
+                     name="tipoViaje"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                  >
+                     <option value="interno">Interno</option>
+                     <option value="externo">A terceros</option>
+                  </Field>
+
+                  <ErrorMessage name="tipoViaje" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="cliente" className="text-black font-semibold block mb-2">
+                     Cliente:
+                  </label>
+                  <Field
+                     type="text"
+                     id="cliente"
+                     name="cliente"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Cliente..."
+                  />
+                  <ErrorMessage name="cliente" component="div" className="text-red-500" />
+               </div>
+
                <div className="mb-4">
                   <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
                      Numero remesa:
@@ -87,16 +140,19 @@ export const TripsCreateForm = () => {
                   <label htmlFor="unidadMedida" className="text-black font-semibold block mb-2">
                      Unidad de medida:
                   </label>
+
                   <Field
-                     type="text"
-                     id="unidadMedida"
+                     as="select"
                      name="unidadMedida"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Unidad de medida..."
-                  />
+                  >
+                     <option value="galon">GALONES</option>
+                     <option value="unidad">UNIDADES</option>
+                     <option value="tonelada">TONELADAS</option>
+                  </Field>
+
                   <ErrorMessage name="unidadMedida" component="div" className="text-red-500" />
                </div>
-
 
                <div className="mb-4">
                   <label htmlFor="cantidad" className="text-black font-semibold block mb-2">
@@ -131,26 +187,61 @@ export const TripsCreateForm = () => {
                      Empaque:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="empaque"
                      name="empaque"
+                     placeholder="Codigo..."
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Empaque..."
-                  />
-                  <ErrorMessage name="Empaque" component="div" className="text-red-500" />
+                  >
+                     <option value="016">BIDON O ENVASE PLASTICO</option>
+                     <option value="018">CAJA DE CARTON</option>
+                     <option value="017">CAJA DE MADERA NATURAL</option>
+                     <option value="019">CAJA DE PLASTICO</option>
+                     <option value="010">CARGA ESTIBADA</option>
+                     <option value="011">CILINDROS</option>
+                     <option value="015">CONTENEDOR 45 PIES</option>
+                     <option value="008">DOS CONTENEDORES DE 20 PIES</option>
+                     <option value="004">GENERAL FRACCIONADA</option>
+                     <option value="006">GRANEL LIQUIDO</option>
+                     <option value="014">GRANEL SOLIDO</option>
+                     <option value="000">PAQUETES</option>
+                     <option value="020">SACO O TALEGO POLIETI/PROLIP</option>
+                     <option value="021">SACO TALEGA YUTE FIQUE CABUYA</option>
+                     <option value="007">UN CONTENEDOR DE 20 PIES</option>
+                     <option value="009">UN CONTENEDOR DE 40 PIES</option>
+                     <option value="013">UNIDAD SIN EMPAQUES</option>
+                     <option value="012">VARIOS</option>
+                  </Field>
+                  <ErrorMessage name="empaque" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="codigoProducto" className="text-black font-semibold block mb-2">
-                     Codigo producto:
+                  <label htmlFor="empaque" className="text-black font-semibold block mb-2">
+                     Código producto:
                   </label>
                   <Field
-                     type="text"
+                     as="select"
                      id="codigoProducto"
                      name="codigoProducto"
+                     placeholder="Código producto..."
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="Codigo producto..."
-                  />
+                  >
+                     <option value="0001">ACERO</option>
+                     <option value="0002">CONCENTRADO</option>
+                     <option value="0003">CERDOS</option>
+                     <option value="0004">ANIMALES VIVOS</option>
+                     <option value="0005">CABALLOS</option>
+                     <option value="0006">VACAS</option>
+                     <option value="0007">FRUTAS</option>
+                     <option value="0008">QUIMICOS VARIOS</option>
+                     <option value="0009">MADERA</option>
+                     <option value="00010">PRODUCTOS VARIOS</option>
+                     <option value="00011">TRASTEOS</option>
+                     <option value="00012">POLVORA</option>
+                     <option value="00013">SONIDO</option>
+                     <option value="00014">GRASAS</option>
+                     <option value="00015">GASEOSAS</option>
+                  </Field>
                   <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
                </div>
 
@@ -181,50 +272,112 @@ export const TripsCreateForm = () => {
                   />
                   <ErrorMessage name="origen" component="div" className="text-red-500" />
                </div>
-            </div>
-
-            <div className="mb-4">
-               <label htmlFor="destino" className="text-black font-semibold block mb-2">
-                  Destino:
-               </label>
-               <Field
-                  type="text"
-                  id="destino"
-                  name="destino"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Destino..."
-               />
-               <ErrorMessage name="destino" component="div" className="text-red-500" />
-            </div>
 
 
-            <div className="mb-4">
-               <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
-                  Saldo a pagar:
-               </label>
-               <Field
-                  type="text"
-                  id="saldoPagar"
-                  name="saldoPagar"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Saldo a pagar..."
-               />
-               <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
+               <div className="mb-4">
+                  <label htmlFor="destino" className="text-black font-semibold block mb-2">
+                     Destino:
+                  </label>
+
+                  <Field
+                     type="text"
+                     id="destino"
+                     name="destino"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Destino..."
+                  />
+                  <ErrorMessage name="destino" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="fechaViaje" className="text-black font-semibold block mb-2">
+                     Fecha del viaje:
+                  </label>
+                  <Field
+                     type="date"
+                     id="fechaViaje"
+                     name="fechaViaje"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Fecha del viaje..."
+                  />
+                  <ErrorMessage name="fechaViaje" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
+                     Saldo a pagar:
+                  </label>
+                  <Field
+                     type="text"
+                     id="saldoPagar"
+                     name="saldoPagar"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Saldo a pagar..."
+                  />
+                  <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
+                     Valor a pagar:
+                  </label>
+                  <Field
+                     type="text"
+                     id="valorPagar"
+                     name="valorPagar"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Valor a pagar..."
+                  />
+                  <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="conductorId" className="text-black font-semibold block mb-2">
+                     Conductor:
+                  </label>
+                  <Field
+                     as="select"
+                     name="conductorId"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Conductor..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Conductor...
+                     </option>
+
+                     {
+                        usersList.map(user => (
+                           <option value={user.id} key={user.id}>{user.email}</option>
+                        ))
+                     }
+                  </Field>
+                  <ErrorMessage name="conductorId" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="vehiculoId" className="text-black font-semibold block mb-2">
+                     Vehículo:
+                  </label>
+                  <Field
+                     as="select"
+                     name="vehiculoId"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Conductor..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Vehículo...
+                     </option>
+
+                     {
+                        vehiclesList.map(vehicle => (
+                           <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
+                        ))
+                     }
+                  </Field>
+                  <ErrorMessage name="vehiculoId" component="div" className="text-red-500" />
+               </div>
             </div>
 
-            <div className="mb-4">
-               <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
-                  Valor a pagar:
-               </label>
-               <Field
-                  type="text"
-                  id="valorPagar"
-                  name="valorPagar"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  placeholder="Valor a pagar..."
-               />
-               <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
-            </div>
             <div className="text-center mt-2">
                <button
                   type="submit"

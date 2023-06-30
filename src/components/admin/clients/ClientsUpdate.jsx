@@ -1,9 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useUpdateForm} from '../../../hooks';
+import { useUpdateForm } from '../../../hooks';
 
 
-export const ClientsUpdate = ({clients}) => {
+export const ClientsUpdate = ({ moduleInfo }) => {
     const validationSchema = Yup.object().shape({
         documento: Yup.number()
             .typeError('El documento debe ser un número')
@@ -15,13 +15,12 @@ export const ClientsUpdate = ({clients}) => {
             .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length === 10),
     });
 
-
     const { initialValues, onSubmitForm } = useUpdateForm({
-        id: clients.id,
-        documento: clients.documento,
-        nombre: clients.nombre,
-        razonSocial: clients.razonSocial,
-        telefono: clients.telefono
+        id: moduleInfo.id,
+        documento: moduleInfo.documento,
+        nombre: moduleInfo.nombre,
+        razonSocial: moduleInfo.razonSocial,
+        telefono: moduleInfo.telefono
     }, 'clients');
 
     return (
@@ -41,7 +40,6 @@ export const ClientsUpdate = ({clients}) => {
                             id="documento"
                             name="documento"
                             className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                            
                         />
                         <ErrorMessage name="documento" component="div" className="text-red-500" />
                     </div>
@@ -98,4 +96,4 @@ export const ClientsUpdate = ({clients}) => {
             </Form>
         </Formik>
     );
-}     
+}
