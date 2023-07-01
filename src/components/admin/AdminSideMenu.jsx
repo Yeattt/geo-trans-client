@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { FaMoneyCheckAlt, FaTruck, FaTruckLoading, FaUsersCog, FaUserCog } from 'react-icons/fa';
 import { BsBuildingFillGear, BsClipboard2CheckFill } from 'react-icons/bs';
 import { RiUserStarFill, RiCloseCircleLine } from 'react-icons/ri';
-import { MdAdminPanelSettings, MdAssignmentAdd } from 'react-icons/md';
+import { MdAdminPanelSettings } from 'react-icons/md';
 import { IoSubway } from 'react-icons/io5';
 import { TbCalendarStats } from 'react-icons/tb';
 
@@ -102,20 +102,6 @@ export const AdminSideMenu = ({ toggleMenu }) => {
 
                      <span className="text-[15px]">
                         Permisos
-                     </span>
-                  </NavLink>
-
-                  <NavLink to="/admin/assignpermissions" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
-                        <MdAssignmentAdd />
-                     </span>
-
-                     <span className="text-[15px]">
-                        Asignar Permisos
                      </span>
                   </NavLink>
 

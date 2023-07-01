@@ -72,8 +72,8 @@ export const VehiclesCreateForm = () => {
                      Tipo Camión:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
+                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
 
@@ -81,7 +81,7 @@ export const VehiclesCreateForm = () => {
                         as="select"
                         id="tipoCamion"
                         name="tipoCamion"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Tipo Camión..."
                      >
                         <option value="" disabled defaultValue>
@@ -99,38 +99,13 @@ export const VehiclesCreateForm = () => {
                   <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
                </div>
 
-               {/* <div className="mb-4">
-                  <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
-                     Tipo Camion:
-                  </label>
-
-                  <Field
-                     as="select"
-                     id="tipoCamion"
-                     name="tipoCamion"
-                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                  >
-                     <option value="" disabled defaultValue>
-                        Tipo Camión...
-                     </option>
-
-                     {vehiclesTypeList.map(vehicleType => (
-                        <option value={vehicleType.id} key={vehicleType.id}>
-                           {vehicleType.nombre}
-                        </option>
-                     ))}
-                  </Field>
-
-                  <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
-               </div> */}
-
                <div className="mb-4">
                   <label htmlFor="modelo" className="text-purplePz font-semibold block mb-2">
                      Modelo:
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <GiTowTruck />
                      </div>
 
@@ -138,7 +113,7 @@ export const VehiclesCreateForm = () => {
                         type="text"
                         id="modelo"
                         name="modelo"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Modelo..."
                      />
                   </div>
@@ -153,7 +128,7 @@ export const VehiclesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <TbFiretruck />
                      </div>
 
@@ -161,7 +136,7 @@ export const VehiclesCreateForm = () => {
                         type="text"
                         id="marca"
                         name="marca"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
                         placeholder="Marca..."
                      />
                   </div>
@@ -175,7 +150,7 @@ export const VehiclesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <HiOutlineCreditCard />
                      </div>
 
@@ -183,7 +158,7 @@ export const VehiclesCreateForm = () => {
                         type="text"
                         id="placa"
                         name="placa"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Placa..."
                      />
                   </div>
@@ -197,7 +172,7 @@ export const VehiclesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <HiOutlineCreditCard />
                      </div>
 
@@ -205,7 +180,7 @@ export const VehiclesCreateForm = () => {
                         type="text"
                         id="placaSemirremolque"
                         name="placaSemirremolque"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Placa semirremolque..."
                      />
                   </div>
@@ -219,7 +194,7 @@ export const VehiclesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <BsFillPersonVcardFill />
                      </div>
 
@@ -227,7 +202,7 @@ export const VehiclesCreateForm = () => {
                         type="text"
                         id="tarjetaPropiedad"
                         name="tarjetaPropiedad"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Tarjeta propiedad..."
                      />
                   </div>
@@ -241,7 +216,7 @@ export const VehiclesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <CgToolbox />
                      </div>
 
@@ -249,7 +224,7 @@ export const VehiclesCreateForm = () => {
                         type="text"
                         id="tecnomecanica"
                         name="tecnomecanica"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Tecnomecanica..."
                      />
                   </div>
@@ -263,7 +238,7 @@ export const VehiclesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <BsCardHeading />
                      </div>
 
@@ -271,7 +246,7 @@ export const VehiclesCreateForm = () => {
                         type="text"
                         id="soat"
                         name="soat"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Soat..."
                      />
                   </div>
@@ -283,7 +258,7 @@ export const VehiclesCreateForm = () => {
             <div className="text-center mt-2">
                <button
                   type="submit"
-                  className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
+                  className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[20%] rounded-full"
                >
                   Registrar
                </button>

@@ -1,6 +1,9 @@
 import { useState } from 'react';
+
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
+import { MdAssignmentAdd } from 'react-icons/md';
+
 import { AssignModal, InfoModal, DeleteModal, UpdateModal } from '../../modals';
 import { UsersHome } from '../../../pages/admin/users/UsersHome';
 

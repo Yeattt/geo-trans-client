@@ -10,7 +10,6 @@ import {
    UsersCreateForm,
    VehiclesCreateForm,
    VehiclesTypeCreateForm,
-   AssignPermissionsCreateForm
 } from '../admin';
 
 export const CreateFormModal = ({ handleIsCreateModalActive, module }) => {
@@ -23,16 +22,15 @@ export const CreateFormModal = ({ handleIsCreateModalActive, module }) => {
       Trips: TripsCreateForm,
       Users: UsersCreateForm,
       Vehicles: VehiclesCreateForm,
-      VehiclesType: VehiclesTypeCreateForm,
-      AssignPermissions: AssignPermissionsCreateForm
+      VehiclesType: VehiclesTypeCreateForm
    };
 
    const ComponentToRender = components[module];
 
    return (
-      <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden">
+      <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden z-30">
          <div className="w-2/3 h-auto bg-purplePz rounded-md">
-            <div className="w-full h-[55px] rounded-md flex items-center justify-between px-2">
+            <div className="w-full h-[55px] bg-primary rounded-md flex items-center justify-between px-2">
                <h2 className="text-xl text-white font-semibold">Crear</h2>
 
                <span

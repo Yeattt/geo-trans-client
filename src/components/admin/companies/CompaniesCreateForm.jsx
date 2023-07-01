@@ -40,13 +40,13 @@ export const CompaniesCreateForm = () => {
       >
          <Form>
             <div className="grid grid-cols-2 gap-4">
-               <div className="mb-4">
+            <div className="mb-4">
                   <label htmlFor="nit" className="text-purplePz font-semibold block mb-2">
-                     Nit:
+                     NIT:
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <GiTowTruck />
                      </div>
 
@@ -54,8 +54,8 @@ export const CompaniesCreateForm = () => {
                         type="text"
                         id="nit"
                         name="nit"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
-                        placeholder="Nit..."
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
+                        placeholder="NIT..."
                      />
                   </div>
 
@@ -68,7 +68,7 @@ export const CompaniesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <GiTowTruck />
                      </div>
 
@@ -76,7 +76,7 @@ export const CompaniesCreateForm = () => {
                         type="text"
                         id="razonSocial"
                         name="razonSocial"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Razón social..."
                      />
                   </div>
@@ -87,11 +87,11 @@ export const CompaniesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="nombreEmpresa" className="text-purplePz font-semibold block mb-2">
-                     Nombre empresa:
+                     Nombre de empresa:
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <GiTowTruck />
                      </div>
 
@@ -99,8 +99,8 @@ export const CompaniesCreateForm = () => {
                         type="text"
                         id="nombreEmpresa"
                         name="nombreEmpresa"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
-                        placeholder="Nombre empresa..."
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
+                        placeholder="Nombre de empresa..."
                      />
                   </div>
 
@@ -113,7 +113,7 @@ export const CompaniesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <GiTowTruck />
                      </div>
 
@@ -121,7 +121,7 @@ export const CompaniesCreateForm = () => {
                         type="text"
                         id="telefono"
                         name="telefono"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Teléfono..."
                      />
                   </div>
@@ -135,7 +135,7 @@ export const CompaniesCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <GiTowTruck />
                      </div>
 
@@ -143,7 +143,7 @@ export const CompaniesCreateForm = () => {
                         type="text"
                         id="duenoPoliza"
                         name="duenoPoliza"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
                         placeholder="Dueño poliza..."
                      />
                   </div>
@@ -156,7 +156,7 @@ export const CompaniesCreateForm = () => {
             <div className="text-center mt-2">
                <button
                   type="submit"
-                  className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
+                  className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[20%] rounded-full"
                >
                   Registrar
                </button>

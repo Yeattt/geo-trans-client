@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { FaTruck, FaUserCog } from 'react-icons/fa';
+import { FaTruck, FaUserCog, FaUsers, FaUsersCog } from 'react-icons/fa';
 import { BsBuildingFillGear } from 'react-icons/bs';
 import { RiLockPasswordLine, RiUserSettingsLine } from 'react-icons/ri';
 import { MdOutlineDocumentScanner } from 'react-icons/md';
@@ -70,7 +70,7 @@ export const UsersCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[19px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <MdOutlineDocumentScanner />
                      </div>
 
@@ -78,7 +78,7 @@ export const UsersCreateForm = () => {
                         type="text"
                         id="documento"
                         name="documento"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
                         placeholder="Documento..."
                      />
                   </div>
@@ -92,7 +92,7 @@ export const UsersCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[19px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <MdOutlineDocumentScanner />
                      </div>
 
@@ -100,7 +100,7 @@ export const UsersCreateForm = () => {
                         type="text"
                         id="nombre"
                         name="nombre"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
                         placeholder="Nombre..."
                      />
                   </div>
@@ -114,7 +114,7 @@ export const UsersCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[19px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <RiUserSettingsLine />
                      </div>
 
@@ -122,7 +122,7 @@ export const UsersCreateForm = () => {
                         type="text"
                         id="edad"
                         name="edad"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
                         placeholder="Edad..."
                      />
                   </div>
@@ -136,7 +136,7 @@ export const UsersCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <HiOutlineMail />
                      </div>
 
@@ -144,7 +144,7 @@ export const UsersCreateForm = () => {
                         type="email"
                         id="email"
                         name="email"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
                         placeholder="Email..."
                      />
                   </div>
@@ -158,7 +158,7 @@ export const UsersCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[19px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <RiLockPasswordLine />
                      </div>
 
@@ -166,7 +166,7 @@ export const UsersCreateForm = () => {
                         type="password"
                         id="contrasena"
                         name="contrasena"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
                         placeholder="Contraseña..."
                      />
                   </div>
@@ -179,16 +179,16 @@ export const UsersCreateForm = () => {
                      Rol:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
-                        <FaTruck />
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
+                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
+                        <FaUsersCog />
                      </div>
 
                      <Field
                         as="select"
                         id="roleId"
                         name="roleId"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Rol..."
                      >
                         <option value="" disabled defaultValue>
@@ -211,8 +211,8 @@ export const UsersCreateForm = () => {
                      Compañía:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[9%] text-[22px] flex items-center justify-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
+                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
                         <BsBuildingFillGear />
                      </div>
 
@@ -220,7 +220,7 @@ export const UsersCreateForm = () => {
                         as="select"
                         id="companyId"
                         name="companyId"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Compañía..."
                      >
                         <option value="" disabled defaultValue>
@@ -243,16 +243,16 @@ export const UsersCreateForm = () => {
                      Vehículo:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[8%] text-[22px] flex items-center justify-center">
-                        <FaUserCog />
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
+                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
+                        <FaTruck />
                      </div>
 
                      <Field
                         as="select"
                         id="vehicleId"
                         name="vehicleId"
-                        className="bg-transparent w-[92%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Vehículo..."
                      >
                         <option value="" disabled defaultValue>
@@ -274,7 +274,7 @@ export const UsersCreateForm = () => {
             <div className="text-center mt-2">
                <button
                   type="submit"
-                  className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
+                  className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[20%] rounded-full"
                >
                   Registrar
                </button>

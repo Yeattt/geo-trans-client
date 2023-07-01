@@ -7,7 +7,6 @@ export * from './trips';
 export * from './users';
 export * from './vehicles';
 export * from './vehiclesType';
-export * from './assignpermissions';
 
 export * from './Dashboard';
 export * from './CalendarPage';

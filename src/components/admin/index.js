@@ -11,7 +11,6 @@ export * from './users/UsersUpdate';
 
 export * from './vehicles';
 export * from './vehiclesType';
-export * from './assignpermissions';
 
 export * from './AdminElementsCard';
 export * from './AdminSearcher';
