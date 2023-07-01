@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { ClientsRoutes, CompaniesRoutes, PermissionsRoutes, QuotesRoutes, RolesRoutes, TripsRoutes, UsersRoutes, VehiclesRoutes, VehiclesTypeRoutes, AssignPermissionsRoutes, CalendarRoutes  } from './';
+import { ClientsRoutes, CompaniesRoutes, PermissionsRoutes, QuotesRoutes, RolesRoutes, TripsRoutes, UsersRoutes, VehiclesRoutes, VehiclesTypeRoutes, CalendarRoutes  } from './';
 
 export const AdminRoutes = () => {
    return (
@@ -15,7 +15,6 @@ export const AdminRoutes = () => {
          <Route path="/users/*" element={<UsersRoutes />} />
          <Route path="/vehicles/*" element={<VehiclesRoutes />} />
          <Route path="/trucks/types/*" element={<VehiclesTypeRoutes />} />
-         <Route path="/assignpermissions/*" element={<AssignPermissionsRoutes />} />
       </Routes>
    );
 }
