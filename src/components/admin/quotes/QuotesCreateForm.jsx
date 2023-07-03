@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { FaTruckLoading } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData } from '../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -105,6 +106,8 @@ export const QuotesCreateForm = () => {
          setVehiclesTypeList(vehiclesType.vehiclesType);
       }
    }, [isVehiclesTypeLoading]);
+
+   const { user } = useAuthStore();
 
    return (
       <Formik
@@ -331,27 +334,16 @@ export const QuotesCreateForm = () => {
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="userId" className="text-black font-semibold block mb-2">
-                     User Id:
+                  <label htmlFor="valorTransporte" className="text-black font-semibold block mb-2">
+                     Usuario:
                   </label>
-                  <Field
-                     as="select"
-                     id="userId"
-                     name="userId"
+                  <Field                                    
+                     id="UserId"
+                     name="UserId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                     placeholder="User Id..."
-                  >
-                     <option value="" disabled defaultValue>
-                        Usuario...
-                     </option>
-
-                     {
-                        usersList.map(user => (
-                           <option value={user.id} key={user.id}>{user.email}</option>
-                        ))
-                     }
-                  </Field>
-                  <ErrorMessage name="userId" component="div" className="text-red-500" />
+                     placeholder={user.name}
+                  />
+                  <ErrorMessage name="UserId" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">

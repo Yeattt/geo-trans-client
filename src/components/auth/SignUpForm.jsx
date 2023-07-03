@@ -31,7 +31,7 @@ export const SignUpForm = () => {
       contrasena: '',
       roleId: 1,
       companyId: 1,
-      vehicleId: 1
+      vehicleId: 1,
    });
 
    return (
