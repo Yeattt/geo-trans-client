@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-import { BiSearchAlt } from 'react-icons/bi';
-import { AdminElementsCard, AdminLayout, AdminNavbar, AdminSearcher, ClientsCard, CreateFormModal } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { AdminLayout, AdminNavbar, VehiclesTypeCard, CreateFormModal, SearchModal, AdminElementsCard, AdminSearcher } from '../../components';
+import { useGetApiData } from '../../hooks';
 
-export const ClientsHome = () => {
-   const { isLoading, data } = useGetApiData('/clients');
-   const [clients, setClients] = useState([]);
+export const VehiclesTypeHome = () => {
+   const { isLoading, data } = useGetApiData('/trucks/types');
+   const [vehiclesType, setVehiclesType] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
 
    useEffect(() => {
       if (!isLoading) {
-         setClients(data.clients);
+         setVehiclesType(data.vehiclesType);
       }
    }, [isLoading, data]);
 
@@ -22,25 +21,25 @@ export const ClientsHome = () => {
    return (
       <AdminLayout>
          <div className="min-w-full bg-gray-200">
-            <AdminNavbar module="Clientes" />
+            <AdminNavbar module="Tipo Vehículos" />
 
             <br />
 
-            <AdminElementsCard module="Clients" data={clients} />
+            <AdminElementsCard module="VehiclesType" data={vehiclesType} />
 
             <br />
 
-            <AdminSearcher module="Clients" />
+            <AdminSearcher module="VehiclesType" />
 
             {/* // * IMPORTANTE: Prueba del modal para crear */}
-            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Clients" />}
+            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="VehiclesType" />}
 
             <br />
 
             <div className="flex items-center justify-center">
                <div className="bg-white rounded-sm w-[94%] flex flex-col justify-between px-2 py-2">
                   <div className="h-14 w-full flex items-center justify-between px-3 py-10 mb-5">
-                     <span className="text-lg font-bold text-purplePz">Lista de clientes</span>
+                     <span className="text-lg font-bold text-purplePz">Lista de Tipos</span>
 
                      <button
                         className="bg-primary transition hover:bg-primaryHover w-32 py-2 rounded-md font-bold text-white"
@@ -55,18 +54,15 @@ export const ClientsHome = () => {
                         <thead>
                            <tr>
                               <th className="px-6 py-2 text-purplePz">ID</th>
-                              <th className="px-6 py-2 text-purplePz">Documento</th>
                               <th className="px-6 py-2 text-purplePz">Nombre</th>
-                              <th className="px-6 py-2 text-purplePz">Razon Social</th>
-                              <th className="px-6 py-2 text-purplePz">Telefono</th>
                               <th className="px-6 py-2 text-purplePz">Estado</th>
                               <th className="px-6 py-2 text-purplePz">Acciones</th>
                            </tr>
                         </thead>
                         <tbody>
                            {
-                              clients.map(client => (
-                                 <ClientsCard key={client.id} client={client} />
+                              vehiclesType.map(vehicleType => (
+                                 <VehiclesTypeCard key={vehicleType.id} vehicleType={vehicleType} />
                               ))
                            }
                         </tbody>

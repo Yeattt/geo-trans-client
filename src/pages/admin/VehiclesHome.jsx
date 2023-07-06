@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { AdminLayout, AdminNavbar, VehiclesCard, CreateFormModal, SearchModal, AdminElementsCard, AdminSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { AdminLayout, AdminNavbar, VehiclesCard, CreateFormModal, SearchModal, AdminElementsCard, AdminSearcher } from '../../components';
+import { useGetApiData } from '../../hooks';
 
 export const VehiclesHome = () => {
    const { isLoading, data } = useGetApiData('/vehicles');

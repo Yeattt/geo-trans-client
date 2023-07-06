@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { BiSearchAlt } from 'react-icons/bi';
 
-import { AdminLayout, AdminNavbar, QuotesCard, CreateFormModal, AdminElementsCard, AdminSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { AdminLayout, AdminNavbar, QuotesCard, CreateFormModal, AdminElementsCard, AdminSearcher } from '../../components';
+import { useGetApiData } from '../../hooks';
 
 export const QuotesHome = () => {
    const { isLoading, data } = useGetApiData('/quotes');

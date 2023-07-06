@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { AdminLayout, AdminNavbar, RolesCard, CreateFormModal, SearchModal, AdminElementsCard, AdminSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { AdminLayout, AdminNavbar, RolesCard, CreateFormModal, SearchModal, AdminElementsCard, AdminSearcher } from '../../components';
+import { useGetApiData } from '../../hooks';
 
 export const RolesHome = () => {
    const { isLoading, data } = useGetApiData('/roles');
