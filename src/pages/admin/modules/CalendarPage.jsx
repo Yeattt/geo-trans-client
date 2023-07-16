@@ -5,9 +5,9 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { addHours } from 'date-fns';
 
-import { AdminLayout, AdminNavbar, InfoModal } from '../../components';
-import { localizer, getMessagesES } from '../../helpers';
-import { useGetApiData } from '../../hooks';
+import { AdminLayout, AdminNavbar, InfoModal } from '../../../components';
+import { localizer, getMessagesES } from '../../../helpers';
+import { useGetApiData } from '../../../hooks';
 
 // const events = [{
 //    title: 'Test',
