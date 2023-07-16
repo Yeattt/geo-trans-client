@@ -1,21 +1,31 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { ClientsRoutes, CompaniesRoutes, PermissionsRoutes, QuotesRoutes, RolesRoutes, TripsRoutes, UsersRoutes, VehiclesRoutes, VehiclesTypeRoutes, AssignPermissionsRoutes, CalendarRoutes  } from './';
+import { UsersRoutes } from './UsersRoutes';
+import {
+   CalendarPage,
+   ClientsPage,
+   CompaniesPage,
+   PermissionsPage,
+   QuotesPage,
+   RolesPage,
+   TripsPage,
+   VehiclesPage,
+   VehiclesTypePage
+} from '../../pages';
 
 export const AdminRoutes = () => {
    return (
       <Routes>
-         <Route path="/calendar/*" element={<CalendarRoutes />} />
-         <Route path="/clients/*" element={<ClientsRoutes />} />
-         <Route path="/companies/*" element={<CompaniesRoutes />} />
-         <Route path="/permissions/*" element={<PermissionsRoutes />} />
-         <Route path="/quotes/*" element={<QuotesRoutes />} />
-         <Route path="/roles/*" element={<RolesRoutes />} />
-         <Route path="/trips/*" element={<TripsRoutes />} />
+         <Route path="/calendar" element={<CalendarPage />} />
+         <Route path="/clients" element={<ClientsPage />} />
+         <Route path="/companies" element={<CompaniesPage />} />
+         <Route path="/permissions" element={<PermissionsPage />} />
+         <Route path="/quotes" element={<QuotesPage />} />
+         <Route path="/roles" element={<RolesPage />} />
+         <Route path="/trips" element={<TripsPage />} />
+         <Route path="/trucks/types" element={<VehiclesTypePage />} />
          <Route path="/users/*" element={<UsersRoutes />} />
-         <Route path="/vehicles/*" element={<VehiclesRoutes />} />
-         <Route path="/trucks/types/*" element={<VehiclesTypeRoutes />} />
-         <Route path="/assignpermissions/*" element={<AssignPermissionsRoutes />} />
+         <Route path="/vehicles" element={<VehiclesPage />} />
       </Routes>
    );
 }
