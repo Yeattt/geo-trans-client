@@ -1,21 +1,31 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { UsersRoutes } from './UsersRoutes';
-import { CalendarPage, ClientsHome, CompaniesHome, PermissionsHome, QuotesHome, RolesHome, TripsHome, VehiclesHome, VehiclesTypeHome } from '../../pages/admin';
+import {
+   CalendarPage,
+   ClientsPage,
+   CompaniesPage,
+   PermissionsPage,
+   QuotesPage,
+   RolesPage,
+   TripsPage,
+   VehiclesPage,
+   VehiclesTypePage
+} from '../../pages';
 
 export const AdminRoutes = () => {
    return (
       <Routes>
          <Route path="/calendar" element={<CalendarPage />} />
-         <Route path="/clients" element={<ClientsHome />} />
-         <Route path="/companies" element={<CompaniesHome />} />
-         <Route path="/permissions" element={<PermissionsHome />} />
-         <Route path="/quotes" element={<QuotesHome />} />
-         <Route path="/roles" element={<RolesHome />} />
-         <Route path="/trips" element={<TripsHome />} />
+         <Route path="/clients" element={<ClientsPage />} />
+         <Route path="/companies" element={<CompaniesPage />} />
+         <Route path="/permissions" element={<PermissionsPage />} />
+         <Route path="/quotes" element={<QuotesPage />} />
+         <Route path="/roles" element={<RolesPage />} />
+         <Route path="/trips" element={<TripsPage />} />
+         <Route path="/trucks/types" element={<VehiclesTypePage />} />
          <Route path="/users/*" element={<UsersRoutes />} />
-         <Route path="/vehicles" element={<VehiclesHome />} />
-         <Route path="/trucks/types" element={<VehiclesTypeHome />} />
+         <Route path="/vehicles" element={<VehiclesPage />} />
       </Routes>
    );
 }
