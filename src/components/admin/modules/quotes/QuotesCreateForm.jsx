@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData, useAuthStore } from '../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
