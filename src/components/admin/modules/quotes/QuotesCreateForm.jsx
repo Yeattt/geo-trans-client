@@ -54,11 +54,11 @@ const validationSchema = Yup.object().shape({
       .typeError('Solo se reciben valores numericos')
       .required('Campo requerido'),
 
-   userId: Yup.string()
-      .required('Campo requerido'),
+   // userId: Yup.string()
+   //    .required('Campo requerido'),
 
-   companyId: Yup.string()
-      .required('Campo requerido'),
+   // companyId: Yup.string()
+   //    .required('Campo requerido'),
 });
 
 export const QuotesCreateForm = () => {
@@ -85,21 +85,21 @@ export const QuotesCreateForm = () => {
       contenido: '',
       valorTransporte: '',
       observaciones: '',
-      userId: '',
-      companyId: '',
+      // userId: '',
+      // companyId: '',
    }, 'quotes');
 
-   useEffect(() => {
-      if (!usersIsLoading) {
-         setUsersList(users.users);
-      }
-   }, [usersIsLoading]);
+   // useEffect(() => {
+   //    if (!usersIsLoading) {
+   //       setUsersList(users.users);
+   //    }
+   // }, [usersIsLoading]);
 
-   useEffect(() => {
-      if (!companiesIsLoading) {
-         setCompaniesList(companies.companies);
-      }
-   }, [companiesIsLoading]);
+   // useEffect(() => {
+   //    if (!companiesIsLoading) {
+   //       setCompaniesList(companies.companies);
+   //    }
+   // }, [companiesIsLoading]);
 
    useEffect(() => {
       if (!isVehiclesTypeLoading) {
@@ -333,7 +333,7 @@ export const QuotesCreateForm = () => {
                   <ErrorMessage name="valorTransporte" component="div" className="text-red-500" />
                </div>
 
-               <div className="mb-4">
+               {/* <div className="mb-4">
                   <label htmlFor="valorTransporte" className="text-black font-semibold block mb-2">
                      Usuario:
                   </label>
@@ -344,9 +344,9 @@ export const QuotesCreateForm = () => {
                      placeholder={user.name}
                   />
                   <ErrorMessage name="UserId" component="div" className="text-red-500" />
-               </div>
+               </div> */}
 
-               <div className="mb-4">
+               {/* <div className="mb-4">
                   <label htmlFor="companyId" className="text-black font-semibold block mb-2">
                      Company Id:
                   </label>
@@ -368,7 +368,7 @@ export const QuotesCreateForm = () => {
                      }
                   </Field>
                   <ErrorMessage name="companyId" component="div" className="text-red-500" />
-               </div>
+               </div> */}
             </div>
 
             <div className="mb-4">

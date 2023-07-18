@@ -34,7 +34,7 @@ export const QuotesPage = () => {
             <br />
 
             <div className="flex items-center justify-center">
-               <QuotesInfoTable quotes={quotes} handleIsCreateModalActive={handleIsCreateModalActive} />
+               {quotes && <QuotesInfoTable quotes={quotes} handleIsCreateModalActive={handleIsCreateModalActive} />}
             </div>
          </div>
       </AdminLayout>
