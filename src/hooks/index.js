@@ -1,3 +1,4 @@
+export * from './useGetApiCities';
 export * from './useAssignPermissions';
 export * from './useCreateForm';
 export * from './useGetApiData';

@@ -229,8 +229,8 @@ export const UsersCreateForm = () => {
 
                         {
                            companiesList.map(company => (
-                              <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
-                           ))
+                              <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>                           
+                           ))                           
                         }
                      </Field>
                   </div>

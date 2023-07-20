@@ -52,17 +52,17 @@ export const ClientsCard = ({ client }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
+            {/* <span
                className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
                onClick={() => handleIsInfoModalActive(true)}
             >
                <TbInfoHexagon />
-            </span>
+            </span> */}
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
-            {
+            {/* {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={client} />
-            }
+            } */}
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                <FaEdit onClick={handleUpdateClick}/>
