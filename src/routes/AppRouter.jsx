@@ -33,7 +33,7 @@ export const AppRouter = () => {
                : (
                   <>
                      <Route path="/admin/*" element={<AdminRoutes />} />
-                     <Route path="/*" element={<Navigate to="/admin/vehicles" />} />
+                     <Route path="/*" element={<Navigate to="/admin/users" />} />
                   </>
                )
          }

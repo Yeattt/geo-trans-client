@@ -6,5 +6,4 @@ export * from './useDelete';
 export * from './usePending';
 export * from './useUpdateForm';
 export * from './useSignUp';
-export * from './useSearchModule';
 export * from './useVehiclesStore';

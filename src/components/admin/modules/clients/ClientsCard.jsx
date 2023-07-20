@@ -33,7 +33,7 @@ export const ClientsCard = ({ client }) => {
 
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{client.id}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{client.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{client.documento}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{client.nombre}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{client.razonSocial}</td>

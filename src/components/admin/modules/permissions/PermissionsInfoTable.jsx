@@ -18,10 +18,10 @@ export const PermissionsInfoTable = ({ permissions, handleIsCreateModalActive })
         <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="px-6 py-2 text-secondary">ID</th>
-              <th className="px-6 py-2 text-secondary">Nombre</th>
-              <th className="px-6 py-2 text-secondary">Estado</th>
-              <th className="px-6 py-2 text-secondary">Acciones</th>
+              <th className="px-6 py-2 text-primary">ID</th>
+              <th className="px-6 py-2 text-primary">Nombre</th>
+              <th className="px-6 py-2 text-primary">Estado</th>
+              <th className="px-6 py-2 text-primary">Acciones</th>
             </tr>
           </thead>
           <tbody>
