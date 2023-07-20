@@ -7,7 +7,8 @@ import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
-import { useGetApiData } from '../../../../hooks';
+import { useGetApiData , useAuthStore} from '../../../../hooks';
+
 
 export const QuotesCard = ({ quote }) => {
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
@@ -16,6 +17,7 @@ export const QuotesCard = ({ quote }) => {
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
    const [companiesList, setCompaniesList] = useState([]);
+   const { user } = useAuthStore();
 
 
    const handleViewDetails = () => {
@@ -34,14 +36,17 @@ export const QuotesCard = ({ quote }) => {
    const handleIsDeleteModalActive = (status) => {
       setIsDeleteModalActive(status);
 
-      useEffect(() => {
-         if (!isCompaniesLoading ) {
-            setCompaniesList(companies.companies);
-         }
-      }, [isCompaniesLoading]);
+      // useEffect(() => {
+      //    if (!isCompaniesLoading ) {
+      //       setCompaniesList(companies.companies);
+      //    }
+      // }, [isCompaniesLoading]);
    };
 
-   return (
+   {
+      console.log(user.name);
+   }
+   return (      
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{quote.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.fechaSolicitud}</td>
@@ -59,8 +64,8 @@ export const QuotesCard = ({ quote }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.contenido}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorTransporte}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.observaciones}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.companyId}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.userId}</td>
+         {/* <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.companyId}</td>*/}
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.name}</td> 
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
          {
             quote.estado
