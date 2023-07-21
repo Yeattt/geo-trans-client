@@ -25,11 +25,13 @@ const validationSchema = Yup.object().shape({
       .max(15, 'Máximo 15 caracteres')
       .required('Campo requerido'),
    placa: Yup.string()
-      .max(6, 'Máximo 4 caracteres')
-      .required('Campo requerido'),
+      .max(6, 'Máximo 6 caracteres')
+      .required('Campo requerido')
+      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length == 6),
    placaSemirremolque: Yup.string()
       .max(6, 'Máximo 6 caracteres')
-      .required('Campo requerido'),
+      .required('Campo requerido')
+      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length == 6),
    tarjetaPropiedad: Yup.string()
       .required('Campo requerido'),
    tecnomecanica: Yup.string()
@@ -110,7 +112,7 @@ export const VehiclesCreateForm = () => {
                      </div>
 
                      <Field
-                        type="text"
+                        type="number"
                         id="modelo"
                         name="modelo"
                         className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
