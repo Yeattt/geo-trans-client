@@ -249,7 +249,7 @@ export const QuotesCreateForm = () => {
                      Tipo Camión:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[9%] text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
@@ -258,7 +258,7 @@ export const QuotesCreateForm = () => {
                         as="select"
                         id="tipoCamion"
                         name="tipoCamion"
-                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] text-gray-400 focus-within:text-black"
+                        className="bg-transparent w-[130%] h-full px-4 pl-0 py-3 pb-3 text-[15px] focus-within:text-black"
                         placeholder="Tipo Camión..."
                      >
                         <option value="" disabled defaultValue>

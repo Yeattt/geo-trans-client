@@ -55,13 +55,15 @@ export const TripsCreateForm = () => {
 
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: users, isLoading: isUsersLoading } = useGetApiData('/users');
+   const { data: clients, isLoading: isLoadingClients } = useGetApiData('/clientes');
 
    const [vehiclesList, setVehiclesList] = useState([]);
    const [usersList, setUsersList] = useState([]);
+   const [clientsList, setClientsList] = useState([]);
 
    const { initialValues, onSubmitForm } = useCreateForm({
       cantidad: '',
-      codigoProducto: '',
+      nombreProducto: '',
       destino: '',
       empaque: '',
       naturaleza: '',
@@ -80,12 +82,14 @@ export const TripsCreateForm = () => {
    }, 'trips');
 
    useEffect(() => {
-      if (!isVehiclesLoading && !isUsersLoading) {
-
-         setVehiclesList(vehicles.vehicles);
-         setUsersList(users.users);
+      if (!isVehiclesLoading && !isUsersLoading && !isLoadingClientes) {
+        setVehiclesList(vehicles.vehicles);
+        setUsersList(users.users);
+        setClientsList(clients.clientes);
       }
-   }, [isVehiclesLoading, isUsersLoading]);
+    }, [isVehiclesLoading, isUsersLoading, isLoadingClients]);
+
+;
 
    return (
       <Formik
@@ -101,7 +105,7 @@ export const TripsCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
 
@@ -123,27 +127,37 @@ export const TripsCreateForm = () => {
 
                   <ErrorMessage name="tipoViaje" component="div" className="text-red-500" />
                </div>
+               </div>
 
-               <div className="mb-4">
-                  <label htmlFor="cliente" className="text-purplePz font-semibold block mb-2">
+                 <div className="mb-4">
+                  <label htmlFor="clienteId" className="text-purplePz font-semibold block mb-2">
                      Cliente:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
 
                      <Field
-                        type="text"
-                        id="cliente"
-                        name="cliente"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
+                        as="select"
+                        id="clienteId"
+                        name="clienteId"
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Cliente..."
-                     />
-                  </div>
+                     >
+                        <option value="" disabled defaultValue>
+                           Cliente...
+                        </option>
 
-                  <ErrorMessage name="cliente" component="div" className="text-red-500" />
+                        {
+                           usersList.map( cliente=>(
+                              <option value={cliente.id} key={cliente.id}>{cliente.nombre}</option>
+                           ))
+                        }
+                     </Field>
+
+                  <ErrorMessage name="cliente" component="div" className="tet-red-50x0" />
                </div>
 
                <div className="mb-4">
@@ -151,7 +165,7 @@ export const TripsCreateForm = () => {
                      Número de remesa:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -174,7 +188,7 @@ export const TripsCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full  focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
 
@@ -203,7 +217,7 @@ export const TripsCreateForm = () => {
                      Cantidad:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -225,7 +239,7 @@ export const TripsCreateForm = () => {
                      Naturaleza:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -248,7 +262,7 @@ export const TripsCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full  focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
 
@@ -288,19 +302,19 @@ export const TripsCreateForm = () => {
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="codigoProducto" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="nombreProducto" className="text-purplePz font-semibold block mb-2">
                      Código de producto:
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full  focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
 
                      <Field
                         as="select"
-                        id="codigoProducto"
-                        name="codigoProducto"
+                        id="nombreProducto"
+                        name="nombreProducto"
                         className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Código de producto..."
                      >
@@ -326,7 +340,7 @@ export const TripsCreateForm = () => {
                      </Field>
                   </div>
 
-                  <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
+                  <ErrorMessage name="nombreProducto" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
@@ -334,7 +348,7 @@ export const TripsCreateForm = () => {
                      Producto a transportar:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -356,7 +370,7 @@ export const TripsCreateForm = () => {
                      Origen:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -378,7 +392,7 @@ export const TripsCreateForm = () => {
                      Destino:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -400,7 +414,7 @@ export const TripsCreateForm = () => {
                      Fecha del viaje:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -422,7 +436,7 @@ export const TripsCreateForm = () => {
                      Hora del viaje:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -444,7 +458,7 @@ export const TripsCreateForm = () => {
                      Saldo a pagar:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -466,7 +480,7 @@ export const TripsCreateForm = () => {
                      Valor a pagar:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
@@ -489,7 +503,7 @@ export const TripsCreateForm = () => {
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruckLoading />
                      </div>
 
@@ -521,7 +535,7 @@ export const TripsCreateForm = () => {
                      Vehículo:
                   </label>
 
-                  <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center hover:cursor-not-allowed">
+                  <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center hover:cursor-not-allowed">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
                         <FaTruck />
                      </div>
