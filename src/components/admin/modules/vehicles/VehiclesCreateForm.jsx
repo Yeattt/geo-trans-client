@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
       .max(15, 'Máximo 15 caracteres')
       .required('Campo requerido'),
    placa: Yup.string()
-      .max(6, 'Máximo 4 caracteres')
+      .max(6, 'Máximo 6 caracteres')
       .required('Campo requerido'),
    placaSemirremolque: Yup.string()
       .max(6, 'Máximo 6 caracteres')
@@ -89,9 +89,11 @@ export const VehiclesCreateForm = () => {
                         </option>
 
                         {vehiclesTypeList.map(vehicleType => (
-                           <option value={vehicleType.id} key={vehicleType.id}>
-                              {vehicleType.nombre}
-                           </option>
+                           vehicleType.estado && (
+                              <option value={vehicleType.id} key={vehicleType.id}>
+                                 {vehicleType.nombre}
+                              </option>
+                           )
                         ))}
                      </Field>
                   </div>
@@ -110,7 +112,7 @@ export const VehiclesCreateForm = () => {
                      </div>
 
                      <Field
-                        type="text"
+                        type="number"
                         id="modelo"
                         name="modelo"
                         className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"

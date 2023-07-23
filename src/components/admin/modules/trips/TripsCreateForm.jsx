@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
+import { FaTruck, FaTruckLoading } from 'react-icons/fa';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import * as Yup from 'yup';
 
 import { useCreateForm, useGetApiData } from '../../../../hooks';
-import { useState, useEffect } from 'react';
-import { FaTruck, FaTruckLoading } from 'react-icons/fa';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -56,8 +58,8 @@ export const TripsCreateForm = () => {
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: users, isLoading: isUsersLoading } = useGetApiData('/users');
 
-   const [vehiclesList, setVehiclesList] = useState([]);
    const [usersList, setUsersList] = useState([]);
+   const [vehiclesList, setVehiclesList] = useState([]);
 
    const { initialValues, onSubmitForm } = useCreateForm({
       cantidad: '',
@@ -499,6 +501,11 @@ export const TripsCreateForm = () => {
                         name="conductorId"
                         className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Conductor..."
+                        onChange={(event) => {
+                           const { vehicleId } = usersList.find(user => user.id === event.target.value);
+                           const { placa } = vehiclesList.find(vehicle => vehicle.id === vehicleId);
+                           setFieldValue('vehiculoId', placa);
+                        }}
                      >
                         <option value="" disabled defaultValue>
                            Conductor...
