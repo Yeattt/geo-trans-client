@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData, useAuthStore } from '../../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore,useGetApiCities } from '../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -64,6 +64,10 @@ const validationSchema = Yup.object().shape({
 export const QuotesCreateForm = () => {
    const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
    const [usersList, setUsersList] = useState([]);
+
+   const { ciudades, isLoading } = useGetApiCities();
+   const [ciudadesList, setCiudadessList] = useState([]);
+
    const { data: companies, isLoading: companiesIsLoading } = useGetApiData('/companies');
    const [companiesList, setCompaniesList] = useState([]);
    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
@@ -107,15 +111,22 @@ export const QuotesCreateForm = () => {
       }
    }, [isVehiclesTypeLoading]);
 
+   
+
+   
    const { user } = useAuthStore();
 
-   return (
+   return (      
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
+         
          <Form>
+            {
+               console.log(ciudades)
+            }         
             <div className="grid grid-cols-4 gap-3">
                <div className="mb-4">
                   <label htmlFor="nombreOrigen" className="text-black font-semibold block mb-2">

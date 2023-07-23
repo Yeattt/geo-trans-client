@@ -26,10 +26,12 @@ const validationSchema = Yup.object().shape({
       .required('Campo requerido'),
    placa: Yup.string()
       .max(6, 'Máximo 6 caracteres')
-      .required('Campo requerido'),
+      .required('Campo requerido')
+      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length == 6),
    placaSemirremolque: Yup.string()
       .max(6, 'Máximo 6 caracteres')
-      .required('Campo requerido'),
+      .required('Campo requerido')
+      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length == 6),
    tarjetaPropiedad: Yup.string()
       .required('Campo requerido'),
    tecnomecanica: Yup.string()
