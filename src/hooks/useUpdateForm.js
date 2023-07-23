@@ -11,6 +11,7 @@ export const useUpdateForm = (initialValues = {}, endpoint) => {
         geoTransApi.put(`/${endpoint}/update/${values.id}`, values)
             .then(res => {
                 Swal.fire('Actualización exitosa', res.data.message, 'success');
+                navigate(0);
                 return;
             })
             .catch(err => {

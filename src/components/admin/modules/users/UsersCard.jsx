@@ -46,25 +46,31 @@ export const UsersCard = ({ user, nombre }) => {
 
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{user.id}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{user.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.documento}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.edad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.email}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{
-                        rolesList.map(role => (
-                           <p value={role.id} key={role.id}>{role.nombre}</p>
-                        ))
-                     }</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{
-            companiesList.map(companies =>(
-               <p value={companies.id} key={companies.id}>{companies.nombreEmpresa}</p> 
-            ))
-         }</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{
-                        vehiclesList.map(vehicle => (
-                           <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
-                        ))
-                     }</td>
+         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
+            {
+               rolesList.map(role => {
+                  if (role.id === user.roleId) return role.nombre
+               })
+            }
+         </td>
+         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
+            {
+               companiesList.map(company => {
+                  if (company.id === user.companyId) return company.nombreEmpresa
+               })
+            }
+         </td>
+         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
+            {
+               vehiclesList.map(vehicle => {
+                  if (vehicle.id === user.vehicleId) return vehicle.placa
+               })
+            }
+         </td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                user.estado

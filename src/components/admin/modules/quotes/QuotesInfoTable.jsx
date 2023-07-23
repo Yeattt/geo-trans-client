@@ -43,7 +43,7 @@ export const QuotesInfoTable = ({ quotes, handleIsCreateModalActive }) => {
           <tbody>
             {
               quotes.map(quote => (
-                <QuotesCard key={quote.id} data={quote} />
+                <QuotesCard key={quote.id} quote={quote} />
               ))
             }
           </tbody>

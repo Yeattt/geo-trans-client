@@ -75,7 +75,7 @@ export const UsersCreateForm = () => {
                      </div>
 
                      <Field
-                        type="text"
+                        type="number"
                         id="documento"
                         name="documento"
                         className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
@@ -119,7 +119,7 @@ export const UsersCreateForm = () => {
                      </div>
 
                      <Field
-                        type="text"
+                        type="number"
                         id="edad"
                         name="edad"
                         className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
@@ -229,8 +229,8 @@ export const UsersCreateForm = () => {
 
                         {
                            companiesList.map(company => (
-                              <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
-                           ))
+                              <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>                           
+                           ))                           
                         }
                      </Field>
                   </div>

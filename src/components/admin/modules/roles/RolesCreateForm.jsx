@@ -68,7 +68,7 @@ export const RolesCreateForm = () => {
                               type="checkbox"
                               name="permissionsId"
                               value={id}
-                              className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
+                              className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:bg-secondary mr-2"
                            />
                            <label htmlFor={nombre}>{nombre}</label>
                         </div>

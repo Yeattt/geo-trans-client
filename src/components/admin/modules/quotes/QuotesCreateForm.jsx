@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData, useAuthStore } from '../../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore,useGetApiCities } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -54,16 +54,20 @@ const validationSchema = Yup.object().shape({
       .typeError('Solo se reciben valores numericos')
       .required('Campo requerido'),
 
-   userId: Yup.string()
-      .required('Campo requerido'),
+   // userId: Yup.string()
+   //    .required('Campo requerido'),
 
-   companyId: Yup.string()
-      .required('Campo requerido'),
+   // companyId: Yup.string()
+   //    .required('Campo requerido'),
 });
 
 export const QuotesCreateForm = () => {
    const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
    const [usersList, setUsersList] = useState([]);
+
+   const { ciudades, isLoading } = useGetApiCities();
+   const [ciudadesList, setCiudadessList] = useState([]);
+
    const { data: companies, isLoading: companiesIsLoading } = useGetApiData('/companies');
    const [companiesList, setCompaniesList] = useState([]);
    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
@@ -85,21 +89,21 @@ export const QuotesCreateForm = () => {
       contenido: '',
       valorTransporte: '',
       observaciones: '',
-      userId: '',
-      companyId: '',
+      // userId: '',
+      // companyId: '',
    }, 'quotes');
 
-   useEffect(() => {
-      if (!usersIsLoading) {
-         setUsersList(users.users);
-      }
-   }, [usersIsLoading]);
+   // useEffect(() => {
+   //    if (!usersIsLoading) {
+   //       setUsersList(users.users);
+   //    }
+   // }, [usersIsLoading]);
 
-   useEffect(() => {
-      if (!companiesIsLoading) {
-         setCompaniesList(companies.companies);
-      }
-   }, [companiesIsLoading]);
+   // useEffect(() => {
+   //    if (!companiesIsLoading) {
+   //       setCompaniesList(companies.companies);
+   //    }
+   // }, [companiesIsLoading]);
 
    useEffect(() => {
       if (!isVehiclesTypeLoading) {
@@ -107,15 +111,22 @@ export const QuotesCreateForm = () => {
       }
    }, [isVehiclesTypeLoading]);
 
+   
+
+   
    const { user } = useAuthStore();
 
-   return (
+   return (      
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
+         
          <Form>
+            {
+               console.log(ciudades)
+            }         
             <div className="grid grid-cols-4 gap-3">
                <div className="mb-4">
                   <label htmlFor="nombreOrigen" className="text-black font-semibold block mb-2">
@@ -333,7 +344,7 @@ export const QuotesCreateForm = () => {
                   <ErrorMessage name="valorTransporte" component="div" className="text-red-500" />
                </div>
 
-               <div className="mb-4">
+               {/* <div className="mb-4">
                   <label htmlFor="valorTransporte" className="text-black font-semibold block mb-2">
                      Usuario:
                   </label>
@@ -344,9 +355,9 @@ export const QuotesCreateForm = () => {
                      placeholder={user.name}
                   />
                   <ErrorMessage name="UserId" component="div" className="text-red-500" />
-               </div>
+               </div> */}
 
-               <div className="mb-4">
+               {/* <div className="mb-4">
                   <label htmlFor="companyId" className="text-black font-semibold block mb-2">
                      Company Id:
                   </label>
@@ -368,7 +379,7 @@ export const QuotesCreateForm = () => {
                      }
                   </Field>
                   <ErrorMessage name="companyId" component="div" className="text-red-500" />
-               </div>
+               </div> */}
             </div>
 
             <div className="mb-4">

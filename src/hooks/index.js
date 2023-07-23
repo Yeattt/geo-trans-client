@@ -1,3 +1,4 @@
+export * from './useGetApiCities';
 export * from './useAssignPermissions';
 export * from './useCreateForm';
 export * from './useGetApiData';
@@ -6,5 +7,4 @@ export * from './useDelete';
 export * from './usePending';
 export * from './useUpdateForm';
 export * from './useSignUp';
-export * from './useSearchModule';
 export * from './useVehiclesStore';

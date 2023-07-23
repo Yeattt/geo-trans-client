@@ -41,7 +41,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                             Nit:
                         </label>
                         <Field
-                            type="text"
+                            type="number"
                             id="nit"
                             name="nit"
                             className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
@@ -81,7 +81,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                             Telefono:
                         </label>
                         <Field
-                            type="text"
+                            type="number"
                             id="telefono"
                             name="telefono"
                             className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"

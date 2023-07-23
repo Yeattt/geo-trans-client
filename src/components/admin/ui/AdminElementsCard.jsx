@@ -50,8 +50,6 @@ const moduleConfig = {
 }
 
 export const AdminElementsCard = ({ module = '', data }) => {
-   console.log(data);
-
    const [activeData, setActiveData] = useState([]);
    const [inactiveData, setInactiveData] = useState([]);
 

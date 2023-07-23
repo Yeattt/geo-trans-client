@@ -6,23 +6,15 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal, DeleteModal, UpdateModal } from '../../';
+import { DeleteModal, UpdateModal } from '../../';
 
 export const VehiclesTypeCard = ({ vehicleType }) => {
-   const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
 
-   const handleViewDetails = () => {
-      setIsOpen(!isOpen)
-   }
    const handleUpdateClick = () =>{
       setisOpenUpdate(!isOpenUpdate)
    }
-
-   const handleIsInfoModalActive = (status) => {
-      setIsInfoModalActive(status);
-   };
 
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
@@ -32,7 +24,7 @@ export const VehiclesTypeCard = ({ vehicleType }) => {
 
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">#{vehicleType.id}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{vehicleType.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicleType.nombre}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
          {
@@ -48,19 +40,7 @@ export const VehiclesTypeCard = ({ vehicleType }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
-            </span>
-
-            {/* // * IMPORTANTE: Prueba del modal para ver información */}
-            {
-               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={vehicleType} />
-            }
-
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr">
+            <span className="text-2xl text-primary hover:text-purplePzHover cursor-pointer mr">
                <FaEdit onClick={handleUpdateClick}/>
                <UpdateModal isOpenUpdate={isOpenUpdate} module="VehiclesType" moduleInfo={vehicleType}  handleUpdateClick={handleUpdateClick}/>
             </span>
