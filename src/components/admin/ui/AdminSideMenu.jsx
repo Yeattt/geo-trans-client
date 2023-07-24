@@ -26,7 +26,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
             <div className="flex items-center justify-center border-b-2 border-white">
                <span className="w-36 h-36 border-4 border-gray-300 rounded-full overflow-hidden bg-white mb-10 cursor-pointer">
                   <Link to="/admin/vehicles" className="w-full h-full flex items-center justify-center">
-                     <span className="text-8xl text-secondary rounded-full">
+                     <span className="text-8xl text-primary rounded-full">
                         <MdAdminPanelSettings />
                      </span>
                   </Link>
