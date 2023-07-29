@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { QuotesCreateForm } from '../components/admin/quotes/QuotesCreateForm';
+import { QuotesCreateForm } from '../components/admin/modules/quotes';
 export const useGetApiCities = () => {
     
    // * IMPORTANTE: El endpoint es el url al que hay que hacer la petición, no se puede dejar vacío cuando usamos el hook en otro componente

@@ -5,7 +5,7 @@ import { TbInfoHexagon } from 'react-icons/tb';
 import { useGetApiData } from '../../../../hooks';
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
 
-export const UsersCard = ({ user, nombre }) => {
+export const UsersCard = ({ user }) => {
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
@@ -43,8 +43,8 @@ export const UsersCard = ({ user, nombre }) => {
          setRolesList(roles.roles);
       }
    }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
-
-   return (
+   console.log(user.linkPlataforma)
+   return (      
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{user.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.documento}</td>
@@ -82,6 +82,12 @@ export const UsersCard = ({ user, nombre }) => {
             {
                isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={user} value={'users'} />
             }
+         </td>
+
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
+            {
+               <a href={user.linkPlataforma}>Plataforma</a>
+            }           
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
