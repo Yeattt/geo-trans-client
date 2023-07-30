@@ -47,7 +47,7 @@ export const TripsPage = () => {
       </div>
 
       {/* // * IMPORTANTE: Prueba del modal para crear */}
-      {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Trips" />}
+      {/* {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Trips" />} */}
 
       <br />
 
