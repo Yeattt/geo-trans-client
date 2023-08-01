@@ -6,5 +6,6 @@ export * from './useAuthStore';
 export * from './useDelete';
 export * from './usePending';
 export * from './useUpdateForm';
+export * from './useUploadFiles';
 export * from './useSignUp';
 export * from './useVehiclesStore';
