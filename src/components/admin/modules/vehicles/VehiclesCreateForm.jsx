@@ -11,6 +11,7 @@ import { CgToolbox } from 'react-icons/cg';
 import { FaTruckLoading } from 'react-icons/fa';
 
 import { useCreateForm, useGetApiData } from '../../../../hooks';
+import { geoTransApi } from '../../../../api';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -202,12 +203,16 @@ export const VehiclesCreateForm = () => {
                         <BsFillPersonVcardFill />
                      </div>
 
-                     <Field
-                        type="text"
+                     {/* Input para subir archivo */}
+                     <input
+                        type="file"
                         id="tarjetaPropiedad"
                         name="tarjetaPropiedad"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Tarjeta propiedad..."
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
+                        onChange={(event) => {
+                           //* Esto actualiza el campo oculto con el archivo seleccionado porque formik no tiene un tipo de dato para archivos
+                           setFieldValue("tarjetaPropiedad", event.currentTarget.files[0]);
+                        }}
                      />
                   </div>
 
@@ -221,15 +226,19 @@ export const VehiclesCreateForm = () => {
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <CgToolbox />
+                        <BsFillPersonVcardFill />
                      </div>
 
-                     <Field
-                        type="text"
+                     {/* Input para subir archivo */}
+                     <input
+                        type="file"
                         id="tecnomecanica"
                         name="tecnomecanica"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Tecnomecanica..."
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
+                        onChange={(event) => {
+                           //* Esto actualiza el campo oculto con el archivo seleccionado porque formik no tiene un tipo de dato para archivos
+                           setFieldValue("tecnomecanica", event.currentTarget.files[0]);
+                        }}
                      />
                   </div>
 
@@ -243,15 +252,19 @@ export const VehiclesCreateForm = () => {
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
                      <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <BsCardHeading />
+                        <BsFillPersonVcardFill />
                      </div>
 
-                     <Field
-                        type="text"
+                     {/* Input para subir archivo */}
+                     <input
+                        type="file"
                         id="soat"
                         name="soat"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Soat..."
+                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
+                        onChange={(event) => {
+                           //* Esto actualiza el campo oculto con el archivo seleccionado porque formik no tiene un tipo de dato para archivos
+                           setFieldValue("soat", event.currentTarget.files[0]);
+                        }}
                      />
                   </div>
 
