@@ -71,7 +71,7 @@ export const AdminElementsCard = ({ module = '', data }) => {
    return (
       <>
          <div className="flex flex-col md:flex-row items-center justify-around">
-            <div className="bg-gradient-to-r from-greenPz to-greenPzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
+            <div className="bg-primary rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                <div className="flex flex-row justify-center items-center">
                   <div className="text-xl flex items-center justify-center">
                      <span className="border-[2.5px] border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -86,7 +86,7 @@ export const AdminElementsCard = ({ module = '', data }) => {
                </div>
             </div>
 
-            <div className="bg-gradient-to-r from-orangePz to-orangePzHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
+            <div className="bg-primary rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4 mb-4 md:mb-0">
                <div className="flex flex-row justify-center items-center">
                   <div className="text-xl flex items-center justify-center">
                      <span className="border-[2.5px] border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
@@ -101,7 +101,7 @@ export const AdminElementsCard = ({ module = '', data }) => {
                </div>
             </div>
 
-            <div className="bg-gradient-to-r from-primary to-primaryHover rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
+            <div className="bg-primary rounded-md h-32 md:w-[27%] flex flex-col items-center justify-center px-6 py-4">
                <div className="flex flex-row justify-center items-center">
                   <div className="text-xl flex items-center justify-center">
                      <span className="border-[2.5px] border-gray-300 bg-white w-16 h-16 rounded-full flex justify-center items-center mr-6">
