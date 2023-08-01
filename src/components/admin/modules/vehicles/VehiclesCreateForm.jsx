@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
-
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
-import { GiTowTruck } from 'react-icons/gi';
-import { HiOutlineCreditCard } from 'react-icons/hi';
-import { TbFiretruck } from 'react-icons/tb';
-import { BsFillPersonVcardFill, BsCardHeading } from 'react-icons/bs';
-import { CgToolbox } from 'react-icons/cg';
 import { FaTruckLoading } from 'react-icons/fa';
+import { GiTowTruck } from 'react-icons/gi';
+import { TbFiretruck } from 'react-icons/tb';
+import { HiOutlineCreditCard } from 'react-icons/hi';
+import { BsFillPersonVcardFill } from 'react-icons/bs';
 
-import { useCreateForm, useGetApiData } from '../../../../hooks';
-import { geoTransApi } from '../../../../api';
+import { useCreateForm, useGetApiData, useUploadFiles } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -28,23 +24,24 @@ const validationSchema = Yup.object().shape({
    placa: Yup.string()
       .max(6, 'Máximo 6 caracteres')
       .required('Campo requerido')
-      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length == 6),
+      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length === 6),
    placaSemirremolque: Yup.string()
       .max(6, 'Máximo 6 caracteres')
       .required('Campo requerido')
-      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length == 6),
-   tarjetaPropiedad: Yup.string()
-      .required('Campo requerido'),
-   tecnomecanica: Yup.string()
-      .required('Campo requerido'),
+      .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length === 6),
+   tarjetaPropiedad: Yup.string(),
+      // .required('Campo requerido'),
+   tecnomecanica: Yup.string(),
+      // .required('Campo requerido'),
    soat: Yup.string()
-      .required('Campo requerido'),
+      // .required('Campo requerido'),
 });
 
 export const VehiclesCreateForm = () => {
    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
    const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
 
+   const { fileData, handleFileChange, uploadFiles } = useUploadFiles();
    const { initialValues, onSubmitForm } = useCreateForm({
       tipoCamion: vehiclesTypeList.length > 0 ? vehiclesTypeList[0].id : '',
       modelo: '',
@@ -62,11 +59,31 @@ export const VehiclesCreateForm = () => {
       }
    }, [isVehiclesTypeLoading]);
 
+   const handleFormSubmit = async (values) => {
+      try {
+         const uploadedFilesData = await uploadFiles();
+         //* Este hook nos devuelve un arreglo con los nombres de los archivos, entonces agarramos los datos
+         //* Que tenemos inicialmente en los inicialValues, y le pasamos los nombres de los archivos que nos
+         //* Retorna el hook, ya que al subir archivos se les cambia el nombre y se genera un nombre único
+         const finalFormValues = {
+            ...values,
+            ...uploadedFilesData,
+         };
+
+         console.log(finalFormValues);
+
+         //* Cuando todo se completa satisfactoriamente, se llama la función para crear el vehículo
+         onSubmitForm(finalFormValues);
+      } catch (error) {
+         console.error('Error al enviar el formulario:', error);
+      }
+   };
+
    return (
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
-         onSubmit={onSubmitForm}
+         onSubmit={handleFormSubmit}
       >
          <Form>
             <div className="grid grid-cols-2 gap-4">
@@ -209,10 +226,7 @@ export const VehiclesCreateForm = () => {
                         id="tarjetaPropiedad"
                         name="tarjetaPropiedad"
                         className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        onChange={(event) => {
-                           //* Esto actualiza el campo oculto con el archivo seleccionado porque formik no tiene un tipo de dato para archivos
-                           setFieldValue("tarjetaPropiedad", event.currentTarget.files[0]);
-                        }}
+                        onChange={(event) => handleFileChange('tarjetaPropiedad', event)}
                      />
                   </div>
 
@@ -235,10 +249,7 @@ export const VehiclesCreateForm = () => {
                         id="tecnomecanica"
                         name="tecnomecanica"
                         className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        onChange={(event) => {
-                           //* Esto actualiza el campo oculto con el archivo seleccionado porque formik no tiene un tipo de dato para archivos
-                           setFieldValue("tecnomecanica", event.currentTarget.files[0]);
-                        }}
+                        onChange={(event) => handleFileChange('tecnomecanica', event)}
                      />
                   </div>
 
@@ -261,10 +272,7 @@ export const VehiclesCreateForm = () => {
                         id="soat"
                         name="soat"
                         className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        onChange={(event) => {
-                           //* Esto actualiza el campo oculto con el archivo seleccionado porque formik no tiene un tipo de dato para archivos
-                           setFieldValue("soat", event.currentTarget.files[0]);
-                        }}
+                        onChange={(event) => handleFileChange('soat', event)}
                      />
                   </div>
 
@@ -282,6 +290,5 @@ export const VehiclesCreateForm = () => {
             </div>
          </Form>
       </Formik>
-
    );
-}
+};
