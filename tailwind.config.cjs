@@ -7,8 +7,8 @@ module.exports = {
    theme: {
       extend: {
          colors: {
-            primary: "#5d0dde",
-            primaryHover: "#853cfa",
+            primary: "#0891b2",
+            primaryHover: "#161645",
             secondary: "#22222b",
             secondaryHover: "#c42339",
             greenPz: "#0bbd1d",
@@ -19,6 +19,9 @@ module.exports = {
             purplePzHover: "#853cfa",
             pinkPz: "#a92ef0",
             pinkPzHover: "#eac7ff",
+            orangePz: "#f04929",
+            orangePzHover: "#f77d65",
+            red: "#dc2626",
          },
       },
    },

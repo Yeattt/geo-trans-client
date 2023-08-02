@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
-import { FaTruck, FaTruckLoading } from 'react-icons/fa';
-
+import { FaTruckLoading, FaTruck } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Navigation } from 'swiper/modules';
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData } from '../../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -77,7 +84,7 @@ export const TripsCreateForm = () => {
       valorPagar: '',
       tipoViaje: '',
       fechaViaje: '',
-      cliente: '',
+      cliente: 1,
       horaViaje: '',
       conductorId: '',
       vehiculoId: ''
@@ -99,11 +106,13 @@ export const TripsCreateForm = () => {
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
-         <Form>
+          <Form>
+            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+               <SwiperSlide>
             <div className="grid grid-cols-4 gap-4">
                <div className="mb-4">
                   <label htmlFor="tipoViaje" className="text-purplePz font-semibold block mb-2">
-                     Tipo de viaje:
+                     Tipo de viaje: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -129,42 +138,41 @@ export const TripsCreateForm = () => {
 
                   <ErrorMessage name="tipoViaje" component="div" className="text-red-500" />
                </div>
-               </div>
+            </div>
 
-                 <div className="mb-4">
-                  <label htmlFor="clienteId" className="text-purplePz font-semibold block mb-2">
-                     Cliente:
-                  </label>
+            <div className="mb-4">
+               <label htmlFor="clienteId" className="text-purplePz font-semibold block mb-2">
+                  Cliente: <small className='text-red text-2xl'>*</small> 
+               </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <FaTruckLoading />
-                     </div>
+               <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
+                  <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
+                     <FaTruckLoading />
+                  </div>
 
-                     <Field
-                        as="select"
-                        id="clienteId"
-                        name="clienteId"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        placeholder="Cliente..."
-                     >
-                        <option value="" disabled defaultValue>
-                           Cliente...
-                        </option>
+                  <Field
+                     as="select"
+                     id="clienteId"
+                     name="clienteId"
+                     className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
+                     placeholder="Cliente..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Cliente...
+                     </option>
 
-                        {
-                           usersList.map( cliente=>(
-                              <option value={cliente.id} key={cliente.id}>{cliente.nombre}</option>
-                           ))
-                        }
-                     </Field>
-
+                     {
+                        clientsList.map(cliente => (
+                           <option value={cliente.id} key={cliente.id}>{cliente.nombre}</option>
+                        ))
+                     }
+                  </Field>
                   <ErrorMessage name="cliente" component="div" className="tet-red-50x0" />
                </div>
-
+</div>
                <div className="mb-4">
                   <label htmlFor="numeroRemesa" className="text-purplePz font-semibold block mb-2">
-                     Número de remesa:
+                     Número de remesa: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -186,7 +194,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="unidadMedida" className="text-purplePz font-semibold block mb-2">
-                     Unidad de medida:
+                     Unidad de medida: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -216,7 +224,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="cantidad" className="text-purplePz font-semibold block mb-2">
-                     Cantidad:
+                     Cantidad: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -238,7 +246,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="naturaleza" className="text-purplePz font-semibold block mb-2">
-                     Naturaleza:
+                     Naturaleza: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -260,7 +268,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="empaque" className="text-purplePz font-semibold block mb-2">
-                     Empaque:
+                     Empaque: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -305,7 +313,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="nombreProducto" className="text-purplePz font-semibold block mb-2">
-                     Código de producto:
+                     Código de producto: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -344,10 +352,12 @@ export const TripsCreateForm = () => {
 
                   <ErrorMessage name="nombreProducto" component="div" className="text-red-500" />
                </div>
+               </SwiperSlide>
 
+               <SwiperSlide>
                <div className="mb-4">
                   <label htmlFor="productoTransportar" className="text-purplePz font-semibold block mb-2">
-                     Producto a transportar:
+                     Producto a transportar: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -369,7 +379,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="origen" className="text-purplePz font-semibold block mb-2">
-                     Origen:
+                     Origen: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -391,7 +401,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="destino" className="text-purplePz font-semibold block mb-2">
-                     Destino:
+                     Destino: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -413,7 +423,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="fechaViaje" className="text-purplePz font-semibold block mb-2">
-                     Fecha del viaje:
+                     Fecha del viaje: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -435,7 +445,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="horaViaje" className="text-purplePz font-semibold block mb-2">
-                     Hora del viaje:
+                     Hora del viaje: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -457,7 +467,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="saldoPagar" className="text-purplePz font-semibold block mb-2">
-                     Saldo a pagar:
+                     Saldo a pagar: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -479,7 +489,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="valorPagar" className="text-purplePz font-semibold block mb-2">
-                     Valor a pagar:
+                     Valor a pagar: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -501,7 +511,7 @@ export const TripsCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="conductorId" className="text-purplePz font-semibold block mb-2">
-                     Conductor:
+                     Conductor: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -535,11 +545,13 @@ export const TripsCreateForm = () => {
 
                   <ErrorMessage name="conductorId" component="div" className="text-red-500" />
                </div>
+               </SwiperSlide>
 
+               <SwiperSlide>
                {/* // TODO: MOSTRAR EL VEHÍCULO AL SELECCIONAR EL CONDUCTOR AUTOMÁTICAMENTE */}
                <div className="mb-4">
                   <label htmlFor="vehiculoId" className="text-purplePz font-semibold block mb-2">
-                     Vehículo:
+                     Vehículo: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center hover:cursor-not-allowed">
@@ -559,7 +571,7 @@ export const TripsCreateForm = () => {
 
                   <ErrorMessage name="vehiculoId" component="div" className="text-red-500" />
                </div>
-            </div>
+            
 
             <div className="text-center mt-2">
                <button
@@ -569,6 +581,8 @@ export const TripsCreateForm = () => {
                   Registrar
                </button>
             </div>
+            </SwiperSlide>
+            </Swiper>
          </Form>
       </Formik>
    );

@@ -89,7 +89,7 @@ export const VehiclesCreateForm = () => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
-                     Tipo Camión:
+                     Tipo Camión: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -123,7 +123,7 @@ export const VehiclesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="modelo" className="text-purplePz font-semibold block mb-2">
-                     Modelo:
+                     Modelo: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -146,7 +146,7 @@ export const VehiclesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="marca" className="text-purplePz font-semibold block mb-2">
-                     Marca:
+                     Marca: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -168,7 +168,7 @@ export const VehiclesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="placa" className="text-purplePz font-semibold block mb-2">
-                     Placa:
+                     Placa: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -190,7 +190,7 @@ export const VehiclesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="placaSemirremolque" className="text-purplePz font-semibold block mb-2">
-                     Placa semirremolque:
+                     Placa semirremolque: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -212,7 +212,7 @@ export const VehiclesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="tarjetaPropiedad" className="text-purplePz font-semibold block mb-2">
-                     Tarjeta propiedad:
+                     Tarjeta propiedad: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -235,7 +235,7 @@ export const VehiclesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="tecnomecanica" className="text-purplePz font-semibold block mb-2">
-                     Tecnomecanica:
+                     Tecnomecanica: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -258,7 +258,7 @@ export const VehiclesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="soat" className="text-purplePz font-semibold block mb-2">
-                     Soat:
+                     Soat: <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
