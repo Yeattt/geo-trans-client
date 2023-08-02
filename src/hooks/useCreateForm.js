@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-
 import Swal from 'sweetalert2';
-
 import { geoTransApi } from '../api';
 
 export const useCreateForm = (initialValues = {}, endpoint) => {
@@ -22,5 +20,5 @@ export const useCreateForm = (initialValues = {}, endpoint) => {
     return {
         initialValues,
         onSubmitForm,
-    }
-}
+    };
+};

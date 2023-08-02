@@ -8,6 +8,7 @@ import {
    PermissionsPage,
    QuotesPage,
    RolesPage,
+   TripsCreatePage,
    TripsPage,
    VehiclesPage,
    VehiclesTypePage
@@ -23,6 +24,7 @@ export const AdminRoutes = () => {
          <Route path="/quotes" element={<QuotesPage />} />
          <Route path="/roles" element={<RolesPage />} />
          <Route path="/trips" element={<TripsPage />} />
+         <Route path="/trips/create" element={<TripsCreatePage />} />
          <Route path="/trucks/types" element={<VehiclesTypePage />} />
          <Route path="/users/*" element={<UsersRoutes />} />
          <Route path="/vehicles" element={<VehiclesPage />} />

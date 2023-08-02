@@ -7,5 +7,6 @@ export * from './RolesPage';
 export * from './UsersPage';
 export * from './UsersPendingPage';
 export * from './TripsPage';
+export * from './TripsCreatePage';
 export * from './VehiclesPage';
 export * from './VehiclesTypePage';

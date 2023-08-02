@@ -64,7 +64,7 @@ export const TripsCreateForm = () => {
 
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: users, isLoading: isUsersLoading } = useGetApiData('/users');
-   const { data: clients, isLoading: isLoadingClients } = useGetApiData('/clients');
+   const { data: clients, isLoading: isLoadingClients } = useGetApiData('/clientes');
 
    const [usersList, setUsersList] = useState([]);
    const [clientsList, setClientsList] = useState([]);
@@ -91,14 +91,14 @@ export const TripsCreateForm = () => {
    }, 'trips');
 
    useEffect(() => {
-      if (!isVehiclesLoading && !isUsersLoading && !isLoadingClients) {
-         setVehiclesList(vehicles.vehicles);
-         setUsersList(users.users);
-         setClientsList(clients.clients);
+      if (!isVehiclesLoading && !isUsersLoading && !isLoadingClientes) {
+        setVehiclesList(vehicles.vehicles);
+        setUsersList(users.users);
+        setClientsList(clients.clientes);
       }
-   }, [isVehiclesLoading, isUsersLoading, isLoadingClients]);
+    }, [isVehiclesLoading, isUsersLoading, isLoadingClients]);
 
-   ;
+;
 
    return (
       <Formik
@@ -167,7 +167,6 @@ export const TripsCreateForm = () => {
                         ))
                      }
                   </Field>
-
                   <ErrorMessage name="cliente" component="div" className="tet-red-50x0" />
                </div>
 </div>

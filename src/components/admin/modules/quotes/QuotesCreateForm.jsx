@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData, useAuthStore } from '../../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore,useGetApiCities } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({

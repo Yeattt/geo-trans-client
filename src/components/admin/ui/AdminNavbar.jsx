@@ -25,7 +25,7 @@ export const AdminNavbar = ({ module = '' }) => {
          </span>
 
          <div className="flex flex-col justify-between px-6 py-1">
-            <span className="text-2xl text-secondary font-bold">{module}</span>
+            <span className="text-2xl text-primary font-bold">{module}</span>
 
             <span className="text-xs font-bold">{`Admin > ${module}`}</span>
          </div>
