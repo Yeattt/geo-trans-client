@@ -11,7 +11,8 @@ import {
    TripsCreatePage,
    TripsPage,
    VehiclesPage,
-   VehiclesTypePage
+   VehiclesTypePage,
+   PrivilegesPage
 } from '../../pages';
 
 export const AdminRoutes = () => {
@@ -28,6 +29,7 @@ export const AdminRoutes = () => {
          <Route path="/trucks/types" element={<VehiclesTypePage />} />
          <Route path="/users/*" element={<UsersRoutes />} />
          <Route path="/vehicles" element={<VehiclesPage />} />
+         <Route path="/privileges" element={<PrivilegesPage />} />
       </Routes>
    );
 }
