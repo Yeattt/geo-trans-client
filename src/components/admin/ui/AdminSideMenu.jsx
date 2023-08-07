@@ -66,7 +66,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   <NavLink to="/admin/clients" className={
                      ({ isActive }) =>
                         `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200': 'text-white hover:bg-primaryHover hover:text-white '}`}
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                   >
                      <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                         <RiUserStarFill />
@@ -102,6 +102,20 @@ export const AdminSideMenu = ({ toggleMenu }) => {
 
                      <span className="text-[15px]">
                         Permisos
+                     </span>
+                  </NavLink>
+
+                  <NavLink to="/admin/privileges" className={
+                     ({ isActive }) =>
+                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
+                  >
+                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
+                        <BsClipboard2CheckFill />
+                     </span>
+
+                     <span className="text-[15px]">
+                        Privilegios
                      </span>
                   </NavLink>
 

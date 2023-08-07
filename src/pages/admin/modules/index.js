@@ -10,3 +10,4 @@ export * from './TripsPage';
 export * from './TripsCreatePage';
 export * from './VehiclesPage';
 export * from './VehiclesTypePage';
+export * from './PrivilegesPage';

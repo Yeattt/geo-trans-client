@@ -23,6 +23,10 @@ const moduleConfig = {
       translation: 'Permisos',
       icon: BsClipboard2CheckFill
    },
+   Privileges:{
+      translation: 'Privilegios',
+      icon: FaUserCog
+   },
    Quotes: {
       translation: 'Cotizaciones',
       icon: FaMoneyCheckAlt

@@ -11,9 +11,10 @@ import {
    TripsCreatePage,
    TripsPage,
    VehiclesPage,
-   VehiclesTypePage
+   VehiclesTypePage,
+   PrivilegesPage
 } from '../../pages';
-import { useSelector } from 'react-redux';
+import { useAuthStore } from '../../hooks';
 
 export const AdminRoutes = () => {
    const { user } = useAuthStore();
@@ -54,6 +55,7 @@ export const AdminRoutes = () => {
          {hasPermission('trucks/types') && <Route path="/trucks/types" element={<VehiclesTypePage />} />}
          {hasPermission('users') && <Route path="/users/*" element={<UsersRoutes />} />}
          {hasPermission('vehicles') && <Route path="/vehicles" element={<VehiclesPage />} />}
+         {hasPermission ('privileges') && <Route path="/privileges" element={<PrivilegesPage />} />}
       </Routes>
    );
 };
