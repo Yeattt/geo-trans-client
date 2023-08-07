@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { UsersRoutes } from './UsersRoutes';
@@ -37,10 +38,10 @@ export const AdminRoutes = () => {
       return userPermissions.some((permission) => permission.nombre === permissionName);
    };
 
-   if (loading) {
-      // Puedes mostrar una pantalla de carga mientras se cargan los permisos
-      return <div>Loading...</div>;
-   }
+   // if (isLoading) {
+   //    // Puedes mostrar una pantalla de carga mientras se cargan los permisos
+   //    return <div>Loading...</div>;
+   // }
 
    return (
       <Routes>
