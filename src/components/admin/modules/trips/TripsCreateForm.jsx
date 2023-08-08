@@ -64,7 +64,7 @@ export const TripsCreateForm = () => {
 
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: users, isLoading: isUsersLoading } = useGetApiData('/users');
-   const { data: clients, isLoading: isLoadingClients } = useGetApiData('/clientes');
+   const { data: clients, isLoading: isLoadingClients } = useGetApiData('/clients');
 
    const [usersList, setUsersList] = useState([]);
    const [clientsList, setClientsList] = useState([]);
@@ -84,17 +84,17 @@ export const TripsCreateForm = () => {
       valorPagar: '',
       tipoViaje: '',
       fechaViaje: '',
-      cliente: 1,
+      cliente: '',
       horaViaje: '',
       conductorId: '',
       vehiculoId: ''
    }, 'trips');
 
    useEffect(() => {
-      if (!isVehiclesLoading && !isUsersLoading && !isLoadingClientes) {
+      if (!isVehiclesLoading && !isUsersLoading && !isLoadingClients) {
         setVehiclesList(vehicles.vehicles);
         setUsersList(users.users);
-        setClientsList(clients.clientes);
+        setClientsList(clients.clients);
       }
     }, [isVehiclesLoading, isUsersLoading, isLoadingClients]);
 
@@ -152,8 +152,8 @@ export const TripsCreateForm = () => {
 
                   <Field
                      as="select"
-                     id="clienteId"
-                     name="clienteId"
+                     id="cliente"
+                     name="cliente"
                      className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                      placeholder="Cliente..."
                   >
@@ -161,11 +161,11 @@ export const TripsCreateForm = () => {
                         Cliente...
                      </option>
 
-                     {
-                        clientsList.map(cliente => (
-                           <option value={cliente.id} key={cliente.id}>{cliente.nombre}</option>
-                        ))
-                     }
+                     {clientsList.map(client => (
+                                 <option value={client.id} key={client.id}>
+                                    {client.nombre}
+                                 </option>
+                              ))}
                   </Field>
                   <ErrorMessage name="cliente" component="div" className="tet-red-50x0" />
                </div>
