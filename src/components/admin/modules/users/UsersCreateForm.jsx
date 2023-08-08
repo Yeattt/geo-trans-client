@@ -21,6 +21,10 @@ const validationSchema = Yup.object().shape({
       .required('Campo requerido'),
    email: Yup.string()
       .required('Campo requerido'),
+   nombrePlataforma: Yup.string()
+      .required('Campo requerido'),
+   linkPlataforma: Yup.string()
+      .required('Campo requerido'),
    contrasena: Yup.string()
       .min(3, 'Mínimo 3 caracteres').required('Campo requerido'),
    roleId: Yup.string(),
@@ -42,6 +46,8 @@ export const UsersCreateForm = () => {
       nombre: '',
       edad: '',
       email: '',
+      nombrePlataforma:'',
+      linkPlataforma:'',
       contrasena: '',
       roleId: '',
       companyId: '',
@@ -88,7 +94,7 @@ export const UsersCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="nombre" className="text-purplePz font-semibold block mb-2">
-                     Nombre:
+                     Nombre: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -110,7 +116,7 @@ export const UsersCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="edad" className="text-purplePz font-semibold block mb-2">
-                     Edad:
+                     Edad: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -131,8 +137,52 @@ export const UsersCreateForm = () => {
                </div>
 
                <div className="mb-4">
+                  <label htmlFor="nombrePlataforma" className="text-purplePz font-semibold block mb-2">
+                     Nombre Plataforma: <small className='text-red text-2xl'>*</small>
+                  </label>
+
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
+                        <HiOutlineMail />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="nombrePlataforma"
+                        name="nombrePlataforma"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
+                        placeholder="nombrePlataforma..."
+                     />
+                  </div>
+
+                  <ErrorMessage name="nombrePlataforma" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="linkPlataforma" className="text-purplePz font-semibold block mb-2">
+                     Link Plataforma: <small className='text-red text-2xl'>*</small>
+                  </label>
+
+                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
+                        <HiOutlineMail />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="linkPlataforma"
+                        name="linkPlataforma"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
+                        placeholder="linkPlataforma..."
+                     />
+                  </div>
+
+                  <ErrorMessage name="linkPlataforma" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
                   <label htmlFor="email" className="text-purplePz font-semibold block mb-2">
-                     Email:
+                     Email: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -154,7 +204,7 @@ export const UsersCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="contrasena" className="text-purplePz font-semibold block mb-2">
-                     Contraseña:
+                     Contraseña: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
@@ -176,7 +226,7 @@ export const UsersCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="roleId" className="text-purplePz font-semibold block mb-2">
-                     Rol:
+                     Rol: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -208,7 +258,7 @@ export const UsersCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="companyId" className="text-purplePz font-semibold block mb-2">
-                     Compañía:
+                     Compañía: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
@@ -229,8 +279,8 @@ export const UsersCreateForm = () => {
 
                         {
                            companiesList.map(company => (
-                              <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>                           
-                           ))                           
+                              <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
+                           ))
                         }
                      </Field>
                   </div>
@@ -240,7 +290,7 @@ export const UsersCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="vehicleId" className="text-purplePz font-semibold block mb-2">
-                     Vehículo:
+                     Vehículo: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">

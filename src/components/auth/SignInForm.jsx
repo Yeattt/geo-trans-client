@@ -87,8 +87,10 @@ export const SignInForm = () => {
 
                <ErrorMessage name="contrasena" component="div" className="text-red-500" />
             </div>
-
-            <p className="text-sm text-primary hover:text-primaryHover transition-all font-bold cursor-pointer">Olvidó su contraseña?</p>
+         <Link to="/auth/sendEmail">
+         <p className="text-sm text-primary hover:text-primaryHover transition-all font-bold cursor-pointer">Olvidó su contraseña?</p>
+         </Link>
+            
 
             <button
                type="submit"

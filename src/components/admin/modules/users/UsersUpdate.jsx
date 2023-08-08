@@ -19,6 +19,8 @@ export const UsersUpdate = ({ moduleInfo }) => {
       edad: Yup.number('Este campo solo debe contener números')
          .test('len', 'Máximo 2 caracteres', val => val && val.toString().length == 2),
       email: Yup.string(),
+      nombrePlataforma: Yup.string(),
+      linkPlataforma: Yup.string(),
       contrasena: Yup.string()
          .min(3, 'Mínimo 3 caracteres'),
       roleId: Yup.string(),
@@ -31,7 +33,9 @@ export const UsersUpdate = ({ moduleInfo }) => {
       id: moduleInfo.id,
       documento: moduleInfo.documento,
       edad: moduleInfo.edad,
-      email: moduleInfo.email,      
+      email: moduleInfo.email,
+      nombrePlataforma: moduleInfo.nombrePlataforma,   
+      linkPlataforma:moduleInfo.linkPlataforma,   
       roleId: moduleInfo.roleId,
       companyId: moduleInfo.companyId,
       vehicleId: moduleInfo.vehicleId,
@@ -44,7 +48,7 @@ export const UsersUpdate = ({ moduleInfo }) => {
          setRolesList(roles.roles);
       }
    }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
-
+   
    return (
       <Formik
          initialValues={initialValues}
@@ -93,6 +97,34 @@ export const UsersUpdate = ({ moduleInfo }) => {
                      placeholder="Email..."
                   />
                   <ErrorMessage name="email" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="nombrePlataforma" className="text-black font-semibold block mb-2">
+                  nombrePlataforma:
+                  </label>
+                  <Field
+                     type="text"
+                     id="nombrePlataforma"
+                     name="nombrePlataforma"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="nombrePlataforma..."
+                  />
+                  <ErrorMessage name="nombrePlataforma" component="div" className="text-red-500" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="linkPlataforma" className="text-black font-semibold block mb-2">
+                  linkPlataforma:
+                  </label>
+                  <Field
+                     type="text"
+                     id="linkPlataforma"
+                     name="linkPlataforma"
+                     className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="linkPlataforma..."
+                  />
+                  <ErrorMessage name="linkPlataforma" component="div" className="text-red-500" />
                </div>
                            
                <div className="mb-4">
