@@ -15,33 +15,37 @@ import {
    VehiclesTypePage,
    PrivilegesPage
 } from '../../pages';
-import { useAuthStore } from '../../hooks';
+import { useAuthStore, useGetApiData } from '../../hooks';
+import { geoTransApi } from '../../api';
 
 export const AdminRoutes = () => {
    const { user } = useAuthStore();
    const [userPermissions, setUserPermissions] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {
       const roleId = user.roleId;
 
-      fetch(`/api/roles/${roleId}/permissions`)
-         .then((response) => response.json())
-         .then((data) => {
-            setUserPermissions(data);
-         })
-         .catch((error) => {
-            console.error('Error fetching permissions:', error);
-         });
+      const getApiData = async () => {
+         try {
+            const { data } = await geoTransApi.get(`/roles/${roleId}`);
+            setUserPermissions(data.role.permisos);
+            setIsLoading(false);
+         } catch (error) {
+            throw new Error(error);
+         }
+      }
+
+      getApiData();
    }, []);
 
    const hasPermission = (permissionName) => {
-      return userPermissions.some((permission) => permission.nombre === permissionName);
+      return userPermissions.some((permission) => permission.nombre.toLowerCase().trim() === permissionName.toLowerCase().trim());
    };
 
-   // if (isLoading) {
-   //    // Puedes mostrar una pantalla de carga mientras se cargan los permisos
-   //    return <div>Loading...</div>;
-   // }
+   if (isLoading) {
+      return <div>Loading...</div>;
+   }
 
    return (
       <Routes>
@@ -56,7 +60,7 @@ export const AdminRoutes = () => {
          {hasPermission('trucks/types') && <Route path="/trucks/types" element={<VehiclesTypePage />} />}
          {hasPermission('users') && <Route path="/users/*" element={<UsersRoutes />} />}
          {hasPermission('vehicles') && <Route path="/vehicles" element={<VehiclesPage />} />}
-         {hasPermission ('privileges') && <Route path="/privileges" element={<PrivilegesPage />} />}
+         {hasPermission('privileges') && <Route path="/privileges" element={<PrivilegesPage />} />}
       </Routes>
    );
 };
