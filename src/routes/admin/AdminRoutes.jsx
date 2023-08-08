@@ -50,17 +50,17 @@ export const AdminRoutes = () => {
    return (
       <Routes>
          <Route path="/calendar" element={<CalendarPage />} />
-         {hasPermission('clients') && <Route path="/clients" element={<ClientsPage />} />}
-         {hasPermission('companies') && <Route path="/companies" element={<CompaniesPage />} />}
-         {hasPermission('permissions') && <Route path="/permissions" element={<PermissionsPage />} />}
-         {hasPermission('quotes') && <Route path="/quotes" element={<QuotesPage />} />}
+         {hasPermission('clientes') && <Route path="/clients" element={<ClientsPage />} />}
+         {hasPermission('compañias') && <Route path="/companies" element={<CompaniesPage />} />}
+         {hasPermission('permisos') && <Route path="/permissions" element={<PermissionsPage />} />}
+         {hasPermission('cotizaciones') && <Route path="/quotes" element={<QuotesPage />} />}
          {hasPermission('roles') && <Route path="/roles" element={<RolesPage />} />}
-         {hasPermission('trips') && <Route path="/trips" element={<TripsPage />} />}
-         {hasPermission('trips/create') && <Route path="/trips/create" element={<TripsCreatePage />} />}
-         {hasPermission('trucks/types') && <Route path="/trucks/types" element={<VehiclesTypePage />} />}
-         {hasPermission('users') && <Route path="/users/*" element={<UsersRoutes />} />}
-         {hasPermission('vehicles') && <Route path="/vehicles" element={<VehiclesPage />} />}
-         {hasPermission('privileges') && <Route path="/privileges" element={<PrivilegesPage />} />}
+         {hasPermission('viajes') && <Route path="/trips" element={<TripsPage />} />}
+         {hasPermission('viajes') && <Route path="/trips/create" element={<TripsCreatePage />} />}
+         {hasPermission('tipos') && <Route path="/trucks/types" element={<VehiclesTypePage />} />}
+         {hasPermission('usuarios') && <Route path="/users/*" element={<UsersRoutes />} />}
+         {hasPermission('vehiculos') && <Route path="/vehicles" element={<VehiclesPage />} />}
+         {hasPermission('privilegios') && <Route path="/privileges" element={<PrivilegesPage />} />}
       </Routes>
    );
 };
