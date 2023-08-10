@@ -70,7 +70,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                            ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <FaUsersCog />
                            </span>
 
@@ -88,7 +88,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <FaUsersCog />
                            </span>
 
@@ -106,7 +106,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <RiUserStarFill />
                            </span>
 
@@ -124,7 +124,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <BsBuildingFillGear />
                            </span>
 
@@ -142,7 +142,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <BsClipboard2CheckFill />
                            </span>
 
@@ -178,7 +178,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <FaMoneyCheckAlt />
                            </span>
 
@@ -196,7 +196,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <FaUserCog />
                            </span>
 
@@ -214,7 +214,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <IoSubway />
                            </span>
 
@@ -232,7 +232,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <FaTruck />
                            </span>
 
@@ -250,7 +250,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <FaTruckLoading />
                            </span>
 
@@ -268,7 +268,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                               `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
                         >
-                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
                               <TbCalendarStats />
                            </span>
 
