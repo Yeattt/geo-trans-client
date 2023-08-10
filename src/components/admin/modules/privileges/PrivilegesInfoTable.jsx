@@ -32,8 +32,8 @@ export const PrivilegesInfoTable = ({ privileges, handleIsCreateModalActive }) =
           </thead>
           <tbody>
             {
-              privileges.map(privileges => (
-                <RolesCard key={privileges.id} privileges={privileges} />
+              privileges.map(privilege => (
+                <PrivilegesCard key={privilege.id} privilege={privilege} />
               ))
             }
           </tbody>

@@ -57,12 +57,16 @@ export const RolesCard = ({ role }) => {
             >
                <TbInfoHexagon />
             </span>
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsAssignModalActive(true)}
-            >
-               <TbInfoHexagon />
-            </span>
+
+            {
+               userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+               <span
+                  className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
+                  onClick={() => handleIsAssignModalActive(true)}
+               >
+                  <TbInfoHexagon />
+               </span>
+            }
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
             {

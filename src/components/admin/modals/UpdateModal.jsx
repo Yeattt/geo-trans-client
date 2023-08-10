@@ -9,7 +9,8 @@ import {
     TripsUpdate,
     UsersUpdate,
     VehiclesUpdate,
-    VehiclesTypeUpdate
+    VehiclesTypeUpdate,
+    PrivilegesUpdate
 } from '../../';
 
 export const UpdateModal = ({ isOpenUpdate, module, moduleInfo, handleUpdateClick }) => {
@@ -17,6 +18,7 @@ export const UpdateModal = ({ isOpenUpdate, module, moduleInfo, handleUpdateClic
         Clients: ClientsUpdate,
         Companies: CompaniesUpdate,
         Permissions: PermissionsUpdate,
+        Privileges: PrivilegesUpdate,
         Quotes: QuotesUpdate,
         Roles: RolesUpdate,
         Trips: TripsUpdate,

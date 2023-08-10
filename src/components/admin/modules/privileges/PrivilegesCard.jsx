@@ -57,18 +57,11 @@ export const PrivilegesCard = ({privilege }) => {
             >
                <TbInfoHexagon />
             </span>
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsAssignModalActive(true)}
-            >
-               <TbInfoHexagon />
-            </span>
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
             {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={privilege} />
             }
-            {isAssignModalActive && <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={privilege.id} />}
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                {

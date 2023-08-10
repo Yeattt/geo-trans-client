@@ -1,30 +1,18 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { useAssignPrivileges, useCreateForm, useGetApiData } from '../../../../hooks';
-import { useState, useEffect } from 'react';
+import { useCreateForm } from '../../../../hooks';
 import { FaTruck } from 'react-icons/fa';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
    nombre: Yup.string().required('Campo requerido'),
-
 });
 
 export const PrivilegesCreateForm = () => {
-   const { data: privileges, isLoading: isPrivilegesLoading } = useGetApiData('/privileges');
-   const [privigelesList, setPrivilegesList] = useState([]);
-   const { initialValues, onSubmitForm } = useAssignPrivileges({
-      nombre: '',
-      privilegesId: []
-   });
-
-   useEffect(() => {
-      if (!isPrivilegesLoading) {
-         setPrivilegesList(privileges.privigeles);
-      }
-   }, [isPrivilegessLoading]);
-
+   const { initialValues, onSubmitForm } = useCreateForm({
+      nombre: ''
+   }, 'privileges');
 
    return (
       <Formik

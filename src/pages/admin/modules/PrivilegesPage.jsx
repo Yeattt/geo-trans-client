@@ -25,11 +25,11 @@ export const PrivilegesPage = () => {
    return (
       <AdminLayout>
          <div className="min-w-full bg-gray-200">
-            <AdminNavbar module="Privilegios" />
+            <AdminNavbar module="Privileges" />
 
             <br />
 
-            <AdminElementsCard module="Privilegios" data={privileges} />
+            <AdminElementsCard module="Privileges" data={privileges} />
 
             <br />
 
@@ -48,7 +48,7 @@ export const PrivilegesPage = () => {
             </div>
 
             {/* // * IMPORTANTE: Prueba del modal para crear */}
-            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Privilegios" />}
+            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Privileges" />}
 
             <br />
 

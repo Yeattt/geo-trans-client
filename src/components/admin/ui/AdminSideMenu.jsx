@@ -8,9 +8,36 @@ import { RiUserStarFill, RiCloseCircleLine } from 'react-icons/ri';
 import { MdAdminPanelSettings } from 'react-icons/md';
 import { IoSubway } from 'react-icons/io5';
 import { TbCalendarStats } from 'react-icons/tb';
+import { useEffect, useState } from 'react';
+import { useAuthStore } from '../../../hooks';
+import { geoTransApi } from '../../../api';
 
 export const AdminSideMenu = ({ toggleMenu }) => {
    const isSideMenuOpen = useSelector((state) => state.sideMenu);
+   const { user } = useAuthStore();
+   const [userPermissions, setUserPermissions] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
+
+   useEffect(() => {
+      const roleId = user.roleId;
+
+      const getApiData = async () => {
+         try {
+            const { data } = await geoTransApi.get(`/roles/${roleId}`);
+
+            setUserPermissions(data.role.permisos);
+            setIsLoading(false);
+         } catch (error) {
+            throw new Error(error);
+         }
+      }
+
+      getApiData();
+   }, [user]);
+
+   const hasPermission = (permissionName) => {
+      return userPermissions.some((permission) => permission.nombre.toLowerCase().trim() === permissionName.toLowerCase().trim());
+   };
 
    return (
       <div className={`flex w-64 h-screen z-10 ${isSideMenuOpen ? 'fixed' : 'hidden lg:block'}`}>
@@ -32,179 +59,225 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                   </Link>
                </span>
             </div>
-            
+
 
             <nav className="mt-8 flex justify-end">
                <div className="space-y-1 w-[95%]">
-                  <NavLink to="/admin/users" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('usuarios') && (
+                        <NavLink to="/admin/users" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                           ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <FaUsersCog />
+                           </span>
+
+                           <span className="text-[15px]">
+                              Usuarios
+                           </span>
+                        </NavLink>
+                     )
+                  }
+
+                  {
+                     hasPermission('usuarios') && (
+                        <NavLink to="/admin/users/allow" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <FaUsersCog />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <FaUsersCog />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Usuarios
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Usuarios Pendientes
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/users/allow" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('clientes') && (
+                        <NavLink to="/admin/clients" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <FaUsersCog />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <RiUserStarFill />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Usuarios Pendientes
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Clientes
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-
-
-                  <NavLink to="/admin/clients" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('compañias') && (
+                        <NavLink to="/admin/companies" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <RiUserStarFill />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <BsBuildingFillGear />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Clientes
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Compañías
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/companies" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('permisos') && (
+                        <NavLink to="/admin/permissions" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <BsBuildingFillGear />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <BsClipboard2CheckFill />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Compañías
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Permisos
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/permissions" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('privilegios') && (
+                        <NavLink to="/admin/privileges" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <BsClipboard2CheckFill />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
+                              <BsClipboard2CheckFill />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Permisos
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Privilegios
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/privileges" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('cotizaciones') && (
+                        <NavLink to="/admin/quotes" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3 bg-secondary text-white text-xl flex items-center justify-center">
-                        <BsClipboard2CheckFill />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <FaMoneyCheckAlt />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Privilegios
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Cotizaciones
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/quotes" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('roles') && (
+                        <NavLink to="/admin/roles" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <FaMoneyCheckAlt />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <FaUserCog />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Cotizaciones
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Roles
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/roles" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('viajes') && (
+                        <NavLink to="/admin/trips" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <FaUserCog />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <IoSubway />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Roles
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Viajes
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/trips" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('vehiculos') && (
+                        <NavLink to="/admin/vehicles" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <IoSubway />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <FaTruck />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Viajes
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Vehículos
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/vehicles" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('tipos') && (
+                        <NavLink to="/admin/trucks/types" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <FaTruck />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <FaTruckLoading />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Vehículos
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Tipos Vehículos
+                           </span>
+                        </NavLink>
+                     )
+                  }
 
-                  <NavLink to="/admin/trucks/types" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
+                  {
+                     hasPermission('agenda') && (
+                        <NavLink to="/admin/calendar" className={
+                           ({ isActive }) =>
+                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
                         ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <FaTruckLoading />
-                     </span>
+                        >
+                           <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
+                              <TbCalendarStats />
+                           </span>
 
-                     <span className="text-[15px]">
-                        Tipos Vehículos
-                     </span>
-                  </NavLink>
-
-                  <NavLink to="/admin/calendar" className={
-                     ({ isActive }) =>
-                        `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                  >
-                     <span className="w-7 h-7 mr-3  text-white text-xl flex items-center justify-center">
-                        <TbCalendarStats />
-                     </span>
-
-                     <span className="text-[15px]">
-                        Agenda
-                     </span>
-                  </NavLink>
+                           <span className="text-[15px]">
+                              Agenda
+                           </span>
+                        </NavLink>
+                     )
+                  }
                </div>
             </nav>
          </div >
