@@ -7,7 +7,7 @@ export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/trips/create');
+    navigate('/admin/trips/create');
   };
 
   return (
