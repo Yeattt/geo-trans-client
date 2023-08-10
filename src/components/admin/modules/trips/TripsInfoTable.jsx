@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { TripsCard } from '../';
+import { useAllowedPrivileges } from '../../../../hooks';
 
 export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
+  const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
@@ -13,12 +15,15 @@ export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
       <div className="h-14 w-full flex items-center justify-between px-3 py-10 mb-5">
         <span className="text-lg font-bold text-primary">Lista de viajes</span>
 
-        <button
-          className="bg-primary transition hover:bg-primaryHover w-32 py-2 rounded-md font-bold text-white"
-          onClick={handleButtonClick}
-        >
-          Añadir
-        </button>
+        {
+          userPrivileges.some(privilege => privilege.nombre.toString().trim() === 'crear') &&
+          <button
+            className="bg-primary transition hover:bg-primaryHover w-32 py-2 rounded-md font-bold text-white"
+            onClick={handleButtonClick}
+          >
+            Añadir
+          </button>
+        }
       </div>
 
       <div className="max-h-[500px] overflow-y-scroll">

@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
-import { useGetApiData } from '../../../../hooks';
+import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
 
 export const UsersCard = ({ user }) => {
+   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
@@ -44,7 +45,7 @@ export const UsersCard = ({ user }) => {
       }
    }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
    console.log(user.linkPlataforma)
-   return (      
+   return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{user.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.documento}</td>
@@ -87,7 +88,7 @@ export const UsersCard = ({ user }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                <a href={user.linkPlataforma}>Plataforma</a>
-            }           
+            }
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
@@ -104,7 +105,10 @@ export const UsersCard = ({ user }) => {
             }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
-               <FaEdit onClick={handleUpdateClick} />
+               {
+                  userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+                  <FaEdit onClick={handleUpdateClick} />
+               }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Users" moduleInfo={user} handleUpdateClick={handleUpdateClick} />
             </span>
 

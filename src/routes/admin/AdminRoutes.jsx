@@ -16,10 +16,11 @@ import {
    PrivilegesPage,
    NotFound
 } from '../../pages';
-import { useAuthStore, useGetApiData } from '../../hooks';
+import { useAllowedPrivileges, useAuthStore, useGetApiData } from '../../hooks';
 import { geoTransApi } from '../../api';
 
 export const AdminRoutes = () => {
+   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const { user } = useAuthStore();
    const [userPermissions, setUserPermissions] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
@@ -31,8 +32,6 @@ export const AdminRoutes = () => {
          try {
             const { data } = await geoTransApi.get(`/roles/${roleId}`);
 
-            console.log(data);
-
             setUserPermissions(data.role.permisos);
             setIsLoading(false);
          } catch (error) {
@@ -41,7 +40,7 @@ export const AdminRoutes = () => {
       }
 
       getApiData();
-   }, []);
+   }, [user]);
 
    const hasPermission = (permissionName) => {
       return userPermissions.some((permission) => permission.nombre.toLowerCase().trim() === permissionName.toLowerCase().trim());
@@ -60,12 +59,18 @@ export const AdminRoutes = () => {
          {hasPermission('cotizaciones') && <Route path="/quotes" element={<QuotesPage />} />}
          {hasPermission('roles') && <Route path="/roles" element={<RolesPage />} />}
          {hasPermission('viajes') && <Route path="/trips" element={<TripsPage />} />}
-         {hasPermission('viajes') && <Route path="/trips/create" element={<TripsCreatePage />} />}
+
+         {
+            userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'crear') &&
+            hasPermission('viajes') &&
+            <Route path="/trips/create" element={<TripsCreatePage />} />
+         }
+
          {hasPermission('tipos') && <Route path="/trucks/types" element={<VehiclesTypePage />} />}
          {hasPermission('usuarios') && <Route path="/users/*" element={<UsersRoutes />} />}
          {hasPermission('vehiculos') && <Route path="/vehicles" element={<VehiclesPage />} />}
          {hasPermission('privilegios') && <Route path="/privileges" element={<PrivilegesPage />} />}
-         
+
          <Route path="/*" element={<NotFound />} />
       </Routes>
    );

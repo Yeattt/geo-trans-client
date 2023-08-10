@@ -7,11 +7,12 @@ import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
-import { useGetApiData , useAuthStore} from '../../../../hooks';
+import { useGetApiData, useAuthStore, useAllowedPrivileges } from '../../../../hooks';
 
 
 export const QuotesCard = ({ quote }) => {
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
+   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
 
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
@@ -23,7 +24,7 @@ export const QuotesCard = ({ quote }) => {
    const handleViewDetails = () => {
       setIsOpen(!isOpen)
    }
-   const handleUpdateClick = () =>{
+   const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
    }
 
@@ -46,7 +47,7 @@ export const QuotesCard = ({ quote }) => {
    {
       console.log(user.name);
    }
-   return (      
+   return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{quote.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.fechaSolicitud}</td>
@@ -65,18 +66,18 @@ export const QuotesCard = ({ quote }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorTransporte}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.observaciones}</td>
          {/* <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.companyId}</td>*/}
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.name}</td> 
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.name}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         {
-            quote.estado
-            ?
-            <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
-            :
-            <button class="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
-         }
-         {
-            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={quote} value={'quotes'} />
-         }
+            {
+               quote.estado
+                  ?
+                  <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  :
+                  <button class="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+            }
+            {
+               isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={quote} value={'quotes'} />
+            }
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
@@ -92,8 +93,11 @@ export const QuotesCard = ({ quote }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={quote} />
             }
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
-               <FaEdit onClick={handleUpdateClick}/>
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote}  handleUpdateClick={handleUpdateClick}/>
+               {
+                  userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+                  <FaEdit onClick={handleUpdateClick} />
+               }
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} handleUpdateClick={handleUpdateClick} />
             </span>
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">

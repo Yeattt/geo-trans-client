@@ -5,8 +5,10 @@ import { TbInfoHexagon } from 'react-icons/tb';
 import { MdAssignmentAdd } from 'react-icons/md';
 
 import { AssignModal, InfoModal, DeleteModal, UpdateModal } from '../../';
+import { useAllowedPrivileges } from '../../../../hooks';
 
 export const RolesCard = ({ role }) => {
+   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpenUpdate, setisOpenUpdate] = useState(false);
    const [isOpen, setIsOpen] = useState(false);
@@ -66,10 +68,17 @@ export const RolesCard = ({ role }) => {
             {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={role} />
             }
-            {isAssignModalActive && <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} />}
+            {
+               userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+               isAssignModalActive &&
+               <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} />
+            }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
-               <FaEdit onClick={handleUpdateClick} />
+               {
+                  userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+                  <FaEdit onClick={handleUpdateClick} />
+               }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Roles" moduleInfo={role} handleUpdateClick={handleUpdateClick} />
             </span>
 

@@ -6,8 +6,10 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
+import { useAllowedPrivileges } from '../../../../hooks';
 
 export const VehiclesCard = ({ vehicle }) => {
+   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
 
    const [isOpen, setIsOpen] = useState(false)
@@ -16,8 +18,8 @@ export const VehiclesCard = ({ vehicle }) => {
    const handleViewDetails = () => {
       setIsOpen(!isOpen)
    }
-   
-   const handleUpdateClick = () =>{
+
+   const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
    }
 
@@ -43,16 +45,16 @@ export const VehiclesCard = ({ vehicle }) => {
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.tecnomecanica}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.soat}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         {
-            vehicle.estado
-            ?
-            <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
-            :
-            <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
-         }
-         {
-            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={vehicle} value={'vehicles'} />
-         }
+            {
+               vehicle.estado
+                  ?
+                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  :
+                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+            }
+            {
+               isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={vehicle} value={'vehicles'} />
+            }
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
@@ -65,12 +67,15 @@ export const VehiclesCard = ({ vehicle }) => {
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
             {
-               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={vehicle}/>
+               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={vehicle} />
             }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
-               <FaEdit onClick={handleUpdateClick}/>
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Vehicles" moduleInfo={vehicle}  handleUpdateClick={handleUpdateClick}/>
+               {
+                  userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+                  <FaEdit onClick={handleUpdateClick} />
+               }
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Vehicles" moduleInfo={vehicle} handleUpdateClick={handleUpdateClick} />
             </span>
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">

@@ -7,8 +7,10 @@ import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
+import { useAllowedPrivileges } from '../../../../hooks';
 
 export const CompaniesCard = ({ company }) => {
+   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
@@ -64,7 +66,10 @@ export const CompaniesCard = ({ company }) => {
             }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
+               {
+                  userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
                <FaEdit onClick={handleUpdateClick}/>
+               }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Companies" moduleInfo={company}  handleUpdateClick={handleUpdateClick} />
             </span>
 

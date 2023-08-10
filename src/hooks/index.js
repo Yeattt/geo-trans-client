@@ -12,3 +12,4 @@ export * from './useVehiclesStore';
 export * from './useAssignPrivileges';
 export * from './useSendEmail';
 export * from './useForgotPassword';
+export * from './useAllowedPrivileges';
