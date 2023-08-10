@@ -1,62 +1,34 @@
 import { AiOutlineClose } from 'react-icons/ai';
-import { useAssignPermissions,useGetApiData} from '../../../hooks'
+import { useAssignPermissions, useAssignPrivileges, useGetApiData } from '../../../hooks'
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-   rol: Yup.string('Solo se acepta letras')
-      .required('Campo requerido'),
-   permisos: Yup.string('Solo se acepta letras')
-      .required('Campo requerido'),
-});
-
 export const AssignModal = ({ handleIsAssignModalActive, id }) => {
     const { data: permissions, isLoading: isPermissionsLoading } = useGetApiData('/permissions');
+    const { data: privileges, isLoading: isPrivilegesLoading } = useGetApiData('/privileges');
+
     const [permissionsList, setPermissionsList] = useState([]);
-    const [checkedValues, setValue] = useState([]);
-    const [checkedState, setCheckedState] = useState(
-        new Array(permissions.length).fill(false)
-    );
+    const [privilegesList, setPrivilegesList] = useState([]);
 
-    
-    const { initialValues, onSubmitForm } = useAssignPermissions(id,{
-        permisos: ''
-     }, 'roles');
-  
+    const { initialValues, onSubmitForm } = useAssignPermissions(id, {
+        permissionsId: []
+    });
 
+    const { initialValues: initialPrivilegesValues, onSubmitForm: onPrivilegesSubmitForm} = useAssignPrivileges(id, {
+        privilegesId: []
+    });
 
     useEffect(() => {
-        if (!isPermissionsLoading) {
+        if (!isPermissionsLoading || !isPrivilegesLoading) {
             setPermissionsList(permissions.permissions);
+            setPrivilegesList(privileges.privileges);
         }
-    }, [isPermissionsLoading]);
-
-    const handleOnChange = (position) => {
-      const { value, checked } = event.target
-
-      const updatedCheckedState = checkedState.map((item, index) =>
-         index === position ? !item : item
-      );
-
-      setCheckedState(updatedCheckedState);
-
-      if (checked) {
-         setValue(pre => [...pre, value]);
-      }
-      else {
-         setValue(pre => {
-            return [...pre.filter(permission => permission !== value)]
-
-
-         })
-      }
-   }
-   console.log(checkedValues)
+    }, [isPermissionsLoading, isPrivilegesLoading]);
 
     return (
-        <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden">
-            <div className="w-2/3 h-auto bg-purplePz rounded-md">
+        <div className="w-screen h-screen bg-black bg-opacity-50 cursor-default absolute top-0 left-0 flex justify-center items-center overflow-hidden z-10">
+            <div className="w-2/3 h-auto bg-primary rounded-md">
                 <div className="w-full h-[55px] rounded-md flex items-center justify-between px-2">
                     <h2 className="text-xl text-white font-semibold">Asignar permisos a rol</h2>
 
@@ -68,12 +40,12 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
                     </span>
                 </div>
 
-                <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
-                <Formik
-         initialValues={initialValues}
-         validationSchema={validationSchema}
-         onSubmit={onSubmitForm}
-      >
+                <div className="w-full h-[calc(100% - 55px)] bg-white px-80 py-5 flex justify-between">
+                    <Formik
+                        initialValues={initialValues}
+                        // validationSchema={validationSchema}
+                        onSubmit={onSubmitForm}
+                    >
                         <Form>
                             <div className="mb-4">
                                 <label htmlFor="permisos" className="text-black font-semibold block mb-2">
@@ -85,26 +57,67 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
                                             <div className="toppings-list-item">
                                                 <Field
                                                     type="checkbox"
-                                                    id={nombre}
-                                                    name={nombre}
-                                                    value={nombre}
+                                                    id="permissionsId"
+                                                    name="permissionsId"
+                                                    value={id}
                                                     className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
-                                                    checked={checkedState[id]}
-                                                    onChange={() => handleOnChange(id)}
                                                 />
-                                                <label htmlFor={nombre}>{nombre}</label>
+                                                <label htmlFor="permissionsId">{nombre}</label>
                                             </div>
                                         );
                                     }
                                     )
                                 }
-                                <ErrorMessage name="permissions" component="div" className="text-red-500" />
+                                <ErrorMessage name="permissionsId" component="div" className="text-red-500" />
                             </div>
 
                             <div className="text-center mt-2">
                                 <button
                                     type="submit"
-                                    className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
+                                    className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 rounded"
+                                >
+                                    Registrar
+                                </button>
+                            </div>
+                        </Form>
+                    </Formik>
+
+                    {/* //* ESTO ES SOLO UNA VERSIÓN INICIAL DEL FORMULARIO, TODAVÍA NO ESTÁ TERMINADO */}
+
+                    <Formik
+                        initialValues={initialPrivilegesValues}
+                        // validationSchema={validationSchema}
+                        onSubmit={onPrivilegesSubmitForm}
+                    >
+                        <Form>
+                            <div className="mb-4">
+                                <label htmlFor="permisos" className="text-black font-semibold block mb-2">
+                                    Privilegios:
+                                </label>
+                                {
+                                    privilegesList.map(({ nombre, id }) => {
+                                        return (
+                                            <div className="toppings-list-item">
+                                                <Field
+                                                    type="checkbox"
+                                                    id="privilegesId"
+                                                    name="privilegesId"
+                                                    value={id}
+                                                    className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
+                                                />
+                                                <label htmlFor="privilegesId">{nombre}</label>
+                                            </div>
+                                        );
+                                    }
+                                    )
+                                }
+                                <ErrorMessage name="privilegesId" component="div" className="text-red-500" />
+                            </div>
+
+                            <div className="text-center mt-2">
+                                <button
+                                    type="submit"
+                                    className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 rounded"
                                 >
                                     Registrar
                                 </button>
@@ -116,65 +129,3 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
         </div >
     );
 }
-
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import * as Yup from 'yup';
-
-// import { useAssignPermissions, useCreateForm } from '../../hooks';
-
-// // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
-// const validationSchema = Yup.object().shape({
-//    nombre: Yup.string().required('Campo requerido'),
-// });
-
-// export const AssignModal = () => {
-//    const { initialValues, onSubmitForm } = useAssignPermissions({
-//       permisos: Yup.string()
-//                   .required('Campo requerido')
-//    }, 'roles');
-
-//    return (
-//       <Formik
-//          initialValues={initialValues}
-//          validationSchema={validationSchema}
-//          onSubmit={onSubmitForm}
-//       >
-//          <Form>
-//                             <div className="mb-4">
-//                                 <label htmlFor="permisos" className="text-black font-semibold block mb-2">
-//                                     Permisos:
-//                                 </label>
-//                                 {
-//                                     permissionsList.map(({ nombre, id }) => {
-//                                         return (
-//                                             <div className="toppings-list-item">
-//                                                 <Field
-//                                                     type="checkbox"
-//                                                     id={nombre}
-//                                                     name={nombre}
-//                                                     value={nombre}
-//                                                     className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
-//                                                     checked={checkedState[id]}
-//                                                     onChange={() => handleOnChange(id)}
-//                                                 />
-//                                                 <label htmlFor={nombre}>{nombre}</label>
-//                                             </div>
-//                                         );
-//                                     }
-//                                     )
-//                                 }
-//                                 <ErrorMessage name="permissions" component="div" className="text-red-500" />
-//                             </div>
-
-//                             <div className="text-center mt-2">
-//                <button
-//                   type="submit"
-//                   className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
-//                >
-//                   Registrar
-//                </button>
-//             </div>
-//          </Form>
-//       </Formik>
-//    );
-// }

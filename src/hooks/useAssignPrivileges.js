@@ -6,7 +6,7 @@ export const useAssignPrivileges = (id = '', initialValues = {}) => {
    const navigate = useNavigate();
 
    const onSubmitForm = (values) => {
-      geoTransApi.put(`/privileges/assign${id}/`, values)
+      geoTransApi.put(`/roles/privileges/assign/${id}`, values)
          .then(() => {
             console.log('Asignación exitosa');
             navigate(0);
@@ -19,9 +19,6 @@ export const useAssignPrivileges = (id = '', initialValues = {}) => {
                return;
             }
          })
-
-
-      console.log(initialValues);
    };
 
    return {

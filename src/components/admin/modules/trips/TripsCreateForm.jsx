@@ -106,8 +106,8 @@ export const TripsCreateForm = () => {
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
-         <Form>
-            <div className="grid grid-cols-4 gap-4">
+         <Form className="grid grid-cols-4 gap-4">
+            <div className="mb-4">
                <div className="mb-4">
                   <label htmlFor="tipoViaje" className="text-purplePz font-semibold block mb-2">
                      Tipo de viaje: <small className='text-red text-2xl'>*</small>
@@ -570,7 +570,7 @@ export const TripsCreateForm = () => {
             <div className="text-center mt-2">
                <button
                   type="submit"
-                  className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[20%] rounded-full"
+                  className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[50%] rounded-full"
                >
                   Registrar
                </button>

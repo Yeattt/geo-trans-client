@@ -51,7 +51,7 @@ export const SendEmailForm = () => {
             
             <button
                type="submit"
-               className="w-[53%] bg-purplePz hover:bg-primaryHover transition-all text-white font-semibold py-2 rounded-full mt-2 mb-5"
+               className="w-[53%] bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 rounded-full mt-2 mb-5"
             >
                Recuperar Contraseña
             </button>
