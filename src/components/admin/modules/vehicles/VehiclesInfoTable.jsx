@@ -25,17 +25,17 @@ export const VehiclesInfoTable = ({ vehicles, handleIsCreateModalActive }) => {
         <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="px-6 py-2 text-purplePz">ID</th>
-              <th className="px-6 py-2 text-purplePz">Tipo Camion</th>
-              <th className="px-6 py-2 text-purplePz">Modelo</th>
-              <th className="px-6 py-2 text-purplePz">Marca</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Placa</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">P. Semirremolque</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">T. Propiedad</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Tecnomecanica</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Soat</th>
-              <th className="px-6 py-2 text-purplePz">Estado</th>
-              <th className="px-6 py-2 text-purplePz">Acciones</th>
+              <th className="px-6 py-2 text-primary">ID</th>
+              <th className="px-6 py-2 text-primary">Tipo Camion</th>
+              <th className="px-6 py-2 text-primary">Modelo</th>
+              <th className="px-6 py-2 text-primary">Marca</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Placa</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">P. Semirremolque</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">T. Propiedad</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Tecnomecanica</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Soat</th>
+              <th className="px-6 py-2 text-primary">Estado</th>
+              <th className="px-6 py-2 text-primary">Acciones</th>
             </tr>
           </thead>
           <tbody>

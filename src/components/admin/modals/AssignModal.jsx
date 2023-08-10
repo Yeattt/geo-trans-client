@@ -26,6 +26,10 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
         }
     }, [isPermissionsLoading, isPrivilegesLoading]);
 
+    if (permissionsList === undefined || privilegesList === undefined) {
+        return <>Loading...</>
+    }
+
     return (
         <div className="w-screen h-screen bg-black bg-opacity-50 cursor-default absolute top-0 left-0 flex justify-center items-center overflow-hidden z-10">
             <div className="w-2/3 h-auto bg-primary rounded-md">

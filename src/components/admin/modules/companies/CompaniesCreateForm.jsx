@@ -131,7 +131,7 @@ export const CompaniesCreateForm = () => {
 
                <div className="mb-4">
                   <label htmlFor="duenoPoliza" className="text-purplePz font-semibold block mb-2">
-                     Dueño poliza:  <small className='text-red text-2xl'>*</small> 
+                     Dueño póliza:  <small className='text-red text-2xl'>*</small> 
                   </label>
 
                   <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">

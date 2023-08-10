@@ -24,15 +24,15 @@ export const UsersPendingInfoTable = ({ users }) => {
         <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="px-6 py-2 text-purplePz">ID</th>
-              <th className="px-6 py-2 text-purplePz">Documento</th>
-              <th className="px-6 py-2 text-purplePz">Edad</th>
-              <th className="px-6 py-2 text-purplePz">Email</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Rol</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Compañía</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Vehículo</th>
-              <th className="px-6 py-2 text-purplePz">Registro</th>
-              <th className="px-6 py-2 text-purplePz">Acciones</th>
+              <th className="px-6 py-2 text-primary">ID</th>
+              <th className="px-6 py-2 text-primary">Documento</th>
+              <th className="px-6 py-2 text-primary">Edad</th>
+              <th className="px-6 py-2 text-primary">Email</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Rol</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Compañía</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Vehículo</th>
+              <th className="px-6 py-2 text-primary">Registro</th>
+              <th className="px-6 py-2 text-primary">Acciones</th>
             </tr>
           </thead>
           <tbody>

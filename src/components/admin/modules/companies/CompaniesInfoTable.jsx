@@ -24,14 +24,14 @@ export const CompaniesInfoTable = ({ companies, handleIsCreateModalActive }) => 
         <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="px-6 py-2 text-purplePz">ID</th>
-              <th className="px-6 py-2 text-purplePz">Nit</th>
-              <th className="px-6 py-2 text-purplePz">Razon Social</th>
-              <th className="px-6 py-2 text-purplePz">Nombre Empresa</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Telefono</th>
-              <th className="hidden 2xl:table-cell px-6 py-2 text-purplePz">Dueño Poliza</th>
-              <th className="px-6 py-2 text-purplePz">Estado</th>
-              <th className="px-6 py-2 text-purplePz">Acciones</th>
+              <th className="px-6 py-2 text-primary">ID</th>
+              <th className="px-6 py-2 text-primary">Nit</th>
+              <th className="px-6 py-2 text-primary">Razón Social</th>
+              <th className="px-6 py-2 text-primary">Nombre Empresa</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Teléfono</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Dueño Póliza</th>
+              <th className="px-6 py-2 text-primary">Estado</th>
+              <th className="px-6 py-2 text-primary">Acciones</th>
             </tr>
           </thead>
           <tbody>

@@ -24,13 +24,13 @@ export const ClientsInfoTable = ({ clients, handleIsCreateModalActive }) => {
         <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="px-6 py-2 text-purplePz">ID</th>
-              <th className="px-6 py-2 text-purplePz">Documento</th>
-              <th className="px-6 py-2 text-purplePz">Nombre</th>
-              <th className="px-6 py-2 text-purplePz">Razon Social</th>
-              <th className="px-6 py-2 text-purplePz">Telefono</th>
-              <th className="px-6 py-2 text-purplePz">Estado</th>
-              <th className="px-6 py-2 text-purplePz">Acciones</th>
+              <th className="px-6 py-2 text-primary">ID</th>
+              <th className="px-6 py-2 text-primary">Documento</th>
+              <th className="px-6 py-2 text-primary">Nombre</th>
+              <th className="px-6 py-2 text-primary">Razon Social</th>
+              <th className="px-6 py-2 text-primary">Telefono</th>
+              <th className="px-6 py-2 text-primary">Estado</th>
+              <th className="px-6 py-2 text-primary">Acciones</th>
             </tr>
           </thead>
           <tbody>

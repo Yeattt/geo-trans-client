@@ -52,7 +52,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
 
                     <div className="mb-4">
                         <label htmlFor="razonSocial" className="text-black font-semibold block mb-2">
-                            Razon Social:
+                            Razón Social:
                         </label>
                         <Field
                             type="text"
@@ -78,7 +78,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
 
                     <div className="mb-4">
                         <label htmlFor="telefono" className="text-black font-semibold block mb-2">
-                            Telefono:
+                            Teléfono:
                         </label>
                         <Field
                             type="number"
@@ -90,7 +90,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                     </div>
                     <div className="mb-4">
                         <label htmlFor="duenoPoliza" className="text-black font-semibold block mb-2">
-                            Dueño Poliza:
+                            Dueño Póliza:
                         </label>
                         <Field
                             type="text"
