@@ -9,7 +9,12 @@ export const useCreateForm = (initialValues = {}, endpoint) => {
         geoTransApi.post(`/${endpoint}/create`, values)
             .then(res => {
                 Swal.fire('Registro exitoso', res.data.message, 'success');
-                navigate(0);
+                if (endpoint == "quotes") {
+                    navigate(-1);
+                } else {
+                    navigate(0);
+                }
+
             })
             .catch(err => {
                 Swal.fire('Error al registro', err.response.data.message, 'error');

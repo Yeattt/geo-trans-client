@@ -8,6 +8,7 @@ import {
    CompaniesPage,
    PermissionsPage,
    QuotesPage,
+   QuotesCreatePage,
    RolesPage,
    TripsCreatePage,
    TripsPage,
@@ -57,6 +58,12 @@ export const AdminRoutes = () => {
          {hasPermission('compañias') && <Route path="/companies" element={<CompaniesPage />} />}
          {hasPermission('permisos') && <Route path="/permissions" element={<PermissionsPage />} />}
          {hasPermission('cotizaciones') && <Route path="/quotes" element={<QuotesPage />} />}
+         {
+            userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'crear') &&
+            hasPermission('cotizaciones') &&
+            <Route path="/quotes/create" element={<QuotesCreatePage />} />
+         }
+
          {hasPermission('roles') && <Route path="/roles" element={<RolesPage />} />}
          {hasPermission('viajes') && <Route path="/trips" element={<TripsPage />} />}
 

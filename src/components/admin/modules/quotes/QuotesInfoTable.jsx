@@ -1,8 +1,15 @@
 import { QuotesCard } from '..';
 import { useAllowedPrivileges } from '../../../../hooks';
+import { useNavigate } from 'react-router-dom';
+
 
 export const QuotesInfoTable = ({ quotes, handleIsCreateModalActive }) => {
   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/admin/quotes/create');
+  };
 
   return (
     <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
@@ -13,7 +20,7 @@ export const QuotesInfoTable = ({ quotes, handleIsCreateModalActive }) => {
           userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'crear') &&
           <button
             className="bg-primary transition hover:bg-primaryHover w-32 py-2 rounded-md font-bold text-white"
-            onClick={() => handleIsCreateModalActive(true)}
+            onClick={handleButtonClick}
           >
             Añadir
           </button>

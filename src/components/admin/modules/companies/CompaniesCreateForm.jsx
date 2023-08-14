@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
    telefono: Yup.number('Solo se accepta numeros')
       .typeError('El telefono debe ser un número')
       .required('Campo requerido')
-      .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length <= 10),
+      .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length === 10),
    duenoPoliza: Yup.string('Solo se accepta letras')
       .required('Campo requerido'),
 });
