@@ -11,7 +11,8 @@ const validationSchema = Yup.object().shape({
       .required('Campo requerido')
       .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length == 10),
    nombre: Yup.string()
-      .required('Campo requerido'),
+      .required('Campo requerido')
+      .test('len', 'El nombre no debe de superar una longitud de 50 dígitos', val => val && val.toString().length < 50),
    razonSocial: Yup.string()
       .required('Campo requerido'),
    telefono: Yup.number()

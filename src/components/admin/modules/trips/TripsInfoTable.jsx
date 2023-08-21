@@ -16,7 +16,7 @@ export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
         <span className="text-lg font-bold text-primary">Lista de viajes</span>
 
         {
-          userPrivileges.some(privilege => privilege.nombre.toString().trim() === 'crear') &&
+          userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'crear') &&
           <button
             className="bg-primary transition hover:bg-primaryHover w-32 py-2 rounded-md font-bold text-white"
             onClick={handleButtonClick}
