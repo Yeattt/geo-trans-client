@@ -47,7 +47,7 @@ export const AdminRoutes = () => {
       return userPermissions.some((permission) => permission.nombre.toLowerCase().trim() === permissionName.toLowerCase().trim());
    };
 
-   if (isLoading) {
+   if (isLoading || userPermissions.length === 0) {
       return <div>Loading...</div>;
    }
 
