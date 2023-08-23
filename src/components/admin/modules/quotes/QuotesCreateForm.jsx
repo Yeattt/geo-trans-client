@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData, useAuthStore, useGetApiCities } from '../../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -56,8 +56,7 @@ const validationSchema = Yup.object().shape({
       .typeError('Solo se reciben valores numericos')
       .required('Campo requerido'),
 
-   userId: Yup.string()
-      .required('Campo requerido'),
+ 
 
    companyId: Yup.string()
       .required('Campo requerido'),
@@ -70,6 +69,7 @@ export const QuotesCreateForm = () => {
    const [companiesList, setCompaniesList] = useState([]);
    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
    const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
+   const { user } = useAuthStore();
 
    const { initialValues, onSubmitForm } = useCreateForm({
       nombreOrigen: '',
@@ -87,7 +87,7 @@ export const QuotesCreateForm = () => {
       contenido: '',
       valorTransporte: '',
       observaciones: '',
-      userId: '',
+      userId: user.uid,
       companyId: '',
    }, 'quotes');
 
@@ -109,16 +109,18 @@ export const QuotesCreateForm = () => {
       }
    }, [isVehiclesTypeLoading]);
 
-   const { user } = useAuthStore();
+   
 
    return (
+
+     
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
          <Form>
-
+         <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
          <div className="max-h-[800px] overflow-y-scroll">
             <h1 className="text-2xl text-black font-semibold block mb-2">Información del viaje:</h1>
             <div className="grid grid-cols-2 gap-3">
@@ -252,33 +254,35 @@ export const QuotesCreateForm = () => {
                   <ErrorMessage name="valorTransporte" component="div" className="text-red-500" />
                </div>
 
-               <div className="mb-4">
+              <div className="mb-4">
                   <label htmlFor="userId" className="text-black font-semibold block mb-2">
-                     User Id:  <small className='text-red text-2xl'>*</small>
+                     User:  <small className='text-red text-2xl'>*</small>
                   </label>
                   <Field
-                     as="select"
+                     type="text"
                      id="userId"
                      name="userId"
                      className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                      placeholder="User Id..."
-                  >
-                     <option value="" disabled defaultValue>
-                        Usuario...
-                     </option>
+                     value={user.name}
+                     disabled
+                     // onChange={(event) => {
+                     //    const { nombre } = usersList.find(user => user.id == event.target.value);
+                        
+                     //    setFieldValue('userId', nombre);
+                       
 
-                     {
-                        usersList.map(user => (
-                           <option value={user.id} key={user.id}>{user.email}</option>
-                        ))
-                     }
+                     //    console.log(nombre)
+                     // }}
+                   
+                  >
                   </Field>
                   <ErrorMessage name="userId" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="companyId" className="text-black font-semibold block mb-2">
-                     Company Id:  <small className='text-red text-2xl'>*</small>
+                     Compañia:  <small className='text-red text-2xl'>*</small>
                   </label>
                   <Field
                      as="select"
@@ -316,9 +320,6 @@ export const QuotesCreateForm = () => {
                   <ErrorMessage name="observaciones" component="div" className="text-red-500" />
                </div>
             </div>
-
-
-
             
             <h1 className="text-2xl text-black font-semibold block mb-2">Información del cliente:</h1>
             <div className="grid grid-cols-1 gap-3">
@@ -349,7 +350,7 @@ export const QuotesCreateForm = () => {
                   <ErrorMessage name="ciudadOrigen" component="div" className="text-red-500" />
                </div>
             </div>
-
+           
             <h1 className="text-2xl text-black font-semibold block mb-2">Información del destinatario:</h1>
             <div className="grid grid-cols-1 gap-3">
                <div className="mb-4">
@@ -415,10 +416,12 @@ export const QuotesCreateForm = () => {
                </button>
             </div>
             </div>
+            </div>
 
 
 
          </Form>
       </Formik>
+      
    );
 }

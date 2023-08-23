@@ -6,6 +6,8 @@ export const useCreateForm = (initialValues = {}, endpoint) => {
     const navigate = useNavigate();
 
     const onSubmitForm = (values) => {
+        console.log(values);
+
         geoTransApi.post(`/${endpoint}/create`, values)
             .then(res => {
                 Swal.fire('Registro exitoso', res.data.message, 'success');

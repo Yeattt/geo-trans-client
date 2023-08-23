@@ -523,9 +523,11 @@ export const TripsCreateForm = () => {
                         className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
                         placeholder="Conductor..."
                         onChange={(event) => {
-                           const { vehicleId } = usersList.find(user => user.id == event.target.value);
+                           const { id , vehicleId } = usersList.find(user => user.id == event.target.value);
                            const { placa } = vehiclesList.find(vehicle => vehicle.id === vehicleId);
-                           setFieldValue('vehiculoId', placa);
+                           setFieldValue('vehiculoId', vehicleId);
+                           setFieldValue('vehiculoPlaca',placa)
+                           setFieldValue('conductorId', id.toString());
                         }}
                      >
                         <option value="" disabled defaultValue>
@@ -544,7 +546,7 @@ export const TripsCreateForm = () => {
                </div>
 
                {/* // TODO: MOSTRAR EL VEHÍCULO AL SELECCIONAR EL CONDUCTOR AUTOMÁTICAMENTE */}
-               <div className="mb-4">
+               {/* <div className="mb-4">
                   <label htmlFor="vehiculoId" className="text-purplePz font-semibold block mb-2">
                      Vehículo: <small className='text-red text-2xl'>*</small>
                   </label>
@@ -555,7 +557,7 @@ export const TripsCreateForm = () => {
                      </div>
 
                      <Field
-                        type="text"
+                        type="hidden"
                         id="vehiculoId"
                         name="vehiculoId"
                         className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] hover:cursor-not-allowed"
@@ -565,10 +567,33 @@ export const TripsCreateForm = () => {
                   </div>
 
                   <ErrorMessage name="vehiculoId" component="div" className="text-red-500" />
+               </div> */}
+
+               <div className="mb-4">
+                  <label htmlFor="vehiculoPlaca" className="text-purplePz font-semibold block mb-2">
+                     Vehículo placa: <small className='text-red text-2xl'>*</small>
+                  </label>
+
+                  <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center hover:cursor-not-allowed">
+                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
+                        <FaTruck />
+                     </div>
+
+                     <Field
+                        type="text"
+                        id="vehiculoPlaca"
+                        name="vehiculoPlaca"
+                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] hover:cursor-not-allowed"
+                        placeholder="Vehículo..."
+                        disabled
+                     />
+                  </div>
+
+                  <ErrorMessage name="vehiculoPlaca" component="div" className="text-red-500" />
                </div>
 
 
-               <div className="text-center mt-2">
+               <div className="text-center mt-16">
                   <button
                      type="submit"
                      className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[50%] rounded-full"
