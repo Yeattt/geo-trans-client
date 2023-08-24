@@ -3,12 +3,6 @@ import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { FaTruck, FaUserCog, FaUsers, FaUsersCog } from 'react-icons/fa';
-import { BsBuildingFillGear } from 'react-icons/bs';
-import { RiLockPasswordLine, RiUserSettingsLine } from 'react-icons/ri';
-import { MdOutlineDocumentScanner } from 'react-icons/md';
-import { HiOutlineMail } from 'react-icons/hi';
-
 import { useCreateForm, useGetApiData } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
@@ -46,8 +40,8 @@ export const UsersCreateForm = () => {
       nombre: '',
       edad: '',
       email: '',
-      nombrePlataforma:'',
-      linkPlataforma:'',
+      nombrePlataforma: '',
+      linkPlataforma: '',
       contrasena: '',
       roleId: '',
       companyId: '',
@@ -75,21 +69,15 @@ export const UsersCreateForm = () => {
                      Documento:
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <MdOutlineDocumentScanner />
-                     </div>
+                  <Field
+                     type="number"
+                     id="documento"
+                     name="documento"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Documento..."
+                  />
 
-                     <Field
-                        type="number"
-                        id="documento"
-                        name="documento"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="Documento..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="documento" component="div" className="text-red-500" />
+                  <ErrorMessage name="documento" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -97,21 +85,15 @@ export const UsersCreateForm = () => {
                      Nombre: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <MdOutlineDocumentScanner />
-                     </div>
+                  <Field
+                     type="text"
+                     id="nombre"
+                     name="nombre"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Nombre..."
+                  />
 
-                     <Field
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="Nombre..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="nombre" component="div" className="text-red-500" />
+                  <ErrorMessage name="nombre" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -119,21 +101,15 @@ export const UsersCreateForm = () => {
                      Edad: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <RiUserSettingsLine />
-                     </div>
+                  <Field
+                     type="number"
+                     id="edad"
+                     name="edad"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Edad..."
+                  />
 
-                     <Field
-                        type="number"
-                        id="edad"
-                        name="edad"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="Edad..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="edad" component="div" className="text-red-500" />
+                  <ErrorMessage name="edad" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -141,21 +117,15 @@ export const UsersCreateForm = () => {
                      Nombre Plataforma: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <HiOutlineMail />
-                     </div>
+                  <Field
+                     type="text"
+                     id="nombrePlataforma"
+                     name="nombrePlataforma"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="nombrePlataforma..."
+                  />
 
-                     <Field
-                        type="text"
-                        id="nombrePlataforma"
-                        name="nombrePlataforma"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="nombrePlataforma..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="nombrePlataforma" component="div" className="text-red-500" />
+                  <ErrorMessage name="nombrePlataforma" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -163,21 +133,15 @@ export const UsersCreateForm = () => {
                      Link Plataforma: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <HiOutlineMail />
-                     </div>
+                  <Field
+                     type="text"
+                     id="linkPlataforma"
+                     name="linkPlataforma"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="linkPlataforma..."
+                  />
 
-                     <Field
-                        type="text"
-                        id="linkPlataforma"
-                        name="linkPlataforma"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="linkPlataforma..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="linkPlataforma" component="div" className="text-red-500" />
+                  <ErrorMessage name="linkPlataforma" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -185,21 +149,15 @@ export const UsersCreateForm = () => {
                      Email: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <HiOutlineMail />
-                     </div>
+                  <Field
+                     type="email"
+                     id="email"
+                     name="email"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Email..."
+                  />
 
-                     <Field
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="Email..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="email" component="div" className="text-red-500" />
+                  <ErrorMessage name="email" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -207,21 +165,15 @@ export const UsersCreateForm = () => {
                      Contraseña: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <RiLockPasswordLine />
-                     </div>
+                  <Field
+                     type="password"
+                     id="contrasena"
+                     name="contrasena"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Contraseña..."
+                  />
 
-                     <Field
-                        type="password"
-                        id="contrasena"
-                        name="contrasena"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="Contraseña..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="contrasena" component="div" className="text-red-500" />
+                  <ErrorMessage name="contrasena" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -229,31 +181,25 @@ export const UsersCreateForm = () => {
                      Rol: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <FaUsersCog />
-                     </div>
+                  <Field
+                     as="select"
+                     id="roleId"
+                     name="roleId"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Rol..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Rol...
+                     </option>
 
-                     <Field
-                        as="select"
-                        id="roleId"
-                        name="roleId"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        placeholder="Rol..."
-                     >
-                        <option value="" disabled defaultValue>
-                           Rol...
-                        </option>
+                     {
+                        rolesList.map(role => (
+                           <option value={role.id} key={role.id}>{role.nombre}</option>
+                        ))
+                     }
+                  </Field>
 
-                        {
-                           rolesList.map(role => (
-                              <option value={role.id} key={role.id}>{role.nombre}</option>
-                           ))
-                        }
-                     </Field>
-                  </div>
-
-                  <ErrorMessage name="roleId" component="div" className="text-red-500" />
+                  <ErrorMessage name="roleId" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -261,31 +207,25 @@ export const UsersCreateForm = () => {
                      Compañía: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <BsBuildingFillGear />
-                     </div>
+                  <Field
+                     as="select"
+                     id="companyId"
+                     name="companyId"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Compañía..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Compañía...
+                     </option>
 
-                     <Field
-                        as="select"
-                        id="companyId"
-                        name="companyId"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        placeholder="Compañía..."
-                     >
-                        <option value="" disabled defaultValue>
-                           Compañía...
-                        </option>
+                     {
+                        companiesList.map(company => (
+                           <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
+                        ))
+                     }
+                  </Field>
 
-                        {
-                           companiesList.map(company => (
-                              <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
-                           ))
-                        }
-                     </Field>
-                  </div>
-
-                  <ErrorMessage name="companyId" component="div" className="text-red-500" />
+                  <ErrorMessage name="companyId" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
@@ -293,31 +233,25 @@ export const UsersCreateForm = () => {
                      Vehículo: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <FaTruck />
-                     </div>
+                  <Field
+                     as="select"
+                     id="vehicleId"
+                     name="vehicleId"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Vehículo..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Vehículo...
+                     </option>
 
-                     <Field
-                        as="select"
-                        id="vehicleId"
-                        name="vehicleId"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        placeholder="Vehículo..."
-                     >
-                        <option value="" disabled defaultValue>
-                           Vehículo...
-                        </option>
+                     {
+                        vehiclesList.map(vehicle => (
+                           !vehicle.enUso && <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
+                        ))
+                     }
+                  </Field>
 
-                        {
-                           vehiclesList.map(vehicle => (
-                              !vehicle.enUso && <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
-                           ))
-                        }
-                     </Field>
-                  </div>
-
-                  <ErrorMessage name="vehicleId" component="div" className="text-red-500" />
+                  <ErrorMessage name="vehicleId" component="div" className="text-red" />
                </div>
             </div>
 
