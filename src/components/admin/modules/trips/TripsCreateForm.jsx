@@ -593,7 +593,7 @@ export const TripsCreateForm = () => {
                </div>
 
 
-               <div className="text-center mt-16">
+               <div className="text-center mt-16 ">
                   <button
                      type="submit"
                      className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[50%] rounded-full"

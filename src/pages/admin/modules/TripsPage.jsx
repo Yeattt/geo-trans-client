@@ -1,11 +1,18 @@
-import { useState } from 'react';
-
+import { useState, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print'; 
 import { AdminLayout, CreateFormModal, AdminNavbar, AdminElementsCard, TripsSearcher } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 import { TripsInfoTable } from '../../../components/admin/modules/trips/TripsInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
+import ReporteViajes from '../../../components/admin/modules/trips/ReporteViajes';
 
 export const TripsPage = () => {
+  const tablePdf = useRef()
+
+  const generatePdf = useReactToPrint({
+    content: ()=> tablePdf.current,
+    documentTitle: 'Informes de viajes'
+  })
   const { isLoading, data: { trips } } = useGetApiData('/trips');
   const [queryResults, setQueryResults] = useState([]);
   const [isCreateModalActive, setIsCreateModalActive] = useState(false);
@@ -39,7 +46,13 @@ export const TripsPage = () => {
               <TbReportAnalytics />
             </span>
 
-            <span className="text-white text-[15px] font-semibold">Generar informe</span>
+            <div className='hidden'>
+                        <div ref={tablePdf}>
+                           <ReporteViajes trips={trips} />
+                        </div>
+                     </div>
+
+            <buttom onClick={generatePdf} className="text-white text-[15px] font-semibold" type="button">Generar informe</buttom>
           </div>
 
           <TripsSearcher handleQueryResults={handleQueryResults} trips={trips} />

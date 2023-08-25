@@ -1,11 +1,17 @@
-import React, {useState } from 'react';
-
+import React, {useRef, useState } from 'react';
 import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, QuotesSearcher } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 import { QuotesInfoTable } from '../../../components/admin/modules/quotes/QuotesInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
-
+import { useReactToPrint } from 'react-to-print';
+import ReportPdf from '../../../components/admin/modules/quotes/ReportPdf';
 export const QuotesPage = () => {
+   const tablePdf = useRef()
+
+   const generatePdf = useReactToPrint({
+      content: () => tablePdf.current,
+      documentTitle:'Informe de cotizaciones'
+   })
    const { isLoading, data: { quotes } } = useGetApiData('/quotes');
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
@@ -40,7 +46,13 @@ export const QuotesPage = () => {
                         <TbReportAnalytics />
                      </span>
 
-                     <span className="text-white text-[15px] font-semibold">Generar informe</span>
+                     <div className='hidden'>
+                        <div ref={tablePdf}>
+                           <ReportPdf quotes={quotes} />
+                        </div>
+                     </div>
+
+                     <buttom onClick={generatePdf} className="text-white text-[15px] font-semibold" type="button">Generar informe</buttom>
                   </div>
 
                   <QuotesSearcher handleQueryResults={handleQueryResults} quotes={quotes} />

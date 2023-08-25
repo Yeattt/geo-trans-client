@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
-
-import { Link } from 'react-router-dom';
-
-import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal, DeleteModal, UpdateModal } from '../../';
+import { InfoModal, UpdateModal } from '../../';
 import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
 
 export const TripsCard = ({ trip }) => {
