@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 
 import { useAssignPermissions, useCreateForm, useGetApiData } from '../../../../hooks';
 import { useState, useEffect } from 'react';
-import { FaTruck } from 'react-icons/fa';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -35,26 +34,21 @@ export const RolesCreateForm = () => {
          <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
-                  <label htmlFor="nombre" className="text-purplePz font-semibold block mb-2">
-                     Nombre: <small className='text-red text-2xl'>*</small> 
+                  <label htmlFor="nombre" className="text-primary font-semibold block mb-2">
+                     Nombre: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <FaTruck />
-                     </div>
+                  <Field
+                     type="text"
+                     id="nombre"
+                     name="nombre"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Nombre..."
+                  />
 
-                     <Field
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Nombre..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="nombre" component="div" className="text-red-500" />
+                  <ErrorMessage name="nombre" component="div" className="text-red" />
                </div>
+
             </div>
             <div className="mb-4">
                <label htmlFor="permisos" className="text-black font-semibold block mb-2">

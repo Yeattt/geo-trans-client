@@ -32,7 +32,6 @@
     "react-router-dom": "^6.11.2",
     "react-to-print": "^2.14.13",
     "sweetalert2": "^11.7.12",
-    "swiper": "^10.0.4",
     "yup": "^1.2.0"
   },
   "devDependencies": {

@@ -3278,11 +3278,6 @@ sweetalert2@^11.7.12:
   resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.7.20.tgz"
   integrity sha512-GdU1TkiLpGGC0mcPV8bKmS7G0MR7caxambPkEU8zyepRSNR9EaEvIjNhX5QNkL0VFVzHbI3l12NtuEklkJ0D4Q==
 
-swiper@^10.0.4:
-  version "10.0.4"
-  resolved "https://registry.npmjs.org/swiper/-/swiper-10.0.4.tgz"
-  integrity sha512-DlNR3KiaVkPep6RraZ2tNr7lvyuzELuR+4NZr4wO42t0UworIO3DxDlz8b5Q3uUioh7cJad99EdRJLkPF+r8Ag==
-
 tailwindcss@^3.3.2:
   version "3.3.2"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.3.2.tgz"

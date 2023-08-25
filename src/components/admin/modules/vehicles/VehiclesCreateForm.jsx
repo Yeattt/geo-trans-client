@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FaTruckLoading } from 'react-icons/fa';
-import { GiTowTruck } from 'react-icons/gi';
-import { TbFiretruck } from 'react-icons/tb';
-import { HiOutlineCreditCard } from 'react-icons/hi';
-import { BsFillPersonVcardFill } from 'react-icons/bs';
 
 import { useCreateForm, useGetApiData, useUploadFiles } from '../../../../hooks';
 
@@ -30,11 +25,11 @@ const validationSchema = Yup.object().shape({
       .required('Campo requerido')
       .test('len', 'Debe tener 6 dígitos', val => val && val.toString().length === 6),
    tarjetaPropiedad: Yup.string(),
-      // .required('Campo requerido'),
+   // .required('Campo requerido'),
    tecnomecanica: Yup.string(),
-      // .required('Campo requerido'),
+   // .required('Campo requerido'),
    soat: Yup.string()
-      // .required('Campo requerido'),
+   // .required('Campo requerido'),
 });
 
 export const VehiclesCreateForm = () => {
@@ -89,194 +84,146 @@ export const VehiclesCreateForm = () => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
-                     Tipo Camión: <small className='text-red text-2xl'>*</small> 
+                     Tipo Camión: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <FaTruckLoading />
-                     </div>
+                  <Field
+                     as="select"
+                     id="tipoCamion"
+                     name="tipoCamion"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Tipo Camión..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Tipo Camión...
+                     </option>
 
-                     <Field
-                        as="select"
-                        id="tipoCamion"
-                        name="tipoCamion"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        placeholder="Tipo Camión..."
-                     >
-                        <option value="" disabled defaultValue>
-                           Tipo Camión...
-                        </option>
+                     {vehiclesTypeList.map(vehicleType => (
+                        vehicleType.estado && (
+                           <option value={vehicleType.id} key={vehicleType.id}>
+                              {vehicleType.nombre}
+                           </option>
+                        )
+                     ))}
+                  </Field>
 
-                        {vehiclesTypeList.map(vehicleType => (
-                           vehicleType.estado && (
-                              <option value={vehicleType.id} key={vehicleType.id}>
-                                 {vehicleType.nombre}
-                              </option>
-                           )
-                        ))}
-                     </Field>
-                  </div>
-
-                  <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
+                  <ErrorMessage name="tipoCamion" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="modelo" className="text-purplePz font-semibold block mb-2">
-                     Modelo: <small className='text-red text-2xl'>*</small> 
+                  <label htmlFor="modelo" className="text-primary font-semibold block mb-2">
+                     Modelo: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <GiTowTruck />
-                     </div>
+                  <Field
+                     type="number"
+                     id="modelo"
+                     name="modelo"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Modelo..."
+                  />
 
-                     <Field
-                        type="number"
-                        id="modelo"
-                        name="modelo"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Modelo..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="modelo" component="div" className="text-red-500" />
+                  <ErrorMessage name="modelo" component="div" className="text-red" />
                </div>
 
 
                <div className="mb-4">
-                  <label htmlFor="marca" className="text-purplePz font-semibold block mb-2">
-                     Marca: <small className='text-red text-2xl'>*</small> 
+                  <label htmlFor="marca" className="text-primary font-semibold block mb-2">
+                     Marca: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <TbFiretruck />
-                     </div>
+                  <Field
+                     type="text"
+                     id="marca"
+                     name="marca"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Marca..."
+                  />
 
-                     <Field
-                        type="text"
-                        id="marca"
-                        name="marca"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] focus-within:text-black"
-                        placeholder="Marca..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="marca" component="div" className="text-red-500" />
+                  <ErrorMessage name="marca" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="placa" className="text-purplePz font-semibold block mb-2">
-                     Placa: <small className='text-red text-2xl'>*</small> 
+                  <label htmlFor="placa" className="text-primary font-semibold block mb-2">
+                     Placa: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <HiOutlineCreditCard />
-                     </div>
+                  <Field
+                     type="text"
+                     id="placa"
+                     name="placa"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Placa..."
+                  />
 
-                     <Field
-                        type="text"
-                        id="placa"
-                        name="placa"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Placa..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="placa" component="div" className="text-red-500" />
+                  <ErrorMessage name="placa" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="placaSemirremolque" className="text-purplePz font-semibold block mb-2">
-                     Placa semirremolque: <small className='text-red text-2xl'>*</small> 
+                  <label htmlFor="placaSemirremolque" className="text-primary font-semibold block mb-2">
+                     Placa semirremolque: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <HiOutlineCreditCard />
-                     </div>
+                  <Field
+                     type="text"
+                     id="placaSemirremolque"
+                     name="placaSemirremolque"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Placa semirremolque..."
+                  />
 
-                     <Field
-                        type="text"
-                        id="placaSemirremolque"
-                        name="placaSemirremolque"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Placa semirremolque..."
-                     />
-                  </div>
-
-                  <ErrorMessage name="placaSemirremolque" component="div" className="text-red-500" />
+                  <ErrorMessage name="placaSemirremolque" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="tarjetaPropiedad" className="text-purplePz font-semibold block mb-2">
-                     Tarjeta propiedad: <small className='text-red text-2xl'>*</small> 
+                  <label htmlFor="tarjetaPropiedad" className="text-primary font-semibold block mb-2">
+                     Tarjeta propiedad: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <BsFillPersonVcardFill />
-                     </div>
+                  {/* Input para subir archivo */}
+                  <input
+                     type="file"
+                     id="tarjetaPropiedad"
+                     name="tarjetaPropiedad"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     onChange={(event) => handleFileChange('tarjetaPropiedad', event)}
+                  />
 
-                     {/* Input para subir archivo */}
-                     <input
-                        type="file"
-                        id="tarjetaPropiedad"
-                        name="tarjetaPropiedad"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        onChange={(event) => handleFileChange('tarjetaPropiedad', event)}
-                     />
-                  </div>
-
-                  <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red-500" />
+                  <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="tecnomecanica" className="text-purplePz font-semibold block mb-2">
-                     Tecnomecanica: <small className='text-red text-2xl'>*</small> 
+                     Tecnomecanica: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <BsFillPersonVcardFill />
-                     </div>
+                  {/* Input para subir archivo */}
+                  <input
+                     type="file"
+                     id="tecnomecanica"
+                     name="tecnomecanica"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     onChange={(event) => handleFileChange('tecnomecanica', event)}
+                  />
 
-                     {/* Input para subir archivo */}
-                     <input
-                        type="file"
-                        id="tecnomecanica"
-                        name="tecnomecanica"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        onChange={(event) => handleFileChange('tecnomecanica', event)}
-                     />
-                  </div>
-
-                  <ErrorMessage name="tecnomecanica" component="div" className="text-red-500" />
+                  <ErrorMessage name="tecnomecanica" component="div" className="text-red" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="soat" className="text-purplePz font-semibold block mb-2">
-                     Soat: <small className='text-red text-2xl'>*</small> 
+                     Soat: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <BsFillPersonVcardFill />
-                     </div>
+                  {/* Input para subir archivo */}
+                  <input
+                     type="file"
+                     id="soat"
+                     name="soat"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     onChange={(event) => handleFileChange('soat', event)}
+                  />
 
-                     {/* Input para subir archivo */}
-                     <input
-                        type="file"
-                        id="soat"
-                        name="soat"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        onChange={(event) => handleFileChange('soat', event)}
-                     />
-                  </div>
-
-                  <ErrorMessage name="soat" component="div" className="text-red-500" />
+                  <ErrorMessage name="soat" component="div" className="text-red" />
                </div>
             </div>
 
