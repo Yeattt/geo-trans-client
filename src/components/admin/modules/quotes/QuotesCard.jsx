@@ -44,9 +44,6 @@ export const QuotesCard = ({ quote }) => {
       // }, [isCompaniesLoading]);
    };
 
-   {
-      console.log(user.name);
-   }
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{quote.id}</td>
