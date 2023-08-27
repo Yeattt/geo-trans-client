@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useReactToPrint } from 'react-to-print'; 
+import { useReactToPrint } from 'react-to-print';
 import { AdminLayout, CreateFormModal, AdminNavbar, AdminElementsCard, TripsSearcher } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 import { TripsInfoTable } from '../../../components/admin/modules/trips/TripsInfoTable';
@@ -10,7 +10,7 @@ export const TripsPage = () => {
   const tablePdf = useRef()
 
   const generatePdf = useReactToPrint({
-    content: ()=> tablePdf.current,
+    content: () => tablePdf.current,
     documentTitle: 'Informes de viajes'
   })
   const { isLoading, data: { trips } } = useGetApiData('/trips');
@@ -47,10 +47,10 @@ export const TripsPage = () => {
             </span>
 
             <div className='hidden'>
-                        <div ref={tablePdf}>
-                           <ReporteViajes trips={trips} />
-                        </div>
-                     </div>
+              <div ref={tablePdf}>
+                <ReporteViajes trips={trips} />
+              </div>
+            </div>
 
             <buttom onClick={generatePdf} className="text-white text-[15px] font-semibold" type="button">Generar informe</buttom>
           </div>
