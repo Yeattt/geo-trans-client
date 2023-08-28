@@ -1,22 +1,9 @@
 import { useState, useEffect } from 'react';
-import { FaTruckLoading } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-// import required modules
-import { Navigation } from 'swiper/modules';
 import * as Yup from 'yup';
+import { useUpdateForm, useGetApiData, useAuthStore, useGetApiCities } from '../../../../hooks';
 
-
-import { useUpdateForm, useGetApiData, useAuthStore } from '../../../../hooks';
-
-
-export const QuotesUpdate = ({ moduleInfo }) => {
+export const QuotesUpdate = ({moduleInfo}) => {
     const validationSchema = Yup.object().shape({
         nombreOrigen: Yup.string()
            .required('Campo requerido'),
@@ -71,12 +58,14 @@ export const QuotesUpdate = ({ moduleInfo }) => {
            .required('Campo requerido'),          
      });
 
-     const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
+   const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
    const [usersList, setUsersList] = useState([]);
    const { data: companies, isLoading: companiesIsLoading } = useGetApiData('/companies');
    const [companiesList, setCompaniesList] = useState([]);
    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
    const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
+   const { data: cities, isLoading: citiesIsLoading } = useGetApiCities('https://api-colombia.com/api/v1/City');
+   const [citiesList, setCitiesList] = useState([]);
 
      const { initialValues, onSubmitForm } = useUpdateForm({
         id: moduleInfo.id,
@@ -100,28 +89,29 @@ export const QuotesUpdate = ({ moduleInfo }) => {
      }, 'quotes');
 
      useEffect(() => {
-        if (!usersIsLoading && !companiesIsLoading && !isVehiclesTypeLoading) {
+        if (!usersIsLoading && !companiesIsLoading && !isVehiclesTypeLoading && !citiesIsLoading) {
            setUsersList(users.users);
            setCompaniesList(companies.companies);
            setVehiclesTypeList(vehiclesType.vehiclesType);
+           setCitiesList(cities);
         }
-     }, [usersIsLoading, companiesIsLoading, isVehiclesTypeLoading]);
+     }, [usersIsLoading, companiesIsLoading, isVehiclesTypeLoading, citiesIsLoading]);
 
      
      const { user } = useAuthStore();
 
     return (
+      
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values) => onSubmitForm(values)}
         >
-            <Form>
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-               <SwiperSlide>
-
+           <Form>
+         <div className="max-h-[800px] overflow-y-scroll">
+            <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
                   <h1 className="text-2xl text-black font-semibold block mb-2">Información del viaje:</h1>
-               <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
                         <label htmlFor="fechaSolicitud" className="text-black font-semibold block mb-2">
                            Fecha de solicitud:
@@ -138,7 +128,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
 
                      <div className="mb-4">
                         <label htmlFor="fechaServicio" className="text-black font-semibold block mb-2">
-                           Fecha de servicio:
+                           Fecha de servicio:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="date"
@@ -152,7 +142,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
 
                      <div className="mb-4">
                         <label htmlFor="horaCargue" className="text-black font-semibold block mb-2">
-                           Hora de cargue:
+                           Hora de cargue:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="time"
@@ -165,40 +155,34 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                      </div>
 
                      <div className="mb-4">
-                  <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
-                     Tipo Camión:
-                  </label>
+                        <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
+                           Tipo Camión:  <small className='text-red text-2xl'>*</small>
+                        </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                     <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
-                        <FaTruckLoading />
+                           <Field
+                              as="select"
+                              id="tipoCamion"
+                              name="tipoCamion"
+                              className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                              placeholder="Tipo Camión..."
+                           >
+                              <option value="" disabled defaultValue>
+                                 Tipo Camión...
+                              </option>
+
+                              {vehiclesTypeList.map(vehicleType => (
+                                 <option value={vehicleType.id} key={vehicleType.id}>
+                                    {vehicleType.nombre}
+                                 </option>
+                              ))}
+                           </Field>
+
+                        <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
                      </div>
-
-                     <Field
-                        as="select"
-                        id="tipoCamion"
-                        name="tipoCamion"
-                        className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
-                        placeholder="Tipo Camión..."
-                     >
-                        <option value="" disabled defaultValue>
-                           Tipo Camión...
-                        </option>
-
-                        {vehiclesTypeList.map(vehicleType => (
-                           <option value={vehicleType.id} key={vehicleType.id}>
-                              {vehicleType.nombre}
-                           </option>
-                        ))}
-                     </Field>
-                  </div>
-
-                  <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
-               </div>
 
                      <div className="mb-4">
                         <label htmlFor="pesoAproximado" className="text-black font-semibold block mb-2">
-                           Peso Aproximado:
+                           Peso Aproximado:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -212,7 +196,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
 
                      <div className="mb-4">
                         <label htmlFor="valorMercancia" className="text-black font-semibold block mb-2">
-                           Vlr. Mercancia:
+                           Vlr. Mercancia:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -226,7 +210,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
 
                      <div className="mb-4">
                         <label htmlFor="contenido" className="text-black font-semibold block mb-2">
-                           Contenido:
+                           Contenido:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -240,7 +224,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
 
                      <div className="mb-4">
                         <label htmlFor="valorTransporte" className="text-black font-semibold block mb-2">
-                           Vlr. Transporte:
+                           Vlr. Transporte:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -254,27 +238,33 @@ export const QuotesUpdate = ({ moduleInfo }) => {
 
                      <div className="mb-4">
                         <label htmlFor="userId" className="text-black font-semibold block mb-2">
-                           User Id:
+                           User:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
-                           as="select"
+                           type="text"
                            id="userId"
                            name="userId"
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="User Id..."
+                           value={user.name}
+                           disabled
+                        // onChange={(event) => {
+                        //    const { nombre } = usersList.find(user => user.id == event.target.value);
+
+                        //    setFieldValue('userId', nombre);
+
+
+                        //    console.log(nombre)
+                        // }}
+
                         >
-                          {
-                        usersList.map(user => (
-                           <option value={user.id} key={user.id}>{user.email}</option>
-                        ))
-                     }
                         </Field>
                         <ErrorMessage name="userId" component="div" className="text-red-500" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="companyId" className="text-black font-semibold block mb-2">
-                           Company Id:
+                           Compañia:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            as="select"
@@ -283,41 +273,41 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Company Id..."
                         >
-                          {
-                        companiesList.map(company => (
-                           <option value={company.id} key={company.id}>{company.nombreEmpresa}</option>
-                        ))
-                     }
+                           <option value="" disabled defaultValue>
+                              Compañia...
+                           </option>
+
+                           {
+                              companiesList.map(company => (
+                                 <option value={company.id} key={company.id}>{company.razonSocial}</option>
+                              ))
+                           }
                         </Field>
                         <ErrorMessage name="companyId" component="div" className="text-red-500" />
                      </div>
-                     </div>
-                  
-                  <div className="grid grid-cols-1 gap-3">
-                  <div className="mb-4">
-                     <label htmlFor="observaciones" className="text-black font-semibold block mb-2">
-                        Observaciones:
-                     </label>
-                     <Field
-                        type="textarea"
-                        id="observaciones"
-                        name="observaciones"
-                        className="w-full px-3 py-10 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        placeholder="Observaciones..."
-                     />
-                     <ErrorMessage name="observaciones" component="div" className="text-red-500" />
                   </div>
-               </div>
 
-                 
-               </SwiperSlide>
+                  <div className="grid grid-cols-1 gap-3">
+                     <div className="mb-20">
+                        <label htmlFor="observaciones" className="text-black font-semibold block mb-2">
+                           Observaciones:  <small className='text-red text-2xl'>*</small>
+                        </label>
+                        <Field
+                           type="textarea"
+                           id="observaciones"
+                           name="observaciones"
+                           className="w-full px-3 py-10 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                           placeholder="Observaciones..."
+                        />
+                        <ErrorMessage name="observaciones" component="div" className="text-red-500" />
+                     </div>
+                  </div>
 
-               <SwiperSlide>
-               <h1 className="text-2xl text-black font-semibold block mb-2">Información del cliente:</h1>
-               <div className="grid grid-cols-1 gap-3">
+                  <h1 className="text-2xl text-black font-semibold block mb-2">Información del cliente:</h1>
+                  <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
                         <label htmlFor="nombreOrigen" className="text-black font-semibold block mb-2">
-                           Nombre de Origen:
+                           Nombre de Origen:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -328,28 +318,36 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                         />
                         <ErrorMessage name="nombreOrigen" component="div" className="text-red-500" />
                      </div>
-                     <div className="mb-4">
+                     <div className="mb-20">
                         <label htmlFor="ciudadOrigen" className="text-black font-semibold block mb-2">
-                           Ciudad de origen:
+                           Ciudad de origen:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
-                           type="text"
+                           as="select"
                            id="ciudadOrigen"
                            name="ciudadOrigen"
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Ciudad de origen..."
-                        />
+                        >
+                           <option value="" disabled defaultValue>
+                              Seleccione...
+                           </option>
+
+                           {
+                              cities.map(city=>(
+                                 <option value={city.name} key={city.id}>{city.name}</option>
+                              ))
+                           }
+                           </Field>
                         <ErrorMessage name="ciudadOrigen" component="div" className="text-red-500" />
                      </div>
-                     </div>
+                  </div>
 
-               </SwiperSlide>
-               <SwiperSlide>
-               <h1 className="text-2xl text-black font-semibold block mb-2">Información del destinatario:</h1>
-               <div className="grid grid-cols-1 gap-3">
+                  <h1 className="text-2xl text-black font-semibold block mb-2">Información del destinatario:</h1>
+                  <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
                         <label htmlFor="nombreDestino" className="text-black font-semibold block mb-2">
-                           Nombre de Destino:
+                           Nombre de Destino:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -362,20 +360,30 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                      </div>
                      <div className="mb-4">
                         <label htmlFor="ciudadDestino" className="text-black font-semibold block mb-2">
-                           Ciudad de Destino:
+                           Ciudad de Destino: <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
-                           type="text"
+                           as="select"
                            id="ciudadDestino"
                            name="ciudadDestino"
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Ciudad de Destino..."
-                        />
+                        >
+                           <option value="" disabled defaultValue>
+                              Seleccione...
+                           </option>
+
+                           {
+                              cities.map(city=>(
+                                 <option value={city.name} key={city.id}>{city.name}</option>
+                              ))
+                           }
+                           </Field>
                         <ErrorMessage name="ciudadDestino" component="div" className="text-red-500" />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="direccion" className="text-black font-semibold block mb-2">
-                           Direccion:
+                           Direccion: <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -388,7 +396,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                      </div>
                      <div className="mb-4">
                         <label htmlFor="contacto" className="text-black font-semibold block mb-2">
-                           Contacto:
+                           Contacto: <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -399,7 +407,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                         />
                         <ErrorMessage name="contacto" component="div" className="text-red-500" />
                      </div>
-               </div>
+                  </div>
                <div className="text-center mt-4">
                <button
                         type="submit"
@@ -409,13 +417,10 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                         Editar
                     </button>
             </div>
-
-
-               </SwiperSlide>
-            </Swiper>
-
-
+            </div>
+            </div>
          </Form>
         </Formik>
+
     );
 }

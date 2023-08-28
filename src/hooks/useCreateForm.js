@@ -12,7 +12,7 @@ export const useCreateForm = (initialValues = {}, endpoint) => {
             .then(res => {
                 Swal.fire('Registro exitoso', res.data.message, 'success');
                 if (endpoint == "quotes") {
-                    navigate(-1);
+                    navigate(`/admin/quotes`);
                 } else {
                     navigate(0);
                 }

@@ -68,7 +68,8 @@ export const QuotesCreateForm = () => {
    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
    const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
    const { user } = useAuthStore();
-   const [cities, setCities]=useState([])
+   const { data: cities, isLoading: citiesIsLoading } = useGetApiCities('https://api-colombia.com/api/v1/City');
+   const [citiesList, setCitiesList] = useState([]);
 
    const { initialValues, onSubmitForm } = useCreateForm({
       nombreOrigen: '',
@@ -108,9 +109,11 @@ export const QuotesCreateForm = () => {
       }
    }, [isVehiclesTypeLoading]);
 
-   useEffect(()=>{
-      useGetApiCities(setCities);
-   },[])
+   useEffect(() => {
+      if (!citiesIsLoading) {
+         setCitiesList(cities);
+      }
+   }, [citiesIsLoading]);
 
 
 
@@ -350,7 +353,7 @@ export const QuotesCreateForm = () => {
 
                            {
                               cities.map(city=>(
-                                 <option value={city.name}>{city.name}</option>
+                                 <option value={city.name} key={city.id}>{city.name}</option>
                               ))
                            }
                            </Field>
@@ -390,7 +393,7 @@ export const QuotesCreateForm = () => {
 
                            {
                               cities.map(city=>(
-                                 <option value={city.name}>{city.name}</option>
+                                 <option value={city.name} key={city.id}>{city.name}</option>
                               ))
                            }
                            </Field>
