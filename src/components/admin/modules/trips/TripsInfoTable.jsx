@@ -32,8 +32,10 @@ export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
             <tr>
               <th className="px-6 py-2 text-primary">ID</th>
               <th className="px-6 py-2 text-primary">Cantidad</th>
-              <th className="px-6 py-2 text-primary">Codigo producto</th>
+              <th className="px-6 py-2 text-primary">Cod. Produc.</th>
               <th className="px-6 py-2 text-primary">Destino</th>
+              <th className="px-6 py-2 text-primary">Fecha V.</th>
+              <th className="px-6 py-2 text-primary">Hora V.</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Empaque</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Naturaleza</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Numero remesa</th>
@@ -43,10 +45,10 @@ export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Unidad de medida</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Valor a pagar</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Tipo Viaje</th>
-              <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Fecha Viaje</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Cliente</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Vehiculo</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Conductor</th>
+              <th className="px-6 py-2 text-primary">Estado</th>
               <th className="px-6 py-2 text-primary">Acciones</th>
             </tr>
           </thead>

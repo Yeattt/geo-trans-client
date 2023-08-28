@@ -45,10 +45,6 @@ export const CalendarPage = () => {
       setCurrentTripToShow(tripToShow);
    }
 
-   const onViewChange = () => {
-
-   }
-
    useEffect(() => {
       if (!isLoading) {
          setTripsList(data.trips);
@@ -59,8 +55,8 @@ export const CalendarPage = () => {
       return {
          title: trip.destino,
          notes: trip.tipoViaje,
-         start: new Date(trip.fechaViaje),
-         end: addHours(new Date(trip.fechaViaje), 2),
+         start: new Date(`${trip.fechaViaje}T${trip.horaViaje}`),
+         end: addHours(new Date(`${trip.fechaViaje}T${trip.horaViaje}`), 2),
          bgColor: '#fafafa',
          tripId: trip.id
       }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal, UpdateModal } from '../../';
+import { DeleteModal, InfoModal, UpdateModal } from '../../';
 import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
 
 export const TripsCard = ({ trip }) => {
@@ -43,6 +43,8 @@ export const TripsCard = ({ trip }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cantidad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.nombreProducto}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.destino}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.fechaViaje}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.horaViaje}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.empaque}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.naturaleza}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.numeroRemesa}</td>
@@ -51,12 +53,23 @@ export const TripsCard = ({ trip }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.saldoPagar}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.unidadMedida}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.valorPagar}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.fechaViaje}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.tipoViaje}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cliente}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.vehiculo}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.conductor}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehiclesList.placa}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
+            {
+               trip.estado
+                  ?
+                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  :
+                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+            }
+            {
+               isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={trip} value={'trips'} />
+            }
+         </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <span
