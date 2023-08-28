@@ -43,7 +43,7 @@ export const SignInForm = () => {
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
-         <Form className="w-full flex justify-center items-center flex-col">
+         <Form className="w-full h-full flex justify-center items-center flex-col">
             <div className="mb-4">
                <label htmlFor="email" className="text-purplePz font-semibold block mb-2">
                   Email:
@@ -87,19 +87,17 @@ export const SignInForm = () => {
 
                <ErrorMessage name="contrasena" component="div" className="text-red-500" />
             </div>
-
-            <p className="text-sm text-purplePz hover:text-primaryHover transition-all font-bold cursor-pointer">Olvidó su contraseña?</p>
+         <Link to="/auth/sendEmail">
+         <p className="text-sm text-primary hover:text-primaryHover transition-all font-bold cursor-pointer">Olvidó su contraseña?</p>
+         </Link>
+            
 
             <button
                type="submit"
-               className="w-[53%] bg-purplePz hover:bg-primaryHover transition-all text-white font-semibold py-2 rounded-full mt-5 mb-5"
+               className="w-[53%] bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 rounded-full mt-5 mb-5"
             >
                Iniciar Sesión
             </button>
-
-            <span className="text-sm font-bold text-gray-500 transition-all">
-               No tiene una cuenta? <Link to="/auth/signup" className="cursor-pointer text-primary hover:text-primaryHover">Regístrese ahora</Link>
-            </span>
          </Form>
       </Formik>
    )

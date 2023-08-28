@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import Swal from 'sweetalert2';
+
 import { geoTransApi } from '../api';
 
 export const useUpdateForm = (initialValues = {}, endpoint) => {
@@ -7,17 +9,14 @@ export const useUpdateForm = (initialValues = {}, endpoint) => {
 
     const onSubmitForm = (values) => {
         geoTransApi.put(`/${endpoint}/update/${values.id}`, values)
-            .then(() => {
-                console.log('Actualizacion exitoso');
+            .then(res => {
+                Swal.fire('Actualización exitosa', res.data.message, 'success');
                 navigate(0);
+                return;
             })
             .catch(err => {
-                // * Acá se verifica si hay errores y se ve cuál es el tipo de error (404, 400, etc)
-                if (err.response && err.response.data && err.response.data.errors) {
-                    // * Si sí hay errores, por ahora se imprimen en la consola
-                    console.log(err.response.data.errors[0]);
-                    return;
-                }
+                Swal.fire('Error al actualizar', err.response.data.message, 'error');
+                return;
             })
 
 

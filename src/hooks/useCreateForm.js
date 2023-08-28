@@ -1,31 +1,31 @@
 import { useNavigate } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 import { geoTransApi } from '../api';
 
 export const useCreateForm = (initialValues = {}, endpoint) => {
     const navigate = useNavigate();
 
     const onSubmitForm = (values) => {
+        console.log(values);
+
         geoTransApi.post(`/${endpoint}/create`, values)
-            .then(() => {
-                console.log('Registro exitoso');
-                navigate(0);
+            .then(res => {
+                Swal.fire('Registro exitoso', res.data.message, 'success');
+                if (endpoint == "quotes") {
+                    navigate(-1);
+                } else {
+                    navigate(0);
+                }
+
             })
             .catch(err => {
-                // * Acá se verifica si hay errores y se ve cuál es el tipo de error (404, 400, etc)
-                if (err.response && err.response.data && err.response.data.errors) {
-                    // * Si sí hay errores, por ahora se imprimen en la consola
-                    console.log(err.response.data.errors[0]);
-                    return;
-                }
-            })
-
-
-        console.log(initialValues);
+                Swal.fire('Error al registro', err.response.data.message, 'error');
+                return;
+            });
     };
 
     return {
         initialValues,
         onSubmitForm,
-    }
-}
+    };
+};

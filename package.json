@@ -17,15 +17,20 @@
   },
   "dependencies": {
     "@commitlint/config-conventional": "^17.6.3",
+    "@react-pdf/renderer": "^3.1.12",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
     "formik": "^2.4.0",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.8.2",
     "react-dom": "^18.2.0",
+    "react-html-table-to-excel": "^2.0.0",
     "react-icons": "^4.9.0",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.11.2",
     "sweetalert2": "^11.7.12",
+    "swiper": "^10.2.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {

@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
    edad: Yup.number()
       .typeError('La edad es un campo numérico')
       .required('Este campo es obligatorio'),
-   dni: Yup.number()
+   documento: Yup.number()
       .typeError('El documento es un campo numérico')
       .required('Este campo es obligatorio'),
    contrasena: Yup.string()
@@ -27,11 +27,11 @@ export const SignUpForm = () => {
    const { initialValues, onSubmitForm } = useSignUp({
       email: '',
       edad: '',
-      dni: '',
+      documento: '',
       contrasena: '',
       roleId: 1,
       companyId: 1,
-      vehicleId: 1
+      vehicleId: 1,
    });
 
    return (
