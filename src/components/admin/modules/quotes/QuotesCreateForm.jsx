@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
 
-import { useCreateForm, useGetApiData, useAuthStore } from '../../../../hooks';
+import { useCreateForm, useGetApiData, useAuthStore, useGetApiCities } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
@@ -68,6 +68,8 @@ export const QuotesCreateForm = () => {
    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
    const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
    const { user } = useAuthStore();
+   const { data: cities, isLoading: citiesIsLoading } = useGetApiCities('https://api-colombia.com/api/v1/City');
+   const [citiesList, setCitiesList] = useState([]);
 
    const { initialValues, onSubmitForm } = useCreateForm({
       nombreOrigen: '',
@@ -107,19 +109,25 @@ export const QuotesCreateForm = () => {
       }
    }, [isVehiclesTypeLoading]);
 
+   useEffect(() => {
+      if (!citiesIsLoading) {
+         setCitiesList(cities);
+      }
+   }, [citiesIsLoading]);
+
 
 
    return (
 
-
+      
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
          <Form>
+         <div className="max-h-[800px] overflow-y-scroll">
             <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
-               <div className="max-h-[800px] overflow-y-scroll">
                   <h1 className="text-2xl text-black font-semibold block mb-2">Información del viaje:</h1>
                   <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
@@ -169,16 +177,11 @@ export const QuotesCreateForm = () => {
                            Tipo Camión:  <small className='text-red text-2xl'>*</small>
                         </label>
 
-                        <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center overflow-hidden">
-                           <div className="w-[15%] lg:w-[7%] h-full text-gray-400 focus-within:text-black text-[22px] flex items-center justify-center">
-                              <FaTruckLoading />
-                           </div>
-
                            <Field
                               as="select"
                               id="tipoCamion"
                               name="tipoCamion"
-                              className="w-[85%] lg:w-[93%] h-[115%] px-4 pl-0 py-2.5 pb-3 font-semibold text-[15px]"
+                              className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                               placeholder="Tipo Camión..."
                            >
                               <option value="" disabled defaultValue>
@@ -191,7 +194,6 @@ export const QuotesCreateForm = () => {
                                  </option>
                               ))}
                            </Field>
-                        </div>
 
                         <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
                      </div>
@@ -320,7 +322,7 @@ export const QuotesCreateForm = () => {
                   </div>
 
                   <h1 className="text-2xl text-black font-semibold block mb-2">Información del cliente:</h1>
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
                         <label htmlFor="nombreOrigen" className="text-black font-semibold block mb-2">
                            Nombre de Origen:  <small className='text-red text-2xl'>*</small>
@@ -339,18 +341,28 @@ export const QuotesCreateForm = () => {
                            Ciudad de origen:  <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
-                           type="text"
+                           as="select"
                            id="ciudadOrigen"
                            name="ciudadOrigen"
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Ciudad de origen..."
-                        />
+                        >
+                           <option value="" disabled defaultValue>
+                              Seleccione...
+                           </option>
+
+                           {
+                              cities.map(city=>(
+                                 <option value={city.name} key={city.id}>{city.name}</option>
+                              ))
+                           }
+                           </Field>
                         <ErrorMessage name="ciudadOrigen" component="div" className="text-red-500" />
                      </div>
                   </div>
 
                   <h1 className="text-2xl text-black font-semibold block mb-2">Información del destinatario:</h1>
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
                         <label htmlFor="nombreDestino" className="text-black font-semibold block mb-2">
                            Nombre de Destino:  <small className='text-red text-2xl'>*</small>
@@ -369,12 +381,22 @@ export const QuotesCreateForm = () => {
                            Ciudad de Destino: <small className='text-red text-2xl'>*</small>
                         </label>
                         <Field
-                           type="text"
+                           as="select"
                            id="ciudadDestino"
                            name="ciudadDestino"
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Ciudad de Destino..."
-                        />
+                        >
+                           <option value="" disabled defaultValue>
+                              Seleccione...
+                           </option>
+
+                           {
+                              cities.map(city=>(
+                                 <option value={city.name} key={city.id}>{city.name}</option>
+                              ))
+                           }
+                           </Field>
                         <ErrorMessage name="ciudadDestino" component="div" className="text-red-500" />
                      </div>
                      <div className="mb-4">

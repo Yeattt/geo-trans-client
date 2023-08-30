@@ -28,14 +28,14 @@ export const QuotesInfoTable = ({ quotes, handleIsCreateModalActive }) => {
       </div>
 
       <div className="max-h-[500px] overflow-y-scroll">
-        <table className="w-full text-sm">
+        <table className="w-full text-sm" id='cotizaciones'>
           <thead>
             <tr>
               <th className="px-6 py-2 text-primary">ID</th>
               <th className="px-6 py-2 text-primary">Fecha solicitud</th>
-              <th className="px-6 py-2 text-primary">Hora Cargue</th>
+              <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Hora Cargue</th>
               <th className="px-6 py-2 text-primary">Destino</th>
-              <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Origen</th>
+              <th className=" px-6 py-2 text-primary">Origen</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Direccion</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Contacto</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Nom. Origen</th>
