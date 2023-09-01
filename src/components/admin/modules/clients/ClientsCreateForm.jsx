@@ -39,88 +39,64 @@ export const ClientsCreateForm = () => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="documento" className="text-purplePz font-semibold block mb-2">
-                     Documento: <small className='text-red text-2xl'>*</small> 
+                     Documento: <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <GiTowTruck />
-                     </div>
-
-                     <Field
-                        type="number"
-                        id="documento"
-                        name="documento"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Documento..."
-                     />
-                  </div>
+                  <Field
+                     type="number"
+                     id="documento"
+                     name="documento"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Documento..."
+                  />
 
                   <ErrorMessage name="documento" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="nombre" className="text-purplePz font-semibold block mb-2">
-                     Nombre:  <small className='text-red text-2xl'>*</small> 
+                     Nombre:  <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <GiTowTruck />
-                     </div>
-
-                     <Field
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Nombre..."
-                     />
-                  </div>
+                  <Field
+                     type="text"
+                     id="nombre"
+                     name="nombre"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Nombre..."
+                  />
 
                   <ErrorMessage name="nombre" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="razonSocial" className="text-purplePz font-semibold block mb-2">
-                     Razón social:  <small className='text-red text-2xl'>*</small> 
+                     Razón social:  <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <GiTowTruck />
-                     </div>
-
-                     <Field
-                        type="text"
-                        id="razonSocial"
-                        name="razonSocial"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Razón social..."
-                     />
-                  </div>
+                  <Field
+                     type="text"
+                     id="razonSocial"
+                     name="razonSocial"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Razón social..."
+                  />
 
                   <ErrorMessage name="razonSocial" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="telefono" className="text-purplePz font-semibold block mb-2">
-                     Teléfono:  <small className='text-red text-2xl'>*</small> 
+                     Teléfono:  <small className='text-red text-2xl'>*</small>
                   </label>
 
-                  <div className="bg-white rounded-full border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <GiTowTruck />
-                     </div>
-
-                     <Field
-                        type="number"
-                        id="telefono"
-                        name="telefono"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px]"
-                        placeholder="Teléfono..."
-                     />
-                  </div>
+                  <Field
+                     type="number"
+                     id="telefono"
+                     name="telefono"
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                     placeholder="Teléfono..."
+                  />
 
                   <ErrorMessage name="telefono" component="div" className="text-red-500" />
                </div>
