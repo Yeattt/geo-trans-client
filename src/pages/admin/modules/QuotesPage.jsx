@@ -1,27 +1,34 @@
-import React, {useRef, useState } from 'react';
-import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, QuotesSearcher } from '../../../components';
+import React, {useState } from 'react';
+
+import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, QuotesSearcher, ReportingModal, QuotesReporting } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 import { QuotesInfoTable } from '../../../components/admin/modules/quotes/QuotesInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
-import { useReactToPrint } from 'react-to-print';
-import ReportPdf from '../../../components/admin/modules/quotes/ReportPdf';
-export const QuotesPage = () => {
-   const tablePdf = useRef()
 
-   const generatePdf = useReactToPrint({
-      content: () => tablePdf.current,
-      documentTitle:'Informe de cotizaciones'
-   })
+export const QuotesPage = () => {
    const { isLoading, data: { quotes } } = useGetApiData('/quotes');
    const [queryResults, setQueryResults] = useState([]);
+   const [isReportingActive, setIsReportingModalActive] = useState(false);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
    }
 
+   const handleIsReportingModalActive=(status)=>{
+      setIsReportingModalActive(status);
+   }
+
    const handleQueryResults = (results = []) => {
-      setQueryResults(results);
+      if (results.length==0) {
+         console.log(results)
+         setQueryResults(results=[{}])
+      }
+      else{
+         console.log(results)
+         setQueryResults(results);
+      }
+      
    };
 
    if (isLoading || quotes === undefined) {
@@ -46,19 +53,18 @@ export const QuotesPage = () => {
                         <TbReportAnalytics />
                      </span>
 
-                     <div className='hidden'>
-                        <div ref={tablePdf}>
-                           <ReportPdf quotes={quotes} />
-                        </div>
-                     </div>
-
-                     <buttom onClick={generatePdf} className="text-white text-[15px] font-semibold" type="button">Generar informe</buttom>
+                     <span className="text-white text-[15px] font-semibold">
+                        <button onClick={() => handleIsReportingModalActive(true)}>
+                           Generar informe
+                        </button>
+                     </span>
                   </div>
 
                   <QuotesSearcher handleQueryResults={handleQueryResults} quotes={quotes} />
                </div>
             </div>
 
+            {isReportingActive && <ReportingModal handleIsReportingModalActive={handleIsReportingModalActive} module="Quotes" />}
             {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Quotes" />}
 
             <br />

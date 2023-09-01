@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
@@ -19,13 +19,16 @@ export const QuotesCard = ({ quote }) => {
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
    const [companiesList, setCompaniesList] = useState([]);
    const { user } = useAuthStore();
+   const navigate = useNavigate();
 
 
    const handleViewDetails = () => {
       setIsOpen(!isOpen)
    }
+
+
    const handleUpdateClick = () => {
-      setisOpenUpdate(!isOpenUpdate)
+      navigate(`/admin/quotes/update/${quote.id}`);
    }
 
    const handleIsInfoModalActive = (status) => {
@@ -43,14 +46,14 @@ export const QuotesCard = ({ quote }) => {
       //    }
       // }, [isCompaniesLoading]);
    };
-
    return (
+      
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{quote.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.fechaSolicitud}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.horaCargue}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.horaCargue}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.ciudadDestino}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.ciudadOrigen}</td>
+         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.ciudadOrigen}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.direccion}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.contacto}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.nombreOrigen}</td>
@@ -62,15 +65,15 @@ export const QuotesCard = ({ quote }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.contenido}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.valorTransporte}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.observaciones}</td>
-         {/* <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.companyId}</td>*/}
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.companyId}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.name}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                quote.estado
                   ?
-                  <button class="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
                   :
-                  <button class="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
             }
             {
                isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={quote} value={'quotes'} />

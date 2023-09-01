@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MdContentPasteSearch } from 'react-icons/md';
 
 export const QuotesSearcher = ({ handleQueryResults, quotes }) => {
@@ -7,8 +7,8 @@ export const QuotesSearcher = ({ handleQueryResults, quotes }) => {
   useEffect(() => {
     if (inputValue.trim() === '') return handleQueryResults(quotes);
 
-    const filteredQuotes = quotes.filter(({ destino }) => {
-      return destino.toLowerCase().includes(inputValue.toLowerCase());
+    const filteredQuotes = quotes.filter(({ ciudadOrigen, ciudadDestino }) => {
+      return ciudadOrigen.toLowerCase().includes(inputValue.toLowerCase()) || ciudadDestino.toLowerCase().includes(inputValue.toLocaleLowerCase());
     });
 
     handleQueryResults(filteredQuotes);
@@ -24,7 +24,7 @@ export const QuotesSearcher = ({ handleQueryResults, quotes }) => {
         <input
           className="bg-transparent rounded-full w-[87%] h-full px-4 pl-5 py-3 pb-3 text-[15px]"
           type="text"
-          placeholder={`Buscar tipo de vehículo...`}
+          placeholder={`Buscar por origen o destino`}
           value={inputValue}
           onChange={onInputChange}
         />

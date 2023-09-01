@@ -89,7 +89,6 @@ export const TripsCreateForm = () => {
       }
    }, [isVehiclesLoading, isUsersLoading, isLoadingClients]);
 
-   ;
 
    return (
       <Formik
