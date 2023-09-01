@@ -21,8 +21,8 @@ export const AssignModal = ({ handleIsAssignModalActive, id, initialPermissions,
 
     useEffect(() => {
         if (!isPermissionsLoading || !isPrivilegesLoading) {
-            setPermissionsList(permissions.permissions);
-            setPrivilegesList(privileges.privileges);
+            setPermissionsList(permissions?.permissions?.filter(permission => permission.estado));
+            setPrivilegesList(privileges?.privileges?.filter(privilege => privilege.estado));
         }
     }, [isPermissionsLoading, isPrivilegesLoading]);
 
