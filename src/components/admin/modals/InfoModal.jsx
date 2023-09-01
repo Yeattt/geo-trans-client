@@ -19,6 +19,14 @@ export const InfoModal = ({ handleIsInfoModalActive, module }) => {
       }
    }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
 
+   // Función para obtener el nombre de un objeto
+   const getNameFromObject = (obj) => {
+      if (obj && obj.nombre) {
+         return obj.nombre;
+      }
+      return '';
+   };
+
    return (
       <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden z-50">
          <div className="w-2/3 h-auto bg-primary rounded-md">
@@ -35,44 +43,17 @@ export const InfoModal = ({ handleIsInfoModalActive, module }) => {
 
             <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
                <div className="grid grid-cols-3 gap-4">
-                  {
-                     Object.entries(module).map(([key, value]) => (
-                        // {
-                        //    key=='estado' 
-                        // }
-
-                        <>
-                           {
-                              // key === 'registroPendiente' ? value ===
-                              key === 'vehicleId' ? vehiclesList.map(vehicles =>(
-                                 <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}> {`${key}`} {vehicles.placa}</td>
-                              )):
-                              key === 'companyId' ? companiesList.map(companies => (
-                                 <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}> {`${key}`} {companies.nombreEmpresa}</td>
-                              )) :
-                                 key === 'roleId' ? rolesList.map(role => (
-                                    <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}> {`${key}`} {role.nombre}</td>
-                                 )) :
-                                    key === 'contrasena' ? null :
-                                       key === 'estado'
-                                          ?
-                                          value === true ?
-                                             <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}>
-                                                {`${key}:`} <>Activo</></td>
-                                             :
-                                             <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}>
-                                                {`${key}:`}<>Inactivo</></td>
-                                          :
-                                          <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}>
-                                             {`${key}: ${value}`}
-                                          </td>
-                           }
-                        </>
-                     ))
-                  }
+                  {Object.entries(module).map(([key, value]) => (
+                     <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}>
+                        {`${key}: ${
+                           Array.isArray(value) ? value.map((item) => getNameFromObject(item)).join(', ') :
+                           key === 'estado' ? (value ? 'Activo' : 'Inactivo') : value
+                        }`}
+                     </td>
+                  ))}
                </div>
             </div>
          </div>
       </div>
-   )
-}
+   );
+};

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-export const AssignModal = ({ handleIsAssignModalActive, id }) => {
+export const AssignModal = ({ handleIsAssignModalActive, id, initialPermissions, initialPrivileges }) => {
     const { data: permissions, isLoading: isPermissionsLoading } = useGetApiData('/permissions');
     const { data: privileges, isLoading: isPrivilegesLoading } = useGetApiData('/privileges');
 
@@ -12,11 +12,11 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
     const [privilegesList, setPrivilegesList] = useState([]);
 
     const { initialValues, onSubmitForm } = useAssignPermissions(id, {
-        permissionsId: []
+        permissionsId: initialPermissions.map(permission => permission.id.toString()) || []
     });
 
-    const { initialValues: initialPrivilegesValues, onSubmitForm: onPrivilegesSubmitForm} = useAssignPrivileges(id, {
-        privilegesId: []
+    const { initialValues: initialPrivilegesValues, onSubmitForm: onPrivilegesSubmitForm } = useAssignPrivileges(id, {
+        privilegesId: initialPrivileges.map(privilege => privilege.id.toString()) || []
     });
 
     useEffect(() => {
@@ -58,14 +58,15 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
                                 {
                                     permissionsList.map(({ nombre, id }) => {
                                         return (
-                                            <div className="toppings-list-item">
+                                            <div key={id} className="flex">
                                                 <Field
                                                     type="checkbox"
-                                                    id="permissionsId"
                                                     name="permissionsId"
-                                                    value={id}
-                                                    className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
+                                                    id="permissionsId"
+                                                    value={id.toString()}
+                                                    className="cursor-pointer mr-3"
                                                 />
+
                                                 <label htmlFor="permissionsId">{nombre}</label>
                                             </div>
                                         );
@@ -101,14 +102,15 @@ export const AssignModal = ({ handleIsAssignModalActive, id }) => {
                                 {
                                     privilegesList.map(({ nombre, id }) => {
                                         return (
-                                            <div className="toppings-list-item">
+                                            <div key={id} className="flex">
                                                 <Field
                                                     type="checkbox"
-                                                    id="privilegesId"
                                                     name="privilegesId"
-                                                    value={id}
-                                                    className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:border-purplePzHover mr-2"
+                                                    id="privilegesId"
+                                                    value={id.toString()}
+                                                    className="cursor-pointer mr-3"
                                                 />
+
                                                 <label htmlFor="privilegesId">{nombre}</label>
                                             </div>
                                         );

@@ -13,10 +13,10 @@ const validationSchema = Yup.object().shape({
 export const RolesCreateForm = () => {
    const { data: permissions, isLoading: isPermissionsLoading } = useGetApiData('/permissions');
    const [permissionsList, setPermissionsList] = useState([]);
-   const { initialValues, onSubmitForm } = useAssignPermissions({
+   const { initialValues, onSubmitForm } = useCreateForm({
       nombre: '',
       permissionsId: []
-   });
+   }, 'roles');
 
    useEffect(() => {
       if (!isPermissionsLoading) {
@@ -61,8 +61,9 @@ export const RolesCreateForm = () => {
                            <Field
                               type="checkbox"
                               name="permissionsId"
-                              value={id}
-                              className="appearance-none mt-[0px] w-[13px] h-[13px] border-2 border-black cursor-pointer checked:bg-secondary mr-2"
+                              id="permissionsId"
+                              value={id.toString()}
+                              className="form-check"
                            />
                            <label htmlFor={nombre}>{nombre}</label>
                         </div>

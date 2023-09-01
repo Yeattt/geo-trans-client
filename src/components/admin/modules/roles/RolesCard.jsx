@@ -75,7 +75,7 @@ export const RolesCard = ({ role }) => {
             {
                userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
                isAssignModalActive &&
-               <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} />
+               <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} initialPermissions={role.permisos} initialPrivileges={role.privilegios} />
             }
 
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">

@@ -19,9 +19,6 @@ export const useAssignPermissions = (id = '', initialValues = {}) => {
                return;
             }
          })
-
-
-      console.log(initialValues);
    };
 
    return {
