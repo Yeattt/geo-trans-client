@@ -19,6 +19,7 @@ export const useCreateForm = (initialValues = {}, endpoint) => {
 
             })
             .catch(err => {
+                console.log(err);
                 Swal.fire('Error al registro', err.response.data.message, 'error');
                 return;
             });

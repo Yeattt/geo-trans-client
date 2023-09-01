@@ -83,9 +83,9 @@ export const TripsCreateForm = () => {
 
    useEffect(() => {
       if (!isVehiclesLoading && !isUsersLoading && !isLoadingClients) {
-         setVehiclesList(vehicles.vehicles);
-         setUsersList(users.users);
-         setClientsList(clients.clients);
+         setVehiclesList(vehicles?.vehicles?.filter(vehicle => vehicle.estado));
+         setUsersList(users?.users?.filter(user => user.estado));
+         setClientsList(clients?.clients?.filter(client => client.estado));
       }
    }, [isVehiclesLoading, isUsersLoading, isLoadingClients]);
 
@@ -102,7 +102,7 @@ export const TripsCreateForm = () => {
                   <div className="max-h-[800px] overflow-y-scroll grid grid-cols-3 gap-3">
                      <div className="mb-4">
                         <label htmlFor="tipoViaje" className="text-primary font-semibold block mb-2">
-                           Tipo viaje: <small className='text-red text-2xl'>*</small>
+                           Tipo viaje: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <div className="mb-4">
@@ -121,13 +121,13 @@ export const TripsCreateForm = () => {
                               <option value="externo">A terceros</option>
                            </Field>
 
-                           <ErrorMessage name="tipoViaje" component="div" className="text-red" />
+                           <ErrorMessage name="tipoViaje" component="div" className="text-red-600" />
                         </div>
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="clienteId" className="text-primary font-semibold block mb-2">
-                           Cliente: <small className='text-red text-2xl'>*</small>
+                           Cliente: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -153,7 +153,7 @@ export const TripsCreateForm = () => {
 
                      <div className="mb-4">
                         <label htmlFor="numeroRemesa" className="text-primary font-semibold block mb-2">
-                           Número de remesa: <small className='text-red text-2xl'>*</small>
+                           Número de remesa: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -164,12 +164,12 @@ export const TripsCreateForm = () => {
                            placeholder="Número de remesa..."
                         />
 
-                        <ErrorMessage name="numeroRemesa" component="div" className="text-red" />
+                        <ErrorMessage name="numeroRemesa" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="unidadMedida" className="text-primary font-semibold block mb-2">
-                           Unidad de medida: <small className='text-red text-2xl'>*</small>
+                           Unidad de medida: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -188,12 +188,12 @@ export const TripsCreateForm = () => {
                            <option value="tonelada">TONELADAS</option>
                         </Field>
 
-                        <ErrorMessage name="unidadMedida" component="div" className="text-red" />
+                        <ErrorMessage name="unidadMedida" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="cantidad" className="text-primary font-semibold block mb-2">
-                           Cantidad: <small className='text-red text-2xl'>*</small>
+                           Cantidad: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -204,12 +204,12 @@ export const TripsCreateForm = () => {
                            placeholder="Cantidad..."
                         />
 
-                        <ErrorMessage name="cantidad" component="div" className="text-red" />
+                        <ErrorMessage name="cantidad" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="naturaleza" className="text-primary font-semibold block mb-2">
-                           Naturaleza: <small className='text-red text-2xl'>*</small>
+                           Naturaleza: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -220,12 +220,12 @@ export const TripsCreateForm = () => {
                            placeholder="Naturaleza..."
                         />
 
-                        <ErrorMessage name="naturaleza" component="div" className="text-red" />
+                        <ErrorMessage name="naturaleza" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="empaque" className="text-primary font-semibold block mb-2">
-                           Empaque: <small className='text-red text-2xl'>*</small>
+                           Empaque: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -259,12 +259,12 @@ export const TripsCreateForm = () => {
                            <option value="012">VARIOS</option>
                         </Field>
 
-                        <ErrorMessage name="empaque" component="div" className="text-red" />
+                        <ErrorMessage name="empaque" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="nombreProducto" className="text-primary font-semibold block mb-2">
-                           Código de producto: <small className='text-red text-2xl'>*</small>
+                           Código de producto: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -295,12 +295,12 @@ export const TripsCreateForm = () => {
                            <option value="00015">GASEOSAS</option>
                         </Field>
 
-                        <ErrorMessage name="nombreProducto" component="div" className="text-red" />
+                        <ErrorMessage name="nombreProducto" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="productoTransportar" className="text-primary font-semibold block mb-2">
-                           Producto a transportar: <small className='text-red text-2xl'>*</small>
+                           Producto a transportar: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -311,12 +311,12 @@ export const TripsCreateForm = () => {
                            placeholder="Producto a transportar..."
                         />
 
-                        <ErrorMessage name="productoTransportar" component="div" className="text-red" />
+                        <ErrorMessage name="productoTransportar" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="origen" className="text-primary font-semibold block mb-2">
-                           Origen: <small className='text-red text-2xl'>*</small>
+                           Origen: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -327,12 +327,12 @@ export const TripsCreateForm = () => {
                            placeholder="Origen..."
                         />
 
-                        <ErrorMessage name="origen" component="div" className="text-red" />
+                        <ErrorMessage name="origen" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="destino" className="text-primary font-semibold block mb-2">
-                           Destino: <small className='text-red text-2xl'>*</small>
+                           Destino: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -343,12 +343,12 @@ export const TripsCreateForm = () => {
                            placeholder="Destino..."
                         />
 
-                        <ErrorMessage name="destino" component="div" className="text-red" />
+                        <ErrorMessage name="destino" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="fechaViaje" className="text-primary font-semibold block mb-2">
-                           Fecha del viaje: <small className='text-red text-2xl'>*</small>
+                           Fecha del viaje: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -359,12 +359,12 @@ export const TripsCreateForm = () => {
                            placeholder="Fecha del viaje..."
                         />
 
-                        <ErrorMessage name="fechaViaje" component="div" className="text-red" />
+                        <ErrorMessage name="fechaViaje" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="horaViaje" className="text-primary font-semibold block mb-2">
-                           Hora del viaje: <small className='text-red text-2xl'>*</small>
+                           Hora del viaje: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -375,12 +375,12 @@ export const TripsCreateForm = () => {
                            placeholder="Hora del viaje..."
                         />
 
-                        <ErrorMessage name="horaViaje" component="div" className="text-red" />
+                        <ErrorMessage name="horaViaje" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="saldoPagar" className="text-primary font-semibold block mb-2">
-                           Saldo a pagar: <small className='text-red text-2xl'>*</small>
+                           Saldo a pagar: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -391,12 +391,12 @@ export const TripsCreateForm = () => {
                            placeholder="Saldo a pagar..."
                         />
 
-                        <ErrorMessage name="saldoPagar" component="div" className="text-red" />
+                        <ErrorMessage name="saldoPagar" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="valorPagar" className="text-primary font-semibold block mb-2">
-                           Valor a pagar: <small className='text-red text-2xl'>*</small>
+                           Valor a pagar: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -407,12 +407,12 @@ export const TripsCreateForm = () => {
                            placeholder="Valor a pagar..."
                         />
 
-                        <ErrorMessage name="valorPagar" component="div" className="text-red" />
+                        <ErrorMessage name="valorPagar" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="conductorId" className="text-primary font-semibold block mb-2">
-                           Conductor: <small className='text-red text-2xl'>*</small>
+                           Conductor: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <div className="mb-4">
@@ -442,13 +442,13 @@ export const TripsCreateForm = () => {
                            </Field>
                         </div>
 
-                        <ErrorMessage name="conductorId" component="div" className="text-red" />
+                        <ErrorMessage name="conductorId" component="div" className="text-red-600" />
                      </div>
 
                      {/* // TODO: MOSTRAR EL VEHÍCULO AL SELECCIONAR EL CONDUCTOR AUTOMÁTICAMENTE */}
                      {/* <div className="mb-4">
                   <label htmlFor="vehiculoId" className="text-primary font-semibold block mb-2">
-                     Vehículo: <small className='text-red text-2xl'>*</small>
+                     Vehículo: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center hover:cursor-not-allowed">
@@ -466,12 +466,12 @@ export const TripsCreateForm = () => {
                      />
                   </div>
 
-                  <ErrorMessage name="vehiculoId" component="div" className="text-red" />
+                  <ErrorMessage name="vehiculoId" component="div" className="text-red-600" />
                </div> */}
 
                      <div className="mb-4">
                         <label htmlFor="vehiculoPlaca" className="text-primary font-semibold block mb-2">
-                           Vehículo placa: <small className='text-red text-2xl'>*</small>
+                           Vehículo placa: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -483,7 +483,7 @@ export const TripsCreateForm = () => {
                            disabled
                         />
 
-                        <ErrorMessage name="vehiculoPlaca" component="div" className="text-red" />
+                        <ErrorMessage name="vehiculoPlaca" component="div" className="text-red-600" />
                      </div>
                   </div>
 

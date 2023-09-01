@@ -40,7 +40,7 @@ export const CompaniesCreateForm = () => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="nit" className="text-purplePz font-semibold block mb-2">
-                     NIT:  <small className='text-red text-2xl'>*</small>
+                     NIT:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -51,12 +51,12 @@ export const CompaniesCreateForm = () => {
                      placeholder="NIT..."
                   />
 
-                  <ErrorMessage name="nit" component="div" className="text-red" />
+                  <ErrorMessage name="nit" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="razonSocial" className="text-purplePz font-semibold block mb-2">
-                     Razón social:  <small className='text-red text-2xl'>*</small>
+                     Razón social:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -67,13 +67,13 @@ export const CompaniesCreateForm = () => {
                      placeholder="Razón social..."
                   />
 
-                  <ErrorMessage name="razonSocial" component="div" className="text-red" />
+                  <ErrorMessage name="razonSocial" component="div" className="text-red-600" />
                </div>
 
 
                <div className="mb-4">
                   <label htmlFor="nombreEmpresa" className="text-purplePz font-semibold block mb-2">
-                     Nombre de empresa:  <small className='text-red text-2xl'>*</small>
+                     Nombre de empresa:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -84,12 +84,12 @@ export const CompaniesCreateForm = () => {
                      placeholder="Nombre de empresa..."
                   />
 
-                  <ErrorMessage name="nombreEmpresa" component="div" className="text-red" />
+                  <ErrorMessage name="nombreEmpresa" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="telefono" className="text-purplePz font-semibold block mb-2">
-                     Teléfono:  <small className='text-red text-2xl'>*</small>
+                     Teléfono:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -100,12 +100,12 @@ export const CompaniesCreateForm = () => {
                      placeholder="Teléfono..."
                   />
 
-                  <ErrorMessage name="telefono" component="div" className="text-red" />
+                  <ErrorMessage name="telefono" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="duenoPoliza" className="text-purplePz font-semibold block mb-2">
-                     Dueño póliza:  <small className='text-red text-2xl'>*</small>
+                     Dueño póliza:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                      <Field
@@ -116,7 +116,7 @@ export const CompaniesCreateForm = () => {
                         placeholder="Dueño poliza..."
                      />
 
-                  <ErrorMessage name="duenoPoliza" component="div" className="text-red" />
+                  <ErrorMessage name="duenoPoliza" component="div" className="text-red-600" />
                </div>
 
             </div>

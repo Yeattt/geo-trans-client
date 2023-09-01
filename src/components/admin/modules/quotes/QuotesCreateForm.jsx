@@ -141,12 +141,12 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Fecha de solicitud..."
                         />
-                        <ErrorMessage name="fechaSolicitud" component="div" className="text-red-500" />
+                        <ErrorMessage name="fechaSolicitud" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="fechaServicio" className="text-black font-semibold block mb-2">
-                           Fecha de servicio:  <small className='text-red text-2xl'>*</small>
+                           Fecha de servicio:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="date"
@@ -155,12 +155,12 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Fecha de servicio..."
                         />
-                        <ErrorMessage name="fechaServicio" component="div" className="text-red-500" />
+                        <ErrorMessage name="fechaServicio" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="horaCargue" className="text-black font-semibold block mb-2">
-                           Hora de cargue:  <small className='text-red text-2xl'>*</small>
+                           Hora de cargue:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="time"
@@ -169,12 +169,12 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Hora de cargue..."
                         />
-                        <ErrorMessage name="horaCargue" component="div" className="text-red-500" />
+                        <ErrorMessage name="horaCargue" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
-                           Tipo Camión:  <small className='text-red text-2xl'>*</small>
+                           Tipo Camión:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                            <Field
@@ -195,12 +195,12 @@ export const QuotesCreateForm = () => {
                               ))}
                            </Field>
 
-                        <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
+                        <ErrorMessage name="tipoCamion" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="pesoAproximado" className="text-black font-semibold block mb-2">
-                           Peso Aproximado:  <small className='text-red text-2xl'>*</small>
+                           Peso Aproximado:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -209,12 +209,12 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Peso Aproximado..."
                         />
-                        <ErrorMessage name="pesoAproximado" component="div" className="text-red-500" />
+                        <ErrorMessage name="pesoAproximado" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="valorMercancia" className="text-black font-semibold block mb-2">
-                           Vlr. Mercancia:  <small className='text-red text-2xl'>*</small>
+                           Vlr. Mercancia:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -223,12 +223,12 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Vlr. Mercancia..."
                         />
-                        <ErrorMessage name="valorMercancia" component="div" className="text-red-500" />
+                        <ErrorMessage name="valorMercancia" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="contenido" className="text-black font-semibold block mb-2">
-                           Contenido:  <small className='text-red text-2xl'>*</small>
+                           Contenido:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -237,12 +237,12 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Contenido..."
                         />
-                        <ErrorMessage name="contenido" component="div" className="text-red-500" />
+                        <ErrorMessage name="contenido" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="valorTransporte" className="text-black font-semibold block mb-2">
-                           Vlr. Transporte:  <small className='text-red text-2xl'>*</small>
+                           Vlr. Transporte:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -251,12 +251,12 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Vlr. Transporte..."
                         />
-                        <ErrorMessage name="valorTransporte" component="div" className="text-red-500" />
+                        <ErrorMessage name="valorTransporte" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="userId" className="text-black font-semibold block mb-2">
-                           User:  <small className='text-red text-2xl'>*</small>
+                           User:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -277,12 +277,12 @@ export const QuotesCreateForm = () => {
 
                         >
                         </Field>
-                        <ErrorMessage name="userId" component="div" className="text-red-500" />
+                        <ErrorMessage name="userId" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
                         <label htmlFor="companyId" className="text-black font-semibold block mb-2">
-                           Compañia:  <small className='text-red text-2xl'>*</small>
+                           Compañia:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            as="select"
@@ -301,14 +301,14 @@ export const QuotesCreateForm = () => {
                               ))
                            }
                         </Field>
-                        <ErrorMessage name="companyId" component="div" className="text-red-500" />
+                        <ErrorMessage name="companyId" component="div" className="text-red-600" />
                      </div>
                   </div>
 
                   <div className="grid grid-cols-1 gap-3">
                      <div className="mb-20">
                         <label htmlFor="observaciones" className="text-black font-semibold block mb-2">
-                           Observaciones:  <small className='text-red text-2xl'>*</small>
+                           Observaciones:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="textarea"
@@ -317,7 +317,7 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-10 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Observaciones..."
                         />
-                        <ErrorMessage name="observaciones" component="div" className="text-red-500" />
+                        <ErrorMessage name="observaciones" component="div" className="text-red-600" />
                      </div>
                   </div>
 
@@ -325,7 +325,7 @@ export const QuotesCreateForm = () => {
                   <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
                         <label htmlFor="nombreOrigen" className="text-black font-semibold block mb-2">
-                           Nombre de Origen:  <small className='text-red text-2xl'>*</small>
+                           Nombre de Origen:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -334,11 +334,11 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Nombre Origen..."
                         />
-                        <ErrorMessage name="nombreOrigen" component="div" className="text-red-500" />
+                        <ErrorMessage name="nombreOrigen" component="div" className="text-red-600" />
                      </div>
                      <div className="mb-20">
                         <label htmlFor="ciudadOrigen" className="text-black font-semibold block mb-2">
-                           Ciudad de origen:  <small className='text-red text-2xl'>*</small>
+                           Ciudad de origen:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            as="select"
@@ -357,7 +357,7 @@ export const QuotesCreateForm = () => {
                               ))
                            }
                            </Field>
-                        <ErrorMessage name="ciudadOrigen" component="div" className="text-red-500" />
+                        <ErrorMessage name="ciudadOrigen" component="div" className="text-red-600" />
                      </div>
                   </div>
 
@@ -365,7 +365,7 @@ export const QuotesCreateForm = () => {
                   <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
                         <label htmlFor="nombreDestino" className="text-black font-semibold block mb-2">
-                           Nombre de Destino:  <small className='text-red text-2xl'>*</small>
+                           Nombre de Destino:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -374,11 +374,11 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Nombre de Destino..."
                         />
-                        <ErrorMessage name="nombreDestino" component="div" className="text-red-500" />
+                        <ErrorMessage name="nombreDestino" component="div" className="text-red-600" />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="ciudadDestino" className="text-black font-semibold block mb-2">
-                           Ciudad de Destino: <small className='text-red text-2xl'>*</small>
+                           Ciudad de Destino: <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            as="select"
@@ -397,11 +397,11 @@ export const QuotesCreateForm = () => {
                               ))
                            }
                            </Field>
-                        <ErrorMessage name="ciudadDestino" component="div" className="text-red-500" />
+                        <ErrorMessage name="ciudadDestino" component="div" className="text-red-600" />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="direccion" className="text-black font-semibold block mb-2">
-                           Direccion: <small className='text-red text-2xl'>*</small>
+                           Direccion: <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -410,11 +410,11 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Direccion..."
                         />
-                        <ErrorMessage name="direccion" component="div" className="text-red-500" />
+                        <ErrorMessage name="direccion" component="div" className="text-red-600" />
                      </div>
                      <div className="mb-4">
                         <label htmlFor="contacto" className="text-black font-semibold block mb-2">
-                           Contacto: <small className='text-red text-2xl'>*</small>
+                           Contacto: <small className='text-red-600 text-2xl'>*</small>
                         </label>
                         <Field
                            type="text"
@@ -423,7 +423,7 @@ export const QuotesCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
                            placeholder="Contacto..."
                         />
-                        <ErrorMessage name="contacto" component="div" className="text-red-500" />
+                        <ErrorMessage name="contacto" component="div" className="text-red-600" />
                      </div>
                   </div>
                   <div className="text-center mt-4">

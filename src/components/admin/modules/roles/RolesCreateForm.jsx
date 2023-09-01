@@ -35,7 +35,7 @@ export const RolesCreateForm = () => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="nombre" className="text-primary font-semibold block mb-2">
-                     Nombre: <small className='text-red text-2xl'>*</small>
+                     Nombre: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -46,7 +46,7 @@ export const RolesCreateForm = () => {
                      placeholder="Nombre..."
                   />
 
-                  <ErrorMessage name="nombre" component="div" className="text-red" />
+                  <ErrorMessage name="nombre" component="div" className="text-red-600" />
                </div>
 
             </div>
@@ -71,7 +71,7 @@ export const RolesCreateForm = () => {
                   }
                   )
                }
-               <ErrorMessage name="permissions" component="div" className="text-red-500" />
+               <ErrorMessage name="permissions" component="div" className="text-red-600-500" />
             </div>
 
             <div className="text-center mt-2">

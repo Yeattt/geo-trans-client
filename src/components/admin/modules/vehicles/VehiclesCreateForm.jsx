@@ -57,12 +57,17 @@ export const VehiclesCreateForm = () => {
    const handleFormSubmit = async (values) => {
       try {
          const uploadedFilesData = await uploadFiles();
+
          //* Este hook nos devuelve un arreglo con los nombres de los archivos, entonces agarramos los datos
-         //* Que tenemos inicialmente en los inicialValues, y le pasamos los nombres de los archivos que nos
+         //* Que tenemos inicialmente en los initialValues, y le pasamos los nombres de los archivos que nos
          //* Retorna el hook, ya que al subir archivos se les cambia el nombre y se genera un nombre único
+
+         // Mapeamos los nombres de archivos en uploadedFilesData.files a un objeto para facilitar la asignación
          const finalFormValues = {
             ...values,
-            ...uploadedFilesData,
+            soat: uploadedFilesData?.files[0].nombre,
+            tarjetaPropiedad: uploadedFilesData?.files[1].nombre,
+            tecnomecanica: uploadedFilesData?.files[2].nombre
          };
 
          console.log(finalFormValues);
@@ -84,7 +89,7 @@ export const VehiclesCreateForm = () => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
-                     Tipo Camión: <small className='text-red text-2xl'>*</small>
+                     Tipo Camión: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -107,12 +112,12 @@ export const VehiclesCreateForm = () => {
                      ))}
                   </Field>
 
-                  <ErrorMessage name="tipoCamion" component="div" className="text-red" />
+                  <ErrorMessage name="tipoCamion" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="modelo" className="text-primary font-semibold block mb-2">
-                     Modelo: <small className='text-red text-2xl'>*</small>
+                     Modelo: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -123,13 +128,13 @@ export const VehiclesCreateForm = () => {
                      placeholder="Modelo..."
                   />
 
-                  <ErrorMessage name="modelo" component="div" className="text-red" />
+                  <ErrorMessage name="modelo" component="div" className="text-red-600" />
                </div>
 
 
                <div className="mb-4">
                   <label htmlFor="marca" className="text-primary font-semibold block mb-2">
-                     Marca: <small className='text-red text-2xl'>*</small>
+                     Marca: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -140,12 +145,12 @@ export const VehiclesCreateForm = () => {
                      placeholder="Marca..."
                   />
 
-                  <ErrorMessage name="marca" component="div" className="text-red" />
+                  <ErrorMessage name="marca" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="placa" className="text-primary font-semibold block mb-2">
-                     Placa: <small className='text-red text-2xl'>*</small>
+                     Placa: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -156,12 +161,12 @@ export const VehiclesCreateForm = () => {
                      placeholder="Placa..."
                   />
 
-                  <ErrorMessage name="placa" component="div" className="text-red" />
+                  <ErrorMessage name="placa" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="placaSemirremolque" className="text-primary font-semibold block mb-2">
-                     Placa semirremolque: <small className='text-red text-2xl'>*</small>
+                     Placa semirremolque: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -172,12 +177,12 @@ export const VehiclesCreateForm = () => {
                      placeholder="Placa semirremolque..."
                   />
 
-                  <ErrorMessage name="placaSemirremolque" component="div" className="text-red" />
+                  <ErrorMessage name="placaSemirremolque" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="tarjetaPropiedad" className="text-primary font-semibold block mb-2">
-                     Tarjeta propiedad: <small className='text-red text-2xl'>*</small>
+                     Tarjeta propiedad: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   {/* Input para subir archivo */}
@@ -189,12 +194,12 @@ export const VehiclesCreateForm = () => {
                      onChange={(event) => handleFileChange('tarjetaPropiedad', event)}
                   />
 
-                  <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red" />
+                  <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="tecnomecanica" className="text-purplePz font-semibold block mb-2">
-                     Tecnomecanica: <small className='text-red text-2xl'>*</small>
+                     Tecnomecanica: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   {/* Input para subir archivo */}
@@ -206,12 +211,12 @@ export const VehiclesCreateForm = () => {
                      onChange={(event) => handleFileChange('tecnomecanica', event)}
                   />
 
-                  <ErrorMessage name="tecnomecanica" component="div" className="text-red" />
+                  <ErrorMessage name="tecnomecanica" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
                   <label htmlFor="soat" className="text-purplePz font-semibold block mb-2">
-                     Soat: <small className='text-red text-2xl'>*</small>
+                     Soat: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   {/* Input para subir archivo */}
@@ -223,7 +228,7 @@ export const VehiclesCreateForm = () => {
                      onChange={(event) => handleFileChange('soat', event)}
                   />
 
-                  <ErrorMessage name="soat" component="div" className="text-red" />
+                  <ErrorMessage name="soat" component="div" className="text-red-600" />
                </div>
             </div>
 

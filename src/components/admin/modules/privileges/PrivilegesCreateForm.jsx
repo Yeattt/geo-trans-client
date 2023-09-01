@@ -34,7 +34,7 @@ export const PrivilegesCreateForm = () => {
                      placeholder="Nombre..."
                   />
 
-                  <ErrorMessage name="nombre" component="div" className="text-red" />
+                  <ErrorMessage name="nombre" component="div" className="text-red-600" />
                </div>
             </div>
 
