@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { HiOutlineLogout } from 'react-icons/hi';
 import { HiMenu } from 'react-icons/hi';
-import { MdEmail } from 'react-icons/md';
-import { IoNotifications } from 'react-icons/io5';
 
 import { useAuthStore } from '../../../hooks';
 
@@ -31,14 +29,6 @@ export const AdminNavbar = ({ module = '' }) => {
          </div>
 
          <div className="flex items-center justify-center">
-            <span className="text-xl mr-3 text-secondary cursor-pointer transition hover:text-secondaryHover">
-               <IoNotifications />
-            </span>
-            
-            <span className="text-xl mr-3 text-secondary cursor-pointer transition hover:text-secondaryHover">
-               <MdEmail />
-            </span>
-
             <div className="bg-primary w-12 h-12 flex items-center justify-center rounded-full cursor-pointer mr-3">
                <img
                   className="object-cover w-[95%] h-[95%] rounded-full"

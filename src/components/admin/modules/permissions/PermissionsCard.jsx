@@ -53,7 +53,7 @@ export const PermissionsCard = ({ permission }) => {
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <span
-               className="text-2xl text-secondary hover:text-secondaryHover cursor-pointer mr-5"
+               className="text-2xl text-primary hover:text-primaryHover cursor-pointer mr-5"
                onClick={() => handleIsInfoModalActive(true)}
             >
                <TbInfoHexagon />
@@ -64,7 +64,7 @@ export const PermissionsCard = ({ permission }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={permission} />
             }
 
-            <span className="text-2xl text-secondary hover:text-secondaryHover cursor-pointer">
+            <span className="text-2xl text-primary hover:text-primaryHover cursor-pointer">
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
                   <FaEdit onClick={handleUpdateClick} />
