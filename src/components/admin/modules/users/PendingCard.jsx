@@ -14,7 +14,7 @@ export const PendingCard = ({ user }) => {
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
-   
+
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
@@ -31,9 +31,10 @@ export const PendingCard = ({ user }) => {
    const [isPendingModalActive, setIsPendingModalActive] = useState(false);
 
    const handleIsPendingModalActive = (status) => {
-      setIsPendingModalActive(status);
+      if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
+         setIsDeleteModalActive(status);
    };
-   
+
    useEffect(() => {
       if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {
          setVehiclesList(vehicles.vehicles);
@@ -43,7 +44,7 @@ export const PendingCard = ({ user }) => {
    }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
 
    return (
-        
+
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{user.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.documento}</td>
@@ -71,16 +72,16 @@ export const PendingCard = ({ user }) => {
             }
          </td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         {
-            !user.registroPendiente
-            ?
-            <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsPendingModalActive(true)}>Registrado</button>
-            :
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsPendingModalActive(true)}>Sin Registrar</button>
-         }
-         {
-            isPendingModalActive && <PendingModal handleIsPendingModalActive={handleIsPendingModalActive} module={user} value={'users'} />
-         }
+            {
+               !user.registroPendiente
+                  ?
+                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsPendingModalActive(true)}>Registrado</button>
+                  :
+                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsPendingModalActive(true)}>Sin Registrar</button>
+            }
+            {
+               isPendingModalActive && <PendingModal handleIsPendingModalActive={handleIsPendingModalActive} module={user} value={'users'} />
+            }
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">

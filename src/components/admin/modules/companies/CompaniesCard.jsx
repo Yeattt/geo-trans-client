@@ -17,7 +17,7 @@ export const CompaniesCard = ({ company }) => {
    const handleViewDetails = () => {
       setIsOpen(!isOpen)
    }
-   const handleUpdateClick = () =>{
+   const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
    }
 
@@ -28,7 +28,8 @@ export const CompaniesCard = ({ company }) => {
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
    const handleIsDeleteModalActive = (status) => {
-      setIsDeleteModalActive(status);
+      if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
+         setIsDeleteModalActive(status);
    };
 
    return (
@@ -40,16 +41,16 @@ export const CompaniesCard = ({ company }) => {
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.telefono}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.duenoPoliza}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-         {
-            company.estado
-            ?
-            <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
-            :
-            <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
-         }
-         {
-            isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={company} value={'companies'} />
-         }
+            {
+               company.estado
+                  ?
+                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  :
+                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+            }
+            {
+               isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={company} value={'companies'} />
+            }
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
@@ -68,9 +69,9 @@ export const CompaniesCard = ({ company }) => {
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-               <FaEdit onClick={handleUpdateClick}/>
+                  <FaEdit onClick={handleUpdateClick} />
                }
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Companies" moduleInfo={company}  handleUpdateClick={handleUpdateClick} />
+               <UpdateModal isOpenUpdate={isOpenUpdate} module="Companies" moduleInfo={company} handleUpdateClick={handleUpdateClick} />
             </span>
 
             {/* <span
@@ -80,7 +81,7 @@ export const CompaniesCard = ({ company }) => {
                <MdDeleteForever />
             </span> */}
             {/* // * IMPORTANTE: Prueba del modal para cambio de estado */}
-            
+
          </td>
       </tr>
    );

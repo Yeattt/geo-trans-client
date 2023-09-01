@@ -21,7 +21,8 @@ export const VehiclesTypeCard = ({ vehicleType }) => {
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
    const handleIsDeleteModalActive = (status) => {
-      setIsDeleteModalActive(status);
+      if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
+         setIsDeleteModalActive(status);
    };
 
    return (

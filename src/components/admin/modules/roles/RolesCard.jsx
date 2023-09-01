@@ -26,8 +26,10 @@ export const RolesCard = ({ role }) => {
 
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
    const [isAssignModalActive, setisAssignModalActive] = useState(false);
+   
    const handleIsDeleteModalActive = (status) => {
-      setIsDeleteModalActive(status);
+      if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
+         setIsDeleteModalActive(status);
    };
 
    const handleIsAssignModalActive = (status) => {

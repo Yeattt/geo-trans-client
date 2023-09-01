@@ -7,7 +7,7 @@ import { MdAssignmentAdd } from 'react-icons/md';
 import { AssignModal, InfoModal, DeleteModal, UpdateModal } from '../..';
 import { useAllowedPrivileges } from '../../../../hooks';
 
-export const PrivilegesCard = ({privilege }) => {
+export const PrivilegesCard = ({ privilege }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpenUpdate, setisOpenUpdate] = useState(false);
@@ -26,8 +26,10 @@ export const PrivilegesCard = ({privilege }) => {
 
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
    const [isAssignModalActive, setisAssignModalActive] = useState(false);
+
    const handleIsDeleteModalActive = (status) => {
-      setIsDeleteModalActive(status);
+      if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
+         setIsDeleteModalActive(status);
    };
 
    const handleIsAssignModalActive = (status) => {

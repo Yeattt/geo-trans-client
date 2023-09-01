@@ -38,16 +38,11 @@ export const QuotesCard = ({ quote }) => {
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
    const handleIsDeleteModalActive = (status) => {
-      setIsDeleteModalActive(status);
-
-      // useEffect(() => {
-      //    if (!isCompaniesLoading ) {
-      //       setCompaniesList(companies.companies);
-      //    }
-      // }, [isCompaniesLoading]);
+      if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
+         setIsDeleteModalActive(status);
    };
    return (
-      
+
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{quote.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{quote.fechaSolicitud}</td>
