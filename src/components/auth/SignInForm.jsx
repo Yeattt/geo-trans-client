@@ -43,14 +43,14 @@ export const SignInForm = () => {
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
-         <Form className="w-full h-full flex justify-center items-center flex-col">
-            <div className="mb-4">
+         <Form className="w-[full] h-full flex justify-center items-center flex-col">
+            <div className="mb-4 w-full">
                <label htmlFor="email" className="text-purplePz font-semibold block mb-2">
                   Email:
                </label>
 
-               <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-72 h-10 flex items-center">
-                  <div className="w-[13%] text-[22px] flex items-center justify-center">
+               <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-[100%] h-[50%] flex items-center">
+                  <div className="w-[13%] invisible lg:visible text-[22px] flex items-center justify-center">
                      <HiOutlineMail />
                   </div>
 
@@ -66,13 +66,13 @@ export const SignInForm = () => {
                <ErrorMessage name="email" component="div" className="text-red-500" />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 w-full">
                <label htmlFor="email" className="text-purplePz font-semibold block mb-2">
                   Contraseña:
                </label>
 
-               <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-72 h-10 flex items-center">
-                  <div className="w-[13%] text-[19px] flex items-center justify-center">
+               <div className="bg-white rounded-full text-gray-400 border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-[50%] flex items-center">
+                  <div className="w-[13%] invisible lg:visible text-[19px] flex items-center justify-center">
                      <RiLockPasswordLine />
                   </div>
 
@@ -87,14 +87,13 @@ export const SignInForm = () => {
 
                <ErrorMessage name="contrasena" component="div" className="text-red-500" />
             </div>
-         <Link to="/auth/sendEmail">
-         <p className="text-sm text-primary hover:text-primaryHover transition-all font-bold cursor-pointer">Olvidó su contraseña?</p>
-         </Link>
-            
+            <Link to="/auth/sendEmail">
+               <p className="text-sm text-primary hover:text-primaryHover transition-all font-bold cursor-pointer">Olvidó su contraseña?</p>
+            </Link>
 
             <button
                type="submit"
-               className="w-[53%] bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 rounded-full mt-5 mb-5"
+               className="w-[93%] text-sm lg:text-md xl:text-lg bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 rounded-full mt-5"
             >
                Iniciar Sesión
             </button>

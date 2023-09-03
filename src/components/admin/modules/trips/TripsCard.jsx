@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
-import { DeleteModal, InfoModal, UpdateModal } from '../../';
+import { DeleteModal, InfoModal, TripsStateModal, UpdateModal } from '../../';
 import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
 
 export const TripsCard = ({ trip }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
+   const [isTripsStateModalActive, setIsTripsStateModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
 
@@ -16,6 +17,10 @@ export const TripsCard = ({ trip }) => {
    }
    const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
+   }
+
+   const handleIsTripsStateModalActive = () => {
+      setIsTripsStateModalActive((status) => !status);
    }
 
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
@@ -32,6 +37,8 @@ export const TripsCard = ({ trip }) => {
          setIsDeleteModalActive(status);
    };
 
+
+
    useEffect(() => {
       if (!isVehiclesLoading) {
          setVehiclesList(vehicles.vehicles);
@@ -41,11 +48,27 @@ export const TripsCard = ({ trip }) => {
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{trip.id}</td>
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cantidad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.nombreProducto}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.destino}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.fechaViaje}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.horaViaje}</td>
+         {
+            isTripsStateModalActive && <TripsStateModal handleIsTripsStateModalActive={handleIsTripsStateModalActive} trip={trip} />
+         }
+         <td className='px-7 py-5 text-center cursor-pointer font-bold text-white'>
+            <button
+               className={`py-2 px-4 rounded-full ${trip.estadoViaje == 'pendiente' ? 'bg-gray-800' :
+                  trip.estadoViaje == 'emitido' ? 'bg-blue-600' :
+                     trip.estadoViaje == 'en-proceso' ? 'bg-orange-600' :
+                        trip.estadoViaje == 'facturado' ? 'bg-green-600' :
+                           null
+                  }`}
+               onClick={handleIsTripsStateModalActive}
+            >
+               {trip.estadoViaje}
+            </button>
+         </td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cantidad}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.empaque}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.naturaleza}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.numeroRemesa}</td>

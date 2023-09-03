@@ -21,9 +21,6 @@ export const useUpdateForm = (initialValues = {}, endpoint) => {
                 Swal.fire('Error al actualizar', err.response.data.message, 'error');
                 return;
             })
-
-
-        console.log(initialValues);
     };
 
     return {

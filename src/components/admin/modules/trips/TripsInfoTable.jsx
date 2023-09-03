@@ -31,11 +31,12 @@ export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
           <thead>
             <tr>
               <th className="px-6 py-2 text-primary">ID</th>
-              <th className="px-6 py-2 text-primary">Cantidad</th>
               <th className="px-6 py-2 text-primary">Cod. Produc.</th>
               <th className="px-6 py-2 text-primary">Destino</th>
               <th className="px-6 py-2 text-primary">Fecha V.</th>
               <th className="px-6 py-2 text-primary">Hora V.</th>
+              <th className="px-6 py-2 text-primary">Estado V.</th>
+              <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Cantidad</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Empaque</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Naturaleza</th>
               <th className="hidden 3xl:table-cell px-6 py-2 text-primary">Numero remesa</th>
