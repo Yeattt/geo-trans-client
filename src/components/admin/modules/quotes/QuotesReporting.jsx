@@ -1,33 +1,30 @@
 import { FaFileExcel, FaFilePdf } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import { useGetApiData } from '../../../../hooks';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel'
+import { TbReportAnalytics } from 'react-icons/tb';
 import { PDFViewer, Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+import { AdminLayout } from '../../../layouts/AdminLayout';
+import ReportPdf from './ReportPdf';
+import { QuotesCard } from './QuotesCard';
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 
 
 export const QuotesReporting = () => {
-    const { data: quotes, isLoading: quotesIsLoading } = useGetApiData('/quotes');
-    const [quotesList, setQuotesList] = useState([]);
+    const tablePdf = useRef()
 
-    
+  const generatePdf = useReactToPrint({
+    content: () => tablePdf.current,
+    documentTitle: 'Informes de cotizaciones'
+  })
 
-    const styles = StyleSheet.create({
-        page: {
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        text: {
-            marginBottom: 10,
-        },
-    });
+    const { isLoading,  data: { quotes } } = useGetApiData('/quotes');
 
-    useEffect(() => {
-        if (!quotesIsLoading) {
-            setQuotesList(quotes.quotes);
-        }
-    }, [quotesIsLoading]);
+
+    if (isLoading || quotes === undefined) {
+        return <AdminLayout>Loading...</AdminLayout>;
+      }
 
     return (
         <div className="grid grid-cols-2 gap-9">
@@ -40,40 +37,16 @@ export const QuotesReporting = () => {
                     buttonText='Excel' />
             </div>
 
-            <div className="mr-20">
 
-                <PDFDownloadLink document={
-                    <Document>
-                        <Page size="A4" style={styles.page}>
-                            {quotesList.map((quote, index) => (
-                                <View key={index} style={styles.text}>
-                                    <Text>ID: {quote.id}</Text>
-                                    <Text>Nombre Origen: {quote.nombreOrigen}</Text>
-                                    <Text>Nombre Destino: {quote.nombreDestino}</Text>
-                                    <Text>Ciudad Origen: {quote.ciudadOrigen}</Text>
-                                    <Text>Ciudad Destino: {quote.ciudadDestino}</Text>
-                                    <Text>Dirección: {quote.direccion}</Text>
-                                    <Text>Contacto: {quote.contacto}</Text>
-                                    <Text>Fecha Solicitud: {quote.fechaSolicitud}</Text>
-                                    <Text>Fecha Servicio: {quote.fechaServicio}</Text>
-                                    <Text>Hora Cargue: {quote.horaCargue}</Text>
-                                    <Text>Tipo Camión: {quote.tipoCamion}</Text>
-                                    <Text>Peso Aproximado: {quote.pesoAproximado}</Text>
-                                    <Text>Valor Mercancía: {quote.valorMercancia}</Text>
-                                    <Text>Contenido: {quote.contenido}</Text>
-                                    <Text>Valor Transporte: {quote.valorTransporte}</Text>
-                                    <Text>Observaciones: {quote.observaciones}</Text>
-                                    <Text>User ID: {quote.userId}</Text>
-                                    <Text>Company ID: {quote.companyId}</Text>
-                                </View>
-                            ))}
-                        </Page>
-                    </Document>
-                } fileName="cotizaciones.pdf">
-                    <button>PDF</button>
-
-                </PDFDownloadLink>
+            <div className='hidden'>
+              <div ref={tablePdf}>
+                <ReportPdf quotes={quotes}/>
+              </div>
             </div>
+
+
+            <button onClick={generatePdf}>PDF</button>
+          
 
         </div>
 

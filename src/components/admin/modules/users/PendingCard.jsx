@@ -7,10 +7,11 @@ import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
 
 import { InfoModal, PendingModal } from '../../';
-import { useGetApiData } from '../../../../hooks';
+import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
 import { useEffect } from 'react';
 
 export const PendingCard = ({ user }) => {
+   const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
@@ -32,7 +33,7 @@ export const PendingCard = ({ user }) => {
 
    const handleIsPendingModalActive = (status) => {
       if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
-         setIsDeleteModalActive(status);
+      setIsPendingModalActive(status);
    };
 
    useEffect(() => {

@@ -20,14 +20,9 @@ export const QuotesPage = () => {
    }
 
    const handleQueryResults = (results = []) => {
-      if (results.length==0) {
-         console.log(results)
-         setQueryResults(results=[{}])
-      }
-      else{
-         console.log(results)
+      
          setQueryResults(results);
-      }
+      
       
    };
 
