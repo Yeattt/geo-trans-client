@@ -44,7 +44,7 @@ export const InfoModal = ({ handleIsInfoModalActive, module }) => {
             <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
                <div className="grid grid-cols-3 gap-4">
                   {Object.entries(module).map(([key, value]) => (
-                     <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'blue', textTransform: 'uppercase' }}>
+                     <td key={key} className="px-7 py-5 text-center cursor-pointer font-bold" style={{ color: 'black', textTransform: 'uppercase' }}>
                         {`${key}: ${
                            Array.isArray(value) ? value.map((item) => getNameFromObject(item)).join(', ') :
                            key === 'estado' ? (value ? 'Activo' : 'Inactivo') : value

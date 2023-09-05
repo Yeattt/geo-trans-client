@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 
-import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, QuotesSearcher, ReportingModal, QuotesReporting } from '../../../components';
+import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, QuotesSearcher, ReportingModal } from '../../../components';
 import { useGetApiData } from '../../../hooks';
 import { QuotesInfoTable } from '../../../components/admin/modules/quotes/QuotesInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
@@ -20,10 +20,7 @@ export const QuotesPage = () => {
    }
 
    const handleQueryResults = (results = []) => {
-      
          setQueryResults(results);
-      
-      
    };
 
    if (isLoading || quotes === undefined) {

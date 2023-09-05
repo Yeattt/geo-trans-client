@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { useGetApiData } from '../../../../hooks';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel'
+import {BiSolidFilePdf} from 'react-icons/bi'
+import {SiMicrosoftexcel} from 'react-icons/si'
 import { TbReportAnalytics } from 'react-icons/tb';
 import { PDFViewer, Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
 import { AdminLayout } from '../../../layouts/AdminLayout';
@@ -45,7 +47,9 @@ export const QuotesReporting = () => {
             </div>
 
 
-            <button onClick={generatePdf}>PDF</button>
+            <span className="ml-16 text-6xl text-red-600 hover:text-red-800 font-bold cursor-pointer">
+            <BiSolidFilePdf onClick={generatePdf}/>
+            </span>
           
 
         </div>
