@@ -31,12 +31,15 @@ export const QuotesReporting = () => {
     return (
         <div className="grid grid-cols-2 gap-9">
             <div className="ml-40">
+            
                 <ReactHTMLTableToExcel
                     id="botonExportarExcel"
                     table='cotizaciones'
                     filename='cotizaciones'
                     sheet="pagina 1"
-                    buttonText='Excel' />
+                    buttonText={<span className= "ml-18 text-6xl text-green-600 hover:text-green-800 font-bold cursor-pointer"> <SiMicrosoftexcel />
+                    </span>}/>
+            
             </div>
 
 

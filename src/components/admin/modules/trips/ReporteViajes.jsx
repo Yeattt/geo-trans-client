@@ -36,7 +36,8 @@ export const ReporteViajes = () => {
                     table='viajes'
                     filename='viajes'
                     sheet="pagina 1"
-                    buttonText='Excel' />
+                    buttonText={<span className= "ml-18 text-6xl text-green-600 hover:text-green-800 font-bold cursor-pointer"> <SiMicrosoftexcel />
+                    </span>}/>
             </div>
 
 

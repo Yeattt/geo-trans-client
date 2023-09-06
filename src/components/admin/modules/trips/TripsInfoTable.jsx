@@ -27,7 +27,7 @@ export const TripsInfoTable = ({ trips, handleIsCreateModalActive }) => {
       </div>
 
       <div className="max-h-[500px] overflow-y-scroll">
-        <table className="w-full text-sm">
+        <table className="w-full text-sm" id='viajes'>
           <thead>
             <tr>
               <th className="px-6 py-2 text-primary">ID</th>
