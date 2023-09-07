@@ -2,9 +2,9 @@ import React from 'react'
 import { QuotesCard } from './QuotesCard'
 
 function ReportPdf({ quotes }) {
+  console.log(quotes)
   return (
     <>
-    <h1>Reporte de cotizaciones</h1>
     <div className="max-h-[500px] overflow-y-scroll">
         <table className="w-full text-sm">
           <thead>
@@ -41,6 +41,7 @@ function ReportPdf({ quotes }) {
         </table>
       </div>
     </>
+    
   )
 }
 

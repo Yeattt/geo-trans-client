@@ -24,13 +24,7 @@ export const QuotesPage = () => {
    }
 
    const handleQueryResults = (results = []) => {
-      if (results.length==0) {
-         setQueryResults(results=[{}])
-      }
-      else{
          setQueryResults(results);
-      }
-      
    };
 
    if (isLoading || quotes === undefined) {
