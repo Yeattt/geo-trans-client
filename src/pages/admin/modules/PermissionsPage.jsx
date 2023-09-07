@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, PermissionsSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useGetApiData, usePermissionsStore } from '../../../hooks';
 import { PermissionsInfoTable } from '../../../components/admin/modules/permissions/PermissionsInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const PermissionsPage = () => {
-   const { isLoading, data: { permissions } } = useGetApiData('/permissions');
+   const { getPermissions, permissions, isLoading } = usePermissionsStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getPermissions();
+   }, []);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
@@ -17,6 +21,10 @@ export const PermissionsPage = () => {
    const handleQueryResults = (results = []) => {
       setQueryResults(results);
    };
+
+   const handleRefreshData = () => {
+      refreshData();
+   }
 
    if (isLoading || permissions === undefined) {
       return <AdminLayout>Loading...</AdminLayout>;

@@ -5,9 +5,13 @@ import { useVehiclesStore } from '../../../hooks';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const VehiclesPage = () => {
-   const { getVehicles, vehicles, isLoading } = useVehiclesStore();
+   const { vehicles, isLoading, getVehicles } = useVehiclesStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getVehicles();
+   }, []);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
@@ -16,10 +20,6 @@ export const VehiclesPage = () => {
    const handleQueryResults = (results = []) => {
       setQueryResults(results);
    };
-
-   useEffect(() => {
-      getVehicles();
-   }, []);
 
    if (isLoading || vehicles === undefined) {
       return <AdminLayout>Loading...</AdminLayout>;

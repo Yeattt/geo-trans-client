@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { AdminLayout, AdminNavbar, VehiclesTypeSearcher, VehiclesTypeInfoTable, CreateFormModal, AdminElementsCard } from '../../../components';
-import { useGetApiData } from '../../../hooks'; import { TbReportAnalytics } from 'react-icons/tb';
+import { useGetApiData, useVehiclesTypesStore } from '../../../hooks'; import { TbReportAnalytics } from 'react-icons/tb';
 ;
 
 export const VehiclesTypePage = () => {
-   const { isLoading, data: { vehiclesType } } = useGetApiData('/trucks/types');
+   const { getVehiclesTypes, vehiclesTypes: vehiclesType, isLoading } = useVehiclesTypesStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getVehiclesTypes();
+   }, []);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
@@ -16,6 +20,10 @@ export const VehiclesTypePage = () => {
    const handleQueryResults = (results = []) => {
       setQueryResults(results);
    };
+
+   const handleRefreshData = () => {
+      refreshData();
+   }
 
    if (isLoading || vehiclesType === undefined) {
       return <AdminLayout>Loading...</AdminLayout>;
@@ -38,7 +46,7 @@ export const VehiclesTypePage = () => {
          </div>
 
          {/* // * IMPORTANTE: Prueba del modal para crear */}
-         {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="VehiclesType" />}
+         {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="VehiclesType" handleRefreshData={handleRefreshData} />}
 
          <br />
 

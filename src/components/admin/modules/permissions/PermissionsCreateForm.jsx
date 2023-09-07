@@ -10,10 +10,10 @@ const validationSchema = Yup.object().shape({
       .required('Campo requerido')
 });
 
-export const PermissionsCreateForm = () => {
+export const PermissionsCreateForm = ({ handleRefreshData }) => {
    const { initialValues, onSubmitForm } = useCreateForm({
       nombre: ''
-   }, 'permissions');
+   }, 'permissions', handleRefreshData);
 
    return (
       <Formik

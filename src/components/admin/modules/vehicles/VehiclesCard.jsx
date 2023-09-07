@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
+import { BsFile, BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { TbInfoHexagon } from 'react-icons/tb';
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
 import { useAllowedPrivileges } from '../../../../hooks';
+import { geoTransApi } from '../../../../api';
 
 export const VehiclesCard = ({ vehicle }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
@@ -34,6 +36,25 @@ export const VehiclesCard = ({ vehicle }) => {
          setIsDeleteModalActive(status);
    };
 
+   const handleDownloadFile = (filename = '') => {
+      geoTransApi.get(`/files/download/${filename}`, {
+         responseType: 'blob',
+      })
+         .then(res => {
+            const fileUrl = window.URL.createObjectURL(new Blob([res.data]));
+
+            const a = document.createElement('a');
+            a.href = fileUrl;
+            a.download = filename;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+         })
+         .catch(error => {
+            console.log('Error al descargar el archivo', error);
+         })
+   }
+
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{vehicle.id}</td>
@@ -42,9 +63,34 @@ export const VehiclesCard = ({ vehicle }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.marca}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.placa}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.placaSemirremolque}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.tarjetaPropiedad}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.tecnomecanica}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicle.soat}</td>
+
+         <td
+            className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500"
+            onClick={() => handleDownloadFile(vehicle.tarjetaPropiedad)}
+         >
+            <div className="text-xl text-center w-full h-full flex items-center justify-center">
+               <BsFileEarmarkArrowDown alt={vehicle.tarjetaPropiedad} />
+            </div>
+         </td>
+
+         <td
+            className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500"
+            onClick={() => handleDownloadFile(vehicle.tecnomecanica)}
+         >
+            <div className="text-xl text-center w-full h-full flex items-center justify-center">
+               <BsFileEarmarkArrowDown alt={vehicle.tecnomecanica} />
+            </div>
+         </td>
+
+         <td
+            className="hidden 2xl:table-cell px-0 py-0 text-center cursor-pointer font-bold text-gray-500"
+            onClick={() => handleDownloadFile(vehicle.soat)}
+         >
+            <div className="text-xl text-center w-full h-full flex items-center justify-center">
+               <BsFileEarmarkArrowDown alt={vehicle.soat} />
+            </div>
+         </td>
+
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                vehicle.estado

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { geoTransApi } from '../api';
-import { getVehiclesRequest, getVehiclesFailure, getVehiclesSuccess } from '../store';
+import { geoTransApi } from '../../api';
+import { getVehiclesRequest, getVehiclesFailure, getVehiclesSuccess } from '../../store';
 
 export const useVehiclesStore = () => {
   const { vehicles, isLoading } = useSelector(state => state.vehicles.vehicles);

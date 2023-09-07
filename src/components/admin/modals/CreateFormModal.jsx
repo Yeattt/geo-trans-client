@@ -13,7 +13,7 @@ import {
    VehiclesTypeCreateForm,
 } from '../../';
 
-export const CreateFormModal = ({ handleIsCreateModalActive, module }) => {
+export const CreateFormModal = ({ handleIsCreateModalActive, module, handleRefreshData }) => {
    const components = {
       Clients: ClientsCreateForm,
       Companies: CompaniesCreateForm,
@@ -44,7 +44,7 @@ export const CreateFormModal = ({ handleIsCreateModalActive, module }) => {
             </div>
 
             <div className="w-full h-[calc(100% - 55px)] bg-white px-7 py-5">
-               {ComponentToRender && <ComponentToRender />}
+               {ComponentToRender && <ComponentToRender handleRefreshData={handleRefreshData} />}
             </div>
          </div>
       </div>

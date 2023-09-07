@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AdminElementsCard, AdminLayout, AdminNavbar, CompaniesSearcher, CreateFormModal } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useCompaniesStore, useGetApiData } from '../../../hooks';
 import { CompaniesInfoTable } from '../../../components/admin/modules/companies/CompaniesInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const CompaniesPage = () => {
-   const { isLoading, data: { companies } } = useGetApiData('/companies');
+   const { getCompanies, companies, isLoading } = useCompaniesStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getCompanies();
+   }, []);
+
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
@@ -17,6 +22,10 @@ export const CompaniesPage = () => {
    const handleQueryResults = (results = []) => {
       setQueryResults(results);
    };
+
+   const handleRefreshData = () => {
+      refreshData();
+   }
 
    if (isLoading || companies === undefined) {
       return <AdminLayout>Loading...</AdminLayout>;

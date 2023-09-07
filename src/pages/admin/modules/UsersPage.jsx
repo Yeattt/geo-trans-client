@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, UsersInfoTable, UsersSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useGetApiData, useUsersStore } from '../../../hooks';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const UsersPage = () => {
-   const { isLoading, data: { users } } = useGetApiData('/users');
+   const { getUsers, users, isLoading } = useUsersStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getUsers();
+   }, []);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
@@ -16,6 +20,10 @@ export const UsersPage = () => {
    const handleQueryResults = (results = []) => {
       setQueryResults(results);
    };
+
+   const handleRefreshData = () => {
+      refreshData();
+   }
 
    if (isLoading || users === undefined) {
       return <AdminLayout>Loading...</AdminLayout>;

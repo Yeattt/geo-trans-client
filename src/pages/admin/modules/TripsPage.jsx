@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { AdminLayout, CreateFormModal, AdminNavbar, AdminElementsCard, TripsSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useGetApiData, useTripsStore } from '../../../hooks';
 import { TripsInfoTable } from '../../../components/admin/modules/trips/TripsInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
 import ReporteViajes from '../../../components/admin/modules/trips/ReporteViajes';
@@ -13,9 +13,14 @@ export const TripsPage = () => {
     content: () => tablePdf.current,
     documentTitle: 'Informes de viajes'
   })
-  const { isLoading, data: { trips } } = useGetApiData('/trips');
+
+  const { getTrips, trips, isLoading } = useTripsStore();
   const [queryResults, setQueryResults] = useState([]);
   const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+  useEffect(() => {
+    getTrips();
+  }, []);
 
   const handleIsCreateModalActive = (status) => {
     setIsCreateModalActive(status);

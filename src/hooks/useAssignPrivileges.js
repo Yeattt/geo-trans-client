@@ -2,16 +2,17 @@ import { useNavigate } from 'react-router-dom';
 
 import { geoTransApi } from '../api';
 
+import { usePermissionsStore } from './';
+
 export const useAssignPrivileges = (id = '', initialValues = {}) => {
-   const navigate = useNavigate();
+   const { getPermissions } = usePermissionsStore();
 
    const onSubmitForm = (values) => {
       console.log(values);
 
       geoTransApi.put(`/roles/privileges/assign/${id}`, values)
          .then(() => {
-            console.log('Asignación exitosa');
-            navigate(0);
+            getPermissions();
          })
          .catch(err => {
             console.log(err);

@@ -1,15 +1,19 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 
 import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, QuotesSearcher, ReportingModal, QuotesReporting } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useGetApiData, useQuotesStore } from '../../../hooks';
 import { QuotesInfoTable } from '../../../components/admin/modules/quotes/QuotesInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const QuotesPage = () => {
-   const { isLoading, data: { quotes } } = useGetApiData('/quotes');
+   const { getQuotes, quotes, isLoading } = useQuotesStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isReportingActive, setIsReportingModalActive] = useState(false);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getQuotes();
+   }, []);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
@@ -21,11 +25,9 @@ export const QuotesPage = () => {
 
    const handleQueryResults = (results = []) => {
       if (results.length==0) {
-         console.log(results)
          setQueryResults(results=[{}])
       }
       else{
-         console.log(results)
          setQueryResults(results);
       }
       

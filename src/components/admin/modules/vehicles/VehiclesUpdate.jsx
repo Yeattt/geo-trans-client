@@ -22,6 +22,7 @@ export const VehiclesUpdate = ({ moduleInfo }) => {
     });
 
     const { initialValues, onSubmitForm } = useUpdateForm({
+        id: moduleInfo.id,
         tipoCamion: moduleInfo.tipoCamion,
         modelo: moduleInfo.modelo,
         marca: moduleInfo.marca,

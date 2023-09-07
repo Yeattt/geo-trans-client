@@ -21,13 +21,13 @@ const validationSchema = Yup.object().shape({
       .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length === 10),
 });
 
-export const ClientsCreateForm = () => {
+export const ClientsCreateForm = ({ handleRefreshData }) => {
    const { initialValues, onSubmitForm } = useCreateForm({
       documento: '',
       nombre: '',
       razonSocial: '',
       telefono: ''
-   }, 'clients');
+   }, 'clients', handleRefreshData);
 
    return (
       <Formik

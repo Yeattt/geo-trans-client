@@ -8,10 +8,10 @@ const validationSchema = Yup.object().shape({
    nombre: Yup.string().required('Campo requerido'),
 });
 
-export const PrivilegesCreateForm = () => {
+export const PrivilegesCreateForm = ({ handleRefreshData }) => {
    const { initialValues, onSubmitForm } = useCreateForm({
       nombre: ''
-   }, 'privileges');
+   }, 'privileges', handleRefreshData);
 
    return (
       <Formik

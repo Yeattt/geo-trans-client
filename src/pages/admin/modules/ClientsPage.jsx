@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AdminElementsCard, AdminLayout, AdminNavbar, ClientsSearcher, CreateFormModal } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useClientsStore, useGetApiData } from '../../../hooks';
 import { ClientsInfoTable } from '../../../components/admin/modules/clients/ClientsInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const ClientsPage = () => {
-   const { isLoading, data: { clients } } = useGetApiData('/clients');
+   const { getClients, clients, isLoading } = useClientsStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getClients();
+   }, []);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);

@@ -14,12 +14,18 @@ export const useGetApiData = (endpoint) => {
         setIsLoading(false);
     }
 
+    const refreshData = async () => {
+        setIsLoading(true);
+        await getVehicles();
+    }
+
     useEffect(() => {
         getVehicles();
     }, [endpoint]);
 
     return {
         isLoading,
-        data
+        data,
+        refreshData
     }
 }

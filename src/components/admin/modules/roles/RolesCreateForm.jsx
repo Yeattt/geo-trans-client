@@ -10,13 +10,13 @@ const validationSchema = Yup.object().shape({
 
 });
 
-export const RolesCreateForm = () => {
+export const RolesCreateForm = ({ handleRefreshData }) => {
    const { data: permissions, isLoading: isPermissionsLoading } = useGetApiData('/permissions');
    const [permissionsList, setPermissionsList] = useState([]);
    const { initialValues, onSubmitForm } = useCreateForm({
       nombre: '',
       permissionsId: []
-   }, 'roles');
+   }, 'roles', handleRefreshData);
 
    useEffect(() => {
       if (!isPermissionsLoading) {

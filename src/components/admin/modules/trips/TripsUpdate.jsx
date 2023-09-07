@@ -38,6 +38,7 @@ export const TripsUpdate = ({ moduleInfo }) => {
      });
 
      const { initialValues, onSubmitForm } = useUpdateForm({
+        id: moduleInfo.id,
         numeroRemesa: moduleInfo.numeroRemesa,
         unidadMedida: moduleInfo.unidadMedida,
         cantidad: moduleInfo.cantidad,

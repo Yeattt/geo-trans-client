@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
    vehicleId: Yup.string()
 });
 
-export const UsersCreateForm = () => {
+export const UsersCreateForm = ({ handleRefreshData }) => {
    const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
    const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
@@ -46,7 +46,7 @@ export const UsersCreateForm = () => {
       roleId: '',
       companyId: '',
       vehicleId: '',
-   }, 'users');
+   }, 'users', handleRefreshData);
 
    useEffect(() => {
       if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {

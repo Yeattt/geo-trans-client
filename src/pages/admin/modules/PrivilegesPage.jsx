@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, PrivilegesSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useGetApiData, usePrivilegesStore } from '../../../hooks';
 import { PrivilegesInfoTable } from '../../../components/admin/modules/privileges/PrivilegesInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const PrivilegesPage = () => {
-   const { isLoading, data: { privileges } } = useGetApiData('/privileges');
+   const { getPrivileges, privileges, isLoading } = usePrivilegesStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+
+   useEffect(() => {
+      getPrivileges();
+   }, []);
 
    const handleIsCreateModalActive = (status) => {
       setIsCreateModalActive(status);
@@ -17,6 +21,10 @@ export const PrivilegesPage = () => {
    const handleQueryResults = (results = []) => {
       setQueryResults(results);
    };
+
+   const handleRefreshData = () => {
+      refreshData();
+   }
 
    if (isLoading || privileges === undefined) {
       return <AdminLayout>Loading...</AdminLayout>;
@@ -40,7 +48,7 @@ export const PrivilegesPage = () => {
             </div>
 
             {/* // * IMPORTANTE: Prueba del modal para crear */}
-            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Privileges" />}
+            {isCreateModalActive && <CreateFormModal handleIsCreateModalActive={handleIsCreateModalActive} module="Privileges" handleRefreshData={handleRefreshData} />}
 
             <br />
 

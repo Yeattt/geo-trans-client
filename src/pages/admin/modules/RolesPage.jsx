@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { AdminLayout, AdminNavbar, CreateFormModal, AdminElementsCard, RolesSearcher } from '../../../components';
-import { useGetApiData } from '../../../hooks';
+import { useGetApiData, useRolesStore } from '../../../hooks';
 import { RolesInfoTable } from '../../../components/admin/modules/roles/RolesInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
 
 export const RolesPage = () => {
-   const { isLoading, data: { roles } } = useGetApiData('/roles');
+   const { getRoles, roles, isLoading } = useRolesStore();
    const [queryResults, setQueryResults] = useState([]);
    const [isCreateModalActive, setIsCreateModalActive] = useState(false);
 
@@ -17,6 +17,10 @@ export const RolesPage = () => {
    const handleQueryResults = (results = []) => {
       setQueryResults(results);
    };
+
+   useEffect(() => {
+      getRoles();
+   }, []);
 
    if (isLoading || roles === undefined) {
       return <AdminLayout>Loading...</AdminLayout>;
