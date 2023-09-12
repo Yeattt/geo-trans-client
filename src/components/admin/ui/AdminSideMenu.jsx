@@ -2,17 +2,36 @@ import { useSelector } from 'react-redux';
 
 import { Link, NavLink } from 'react-router-dom';
 
-import { FaMoneyCheckAlt, FaTruck, FaTruckLoading, FaUsersCog, FaUserCog } from 'react-icons/fa';
-import { BsBuildingFillGear, BsClipboard2CheckFill } from 'react-icons/bs';
-import { RiUserStarFill, RiCloseCircleLine } from 'react-icons/ri';
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Collapse from '@mui/material/Collapse';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import RvHookupIcon from '@mui/icons-material/RvHookup';
+import SendIcon from '@mui/icons-material/Send';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
+import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
+import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import StarBorder from '@mui/icons-material/StarBorder';
+
+import { RiCloseCircleLine } from 'react-icons/ri';
 import { MdAdminPanelSettings } from 'react-icons/md';
-import { IoSubway } from 'react-icons/io5';
-import { TbCalendarStats } from 'react-icons/tb';
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '../../../hooks';
 import { geoTransApi } from '../../../api';
 
 export const AdminSideMenu = ({ toggleMenu }) => {
+   const [vehiclesDropMenu, setVehiclesDropMenu] = useState(true);
+   const [rolesDropMenu, setRolesDropMenu] = useState(true);
+   const [usersDropMenu, setUsersDropMenu] = useState(true);
    const isSideMenuOpen = useSelector((state) => state.sideMenu);
    const { user } = useAuthStore();
    const [userPermissions, setUserPermissions] = useState([]);
@@ -34,6 +53,18 @@ export const AdminSideMenu = ({ toggleMenu }) => {
 
       getApiData();
    }, [user]);
+
+   const handleVehiclesDropMenu = () => {
+      setVehiclesDropMenu(!vehiclesDropMenu);
+   }
+
+   const handleRolesDropMenu = () => {
+      setRolesDropMenu(!rolesDropMenu);
+   }
+
+   const handleUsersDropMenu = () => {
+      setUsersDropMenu(!usersDropMenu);
+   }
 
    const hasPermission = (permissionName) => {
       return userPermissions.some((permission) => permission.nombre.toLowerCase().trim() === permissionName.toLowerCase().trim());
@@ -61,7 +92,7 @@ export const AdminSideMenu = ({ toggleMenu }) => {
             </div>
 
 
-            <nav className="mt-8 flex justify-end">
+            {/* <nav className="mt-8 flex justify-end">
                <div className="space-y-1 w-[95%]">
                   {
                      hasPermission('usuarios') && (
@@ -279,7 +310,84 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                      )
                   }
                </div>
-            </nav>
+            </nav> */}
+
+            <List
+               className="bg-primary text-white"
+               component="nav"
+               aria-labelledby="nested-list-subheader"
+            >
+               <ListItemButton onClick={handleRolesDropMenu}>
+                  <ListItemIcon>
+                     <EngineeringIcon className="text-white" />
+                  </ListItemIcon>
+
+                  <ListItemText primary="Roles" />
+
+                  {rolesDropMenu ? <ExpandLess /> : <ExpandMore />}
+               </ListItemButton>
+
+               <Collapse in={rolesDropMenu} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                        <ListItemText sx={{ display: 'list-item' }} primary="Permisos" />
+                     </ListItemButton>
+
+                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                        <ListItemText sx={{ display: 'list-item' }} primary="Privilegios" />
+                     </ListItemButton>
+
+                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                        <ListItemText sx={{ display: 'list-item' }} primary="Roles" />
+                     </ListItemButton>
+                  </List>
+               </Collapse>
+
+               <ListItemButton onClick={handleUsersDropMenu}>
+                  <ListItemIcon>
+                     <ManageAccountsIcon className="text-white" />
+                  </ListItemIcon>
+
+                  <ListItemText primary="Usuarios" />
+
+                  {usersDropMenu ? <ExpandLess /> : <ExpandMore />}
+               </ListItemButton>
+
+               <Collapse in={usersDropMenu} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                        <ListItemText sx={{ display: 'list-item' }} primary="Usuarios" />
+                     </ListItemButton>
+
+                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                        <ListItemText sx={{ display: 'list-item' }} primary="Pendientes" />
+                     </ListItemButton>
+                  </List>
+               </Collapse>
+
+               <ListItemButton onClick={handleVehiclesDropMenu}>
+                  <ListItemIcon>
+                     <LocalShippingIcon className="text-white" />
+                  </ListItemIcon>
+
+                  <ListItemText primary="Vehículos" />
+
+                  {vehiclesDropMenu ? <ExpandLess /> : <ExpandMore />}
+               </ListItemButton>
+
+               <Collapse in={vehiclesDropMenu} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                        <ListItemText sx={{ display: 'list-item' }} primary="Vehículos" />
+                     </ListItemButton>
+
+                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                        <ListItemText sx={{ display: 'list-item' }} primary="Tipos Vehículos" />
+                     </ListItemButton>
+                  </List>
+               </Collapse>
+            </List>
+
          </div >
          <div className="flex flex-col flex-1 overflow-hidden">
             {/* Contenido principal */}
@@ -287,3 +395,14 @@ export const AdminSideMenu = ({ toggleMenu }) => {
       </div >
    );
 }
+
+
+
+
+
+
+
+
+
+
+
