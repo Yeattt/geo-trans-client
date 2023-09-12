@@ -1,11 +1,7 @@
 import { useState } from 'react';
+import Button from '@mui/material/Button';
 
-import { Link } from 'react-router-dom';
-
-import { MdDeleteForever } from 'react-icons/md';
-import { FaEdit } from 'react-icons/fa';
-import { TbInfoHexagon } from 'react-icons/tb';
-
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
 import { useAllowedPrivileges } from '../../../../hooks';
 
@@ -67,10 +63,10 @@ export const ClientsCard = ({ client }) => {
                isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={client} />
             } */}
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
+            <span>
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
+                  <Button onClick={handleUpdateClick}  variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>
                }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Clients" moduleInfo={client} handleUpdateClick={handleUpdateClick} />
             </span>
