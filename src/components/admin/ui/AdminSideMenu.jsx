@@ -34,9 +34,9 @@ import { useAuthStore } from '../../../hooks';
 import { geoTransApi } from '../../../api';
 
 export const AdminSideMenu = ({ toggleMenu }) => {
-   const [vehiclesDropMenu, setVehiclesDropMenu] = useState(true);
-   const [rolesDropMenu, setRolesDropMenu] = useState(true);
-   const [usersDropMenu, setUsersDropMenu] = useState(true);
+   const [vehiclesDropMenu, setVehiclesDropMenu] = useState(false);
+   const [rolesDropMenu, setRolesDropMenu] = useState(false);
+   const [usersDropMenu, setUsersDropMenu] = useState(false);
    const isSideMenuOpen = useSelector((state) => state.sideMenu);
    const { user } = useAuthStore();
    const [userPermissions, setUserPermissions] = useState([]);
