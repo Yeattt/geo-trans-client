@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
@@ -17,9 +17,14 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
 import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StarBorder from '@mui/icons-material/StarBorder';
 
 import { RiCloseCircleLine } from 'react-icons/ri';
@@ -91,301 +96,160 @@ export const AdminSideMenu = ({ toggleMenu }) => {
                </span>
             </div>
 
-
-            {/* <nav className="mt-8 flex justify-end">
-               <div className="space-y-1 w-[95%]">
-                  {
-                     hasPermission('usuarios') && (
-                        <NavLink to="/admin/users" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                           ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <FaUsersCog />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Usuarios
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('usuarios') && (
-                        <NavLink to="/admin/users/allow" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <FaUsersCog />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Usuarios Pendientes
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('clientes') && (
-                        <NavLink to="/admin/clients" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <RiUserStarFill />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Clientes
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('compañias') && (
-                        <NavLink to="/admin/companies" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <BsBuildingFillGear />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Compañías
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('permisos') && (
-                        <NavLink to="/admin/permissions" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <BsClipboard2CheckFill />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Permisos
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('privilegios') && (
-                        <NavLink to="/admin/privileges" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <BsClipboard2CheckFill />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Privilegios
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('cotizaciones') && (
-                        <NavLink to="/admin/quotes" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <FaMoneyCheckAlt />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Cotizaciones
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('roles') && (
-                        <NavLink to="/admin/roles" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <FaUserCog />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Roles
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('viajes') && (
-                        <NavLink to="/admin/trips" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <IoSubway />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Viajes
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('vehiculos') && (
-                        <NavLink to="/admin/vehicles" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <FaTruck />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Vehículos
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('tipos') && (
-                        <NavLink to="/admin/trucks/types" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <FaTruckLoading />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Tipos Vehículos
-                           </span>
-                        </NavLink>
-                     )
-                  }
-
-                  {
-                     hasPermission('agenda') && (
-                        <NavLink to="/admin/calendar" className={
-                           ({ isActive }) =>
-                              `transition-all cursor-pointer rounded-l-full flex items-center px-4 py-2 font-bold
-                        ${isActive ? 'bg-gray-200' : 'text-white hover:bg-primaryHover hover:text-white '}`}
-                        >
-                           <span className="w-7 h-7 mr-3 text-xl flex items-center justify-center">
-                              <TbCalendarStats />
-                           </span>
-
-                           <span className="text-[15px]">
-                              Agenda
-                           </span>
-                        </NavLink>
-                     )
-                  }
-               </div>
-            </nav> */}
-
             <List
                className="bg-primary text-white"
                component="nav"
                aria-labelledby="nested-list-subheader"
             >
-               <ListItemButton onClick={handleRolesDropMenu}>
-                  <ListItemIcon>
-                     <EngineeringIcon className="text-white" />
-                  </ListItemIcon>
+               {hasPermission('roles') && (
+                  <ListItemButton onClick={handleRolesDropMenu}>
+                     <ListItemIcon>
+                        <EngineeringIcon className="text-white" />
+                     </ListItemIcon>
 
-                  <ListItemText primary="Roles" />
+                     <ListItemText primary="Roles" />
 
-                  {rolesDropMenu ? <ExpandLess /> : <ExpandMore />}
-               </ListItemButton>
+                     {rolesDropMenu ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+               )}
 
                <Collapse in={rolesDropMenu} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
-                        <ListItemText sx={{ display: 'list-item' }} primary="Permisos" />
-                     </ListItemButton>
+                     <Link to="/admin/permissions">
+                        <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                           <ListItemText sx={{ display: 'list-item' }} primary="Permisos" />
+                        </ListItemButton>
+                     </Link>
 
-                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
-                        <ListItemText sx={{ display: 'list-item' }} primary="Privilegios" />
-                     </ListItemButton>
+                     <Link to="/admin/privileges">
+                        <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                           <ListItemText sx={{ display: 'list-item' }} primary="Privilegios" />
+                        </ListItemButton>
+                     </Link>
 
-                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
-                        <ListItemText sx={{ display: 'list-item' }} primary="Roles" />
-                     </ListItemButton>
+                     <Link to="/admin/roles">
+                        <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                           <ListItemText sx={{ display: 'list-item' }} primary="Roles" />
+                        </ListItemButton>
+                     </Link>
                   </List>
                </Collapse>
 
-               <ListItemButton onClick={handleUsersDropMenu}>
-                  <ListItemIcon>
-                     <ManageAccountsIcon className="text-white" />
-                  </ListItemIcon>
+               {hasPermission('usuarios') && (
+                  <ListItemButton onClick={handleUsersDropMenu}>
+                     <ListItemIcon>
+                        <ManageAccountsIcon className="text-white" />
+                     </ListItemIcon>
 
-                  <ListItemText primary="Usuarios" />
+                     <ListItemText primary="Usuarios" />
 
-                  {usersDropMenu ? <ExpandLess /> : <ExpandMore />}
-               </ListItemButton>
+                     {usersDropMenu ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+               )}
 
                <Collapse in={usersDropMenu} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
-                        <ListItemText sx={{ display: 'list-item' }} primary="Usuarios" />
-                     </ListItemButton>
+                     <Link to="/admin/users">
+                        <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                           <ListItemText sx={{ display: 'list-item' }} primary="Usuarios" />
+                        </ListItemButton>
+                     </Link>
 
-                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
-                        <ListItemText sx={{ display: 'list-item' }} primary="Pendientes" />
-                     </ListItemButton>
+                     <Link to="/admin/users/allow">
+                        <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                           <ListItemText sx={{ display: 'list-item' }} primary="Pendientes" />
+                        </ListItemButton>
+                     </Link>
                   </List>
                </Collapse>
 
-               <ListItemButton onClick={handleVehiclesDropMenu}>
-                  <ListItemIcon>
-                     <LocalShippingIcon className="text-white" />
-                  </ListItemIcon>
+               {hasPermission('vehiculos') && (
+                  <ListItemButton onClick={handleVehiclesDropMenu}>
+                     <ListItemIcon>
+                        <LocalShippingIcon className="text-white" />
+                     </ListItemIcon>
 
-                  <ListItemText primary="Vehículos" />
+                     <ListItemText primary="Vehículos" />
 
-                  {vehiclesDropMenu ? <ExpandLess /> : <ExpandMore />}
-               </ListItemButton>
+                     {vehiclesDropMenu ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+               )}
 
                <Collapse in={vehiclesDropMenu} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
-                        <ListItemText sx={{ display: 'list-item' }} primary="Vehículos" />
-                     </ListItemButton>
+                     <Link to="/admin/vehicles">
+                        <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                           <ListItemText sx={{ display: 'list-item' }} primary="Vehículos" />
+                        </ListItemButton>
+                     </Link>
 
-                     <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
-                        <ListItemText sx={{ display: 'list-item' }} primary="Tipos Vehículos" />
-                     </ListItemButton>
+                     <Link to="/admin/trucks/types">
+                        <ListItemButton sx={{ pl: 11, listStyleType: 'disc' }}>
+                           <ListItemText sx={{ display: 'list-item' }} primary="Tipos Vehículos" />
+                        </ListItemButton>
+                     </Link>
                   </List>
                </Collapse>
+
+               {hasPermission('clientes') && (
+                  <Link to="/admin/clients">
+                     <ListItemButton>
+                        <ListItemIcon>
+                           <SupervisedUserCircleIcon className="text-white" />
+                        </ListItemIcon>
+
+                        <ListItemText primary="Clientes" className="text-white" />
+                     </ListItemButton>
+                  </Link>
+               )}
+
+               {hasPermission('compañias') && (
+                  <Link to="/admin/companies">
+                     <ListItemButton>
+                        <ListItemIcon>
+                           <ApartmentIcon className="text-white" />
+                        </ListItemIcon>
+
+                        <ListItemText primary="Compañías" className="text-white" />
+                     </ListItemButton>
+                  </Link>
+               )}
+
+               {hasPermission('viajes') && (
+                  <Link to="/admin/trips">
+                     <ListItemButton>
+                        <ListItemIcon>
+                           <ModeOfTravelIcon className="text-white" />
+                        </ListItemIcon>
+
+                        <ListItemText primary="Viajes" className="text-white" />
+                     </ListItemButton>
+                  </Link>
+               )}
+
+               {hasPermission('cotizaciones') && (
+                  <Link to="/admin/quotes">
+                     <ListItemButton>
+                        <ListItemIcon>
+                           <RequestQuoteIcon className="text-white" />
+                        </ListItemIcon>
+
+                        <ListItemText primary="Cotizaciones" className="text-white" />
+                     </ListItemButton>
+                  </Link>
+               )}
+
+               {hasPermission('agenda') && (
+                  <Link to="/admin/calendar">
+                     <ListItemButton>
+                        <ListItemIcon>
+                           <CalendarMonthIcon className="text-white" />
+                        </ListItemIcon>
+
+                        <ListItemText primary="Agenda" className="text-white" />
+                     </ListItemButton>
+                  </Link>
+               )}
             </List>
 
          </div >
