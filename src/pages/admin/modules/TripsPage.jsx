@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { AdminLayout, CreateFormModal, AdminNavbar, AdminElementsCard, TripsSearcher } from '../../../components';
+import { AdminLayout, CreateFormModal, AdminNavbar, AdminElementsCard, TripsSearcher, ReportingModal } from '../../../components';
 import { useGetApiData, useTripsStore } from '../../../hooks';
 import { TripsInfoTable } from '../../../components/admin/modules/trips/TripsInfoTable';
 import { TbReportAnalytics } from 'react-icons/tb';
