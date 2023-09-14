@@ -65,8 +65,8 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
          <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
-                  <label htmlFor="documento" className="text-purplePz font-semibold block mb-2">
-                     Documento:
+                  <label htmlFor="documento" className="text-black font-semibold block mb-2">
+                     Documento: <small className='text-red text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -74,14 +74,14 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      id="documento"
                      name="documento"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Documento..."
+                     
                   />
 
-                  <ErrorMessage name="documento" component="div" className="text-red" />
+                  <ErrorMessage name="documento" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="nombre" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="nombre" className="text-black font-semibold block mb-2">
                      Nombre: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -90,14 +90,14 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      id="nombre"
                      name="nombre"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Nombre..."
+                     
                   />
 
-                  <ErrorMessage name="nombre" component="div" className="text-red" />
+                  <ErrorMessage name="nombre" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="edad" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="edad" className="text-black font-semibold block mb-2">
                      Edad: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -106,14 +106,14 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      id="edad"
                      name="edad"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Edad..."
+                     
                   />
 
-                  <ErrorMessage name="edad" component="div" className="text-red" />
+                  <ErrorMessage name="edad" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="nombrePlataforma" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="nombrePlataforma" className="text-black font-semibold block mb-2">
                      Nombre Plataforma: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -121,15 +121,14 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      type="text"
                      id="nombrePlataforma"
                      name="nombrePlataforma"
-                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="nombrePlataforma..."
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"                     
                   />
 
-                  <ErrorMessage name="nombrePlataforma" component="div" className="text-red" />
+                  <ErrorMessage name="nombrePlataforma" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="linkPlataforma" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="linkPlataforma" className="text-black font-semibold block mb-2">
                      Link Plataforma: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -138,14 +137,14 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      id="linkPlataforma"
                      name="linkPlataforma"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="linkPlataforma..."
+                     
                   />
 
-                  <ErrorMessage name="linkPlataforma" component="div" className="text-red" />
+                  <ErrorMessage name="linkPlataforma" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="email" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="email" className="text-black font-semibold block mb-2">
                      Email: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -154,14 +153,14 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      id="email"
                      name="email"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Email..."
+                     
                   />
 
-                  <ErrorMessage name="email" component="div" className="text-red" />
+                  <ErrorMessage name="email" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="contrasena" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="contrasena" className="text-black font-semibold block mb-2">
                      Contraseña: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -170,14 +169,14 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      id="contrasena"
                      name="contrasena"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Contraseña..."
+                     
                   />
 
-                  <ErrorMessage name="contrasena" component="div" className="text-red" />
+                  <ErrorMessage name="contrasena" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="roleId" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="roleId" className="text-black font-semibold block mb-2">
                      Rol: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -199,11 +198,11 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      }
                   </Field>
 
-                  <ErrorMessage name="roleId" component="div" className="text-red" />
+                  <ErrorMessage name="roleId" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="companyId" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="companyId" className="text-black font-semibold block mb-2">
                      Compañía: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -225,11 +224,11 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      }
                   </Field>
 
-                  <ErrorMessage name="companyId" component="div" className="text-red" />
+                  <ErrorMessage name="companyId" component="div" className="text-red-500" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="vehicleId" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="vehicleId" className="text-black font-semibold block mb-2">
                      Vehículo: <small className='text-red text-2xl'>*</small>
                   </label>
 
@@ -251,7 +250,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
                      }
                   </Field>
 
-                  <ErrorMessage name="vehicleId" component="div" className="text-red" />
+                  <ErrorMessage name="vehicleId" component="div" className="text-red-500" />
                </div>
             </div>
 

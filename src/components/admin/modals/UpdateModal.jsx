@@ -35,7 +35,7 @@ export const UpdateModal = ({ isOpenUpdate, module, moduleInfo, handleUpdateClic
                 <div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 left-0 flex justify-center items-center overflow-hidden z-30">
                     <div className="w-2/3 h-auto bg-purplePz rounded-md">
                         <div className="w-full h-[55px] bg-primary rounded-md flex items-center justify-between px-2">
-                            <h2 className="text-xl text-white font-semibold">Detalles</h2>
+                            <h2 className="text-xl text-white font-semibold">Editar</h2>
                             <span
                                 className="w-8 h-8 text-lg text-white bg-red-600 hover:bg-red-700 transition-all cursor-pointer rounded-full flex items-center justify-center"
                                 onClick={() => handleUpdateClick(false)}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-
-import { FaEdit } from 'react-icons/fa';
-import { TbInfoHexagon } from 'react-icons/tb';
+import Button from '@mui/material/Button';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import InfoIcon from '@mui/icons-material/Info';
 import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
 import { InfoModal, DeleteModal, UpdateModal } from '../../';
 
@@ -86,18 +87,20 @@ export const UsersCard = ({ user }) => {
             }
          </td>
 
-         <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-            {
-               <a href={user.linkPlataforma}>Plataforma</a>
-            }
-         </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
+
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+               {
+                  <a href={user.linkPlataforma}>
+                     <Button variant="outlined" endIcon={<LocationOnIcon />}>Plataforma</Button>
+                  </a>
+               }
+            </span>
+
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+               <Button onClick={() => handleIsInfoModalActive(true)} variant="outlined" endIcon={<InfoIcon />}>Info</Button>
+
             </span>
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
@@ -108,7 +111,7 @@ export const UsersCard = ({ user }) => {
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
+                  <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>
                }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Users" moduleInfo={user} handleUpdateClick={handleUpdateClick} />
             </span>
