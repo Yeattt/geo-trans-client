@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
-
+import Button from '@mui/material/Button';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import { DeleteModal, UpdateModal } from '../../';
 import { useAllowedPrivileges } from '../../../../hooks';
 
@@ -30,12 +31,12 @@ export const VehiclesTypeCard = ({ vehicleType }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{vehicleType.id}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{vehicleType.nombre}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-            {
+         {
                vehicleType.estado
                   ?
-                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  <button  className="bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
                   :
-                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+                  <button className="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
             }
             {
                isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={vehicleType} value={'trucks/types'} />
@@ -46,7 +47,7 @@ export const VehiclesTypeCard = ({ vehicleType }) => {
             <span className="text-2xl text-primary hover:text-purplePzHover cursor-pointer mr">
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
+                  <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>
                }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="VehiclesType" moduleInfo={vehicleType} handleUpdateClick={handleUpdateClick} />
             </span>

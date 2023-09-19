@@ -1,9 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useUpdateForm } from '../../../../hooks';
+import { useEffect, useState } from 'react';
+import { useUpdateForm, useGetApiData, useUploadFiles } from '../../../../hooks';
 
 
 export const VehiclesUpdate = ({ moduleInfo }) => {
+    const { data: vehiclesType, isLoading: isVehiclesTypeLoading } = useGetApiData('/trucks/types');
+   const [vehiclesTypeList, setVehiclesTypeList] = useState([]);
+
     const validationSchema = Yup.object().shape({
         tipoCamion: Yup.string()
             .max(15, 'Máximo 15 caracteres'),
@@ -21,6 +25,7 @@ export const VehiclesUpdate = ({ moduleInfo }) => {
         soat: Yup.string()
     });
 
+    const { fileData, handleFileChange, uploadFiles } = useUploadFiles();
     const { initialValues, onSubmitForm } = useUpdateForm({
         id: moduleInfo.id,
         tipoCamion: moduleInfo.tipoCamion,
@@ -33,6 +38,39 @@ export const VehiclesUpdate = ({ moduleInfo }) => {
         soat: moduleInfo.soat
     }, 'vehicles');
 
+
+    useEffect(() => {
+        if (!isVehiclesTypeLoading) {
+           setVehiclesTypeList(vehiclesType.vehiclesType);
+        }
+     }, [isVehiclesTypeLoading]);
+  
+     const handleFormSubmit = async (values) => {
+        try {
+           const uploadedFilesData = await uploadFiles();
+  
+           //* Este hook nos devuelve un arreglo con los nombres de los archivos, entonces agarramos los datos
+           //* Que tenemos inicialmente en los initialValues, y le pasamos los nombres de los archivos que nos
+           //* Retorna el hook, ya que al subir archivos se les cambia el nombre y se genera un nombre único
+  
+           // Mapeamos los nombres de archivos en uploadedFilesData.files a un objeto para facilitar la asignación
+           const finalFormValues = {
+              ...values,
+              soat: uploadedFilesData?.files[0].nombre,
+              tarjetaPropiedad: uploadedFilesData?.files[1].nombre,
+              tecnomecanica: uploadedFilesData?.files[2].nombre
+           };
+  
+           console.log(finalFormValues);
+  
+           //* Cuando todo se completa satisfactoriamente, se llama la función para crear el vehículo
+           onSubmitForm(finalFormValues);
+        } catch (error) {
+           console.error('Error al enviar el formulario:', error);
+        }
+     };
+  
+
     return (
         <Formik
             initialValues={initialValues}
@@ -40,108 +78,151 @@ export const VehiclesUpdate = ({ moduleInfo }) => {
             onSubmit={(values) => onSubmitForm(values)}
         >
             <Form>
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="mb-4">
-                        <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2" on>
-                        tipoCamion:
-                        </label>
-                        <Field
-                            type="text"
-                            id="tipoCamion"
-                            name="tipoCamion"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+            <div className="grid grid-cols-2 gap-4">
+               <div className="mb-4">
+                  <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
+                     Tipo Camión:
+                  </label>
 
-                        />
-                        <ErrorMessage name="documento" component="div" className="text-red-500" />
-                    </div>
+                  <Field
+                     as="select"
+                     id="tipoCamion"
+                     name="tipoCamion"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Tipo Camión..."
+                  >
+                     <option value="" disabled defaultValue>
+                        Tipo Camión...
+                     </option>
 
-                    <div className="mb-4">
-                        <label htmlFor="modelo" className="text-black font-semibold block mb-2">
-                        modelo:
-                        </label>
-                        <Field
-                            type="text"
-                            id="modelo"
-                            name="modelo"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        />
-                        <ErrorMessage name="modelo" component="div" className="text-red-500" />
-                    </div>
+                     {vehiclesTypeList.map(vehicleType => (
+                        vehicleType.estado && (
+                           <option value={vehicleType.id} key={vehicleType.id}>
+                              {vehicleType.nombre}
+                           </option>
+                        )
+                     ))}
+                  </Field>
 
-                    <div className="mb-4">
-                        <label htmlFor="marca" className="text-black font-semibold block mb-2">
-                            Razon Social:
-                        </label>
-                        <Field
-                            type="text"
-                            id="marca"
-                            name="marca"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        />
-                        <ErrorMessage name="marca" component="div" className="text-red-500" />
-                    </div>
+                  <ErrorMessage name="tipoCamion" component="div" className="text-red-600" />
+               </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="placa" className="text-black font-semibold block mb-2">
-                            placa:
-                        </label>
-                        <Field
-                            type="text"
-                            id="placa"
-                            name="placa"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        />
-                        <ErrorMessage name="placa" component="div" className="text-red-500" />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="placaSemirremolque" className="text-black font-semibold block mb-2">
-                            placaSemirremolque:
-                        </label>
-                        <Field
-                            type="text"
-                            id="placaSemirremolque"
-                            name="placaSemirremolque"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        />
-                        <ErrorMessage name="placa" component="div" className="text-red-500" />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="tarjetaPropiedad" className="text-black font-semibold block mb-2">
-                            tarjetaPropiedad:
-                        </label>
-                        <Field
-                            type="text"
-                            id="tarjetaPropiedad"
-                            name="tarjetaPropiedad"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        />
-                        <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red-500" />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="tecnomecanica" className="text-black font-semibold block mb-2">
-                            tecnomecanica:
-                        </label>
-                        <Field
-                            type="text"
-                            id="tecnomecanica"
-                            name="tecnomecanica"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        />
-                        <ErrorMessage name="tecnomecanica" component="div" className="text-red-500" />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="soat" className="text-black font-semibold block mb-2">
-                            soat:
-                        </label>
-                        <Field
-                            type="text"
-                            id="soat"
-                            name="soat"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                        />
-                        <ErrorMessage name="soat" component="div" className="text-red-500" />
-                    </div>
-                </div>
+               <div className="mb-4">
+                  <label htmlFor="modelo" className="text-black font-semibold block mb-2">
+                     Modelo:
+                  </label>
+
+                  <Field
+                     type="number"
+                     id="modelo"
+                     name="modelo"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Modelo..."
+                  />
+
+                  <ErrorMessage name="modelo" component="div" className="text-red-600" />
+               </div>
+
+
+               <div className="mb-4">
+                  <label htmlFor="marca" className="text-black font-semibold block mb-2">
+                     Marca:
+                  </label>
+
+                  <Field
+                     type="text"
+                     id="marca"
+                     name="marca"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Marca..."
+                  />
+
+                  <ErrorMessage name="marca" component="div" className="text-red-600" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="placa" className="text-black font-semibold block mb-2">
+                     Placa:
+                  </label>
+
+                  <Field
+                     type="text"
+                     id="placa"
+                     name="placa"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Placa..."
+                  />
+
+                  <ErrorMessage name="placa" component="div" className="text-red-600" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="placaSemirremolque" className="text-black font-semibold block mb-2">
+                     Placa semirremolque:
+                  </label>
+
+                  <Field
+                     type="text"
+                     id="placaSemirremolque"
+                     name="placaSemirremolque"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     placeholder="Placa semirremolque..."
+                  />
+
+                  <ErrorMessage name="placaSemirremolque" component="div" className="text-red-600" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="tarjetaPropiedad" className="text-black font-semibold block mb-2">
+                     Tarjeta propiedad:
+                  </label>
+
+                  {/* Input para subir archivo */}
+                  <input
+                     type="file"
+                     id="tarjetaPropiedad"
+                     name="tarjetaPropiedad"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     onChange={(event) => handleFileChange('tarjetaPropiedad', event)}
+                  />
+
+                  <ErrorMessage name="tarjetaPropiedad" component="div" className="text-red-600" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="tecnomecanica" className="text-black font-semibold block mb-2">
+                     Tecnomecanica:
+                  </label>
+
+                  {/* Input para subir archivo */}
+                  <input
+                     type="file"
+                     id="tecnomecanica"
+                     name="tecnomecanica"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     onChange={(event) => handleFileChange('tecnomecanica', event)}
+                  />
+
+                  <ErrorMessage name="tecnomecanica" component="div" className="text-red-600" />
+               </div>
+
+               <div className="mb-4">
+                  <label htmlFor="soat" className="text-black font-semibold block mb-2">
+                     Soat:
+                  </label>
+
+                  {/* Input para subir archivo */}
+                  <input
+                     type="file"
+                     id="soat"
+                     name="soat"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     onChange={(event) => handleFileChange('soat', event)}
+                  />
+
+                  <ErrorMessage name="soat" component="div" className="text-red-600" />
+               </div>
+            </div>
 
                 <div className="text-center mt-2">
                     <button

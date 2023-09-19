@@ -44,7 +44,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                             type="number"
                             id="nit"
                             name="nit"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
                             
                         />
                         <ErrorMessage name="nit" component="div" className="text-red-500" />
@@ -58,7 +58,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                             type="text"
                             id="razonSocial"
                             name="razonSocial"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
                         />
                         <ErrorMessage name="razonSocial" component="div" className="text-red-500" />
                     </div>
@@ -71,7 +71,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                             type="text"
                             id="nombreEmpresa"
                             name="nombreEmpresa"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
                         />
                         <ErrorMessage name="nombreEmpresa" component="div" className="text-red-500" />
                     </div>
@@ -84,7 +84,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                             type="number"
                             id="telefono"
                             name="telefono"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
                         />
                         <ErrorMessage name="telefono" component="div" className="text-red-500" />
                     </div>
@@ -96,7 +96,7 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                             type="text"
                             id="duenoPoliza"
                             name="duenoPoliza"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
                         />
                         <ErrorMessage name="duenoPoliza" component="div" className="text-red-500" />
                     </div>

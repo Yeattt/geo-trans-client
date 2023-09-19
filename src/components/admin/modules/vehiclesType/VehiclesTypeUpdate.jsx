@@ -29,7 +29,7 @@ export const VehiclesTypeUpdate = ({ moduleInfo }) => {
                   type="text"
                   id="nombre"
                   name="nombre"
-                  className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                  className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
                />
 
                <ErrorMessage name="nombre" component="div" className="text-red-500" />
