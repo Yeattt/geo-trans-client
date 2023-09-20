@@ -88,7 +88,7 @@ export const VehiclesCreateForm = () => {
          <Form>
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
-                  <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="tipoCamion" className="text-black block mb-2">
                      Tipo Camión: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
@@ -97,7 +97,7 @@ export const VehiclesCreateForm = () => {
                      id="tipoCamion"
                      name="tipoCamion"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Tipo Camión..."
+                     
                   >
                      <option value="" disabled defaultValue>
                         Tipo Camión...
@@ -116,7 +116,7 @@ export const VehiclesCreateForm = () => {
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="modelo" className="text-primary font-semibold block mb-2">
+                  <label htmlFor="modelo" className="text-black block mb-2">
                      Modelo: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
@@ -125,7 +125,7 @@ export const VehiclesCreateForm = () => {
                      id="modelo"
                      name="modelo"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Modelo..."
+                     
                   />
 
                   <ErrorMessage name="modelo" component="div" className="text-red-600" />
@@ -133,7 +133,7 @@ export const VehiclesCreateForm = () => {
 
 
                <div className="mb-4">
-                  <label htmlFor="marca" className="text-primary font-semibold block mb-2">
+                  <label htmlFor="marca" className="text-black block mb-2">
                      Marca: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
@@ -142,14 +142,14 @@ export const VehiclesCreateForm = () => {
                      id="marca"
                      name="marca"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Marca..."
+                     
                   />
 
                   <ErrorMessage name="marca" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="placa" className="text-primary font-semibold block mb-2">
+                  <label htmlFor="placa" className="text-black block mb-2">
                      Placa: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
@@ -158,14 +158,14 @@ export const VehiclesCreateForm = () => {
                      id="placa"
                      name="placa"
                      className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Placa..."
+                     
                   />
 
                   <ErrorMessage name="placa" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="placaSemirremolque" className="text-primary font-semibold block mb-2">
+                  <label htmlFor="placaSemirremolque" className="text-black block mb-2">
                      Placa semirremolque: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
@@ -173,15 +173,14 @@ export const VehiclesCreateForm = () => {
                      type="text"
                      id="placaSemirremolque"
                      name="placaSemirremolque"
-                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                     placeholder="Placa semirremolque..."
+                     className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"                     
                   />
 
                   <ErrorMessage name="placaSemirremolque" component="div" className="text-red-600" />
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="tarjetaPropiedad" className="text-primary font-semibold block mb-2">
+                  <label htmlFor="tarjetaPropiedad" className="text-black block mb-2">
                      Tarjeta propiedad: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
@@ -198,7 +197,7 @@ export const VehiclesCreateForm = () => {
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="tecnomecanica" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="tecnomecanica" className="text-black block mb-2">
                      Tecnomecanica: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
@@ -215,7 +214,7 @@ export const VehiclesCreateForm = () => {
                </div>
 
                <div className="mb-4">
-                  <label htmlFor="soat" className="text-purplePz font-semibold block mb-2">
+                  <label htmlFor="soat" className="text-black block mb-2">
                      Soat: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 

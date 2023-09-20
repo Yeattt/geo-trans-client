@@ -62,163 +62,164 @@ export const TripsUpdate = ({ moduleInfo }) => {
         >
             <Form>
                 <div className="grid grid-cols-2 gap-4">
-                    <div className="mb-4">
-                        <label htmlFor="numeroRemesa" className="text-black font-semibold block mb-2" on>
+                <div className="mb-4">
+                        <label htmlFor="numeroRemesa" className="text-black font-semibold text-sm block mb-2">
                             Numero Remesa:
                         </label>
                         <Field
                             type="text"
                             id="numeroRemesa"
                             name="numeroRemesa"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
-                        <ErrorMessage name="numeroRemesa" component="div" className="text-red-500" />
+                        <ErrorMessage name="numeroRemesa" component="div" className="text-red-500 text-sm" />
                     </div>
 
                     <div className="mb-4">
-                        <label htmlFor="unidadMedida" className="text-black font-semibold block mb-2">
+                        <label htmlFor="unidadMedida" className="text-gray-600 font-semibold text-sm block mb-2">
                             Unidad Medida:
                         </label>
                         <Field
                             type="text"
                             id="unidadMedida"
                             name="unidadMedida"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
-                        <ErrorMessage name="unidadMedida" component="div" className="text-red-500" />
+                        <ErrorMessage name="unidadMedida" component="div" className="text-red-500 text-sm" />
                     </div>
 
+
+
                     <div className="mb-4">
-                        <label htmlFor="cantidad" className="text-black font-semibold block mb-2">
+                        <label htmlFor="cantidad" className="text-black font-semibold text-sm block mb-2">
                             Cantidad:
                         </label>
                         <Field
                             type="text"
                             id="cantidad"
                             name="cantidad"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="cantidad" component="div" className="text-red-500" />
                     </div>
 
                     <div className="mb-4">
-                        <label htmlFor="naturaleza" className="text-black font-semibold block mb-2">
+                        <label htmlFor="naturaleza" className="text-black font-semibold text-sm block mb-2">
                             Naturaleza:
                         </label>
                         <Field
                             type="text"
                             id="naturaleza"
                             name="naturaleza"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="naturaleza" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="empaque" className="text-black font-semibold block mb-2">
+                        <label htmlFor="empaque" className="text-black font-semibold text-sm block mb-2">
                             Empaque:
                         </label>
                         <Field
                             type="text"
                             id="empaque"
                             name="empaque"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="empaque" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="codigoProducto" className="text-black font-semibold block mb-2">
+                        <label htmlFor="codigoProducto" className="text-black font-semibold text-sm block mb-2">
                             Codigo Producto:
                         </label>
                         <Field
                             type="text"
                             id="codigoProducto"
                             name="codigoProducto"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="codigoProducto" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="productoTransportar" className="text-black font-semibold block mb-2">
+                        <label htmlFor="productoTransportar" className="text-black font-semibold text-sm block mb-2">
                             Producto Transportar:
                         </label>
                         <Field
                             type="text"
                             id="productoTransportar"
                             name="productoTransportar"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="productoTransportar" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="origen" className="text-black font-semibold block mb-2">
+                        <label htmlFor="origen" className="text-black font-semibold text-sm block mb-2">
                             Origen:
                         </label>
                         <Field
                             type="text"
                             id="origen"
                             name="origen"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="origen" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="destino" className="text-black font-semibold block mb-2">
+                        <label htmlFor="destino" className="text-black font-semibold text-sm block mb-2">
                             Destino:
                         </label>
                         <Field
                             type="text"
                             id="destino"
                             name="destino"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="destino" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
+                        <label htmlFor="saldoPagar" className="text-black font-semibold text-sm block mb-2">
                             Saldo Pagar:
                         </label>
                         <Field
                             type="text"
                             id="saldoPagar"
                             name="saldoPagar"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="saldoPagar" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
+                        <label htmlFor="valorPagar" className="text-black font-semibold text-sm block mb-2">
                             Valor Pagar:
                         </label>
                         <Field
                             type="text"
                             id="valorPagar"
                             name="valorPagar"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="valorPagar" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="cliente" className="text-black font-semibold block mb-2">
+                        <label htmlFor="cliente" className="text-black font-semibold text-sm block mb-2">
                             Cliente:
                         </label>
                         <Field
                             type="text"
                             id="cliente"
                             name="cliente"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="cliente" component="div" className="text-red-500" />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="tipoViaje" className="text-black font-semibold block mb-2">
+                        <label htmlFor="tipoViaje" className="text-black font-semibold text-sm block mb-2">
                             Tipo Viaje:
                         </label>
                         <Field
                             type="text"
                             id="tipoViaje"
                             name="tipoViaje"
-                            className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                            className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition text-sm"
                         />
                         <ErrorMessage name="tipoViaje" component="div" className="text-red-500" />
                     </div>

@@ -87,8 +87,8 @@ export const ClientsUpdate = ({ moduleInfo }) => {
 
                 <div className="text-center mt-2">
                     <button
-                        className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[20%] rounded-full"
                         type="submit"
+                        className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
                     >
                         Actualizar
                     </button>

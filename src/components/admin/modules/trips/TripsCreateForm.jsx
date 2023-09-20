@@ -101,7 +101,7 @@ export const TripsCreateForm = () => {
                <div className="bg-white rounded-md w-[100%] flex flex-col justify-between px-2 py-2">
                   <div className="max-h-[800px] overflow-y-scroll grid grid-cols-3 gap-3">
                      <div className="mb-4">
-                        <label htmlFor="tipoViaje" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="tipoViaje" className="text-black font-semibold block mb-2">
                            Tipo viaje: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -111,7 +111,6 @@ export const TripsCreateForm = () => {
                               id="tipoViaje"
                               name="tipoViaje"
                               className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                              placeholder="Tipo de viaje..."
                            >
                               <option value="" disabled defaultValue>
                                  Tipo de viaje...
@@ -126,7 +125,7 @@ export const TripsCreateForm = () => {
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="clienteId" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="clienteId" className="text-black font-semibold block mb-2">
                            Cliente: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -135,7 +134,6 @@ export const TripsCreateForm = () => {
                            id="cliente"
                            name="cliente"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Cliente..."
                         >
                            <option value="" disabled defaultValue>
                               Cliente...
@@ -148,11 +146,11 @@ export const TripsCreateForm = () => {
                            ))}
                         </Field>
 
-                        <ErrorMessage name="cliente" component="div" className="tet-red-50x0" />
+                        <ErrorMessage name="cliente" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="numeroRemesa" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="numeroRemesa" className="text-black font-semibold block mb-2">
                            Número de remesa: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -161,14 +159,13 @@ export const TripsCreateForm = () => {
                            id="numeroRemesa"
                            name="numeroRemesa"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Número de remesa..."
                         />
 
                         <ErrorMessage name="numeroRemesa" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="unidadMedida" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="unidadMedida" className="text-black font-semibold block mb-2">
                            Unidad de medida: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -177,7 +174,6 @@ export const TripsCreateForm = () => {
                            id="unidadMedida"
                            name="unidadMedida"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Unidad de medida..."
                         >
                            <option value="" disabled defaultValue>
                               Unidad de medida...
@@ -192,7 +188,7 @@ export const TripsCreateForm = () => {
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="cantidad" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="cantidad" className="text-black font-semibold block mb-2">
                            Cantidad: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -201,14 +197,13 @@ export const TripsCreateForm = () => {
                            id="cantidad"
                            name="cantidad"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Cantidad..."
                         />
 
                         <ErrorMessage name="cantidad" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="naturaleza" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="naturaleza" className="text-black font-semibold block mb-2">
                            Naturaleza: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -217,14 +212,13 @@ export const TripsCreateForm = () => {
                            id="naturaleza"
                            name="naturaleza"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Naturaleza..."
                         />
 
                         <ErrorMessage name="naturaleza" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="empaque" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="empaque" className="text-black font-semibold block mb-2">
                            Empaque: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -233,7 +227,6 @@ export const TripsCreateForm = () => {
                            id="empaque"
                            name="empaque"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Empaque..."
                         >
                            <option value="" disabled defaultValue>
                               Empaque...
@@ -263,7 +256,7 @@ export const TripsCreateForm = () => {
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="nombreProducto" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="nombreProducto" className="text-black font-semibold block mb-2">
                            Código de producto: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -272,7 +265,6 @@ export const TripsCreateForm = () => {
                            id="nombreProducto"
                            name="nombreProducto"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Código de producto..."
                         >
                            <option value="" disabled defaultValue>
                               Código de producto...
@@ -299,7 +291,7 @@ export const TripsCreateForm = () => {
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="productoTransportar" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="productoTransportar" className="text-black font-semibold block mb-2">
                            Producto a transportar: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -308,14 +300,13 @@ export const TripsCreateForm = () => {
                            id="productoTransportar"
                            name="productoTransportar"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Producto a transportar..."
                         />
 
                         <ErrorMessage name="productoTransportar" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="origen" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="origen" className="text-black font-semibold block mb-2">
                            Origen: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -324,14 +315,13 @@ export const TripsCreateForm = () => {
                            id="origen"
                            name="origen"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Origen..."
                         />
 
                         <ErrorMessage name="origen" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="destino" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="destino" className="text-black font-semibold block mb-2">
                            Destino: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -340,14 +330,13 @@ export const TripsCreateForm = () => {
                            id="destino"
                            name="destino"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Destino..."
                         />
 
                         <ErrorMessage name="destino" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="fechaViaje" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="fechaViaje" className="text-black font-semibold block mb-2">
                            Fecha del viaje: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -356,14 +345,13 @@ export const TripsCreateForm = () => {
                            id="fechaViaje"
                            name="fechaViaje"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Fecha del viaje..."
                         />
 
                         <ErrorMessage name="fechaViaje" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="horaViaje" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="horaViaje" className="text-black font-semibold block mb-2">
                            Hora del viaje: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -372,14 +360,13 @@ export const TripsCreateForm = () => {
                            id="horaViaje"
                            name="horaViaje"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Hora del viaje..."
                         />
 
                         <ErrorMessage name="horaViaje" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="saldoPagar" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="saldoPagar" className="text-black font-semibold block mb-2">
                            Saldo a pagar: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -388,14 +375,13 @@ export const TripsCreateForm = () => {
                            id="saldoPagar"
                            name="saldoPagar"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Saldo a pagar..."
                         />
 
                         <ErrorMessage name="saldoPagar" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="valorPagar" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="valorPagar" className="text-black font-semibold block mb-2">
                            Valor a pagar: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
@@ -404,43 +390,39 @@ export const TripsCreateForm = () => {
                            id="valorPagar"
                            name="valorPagar"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                           placeholder="Valor a pagar..."
                         />
 
                         <ErrorMessage name="valorPagar" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="conductorId" className="text-primary font-semibold block mb-2">
+                        <label htmlFor="conductorId" className="text-black font-semibold block mb-2">
                            Conductor: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
-                        <div className="mb-4">
-                           <Field
-                              as="select"
-                              id="conductorId"
-                              name="conductorId"
-                              className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
-                              placeholder="Conductor..."
-                              onChange={(event) => {
-                                 const { id, vehicleId } = usersList.find(user => user.id == event.target.value);
-                                 const { placa } = vehiclesList.find(vehicle => vehicle.id === vehicleId);
-                                 setFieldValue('vehiculoId', vehicleId);
-                                 setFieldValue('vehiculoPlaca', placa)
-                                 setFieldValue('conductorId', id.toString());
-                              }}
-                           >
-                              <option value="" disabled defaultValue>
-                                 Conductor...
-                              </option>
+                        <Field
+                           as="select"
+                           id="conductorId"
+                           name="conductorId"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                           onChange={(event) => {
+                              const { id, vehicleId } = usersList.find(user => user.id == event.target.value);
+                              const { placa } = vehiclesList.find(vehicle => vehicle.id === vehicleId);
+                              setFieldValue('vehiculoId', vehicleId);
+                              setFieldValue('vehiculoPlaca', placa)
+                              setFieldValue('conductorId', id.toString());
+                           }}
+                        >
+                           <option value="" disabled defaultValue>
+                              Conductor...
+                           </option>
 
-                              {
-                                 usersList.map(user => (
-                                    <option value={user.id} key={user.id}>{user.email}</option>
-                                 ))
-                              }
-                           </Field>
-                        </div>
+                           {
+                              usersList.map(user => (
+                                 <option value={user.id} key={user.id}>{user.email}</option>
+                              ))
+                           }
+                        </Field>
 
                         <ErrorMessage name="conductorId" component="div" className="text-red-600" />
                      </div>
@@ -470,34 +452,44 @@ export const TripsCreateForm = () => {
                </div> */}
 
                      <div className="mb-4">
-                        <label htmlFor="vehiculoPlaca" className="text-primary font-semibold block mb-2">
-                           Vehículo placa: <small className='text-red-600 text-2xl'>*</small>
+                        <label htmlFor="vehiculoId" className="text-black font-semibold block mb-2">
+                           Vehículo: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
-                           type="text"
-                           id="vehiculoPlaca"
-                           name="vehiculoPlaca"
-                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition cursor-not-allowed"
-                           placeholder="Vehículo..."
-                           disabled
-                        />
+                           as="select"
+                           id="vehiculoId"
+                           name="vehiculoId"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                        >
+                           <option value="" disabled defaultValue>
+                              Vehículo...
+                           </option>
 
-                        <ErrorMessage name="vehiculoPlaca" component="div" className="text-red-600" />
+                           {
+                              vehiclesList.map(vehicle => (
+                                 <option value={vehicle.id} key={vehicle.id}>{vehicle.placa}</option>
+                              ))
+                           }
+                        </Field>
+
+                        <ErrorMessage name="vehiculoId" component="div" className="text-red-600" />
                      </div>
+
                   </div>
 
-                  <div className="text-center">
+                  <div className="w-full mt-4 flex justify-center"> {/* Agregado justify-center para centrar */}
                      <button
                         type="submit"
-                        className="bg-primary hover:bg-primaryHover transition-all text-white font-semibold py-2 px-4 w-[160px] rounded-full"
+                        className="rounded-full px-3 py-2 bg-primary text-white text-base font-semibold hover:bg-[#007ba7] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary w-[25%] md:w-[15%] transition"
                      >
                         Registrar
                      </button>
                   </div>
+
                </div>
             </Form>
          )}
       </Formik>
    );
-}
+};

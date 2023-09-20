@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
-
+import Button from '@mui/material/Button';
+import InfoIcon from '@mui/icons-material/Info';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
@@ -66,9 +68,9 @@ export const QuotesCard = ({ quote }) => {
             {
                quote.estado
                   ?
-                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
                   :
-                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+                  <button className="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
             }
             {
                isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={quote} value={'quotes'} />
@@ -76,11 +78,8 @@ export const QuotesCard = ({ quote }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+               <Button onClick={() => handleIsInfoModalActive(true)} variant="outlined" endIcon={<InfoIcon />}>Info</Button>
             </span>
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
@@ -90,7 +89,7 @@ export const QuotesCard = ({ quote }) => {
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
+                  <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>                  
                }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} handleUpdateClick={handleUpdateClick} />
             </span>

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
-
+import Button from '@mui/material/Button';
+import InfoIcon from '@mui/icons-material/Info';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 import { DeleteModal, InfoModal, TripsStateModal, UpdateModal } from '../../';
 import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
-
 export const TripsCard = ({ trip }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
@@ -57,7 +59,7 @@ export const TripsCard = ({ trip }) => {
          }
          <td className='px-7 py-5 text-center cursor-pointer font-bold text-white'>
             <button
-               className={`py-2 px-4 rounded-full ${trip.estadoViaje == 'pendiente' ? 'bg-gray-800' :
+               className={`py-2 px-4 rounded-md ${trip.estadoViaje == 'pendiente' ? 'bg-gray-800' :
                   trip.estadoViaje == 'emitido' ? 'bg-blue-600' :
                      trip.estadoViaje == 'en-proceso' ? 'bg-orange-600' :
                         trip.estadoViaje == 'facturado' ? 'bg-green-600' :
@@ -86,9 +88,9 @@ export const TripsCard = ({ trip }) => {
             {
                trip.estado
                   ?
-                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
                   :
-                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+                  <button className="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
             }
             {
                isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={trip} value={'trips'} />
@@ -96,11 +98,8 @@ export const TripsCard = ({ trip }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
+            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5">
+               <Button onClick={() => handleIsInfoModalActive(true)} variant="outlined" endIcon={<InfoIcon />}>Info</Button>
             </span>
 
             {/* // * IMPORTANTE: Prueba del modal para ver información */}
@@ -111,7 +110,7 @@ export const TripsCard = ({ trip }) => {
             <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
+                  <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>                  
                }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Trips" moduleInfo={trip} handleUpdateClick={handleUpdateClick} />
             </span>
