@@ -3,3 +3,4 @@ export * from './CompaniesCreateForm';
 export * from './CompaniesInfoTable';
 export * from './CompaniesSearcher';
 export * from './CompaniesUpdate';
+export * from './CompanyInfoModal';

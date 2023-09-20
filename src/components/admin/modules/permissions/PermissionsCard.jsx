@@ -1,23 +1,16 @@
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
-import { MdDeleteForever } from 'react-icons/md';
-import { FaEdit } from 'react-icons/fa';
-import { TbInfoHexagon } from 'react-icons/tb';
-
-import { InfoModal, DeleteModal, UpdateModal } from '../../';
+import { DeleteModal, UpdateModal } from '../../';
 import { useAllowedPrivileges } from '../../../../hooks';
 
 export const PermissionsCard = ({ permission }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
-   const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
 
-   const handleViewDetails = () => {
-      setIsOpen(!isOpen)
-   }
    const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
    }
@@ -53,22 +46,12 @@ export const PermissionsCard = ({ permission }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
-               className="text-2xl text-primary hover:text-primaryHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
-            </span>
 
-            {/* // * IMPORTANTE: Prueba del modal para ver información */}
-            {
-               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={permission} />
-            }
 
             <span className="text-2xl text-primary hover:text-primaryHover cursor-pointer">
                {
                   userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
+                  <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>
                }
                <UpdateModal isOpenUpdate={isOpenUpdate} module="Permissions" moduleInfo={permission} handleUpdateClick={handleUpdateClick} />
             </span>

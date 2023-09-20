@@ -2,31 +2,25 @@ import { useState } from 'react';
 
 import { FaEdit } from 'react-icons/fa';
 import { TbInfoHexagon } from 'react-icons/tb';
-import { MdAssignmentAdd } from 'react-icons/md';
 
-import { AssignModal, InfoModal, DeleteModal, UpdateModal } from '../../';
+import Button from '@mui/material/Button';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+
+import { AssignModal, DeleteModal, RoleInfoModal, UpdateModal } from '../../';
 import { useAllowedPrivileges } from '../../../../hooks';
 
 export const RolesCard = ({ role }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpenUpdate, setisOpenUpdate] = useState(false);
-   const [isOpen, setIsOpen] = useState(false);
 
-   const handleViewDetails = () => {
-      setIsOpen(!isOpen)
-   }
    const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
    }
 
-   const handleIsInfoModalActive = (status) => {
-      setIsInfoModalActive(status);
-   };
-
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
    const [isAssignModalActive, setisAssignModalActive] = useState(false);
-   
+
    const handleIsDeleteModalActive = (status) => {
       if (userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'eliminar'))
          setIsDeleteModalActive(status);
@@ -53,40 +47,25 @@ export const RolesCard = ({ role }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
-            </span>
+            <RoleInfoModal role={role} />
 
             {
                userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-               <span
-                  className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-                  onClick={() => handleIsAssignModalActive(true)}
-               >
-                  <TbInfoHexagon />
-               </span>
+               <Button onClick={() => handleIsAssignModalActive(true)} variant="outlined" endIcon={<EditNoteIcon />}>Asignar</Button>
             }
-
-            {/* // * IMPORTANTE: Prueba del modal para ver información */}
-            {
-               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={role} />
-            }
+            
             {
                userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
                isAssignModalActive &&
                <AssignModal handleIsAssignModalActive={handleIsAssignModalActive} id={role.id} initialPermissions={role.permisos} initialPrivileges={role.privilegios} />
             }
 
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
-               {
-                  userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
-               }
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Roles" moduleInfo={role} handleUpdateClick={handleUpdateClick} />
-            </span>
+            {
+               userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+               <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>
+            }
+            <UpdateModal isOpenUpdate={isOpenUpdate} module="Roles" moduleInfo={role} handleUpdateClick={handleUpdateClick} />
+
 
             {/* <p onClick={setisAssignModalActive(true)}>Asignar</p> */}
 

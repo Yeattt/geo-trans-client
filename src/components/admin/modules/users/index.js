@@ -5,3 +5,4 @@ export * from './UsersInfoTable';
 export * from './UsersPendingInfoTable';
 export * from './UsersSearcher';
 export * from './UsersUpdate';
+export * from './UserInfoModal';

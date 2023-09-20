@@ -4,3 +4,4 @@ export * from './QuotesInfoTable';
 export * from './QuotesSearcher';
 export * from './QuotesUpdate';
 export * from './QuotesReporting';
+export * from './QuoteInfoModal';

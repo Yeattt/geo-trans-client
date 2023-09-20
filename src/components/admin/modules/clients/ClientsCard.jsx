@@ -2,26 +2,16 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import { InfoModal, DeleteModal, UpdateModal } from '../../';
+import { ClientInfoModal, DeleteModal, UpdateModal } from '../../';
 import { useAllowedPrivileges } from '../../../../hooks';
 
 export const ClientsCard = ({ client }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
-   const [isInfoModalActive, setIsInfoModalActive] = useState(false);
-   const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
 
-   const handleViewDetails = () => {
-      setIsOpen(!isOpen)
-   }
    const handleUpdateClick = () => {
       setisOpenUpdate(!isOpenUpdate)
    }
-
-
-   const handleIsInfoModalActive = (status) => {
-      setIsInfoModalActive(status);
-   };
 
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
@@ -51,17 +41,7 @@ export const ClientsCard = ({ client }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            {/* <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
-            </span> */}
-
-            {/* // * IMPORTANTE: Prueba del modal para ver información */}
-            {/* {
-               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={client} />
-            } */}
+            <ClientInfoModal client={client} />
 
             <span>
                {

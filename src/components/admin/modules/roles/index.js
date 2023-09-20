@@ -3,3 +3,4 @@ export * from './RolesCreateForm';
 export * from './RolesInfoTable';
 export * from './RolesSearcher';
 export * from './RolesUpdate';
+export * from './RoleInfoModal';

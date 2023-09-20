@@ -1,39 +1,24 @@
 import { useState, useEffect } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { MdDeleteForever } from 'react-icons/md';
-import { FaEdit } from 'react-icons/fa';
-import { TbInfoHexagon } from 'react-icons/tb';
+import Button from '@mui/material/Button';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
-import { InfoModal, DeleteModal, UpdateModal } from '../../';
+import { DeleteModal, QuoteInfoModal, UpdateModal } from '../../';
 import { useGetApiData, useAuthStore, useAllowedPrivileges } from '../../../../hooks';
 
 
 export const QuotesCard = ({ quote }) => {
-   const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
-
-   const [isInfoModalActive, setIsInfoModalActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false)
    const [isOpenUpdate, setisOpenUpdate] = useState(false)
-   const [companiesList, setCompaniesList] = useState([]);
    const { user } = useAuthStore();
    const navigate = useNavigate();
-
-
-   const handleViewDetails = () => {
-      setIsOpen(!isOpen)
-   }
-
 
    const handleUpdateClick = () => {
       navigate(`/admin/quotes/update/${quote.id}`);
    }
-
-   const handleIsInfoModalActive = (status) => {
-      setIsInfoModalActive(status);
-   };
 
    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
 
@@ -76,24 +61,13 @@ export const QuotesCard = ({ quote }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span
-               className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer mr-5"
-               onClick={() => handleIsInfoModalActive(true)}
-            >
-               <TbInfoHexagon />
-            </span>
+            <QuoteInfoModal quote={quote} />
 
-            {/* // * IMPORTANTE: Prueba del modal para ver información */}
             {
-               isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={quote} />
+               userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
+               <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>
             }
-            <span className="text-2xl text-purplePz hover:text-purplePzHover cursor-pointer">
-               {
-                  userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
-                  <FaEdit onClick={handleUpdateClick} />
-               }
-               <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} handleUpdateClick={handleUpdateClick} />
-            </span>
+            <UpdateModal isOpenUpdate={isOpenUpdate} module="Quotes" moduleInfo={quote} handleUpdateClick={handleUpdateClick} />
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
                <MdDeleteForever />

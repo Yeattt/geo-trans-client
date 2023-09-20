@@ -1,35 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import InfoIcon from '@mui/icons-material/Info';
-import { MdDeleteForever } from 'react-icons/md';
-import { FaEdit } from 'react-icons/fa';
-import { TbInfoHexagon } from 'react-icons/tb';
 
-import { InfoModal, PendingModal } from '../../';
-import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
-import { useEffect } from 'react';
+
+import { PendingModal, UserInfoModal } from '../../';
+import { useAllowedPrivileges } from '../../../../hooks';
 
 export const PendingCard = ({ user }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
-   const [isInfoModalActive, setIsInfoModalActive] = useState(false);
-   const [isOpen, setIsOpen] = useState(false)
-   const [isOpenUpdate, setisOpenUpdate] = useState(false)
-
-   const { data: vehicles, isLoading: isVehiclesLoading } = useGetApiData('/vehicles');
-   const { data: companies, isLoading: isCompaniesLoading } = useGetApiData('/companies');
-   const { data: roles, isLoading: isRolesLoading } = useGetApiData('/roles');
-
-   const [vehiclesList, setVehiclesList] = useState([]);
-   const [companiesList, setCompaniesList] = useState([]);
-   const [rolesList, setRolesList] = useState([]);
-
-
-   const handleIsInfoModalActive = (status) => {
-      setIsInfoModalActive(status);
-   };
 
    const [isPendingModalActive, setIsPendingModalActive] = useState(false);
 
@@ -38,14 +14,6 @@ export const PendingCard = ({ user }) => {
          setIsPendingModalActive(status);
    };
 
-   useEffect(() => {
-      if (!isVehiclesLoading && !isCompaniesLoading && !isRolesLoading) {
-         setVehiclesList(vehicles.vehicles);
-         setCompaniesList(companies.companies);
-         setRolesList(roles.roles);
-      }
-   }, [isVehiclesLoading, isCompaniesLoading, isRolesLoading]);
-
    return (
 
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
@@ -53,27 +21,9 @@ export const PendingCard = ({ user }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.documento}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.edad}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.email}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-            {
-               rolesList.map(role => {
-                  if (role.id === user.roleId) return role.nombre
-               })
-            }
-         </td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-            {
-               companiesList.map(company => {
-                  if (company.id === user.companyId) return company.nombreEmpresa
-               })
-            }
-         </td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
-            {
-               vehiclesList.map(vehicle => {
-                  if (vehicle.id === user.vehicleId) return vehicle.placa
-               })
-            }
-         </td>
+         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.role.nombre}</td>
+         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.compania.nombreEmpresa}</td>
+         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.vehiculo.placa}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                !user.registroPendiente
@@ -88,22 +38,8 @@ export const PendingCard = ({ user }) => {
          </td>
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
-            <span>
-            {
-             <Button onClick={() => handleIsInfoModalActive(true)} variant="outlined" endIcon={<InfoIcon />}>Info</Button>
-            }
-         </span>
-
-         {/* // * IMPORTANTE: Prueba del modal para ver información */}
-         {
-            isInfoModalActive && <InfoModal handleIsInfoModalActive={handleIsInfoModalActive} module={user} />
-         }
-
-
-         {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
-               <MdDeleteForever />
-            </span> */}
-      </td>
+            <UserInfoModal user={user} />
+         </td>
       </tr >
    );
 }
