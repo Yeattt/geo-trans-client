@@ -29,13 +29,6 @@ export const AdminNavbar = ({ module = '' }) => {
          </div>
 
          <div className="flex items-center justify-center">
-            <div className="bg-primary w-12 h-12 flex items-center justify-center rounded-full cursor-pointer mr-3">
-               <img
-                  className="object-cover w-[95%] h-[95%] rounded-full"
-                  src="https://i1.sndcdn.com/artworks-pfkZ3eJZ5aIGjxDP-lvIbog-t500x500.jpg"
-               />
-            </div>
-
             <span className="font-bold text-gray-600 text-[15px] cursor-pointer">{user.name}</span>
 
             <span className="ml-3 text-2xl text-red-600 hover:text-red-800 font-bold cursor-pointer">
