@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { FaEdit } from 'react-icons/fa';
-import { TbInfoHexagon } from 'react-icons/tb';
 
 import Button from '@mui/material/Button';
 import EditNoteIcon from '@mui/icons-material/EditNote';
