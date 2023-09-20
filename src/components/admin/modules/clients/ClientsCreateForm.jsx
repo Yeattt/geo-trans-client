@@ -37,7 +37,7 @@ export const ClientsCreateForm = ({ handleRefreshData }) => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="documento" className="text-black font-semibold block mb-2">
-                     Documento: <small className='text-red text-2xl'>*</small>
+                     Documento: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -52,7 +52,7 @@ export const ClientsCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="nombre" className="text-black font-semibold block mb-2">
-                     Nombre:  <small className='text-red text-2xl'>*</small>
+                     Nombre:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -67,7 +67,7 @@ export const ClientsCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="razonSocial" className="text-black font-semibold block mb-2">
-                     Razón social:  <small className='text-red text-2xl'>*</small>
+                     Razón social:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -82,7 +82,7 @@ export const ClientsCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="telefono" className="text-black font-semibold block mb-2">
-                     Teléfono:  <small className='text-red text-2xl'>*</small>
+                     Teléfono:  <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field

@@ -66,7 +66,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
             <div className="grid grid-cols-2 gap-4">
                <div className="mb-4">
                   <label htmlFor="documento" className="text-black font-semibold block mb-2">
-                     Documento: <small className='text-red text-2xl'>*</small>
+                     Documento: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -82,7 +82,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="nombre" className="text-black font-semibold block mb-2">
-                     Nombre: <small className='text-red text-2xl'>*</small>
+                     Nombre: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -98,7 +98,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="edad" className="text-black font-semibold block mb-2">
-                     Edad: <small className='text-red text-2xl'>*</small>
+                     Edad: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -114,7 +114,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="nombrePlataforma" className="text-black font-semibold block mb-2">
-                     Nombre Plataforma: <small className='text-red text-2xl'>*</small>
+                     Nombre Plataforma: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -129,7 +129,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="linkPlataforma" className="text-black font-semibold block mb-2">
-                     Link Plataforma: <small className='text-red text-2xl'>*</small>
+                     Link Plataforma: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -145,7 +145,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="email" className="text-black font-semibold block mb-2">
-                     Email: <small className='text-red text-2xl'>*</small>
+                     Email: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -161,7 +161,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="contrasena" className="text-black font-semibold block mb-2">
-                     Contraseña: <small className='text-red text-2xl'>*</small>
+                     Contraseña: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -177,7 +177,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="roleId" className="text-black font-semibold block mb-2">
-                     Rol: <small className='text-red text-2xl'>*</small>
+                     Rol: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -203,7 +203,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="companyId" className="text-black font-semibold block mb-2">
-                     Compañía: <small className='text-red text-2xl'>*</small>
+                     Compañía: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field
@@ -229,7 +229,7 @@ export const UsersCreateForm = ({ handleRefreshData }) => {
 
                <div className="mb-4">
                   <label htmlFor="vehicleId" className="text-black font-semibold block mb-2">
-                     Vehículo: <small className='text-red text-2xl'>*</small>
+                     Vehículo: <small className='text-red-600 text-2xl'>*</small>
                   </label>
 
                   <Field

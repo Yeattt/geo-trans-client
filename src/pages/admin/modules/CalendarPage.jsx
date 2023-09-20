@@ -111,7 +111,7 @@ export const CalendarPage = () => {
 
                            <div className="mr-5 ml-5">
                               <Typography className="mb-2 text-primary" fontWeight="medium">Cliente</Typography>
-                              <Typography fontWeight="light">{currentTripToShow?.cliente}</Typography>
+                              <Typography fontWeight="light">{currentTripToShow?.cliente.nombre}</Typography>
                            </div>
 
                            <div className="mr-5 ml-5">

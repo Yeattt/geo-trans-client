@@ -3,60 +3,60 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useUpdateForm, useGetApiData, useAuthStore, useGetApiCities } from '../../../../hooks';
 
-export const QuotesUpdate = ({moduleInfo}) => {
-    const validationSchema = Yup.object().shape({
-        nombreOrigen: Yup.string()
-           .required('Campo requerido'),
-     
-        nombreDestino: Yup.string()
-           .required('Campo requerido'),
-     
-        ciudadOrigen: Yup.string()
-           .required('Campo requerido'),
-     
-        ciudadDestino: Yup.string()
-           .required('Campo requerido'),
-     
-        direccion: Yup.string()
-           .required('Campo requerido'),
-     
-        contacto: Yup.number()
-           .typeError('Solo se reciben valores numericos')
-           .required('Campo requerido'),
-     
-        fechaSolicitud: Yup.string()
-           .required('Campo requerido'),
-     
-        fechaServicio: Yup.string()
-           .required('Campo requerido'),
-     
-        horaCargue: Yup.string()
-           .required('Campo requerido'),
-     
-        tipoCamion: Yup.string()
-           .required('Campo requerido'),
-     
-        pesoAproximado: Yup.number()
-           .typeError('Solo se reciben valores numericos')
-           .required('Campo requerido'),
-     
-        valorMercancia: Yup.number()
-           .typeError('Solo se reciben valores numericos')
-           .required('Campo requerido'),
-     
-        contenido: Yup.string()
-           .required('Campo requerido'),
-     
-        valorTransporte: Yup.number()
-           .typeError('Solo se reciben valores numericos')
-           .required('Campo requerido'),
-     
-        userId: Yup.string()
-           .required('Campo requerido'),
-     
-        companyId: Yup.string()
-           .required('Campo requerido'),          
-     });
+export const QuotesUpdate = ({ moduleInfo }) => {
+   const validationSchema = Yup.object().shape({
+      nombreOrigen: Yup.string()
+         .required('Campo requerido'),
+
+      nombreDestino: Yup.string()
+         .required('Campo requerido'),
+
+      ciudadOrigen: Yup.string()
+         .required('Campo requerido'),
+
+      ciudadDestino: Yup.string()
+         .required('Campo requerido'),
+
+      direccion: Yup.string()
+         .required('Campo requerido'),
+
+      contacto: Yup.number()
+         .typeError('Solo se reciben valores numericos')
+         .required('Campo requerido'),
+
+      fechaSolicitud: Yup.string()
+         .required('Campo requerido'),
+
+      fechaServicio: Yup.string()
+         .required('Campo requerido'),
+
+      horaCargue: Yup.string()
+         .required('Campo requerido'),
+
+      tipoCamion: Yup.string()
+         .required('Campo requerido'),
+
+      pesoAproximado: Yup.number()
+         .typeError('Solo se reciben valores numericos')
+         .required('Campo requerido'),
+
+      valorMercancia: Yup.number()
+         .typeError('Solo se reciben valores numericos')
+         .required('Campo requerido'),
+
+      contenido: Yup.string()
+         .required('Campo requerido'),
+
+      valorTransporte: Yup.number()
+         .typeError('Solo se reciben valores numericos')
+         .required('Campo requerido'),
+
+      userId: Yup.string()
+         .required('Campo requerido'),
+
+      companyId: Yup.string()
+         .required('Campo requerido'),
+   });
 
    const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
    const [usersList, setUsersList] = useState([]);
@@ -67,49 +67,49 @@ export const QuotesUpdate = ({moduleInfo}) => {
    const { data: cities, isLoading: citiesIsLoading } = useGetApiCities('https://api-colombia.com/api/v1/City');
    const [citiesList, setCitiesList] = useState([]);
 
-     const { initialValues, onSubmitForm } = useUpdateForm({
-        id: moduleInfo.id,
-        nombreOrigen: moduleInfo.nombreOrigen,
-        nombreDestino: moduleInfo.nombreDestino,
-        ciudadOrigen: moduleInfo.ciudadOrigen,
-        ciudadDestino: moduleInfo.ciudadDestino,
-        direccion: moduleInfo.direccion,
-        contacto: moduleInfo.contacto,
-        fechaSolicitud: moduleInfo.fechaSolicitud,
-        fechaServicio: moduleInfo.fechaServicio,
-        horaCargue: moduleInfo.horaCargue,
-        tipoCamion: moduleInfo.tipoCamion,
-        pesoAproximado: moduleInfo.pesoAproximado,
-        valorMercancia: moduleInfo.valorMercancia,
-        contenido: moduleInfo.contenido,
-        valorTransporte: moduleInfo.valorTransporte,
-        observaciones: moduleInfo.observaciones,
-        userId: moduleInfo.userId,
-        companyId: moduleInfo.companyId,
-     }, 'quotes');
+   const { initialValues, onSubmitForm } = useUpdateForm({
+      id: moduleInfo.id,
+      nombreOrigen: moduleInfo.nombreOrigen,
+      nombreDestino: moduleInfo.nombreDestino,
+      ciudadOrigen: moduleInfo.ciudadOrigen,
+      ciudadDestino: moduleInfo.ciudadDestino,
+      direccion: moduleInfo.direccion,
+      contacto: moduleInfo.contacto,
+      fechaSolicitud: moduleInfo.fechaSolicitud,
+      fechaServicio: moduleInfo.fechaServicio,
+      horaCargue: moduleInfo.horaCargue,
+      tipoCamion: moduleInfo.tipoCamion,
+      pesoAproximado: moduleInfo.pesoAproximado,
+      valorMercancia: moduleInfo.valorMercancia,
+      contenido: moduleInfo.contenido,
+      valorTransporte: moduleInfo.valorTransporte,
+      observaciones: moduleInfo.observaciones,
+      userId: moduleInfo.userId,
+      companyId: moduleInfo.companyId,
+   }, 'quotes');
 
-     useEffect(() => {
-        if (!usersIsLoading && !companiesIsLoading && !isVehiclesTypeLoading && !citiesIsLoading) {
-           setUsersList(users.users);
-           setCompaniesList(companies.companies);
-           setVehiclesTypeList(vehiclesType.vehiclesType);
-           setCitiesList(cities);
-        }
-     }, [usersIsLoading, companiesIsLoading, isVehiclesTypeLoading, citiesIsLoading]);
+   useEffect(() => {
+      if (!usersIsLoading && !companiesIsLoading && !isVehiclesTypeLoading && !citiesIsLoading) {
+         setUsersList(users.users);
+         setCompaniesList(companies.companies);
+         setVehiclesTypeList(vehiclesType.vehiclesType);
+         setCitiesList(cities);
+      }
+   }, [usersIsLoading, companiesIsLoading, isVehiclesTypeLoading, citiesIsLoading]);
 
-     
-     const { user } = useAuthStore();
 
-    return (
-      
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={(values) => onSubmitForm(values)}
-        >
-           <Form>
-         <div className="max-h-[800px] overflow-y-scroll">
-            <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
+   const { user } = useAuthStore();
+
+   return (
+
+      <Formik
+         initialValues={initialValues}
+         validationSchema={validationSchema}
+         onSubmit={(values) => onSubmitForm(values)}
+      >
+         <Form>
+            <div className="max-h-[800px] overflow-y-scroll">
+               <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
                   <h1 className="text-2xl text-black font-semibold block mb-2">Información del viaje:</h1>
                   <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
@@ -120,8 +120,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="date"
                            id="fechaSolicitud"
                            name="fechaSolicitud"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Fecha de solicitud..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="fechaSolicitud" component="div" className="text-red-500" />
                      </div>
@@ -134,8 +135,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="date"
                            id="fechaServicio"
                            name="fechaServicio"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Fecha de servicio..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="fechaServicio" component="div" className="text-red-500" />
                      </div>
@@ -148,34 +150,35 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="time"
                            id="horaCargue"
                            name="horaCargue"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Hora de cargue..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
                         />
                         <ErrorMessage name="horaCargue" component="div" className="text-red-500" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
+                        <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
                            Tipo Camión:  <small className='text-red text-2xl'>*</small>
                         </label>
 
-                           <Field
-                              as="select"
-                              id="tipoCamion"
-                              name="tipoCamion"
-                              className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                              placeholder="Tipo Camión..."
-                           >
-                              <option value="" disabled defaultValue>
-                                 Tipo Camión...
-                              </option>
+                        <Field
+                           as="select"
+                           id="tipoCamion"
+                           name="tipoCamion"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
 
-                              {vehiclesTypeList.map(vehicleType => (
-                                 <option value={vehicleType.id} key={vehicleType.id}>
-                                    {vehicleType.nombre}
-                                 </option>
-                              ))}
-                           </Field>
+                           
+                        >
+                           <option value="" disabled defaultValue>
+                              Tipo Camión...
+                           </option>
+
+                           {vehiclesTypeList.map(vehicleType => (
+                              <option value={vehicleType.id} key={vehicleType.id}>
+                                 {vehicleType.nombre}
+                              </option>
+                           ))}
+                        </Field>
 
                         <ErrorMessage name="tipoCamion" component="div" className="text-red-500" />
                      </div>
@@ -188,8 +191,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="pesoAproximado"
                            name="pesoAproximado"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Peso Aproximado..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="pesoAproximado" component="div" className="text-red-500" />
                      </div>
@@ -202,8 +206,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="valorMercancia"
                            name="valorMercancia"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Vlr. Mercancia..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="valorMercancia" component="div" className="text-red-500" />
                      </div>
@@ -216,8 +221,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="contenido"
                            name="contenido"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Contenido..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="contenido" component="div" className="text-red-500" />
                      </div>
@@ -230,8 +236,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="valorTransporte"
                            name="valorTransporte"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Vlr. Transporte..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="valorTransporte" component="div" className="text-red-500" />
                      </div>
@@ -244,7 +251,8 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="userId"
                            name="userId"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
                            placeholder="User Id..."
                            value={user.name}
                            disabled
@@ -270,7 +278,8 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            as="select"
                            id="companyId"
                            name="companyId"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
                            placeholder="Company Id..."
                         >
                            <option value="" disabled defaultValue>
@@ -297,7 +306,7 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            id="observaciones"
                            name="observaciones"
                            className="w-full px-3 py-10 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Observaciones..."
+                           
                         />
                         <ErrorMessage name="observaciones" component="div" className="text-red-500" />
                      </div>
@@ -313,8 +322,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="nombreOrigen"
                            name="nombreOrigen"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Nombre Origen..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="nombreOrigen" component="div" className="text-red-500" />
                      </div>
@@ -326,19 +336,20 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            as="select"
                            id="ciudadOrigen"
                            name="ciudadOrigen"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Ciudad de origen..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         >
                            <option value="" disabled defaultValue>
                               Seleccione...
                            </option>
 
                            {
-                              cities.map(city=>(
+                              cities.map(city => (
                                  <option value={city.name} key={city.id}>{city.name}</option>
                               ))
                            }
-                           </Field>
+                        </Field>
                         <ErrorMessage name="ciudadOrigen" component="div" className="text-red-500" />
                      </div>
                   </div>
@@ -353,8 +364,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="nombreDestino"
                            name="nombreDestino"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Nombre de Destino..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="nombreDestino" component="div" className="text-red-500" />
                      </div>
@@ -366,19 +378,20 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            as="select"
                            id="ciudadDestino"
                            name="ciudadDestino"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Ciudad de Destino..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         >
                            <option value="" disabled defaultValue>
                               Seleccione...
                            </option>
 
                            {
-                              cities.map(city=>(
+                              cities.map(city => (
                                  <option value={city.name} key={city.id}>{city.name}</option>
                               ))
                            }
-                           </Field>
+                        </Field>
                         <ErrorMessage name="ciudadDestino" component="div" className="text-red-500" />
                      </div>
                      <div className="mb-4">
@@ -389,8 +402,9 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="direccion"
                            name="direccion"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Direccion..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="direccion" component="div" className="text-red-500" />
                      </div>
@@ -402,25 +416,26 @@ export const QuotesUpdate = ({moduleInfo}) => {
                            type="text"
                            id="contacto"
                            name="contacto"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Contacto..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="contacto" component="div" className="text-red-500" />
                      </div>
                   </div>
-               <div className="text-center mt-4">
-               <button
+                  <div className="text-center mt-4">
+                     <button
                         type="submit"
                         className="bg-purplePz hover:bg-purplePzHover transition-all text-white font-semibold py-2 px-4 rounded"
                         onClick={() => console.log(initialValues)}
-                    >
+                     >
                         Editar
-                    </button>
-            </div>
-            </div>
+                     </button>
+                  </div>
+               </div>
             </div>
          </Form>
-        </Formik>
+      </Formik>
 
-    );
+   );
 }

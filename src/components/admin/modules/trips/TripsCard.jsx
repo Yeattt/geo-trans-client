@@ -8,7 +8,6 @@ import * as React from 'react';
 
 import { DeleteModal, TripsStateModal, TripInfoModal, UpdateModal } from '../../';
 import { useAllowedPrivileges, useGetApiData } from '../../../../hooks';
-
 export const TripsCard = ({ trip }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
    const [isTripsStateModalActive, setIsTripsStateModalActive] = useState(false);
@@ -52,7 +51,7 @@ export const TripsCard = ({ trip }) => {
          }
          <td className='px-7 py-5 text-center cursor-pointer font-bold text-white'>
             <button
-               className={`py-2 px-4 rounded-full ${trip.estadoViaje == 'pendiente' ? 'bg-gray-800' :
+               className={`py-2 px-4 rounded-md ${trip.estadoViaje == 'pendiente' ? 'bg-gray-800' :
                   trip.estadoViaje == 'emitido' ? 'bg-blue-600' :
                      trip.estadoViaje == 'en-proceso' ? 'bg-orange-600' :
                         trip.estadoViaje == 'facturado' ? 'bg-green-600' :
@@ -73,16 +72,16 @@ export const TripsCard = ({ trip }) => {
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.unidadMedida}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.valorPagar}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.tipoViaje}</td>
-         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cliente}</td>
+         <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.cliente.nombre}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.vehiculo.placa}</td>
          <td className="hidden 3xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{trip.usuario.email}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                trip.estado
                   ?
-                  <button className="bg-green-500 hover:bg-g-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
+                  <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out" onClick={() => handleIsDeleteModalActive(true)}>Activo</button>
                   :
-                  <button className="bg-red hover:bg-red text-white font-bold py-2 px-4 rounded-full" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
+                  <button className="bg-red-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md" onClick={() => handleIsDeleteModalActive(true)}>Inactivo</button>
             }
             {
                isDeleteModalActive && <DeleteModal handleIsDeleteModalActive={handleIsDeleteModalActive} module={trip} value={'trips'} />

@@ -59,7 +59,7 @@ export const TripInfoModal = ({ trip }) => {
 
                      <div className="mr-5 ml-5">
                         <Typography className="mb-2 text-primary" fontWeight="medium">Cliente</Typography>
-                        <Typography fontWeight="light">{trip.cliente}</Typography>
+                        <Typography fontWeight="light">{trip.cliente.nombre}</Typography>
                      </div>
 
                      <div className="mr-5 ml-5">

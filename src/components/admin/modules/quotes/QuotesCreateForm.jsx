@@ -119,15 +119,15 @@ export const QuotesCreateForm = () => {
 
    return (
 
-      
+
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
          onSubmit={onSubmitForm}
       >
          <Form>
-         <div className="max-h-[800px] overflow-y-scroll">
-            <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
+            <div className="max-h-[800px] overflow-y-scroll">
+               <div className="bg-white rounded-md w-[94%] flex flex-col justify-between px-2 py-2">
                   <h1 className="text-2xl text-black font-semibold block mb-2">Información del viaje:</h1>
                   <div className="grid grid-cols-2 gap-3">
                      <div className="mb-4">
@@ -138,8 +138,7 @@ export const QuotesCreateForm = () => {
                            type="date"
                            id="fechaSolicitud"
                            name="fechaSolicitud"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Fecha de solicitud..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
                         />
                         <ErrorMessage name="fechaSolicitud" component="div" className="text-red-600" />
                      </div>
@@ -152,8 +151,9 @@ export const QuotesCreateForm = () => {
                            type="date"
                            id="fechaServicio"
                            name="fechaServicio"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Fecha de servicio..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="fechaServicio" component="div" className="text-red-600" />
                      </div>
@@ -166,34 +166,36 @@ export const QuotesCreateForm = () => {
                            type="time"
                            id="horaCargue"
                            name="horaCargue"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Hora de cargue..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="horaCargue" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
-                        <label htmlFor="tipoCamion" className="text-purplePz font-semibold block mb-2">
+                        <label htmlFor="tipoCamion" className="text-black font-semibold block mb-2">
                            Tipo Camión:  <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
-                           <Field
-                              as="select"
-                              id="tipoCamion"
-                              name="tipoCamion"
-                              className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                              placeholder="Tipo Camión..."
-                           >
-                              <option value="" disabled defaultValue>
-                                 Tipo Camión...
-                              </option>
+                        <Field
+                           as="select"
+                           id="tipoCamion"
+                           name="tipoCamion"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
 
-                              {vehiclesTypeList.map(vehicleType => (
-                                 <option value={vehicleType.id} key={vehicleType.id}>
-                                    {vehicleType.nombre}
-                                 </option>
-                              ))}
-                           </Field>
+                           
+                        >
+                           <option value="" disabled defaultValue>
+                              Tipo Camión...
+                           </option>
+
+                           {vehiclesTypeList.map(vehicleType => (
+                              <option value={vehicleType.id} key={vehicleType.id}>
+                                 {vehicleType.nombre}
+                              </option>
+                           ))}
+                        </Field>
 
                         <ErrorMessage name="tipoCamion" component="div" className="text-red-600" />
                      </div>
@@ -206,8 +208,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="pesoAproximado"
                            name="pesoAproximado"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Peso Aproximado..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="pesoAproximado" component="div" className="text-red-600" />
                      </div>
@@ -220,8 +223,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="valorMercancia"
                            name="valorMercancia"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Vlr. Mercancia..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="valorMercancia" component="div" className="text-red-600" />
                      </div>
@@ -234,8 +238,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="contenido"
                            name="contenido"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Contenido..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="contenido" component="div" className="text-red-600" />
                      </div>
@@ -248,8 +253,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="valorTransporte"
                            name="valorTransporte"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Vlr. Transporte..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="valorTransporte" component="div" className="text-red-600" />
                      </div>
@@ -262,7 +268,8 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="userId"
                            name="userId"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
                            placeholder="User Id..."
                            value={user.name}
                            disabled
@@ -288,7 +295,8 @@ export const QuotesCreateForm = () => {
                            as="select"
                            id="companyId"
                            name="companyId"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
                            placeholder="Company Id..."
                         >
                            <option value="" disabled defaultValue>
@@ -331,8 +339,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="nombreOrigen"
                            name="nombreOrigen"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Nombre Origen..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="nombreOrigen" component="div" className="text-red-600" />
                      </div>
@@ -344,19 +353,20 @@ export const QuotesCreateForm = () => {
                            as="select"
                            id="ciudadOrigen"
                            name="ciudadOrigen"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Ciudad de origen..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         >
                            <option value="" disabled defaultValue>
                               Seleccione...
                            </option>
 
                            {
-                              cities.map(city=>(
+                              cities.map(city => (
                                  <option value={city.name} key={city.id}>{city.name}</option>
                               ))
                            }
-                           </Field>
+                        </Field>
                         <ErrorMessage name="ciudadOrigen" component="div" className="text-red-600" />
                      </div>
                   </div>
@@ -371,8 +381,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="nombreDestino"
                            name="nombreDestino"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Nombre de Destino..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="nombreDestino" component="div" className="text-red-600" />
                      </div>
@@ -384,19 +395,20 @@ export const QuotesCreateForm = () => {
                            as="select"
                            id="ciudadDestino"
                            name="ciudadDestino"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Ciudad de Destino..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         >
                            <option value="" disabled defaultValue>
                               Seleccione...
                            </option>
 
                            {
-                              cities.map(city=>(
+                              cities.map(city => (
                                  <option value={city.name} key={city.id}>{city.name}</option>
                               ))
                            }
-                           </Field>
+                        </Field>
                         <ErrorMessage name="ciudadDestino" component="div" className="text-red-600" />
                      </div>
                      <div className="mb-4">
@@ -407,8 +419,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="direccion"
                            name="direccion"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Direccion..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="direccion" component="div" className="text-red-600" />
                      </div>
@@ -420,8 +433,9 @@ export const QuotesCreateForm = () => {
                            type="text"
                            id="contacto"
                            name="contacto"
-                           className="w-full px-3 py-2 rounded bg-gray-200 text-black border border-gray-300 focus-within:border-purplePzHover transition"
-                           placeholder="Contacto..."
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+
+                           
                         />
                         <ErrorMessage name="contacto" component="div" className="text-red-600" />
                      </div>
