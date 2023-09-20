@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Banner = () => {
    return (
@@ -14,13 +15,15 @@ export const Banner = () => {
                </p>
 
                <div className="flex flex-col md:flex-row items-center gap-4">
-                  <button className="w-full xl:w-auto bg-primary text-white py-2 px-8 rounded-xl text-xl transition duration-300 hover:bg-primaryHover">
-                     Contáctenos
-                  </button>
+                  <Link to="auth/signin">
+                     <button className="w-full xl:w-auto bg-primary text-white py-2 px-8 rounded-xl text-xl transition duration-300 hover:bg-primaryHover">
+                        Iniciar sesión
+                     </button>
+                  </Link>
                </div>
             </div>
          </div>
-         
+
          <div className="md:col-span-3 flex items-center justify-center relative">
             <div>
                <img
@@ -28,7 +31,7 @@ export const Banner = () => {
                   className="w-[250px] h-[250px] md:w-[620px] md:h-[450px] object-contain xl:-mt-28"
                />
             </div>
-            
+
             {/* Circle Decoration */}
             <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[280px] h-[280px] md:w-[380px] md:h-[380px] bg-primary border-[10px] border-primary rounded-full -z-10"></div>
          </div>

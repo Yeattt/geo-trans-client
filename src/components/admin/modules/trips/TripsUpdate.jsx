@@ -50,7 +50,7 @@ export const TripsUpdate = ({ moduleInfo }) => {
         destino: moduleInfo.destino,
         saldoPagar: moduleInfo.saldoPagar,
         valorPagar: moduleInfo.valorPagar,
-        cliente: moduleInfo.cliente,
+        cliente: moduleInfo.cliente.nombre,
         tipoViaje: moduleInfo.tipoViaje,
      }, 'trips');
 

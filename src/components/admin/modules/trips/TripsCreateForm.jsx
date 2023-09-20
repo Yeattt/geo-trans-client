@@ -41,9 +41,6 @@ const validationSchema = Yup.object().shape({
       .typeError('El documento debe ser un número')
       .test('len', 'Máximo 80 caracteres', val => val && val.toString().length <= 80)
       .required('Campo requerido'),
-   cliente: Yup.string()
-      .max(30, 'Máximo 30 caracteres')
-      .required('Campo requerido'),
    horaViaje: Yup.string()
       .required('Campo requerido'),
    tipoViaje: Yup.string()
@@ -75,7 +72,7 @@ export const TripsCreateForm = () => {
       valorPagar: '',
       tipoViaje: '',
       fechaViaje: '',
-      cliente: '',
+      clienteId: '',
       horaViaje: '',
       conductorId: '',
       vehiculoId: ''
@@ -131,8 +128,8 @@ export const TripsCreateForm = () => {
 
                         <Field
                            as="select"
-                           id="cliente"
-                           name="cliente"
+                           id="clienteId"
+                           name="clienteId"
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
                         >
                            <option value="" disabled defaultValue>
@@ -146,7 +143,7 @@ export const TripsCreateForm = () => {
                            ))}
                         </Field>
 
-                        <ErrorMessage name="cliente" component="div" className="text-red-600" />
+                        <ErrorMessage name="clienteId" component="div" className="text-red-600" />
                      </div>
 
                      <div className="mb-4">
@@ -257,7 +254,7 @@ export const TripsCreateForm = () => {
 
                      <div className="mb-4">
                         <label htmlFor="nombreProducto" className="text-black font-semibold block mb-2">
-                           Código de producto: <small className='text-red-600 text-2xl'>*</small>
+                           Nombre producto: <small className='text-red-600 text-2xl'>*</small>
                         </label>
 
                         <Field
@@ -267,7 +264,7 @@ export const TripsCreateForm = () => {
                            className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
                         >
                            <option value="" disabled defaultValue>
-                              Código de producto...
+                              Nombre producto...
                            </option>
 
                            <option value="0001">ACERO</option>
@@ -427,30 +424,6 @@ export const TripsCreateForm = () => {
                         <ErrorMessage name="conductorId" component="div" className="text-red-600" />
                      </div>
 
-                     {/* // TODO: MOSTRAR EL VEHÍCULO AL SELECCIONAR EL CONDUCTOR AUTOMÁTICAMENTE */}
-                     {/* <div className="mb-4">
-                  <label htmlFor="vehiculoId" className="text-primary font-semibold block mb-2">
-                     Vehículo: <small className='text-red-600 text-2xl'>*</small>
-                  </label>
-
-                  <div className="bg-white rounded-full  border-2 border-gray-300 focus-within:border-primary focus-within:text-primary transition w-full h-10 flex items-center hover:cursor-not-allowed">
-                     <div className="w-[15%] lg:w-[7%] h-full focus-within:text-black text-[22px] flex items-center justify-center">
-                        <FaTruck />
-                     </div>
-
-                     <Field
-                        type="hidden"
-                        id="vehiculoId"
-                        name="vehiculoId"
-                        className="bg-transparent w-[85%] lg:w-[93%] h-full px-4 pl-0 py-3 pb-3 font-semibold text-[15px] hover:cursor-not-allowed"
-                        placeholder="Vehículo..."
-                        disabled
-                     />
-                  </div>
-
-                  <ErrorMessage name="vehiculoId" component="div" className="text-red-600" />
-               </div> */}
-
                      <div className="mb-4">
                         <label htmlFor="vehiculoId" className="text-black font-semibold block mb-2">
                            Vehículo: <small className='text-red-600 text-2xl'>*</small>
@@ -460,7 +433,8 @@ export const TripsCreateForm = () => {
                            as="select"
                            id="vehiculoId"
                            name="vehiculoId"
-                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition"
+                           className="w-full px-3 py-2 rounded bg-white text-black border border-gray-300 focus-within:border-primary transition cursor-not-allowed"
+                           disabled
                         >
                            <option value="" disabled defaultValue>
                               Vehículo...

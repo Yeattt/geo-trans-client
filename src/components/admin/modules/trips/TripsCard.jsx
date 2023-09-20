@@ -90,11 +90,13 @@ export const TripsCard = ({ trip }) => {
 
          <td className="px-7 py-5 text-center cursor-pointer font-bold flex items-center justify-center text-gray-500">
             <TripInfoModal trip={trip} />
+            <UpdateModal isOpenUpdate={isOpenUpdate} module="Trips" moduleInfo={trip} handleUpdateClick={handleUpdateClick} />
 
             {
                userPrivileges.some(privilege => privilege.nombre.toLowerCase().trim() === 'actualizar') &&
                <Button onClick={handleUpdateClick} variant="outlined" endIcon={<EditNoteIcon />}>Editar</Button>
             }
+
 
 
             {/* <span className="text-2xl text-red-600 hover:text-red-700 cursor-pointer">
