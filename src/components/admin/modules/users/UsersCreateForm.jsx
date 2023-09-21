@@ -23,7 +23,6 @@ const validationSchema = Yup.object().shape({
       .min(3, 'Mínimo 3 caracteres').required('Campo requerido'),
    roleId: Yup.string(),
    companyId: Yup.string(),
-   vehicleId: Yup.string()
 });
 
 export const UsersCreateForm = ({ handleRefreshData }) => {

@@ -7,6 +7,9 @@ import * as Yup from 'yup';
 import { useCreateForm, useGetApiData, useAuthStore, useGetApiCities } from '../../../../hooks';
 
 // * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
+const today = new Date();
+const todayFormatted = today.toISOString().split('T')[0];
+// * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
 const validationSchema = Yup.object().shape({
    nombreOrigen: Yup.string()
       .required('Campo requerido'),
@@ -27,11 +30,21 @@ const validationSchema = Yup.object().shape({
       .typeError('Solo se reciben valores numericos')
       .required('Campo requerido'),
 
-   fechaSolicitud: Yup.string()
-      .required('Campo requerido'),
-
-   fechaServicio: Yup.string()
-      .required('Campo requerido'),
+      fechaSolicitud: Yup.date()
+      .required('Campo requerido')
+      .test('is-today', 'La fecha de solicitud debe ser hoy', function (value) {
+        // Convierte el valor ingresado en formato ISO para compararlo con todayFormatted
+        const formattedValue = value.toISOString().split('T')[0];
+        return formattedValue === todayFormatted;
+      }),
+  
+    fechaServicio: Yup.date()
+      .required('Campo requerido')
+      .test('not-today-or-before', 'La fecha de servicio debe ser después de hoy', function (value) {
+        // Convierte el valor ingresado en formato ISO para compararlo con todayFormatted
+        const formattedValue = value.toISOString().split('T')[0];
+        return formattedValue !== todayFormatted && value > today;
+      }),
 
    horaCargue: Yup.string()
       .required('Campo requerido'),
@@ -316,7 +329,7 @@ export const QuotesCreateForm = () => {
                   <div className="grid grid-cols-1 gap-3">
                      <div className="mb-20">
                         <label htmlFor="observaciones" className="text-black font-semibold block mb-2">
-                           Observaciones:  <small className='text-red-600 text-2xl'>*</small>
+                           Observaciones: 
                         </label>
                         <Field
                            type="textarea"

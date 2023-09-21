@@ -4,59 +4,71 @@ import * as Yup from 'yup';
 import { useUpdateForm, useGetApiData, useAuthStore, useGetApiCities } from '../../../../hooks';
 
 export const QuotesUpdate = ({ moduleInfo }) => {
-   const validationSchema = Yup.object().shape({
-      nombreOrigen: Yup.string()
-         .required('Campo requerido'),
+   const today = new Date();
+const todayFormatted = today.toISOString().split('T')[0];
+// * Yup es una librería que realiza y verifica las validaciones de los campos que se especifican
+const validationSchema = Yup.object().shape({
+   nombreOrigen: Yup.string()
+      .required('Campo requerido'),
 
-      nombreDestino: Yup.string()
-         .required('Campo requerido'),
+   nombreDestino: Yup.string()
+      .required('Campo requerido'),
 
-      ciudadOrigen: Yup.string()
-         .required('Campo requerido'),
+   ciudadOrigen: Yup.string()
+      .required('Campo requerido'),
 
-      ciudadDestino: Yup.string()
-         .required('Campo requerido'),
+   ciudadDestino: Yup.string()
+      .required('Campo requerido'),
 
-      direccion: Yup.string()
-         .required('Campo requerido'),
+   direccion: Yup.string()
+      .required('Campo requerido'),
 
-      contacto: Yup.number()
-         .typeError('Solo se reciben valores numericos')
-         .required('Campo requerido'),
+   contacto: Yup.number()
+      .typeError('Solo se reciben valores numericos')
+      .required('Campo requerido'),
 
-      fechaSolicitud: Yup.string()
-         .required('Campo requerido'),
+      fechaSolicitud: Yup.date()
+      .required('Campo requerido')
+      .test('is-today', 'La fecha de solicitud debe ser hoy', function (value) {
+        // Convierte el valor ingresado en formato ISO para compararlo con todayFormatted
+        const formattedValue = value.toISOString().split('T')[0];
+        return formattedValue === todayFormatted;
+      }),
+  
+    fechaServicio: Yup.date()
+      .required('Campo requerido')
+      .test('not-today-or-before', 'La fecha de servicio debe ser después de hoy', function (value) {
+        // Convierte el valor ingresado en formato ISO para compararlo con todayFormatted
+        const formattedValue = value.toISOString().split('T')[0];
+        return formattedValue !== todayFormatted && value > today;
+      }),
 
-      fechaServicio: Yup.string()
-         .required('Campo requerido'),
+   horaCargue: Yup.string()
+      .required('Campo requerido'),
 
-      horaCargue: Yup.string()
-         .required('Campo requerido'),
+   tipoCamion: Yup.string()
+      .required('Campo requerido'),
 
-      tipoCamion: Yup.string()
-         .required('Campo requerido'),
+   pesoAproximado: Yup.number()
+      .typeError('Solo se reciben valores numericos')
+      .required('Campo requerido'),
 
-      pesoAproximado: Yup.number()
-         .typeError('Solo se reciben valores numericos')
-         .required('Campo requerido'),
+   valorMercancia: Yup.number()
+      .typeError('Solo se reciben valores numericos')
+      .required('Campo requerido'),
 
-      valorMercancia: Yup.number()
-         .typeError('Solo se reciben valores numericos')
-         .required('Campo requerido'),
+   contenido: Yup.string()
+      .required('Campo requerido'),
 
-      contenido: Yup.string()
-         .required('Campo requerido'),
+   valorTransporte: Yup.number()
+      .typeError('Solo se reciben valores numericos')
+      .required('Campo requerido'),
 
-      valorTransporte: Yup.number()
-         .typeError('Solo se reciben valores numericos')
-         .required('Campo requerido'),
 
-      userId: Yup.string()
-         .required('Campo requerido'),
 
-      companyId: Yup.string()
-         .required('Campo requerido'),
-   });
+   companyId: Yup.string()
+      .required('Campo requerido'),
+});
 
    const { data: users, isLoading: usersIsLoading } = useGetApiData('/users');
    const [usersList, setUsersList] = useState([]);
@@ -299,7 +311,7 @@ export const QuotesUpdate = ({ moduleInfo }) => {
                   <div className="grid grid-cols-1 gap-3">
                      <div className="mb-20">
                         <label htmlFor="observaciones" className="text-black font-semibold block mb-2">
-                           Observaciones:  <small className='text-red text-2xl'>*</small>
+                           Observaciones:  
                         </label>
                         <Field
                            type="textarea"

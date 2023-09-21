@@ -24,7 +24,6 @@ export const UsersUpdate = ({ moduleInfo }) => {
       .min(3, 'Mínimo 3 caracteres'),
     roleId: Yup.string(),
     companyId: Yup.string(),
-    vehicleId: Yup.string(),
   });
 
   const { initialValues, onSubmitForm } = useUpdateForm({

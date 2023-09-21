@@ -23,7 +23,7 @@ export const PendingCard = ({ user }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.email}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.role.nombre}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.compania.nombreEmpresa}</td>
-         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.vehiculo.placa}</td>
+         <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{user.vehiculo === null ? 'no hay vehiculo' : user.vehiculo.placa}</td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                !user.registroPendiente

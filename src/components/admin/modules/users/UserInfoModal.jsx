@@ -84,7 +84,7 @@ export const UserInfoModal = ({ user }) => {
 
               <div className="mr-5 ml-5">
                 <Typography className="mb-2 text-primary" fontWeight="medium">Vehículo</Typography>
-                <Typography fontWeight="light">{user.vehiculo.placa}</Typography>
+                <Typography fontWeight="light">{user.vehiculo === null ? 'no hay vehiculo' : user.vehiculo.placa}</Typography>
               </div>
             </div>
 
