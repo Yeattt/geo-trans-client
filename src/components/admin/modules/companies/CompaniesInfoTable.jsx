@@ -30,6 +30,7 @@ export const CompaniesInfoTable = ({ companies, handleIsCreateModalActive }) => 
               <th className="px-6 py-2 text-primary">Nombre Empresa</th>
               <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Teléfono</th>
               <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Dueño Póliza</th>
+              <th className="hidden 2xl:table-cell px-6 py-2 text-primary">Hoja de Vida</th>
               <th className="px-6 py-2 text-primary">Estado</th>
               <th className="px-6 py-2 text-primary">Acciones</th>
             </tr>

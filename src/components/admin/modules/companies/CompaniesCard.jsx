@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { CompanyInfoModal, DeleteModal, UpdateModal } from '../../';
 import { useAllowedPrivileges } from '../../../../hooks';
+import { geoTransApi } from '../../../../api';
+import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 
 export const CompaniesCard = ({ company }) => {
    const { isLoading: { isUserPrivilegesLoading }, userPrivileges } = useAllowedPrivileges();
@@ -20,6 +22,25 @@ export const CompaniesCard = ({ company }) => {
          setIsDeleteModalActive(status);
    };
 
+   const handleDownloadFile = (filename = '') => {
+      geoTransApi.get(`/files/download/${filename}`, {
+         responseType: 'blob',
+      })
+         .then(res => {
+            const fileUrl = window.URL.createObjectURL(new Blob([res.data]));
+
+            const a = document.createElement('a');
+            a.href = fileUrl;
+            a.download = filename;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+         })
+         .catch(error => {
+            console.log('Error al descargar el archivo', error);
+         })
+   }
+
    return (
       <tr className="hover:bg-gray-200 border-b-2 border-t-2 border-gray-100">
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-black">{company.id}</td>
@@ -28,6 +49,14 @@ export const CompaniesCard = ({ company }) => {
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.nombreEmpresa}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.telefono}</td>
          <td className="hidden 2xl:table-cell px-7 py-5 text-center cursor-pointer font-bold text-gray-500">{company.duenoPoliza}</td>
+         <td
+            className="hidden 2xl:table-cell px-0 py-0 text-center cursor-pointer font-bold text-gray-500"
+            onClick={() => handleDownloadFile(company.hojaVida)}
+         >
+            <div className="text-xl text-center w-full h-full flex items-center justify-center">
+               <BsFileEarmarkArrowDown alt={company.hojaVida} />
+            </div>
+         </td>
          <td className="px-7 py-5 text-center cursor-pointer font-bold text-gray-500">
             {
                company.estado

@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useUpdateForm} from '../../../../hooks';
+import { useUpdateForm, useUploadFiles } from '../../../../hooks';
 
 
 export const CompaniesUpdate = ({moduleInfo}) => {
@@ -16,23 +16,49 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                      .typeError('El telefono debe ser un número')
                      .test('len', 'Debe tener 10 dígitos', val => val && val.toString().length <= 10),
    duenoPoliza:   Yup.string('Solo se accepta letras'),
+   hojaVida: Yup.string(),
     });
 
-
+    const { fileData, handleFileChange, uploadFiles } = useUploadFiles();
     const { initialValues, onSubmitForm } = useUpdateForm({
         id: moduleInfo.id,
         nit: moduleInfo.nit,
         razonSocial: moduleInfo.razonSocial,
         nombreEmpresa: moduleInfo.nombreEmpresa,
         telefono: moduleInfo.telefono,
-        duenoPoliza: moduleInfo.duenoPoliza
+        duenoPoliza: moduleInfo.duenoPoliza,
+        hojaVida: moduleInfo.hojaVida
     }, 'companies');
+
+    const handleFormSubmit = async (values) => {
+        try {
+           const uploadedFilesData = await uploadFiles();
+  
+           //* Este hook nos devuelve un arreglo con los nombres de los archivos, entonces agarramos los datos
+           //* Que tenemos inicialmente en los initialValues, y le pasamos los nombres de los archivos que nos
+           //* Retorna el hook, ya que al subir archivos se les cambia el nombre y se genera un nombre único
+  
+           // Mapeamos los nombres de archivos en uploadedFilesData.files a un objeto para facilitar la asignación
+           const finalFormValues = {
+              ...values,
+              hojaVida: uploadedFilesData?.files[0].nombre,
+           };
+  
+           console.log(finalFormValues);
+  
+           //* Cuando todo se completa satisfactoriamente, se llama la función para crear el vehículo
+           onSubmitForm(finalFormValues);
+        } catch (error) {
+           console.error('Error al enviar el formulario:', error);
+        }
+     };
+  
 
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values) => onSubmitForm(values)}
+            onSubmit={(values) => handleFormSubmit(values)}
         >
             <Form>
                 <div className="grid grid-cols-2 gap-4">
@@ -100,6 +126,24 @@ export const CompaniesUpdate = ({moduleInfo}) => {
                         />
                         <ErrorMessage name="duenoPoliza" component="div" className="text-red-500" />
                     </div>
+
+                    <div className="mb-4">
+                  <label htmlFor="hojaVida" className="text-black font-semibold block mb-2">
+                     Hoja de Vida:
+                  </label>
+
+                  {/* Input para subir archivo */}
+                  <input
+                     type="file"
+                     id="hojaVida"
+                     name="hojaVida"
+                     className="w-full px-3 py-2 rounded bg-white text-gray-600 border border-gray-300 focus-within:border-purplePzHover transition"
+                     onChange={(event) => handleFileChange('hojaVida', event)}
+                  />
+
+                  <ErrorMessage name="hojaVida" component="div" className="text-red-600" />
+               </div>
+
                 </div>
 
                 <div className="text-center mt-2">
